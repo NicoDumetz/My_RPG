@@ -64,7 +64,6 @@ void rpg(rpg_t *rpg)
             manage_event(rpg);
         }
         init_clock(rpg);
-        fetch_last_frame(rpg);
         rpg->mouse_data.pos = recalculate_mouse_position(
             rpg->window, sfRenderWindow_getView(rpg->window));
         sfRenderWindow_clear(rpg->window, sfBlack);
