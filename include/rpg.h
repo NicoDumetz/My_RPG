@@ -80,6 +80,7 @@ sfSprite *create_sprite(char *asset);
 void rpg(rpg_t *rpg);
 void destroy_rpg(rpg_t *rpg);
 rpg_t *create_rpg_struct(void);
+void manage_heros(heros_t *heros, rpg_t *rpg);
 
 /**EVENT**/
 void manage_event(rpg_t *rpg);
@@ -91,4 +92,9 @@ void manage_right(rpg_t *rpg);
 void manage_left(rpg_t *rpg);
 void manage_down(rpg_t *rpg);
 void manage_up(rpg_t *rpg);
+
+/**OPTI**/
+void biome_loop(rpg_t *rpg, biome_t *biome);
+void entity_loop(
+    entity_t *entity_list, rpg_t *rpg);
 #endif

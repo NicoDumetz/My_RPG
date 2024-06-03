@@ -56,10 +56,13 @@ void set_deco_data_plain(deco_data_t *deco_data, back_t *back)
 biome_t *set_plain(void)
 {
     biome_t *plain = malloc(sizeof(biome_t));
+    int bot_type[6] = {GOBLINS_B, GOBLINS_D, GOBLINS_T, KNIGHT, ARCHER, -1};
 
     plain->back = add_background(PLAINE_SPRITE, PLAINE_COLISION);
     plain->bot_data = init_bot_data();
     plain->deco_data = init_deco_data();
+    for (int i = 0; bot_type[i] < 6; i++)
+        plain->bot_type[i] = bot_type[i];
     set_deco_data_plain(plain->deco_data, plain->back);
     return (plain);
 }

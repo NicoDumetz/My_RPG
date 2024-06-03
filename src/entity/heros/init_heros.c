@@ -48,6 +48,7 @@ heros_t *init_heros(char *asset)
     set_offset(heros->npc->entity, (sfVector2i){6, 8});
     set_action_tab_heros(heros);
     set_attbox_dim_heros(heros->npc);
+    heros->npc->special = HEROS;
     heros->npc->entity->colbox_dim = colbox;
     heros->npc->hitbox_dim = hitbox;
     return heros;

@@ -22,6 +22,7 @@
     #include <stdio.h>
     #include "player.h"
     #include "background.h"
+    #include <time.h>
     #include <stdbool.h>
     #include <biome.h>
     #include "collisions.h"

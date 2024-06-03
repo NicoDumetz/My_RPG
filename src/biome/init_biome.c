@@ -17,7 +17,7 @@ void destroy_biome(biome_t *biome)
     free(biome);
 }
 
-biome_t *create_biome(int biome_type, heros_t *heros)
+biome_t *create_biome(int biome_type)
 {
     biome_t *biome = NULL;
     biome_t *(*biome_gen[5])() = {
@@ -29,7 +29,8 @@ biome_t *create_biome(int biome_type, heros_t *heros)
     };
 
     biome = biome_gen[biome_type]();
-    biome->entity_in_view_head = heros->npc->entity;
-    biome->entity_in_view_tail = heros->npc->entity;
+    biome->nbr_bot = 0;
+    biome->entity_in_view_head = NULL;
+    biome->entity_in_view_tail = NULL;
     return (biome);
 }

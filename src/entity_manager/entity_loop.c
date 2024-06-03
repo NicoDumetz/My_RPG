@@ -23,11 +23,17 @@ void manage_animation(entity_t *entity, bool ticks)
     }
 }
 
-void draw_entity_list(
-    entity_t *entity_list, sfRenderWindow *window, bool ticks)
+void entity_loop(
+    entity_t *entity_list, rpg_t *rpg)
 {
+    npc_t *npc = NULL;
+
     for (entity_t *curr = entity_list; curr; curr = curr->next) {
-        manage_animation(curr, ticks);
-        sfRenderWindow_drawSprite(window, curr->sprite, NULL);
+        npc = curr->parent;
+        if (npc && npc->special == NON_SPEC)
+            manage_bot(curr, rpg->heros);
+        manage_animation(curr, rpg->ticks);
+        sfRenderWindow_drawSprite(rpg->window, curr->sprite, NULL);
     }
+    manage_heros(rpg->heros, rpg);
 }

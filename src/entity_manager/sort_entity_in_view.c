@@ -7,8 +7,10 @@
 
 #include "rpg.h"
 
-void sort_entity_in_view(biome_t *biome, sfRenderWindow *window)
+void sort_entity_in_view(
+    biome_t *biome, sfRenderWindow *window, heros_t *heros)
 {
+    put_entity_in_view_list(heros->npc->entity, biome, window);
     for (int i = 0; i <= MINE_DECO; i++)
         for (int j = 0; biome->deco_data->deco_entity[i][j]; j++)
             put_entity_in_view_list(

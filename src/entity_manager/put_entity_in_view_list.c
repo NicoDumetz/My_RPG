@@ -93,6 +93,9 @@ void insert_entity_in_view_list(entity_t *entity, biome_t *biome)
 
 void check_entity_insert_in_view_list(entity_t *entity, biome_t *biome)
 {
+    sfFloatRect col_data = sfRectangleShape_getGlobalBounds(entity->colbox);
+
+    entity->level = col_data.top + col_data.height;
     if ((entity->next == NULL && entity->prev == NULL) ||
         (entity->next && entity->next->level < entity->level) ||
         (entity->prev && entity->prev->level > entity->level)) {
@@ -100,20 +103,20 @@ void check_entity_insert_in_view_list(entity_t *entity, biome_t *biome)
     }
 }
 
-void put_entity_in_view_list(entity_t *entity, biome_t *biome, sfRenderWindow *window)
+void put_entity_in_view_list(
+    entity_t *entity, biome_t *biome, sfRenderWindow *window)
 {
     const sfView *view = sfRenderWindow_getView(window);
     sfVector2f center = sfView_getCenter(view);
     sfVector2f size = sfView_getSize(view);
-    sfFloatRect col_data = sfRectangleShape_getGlobalBounds(entity->colbox);
     sfFloatRect rect;
 
-    entity->level = col_data.top + col_data.height;
     rect.left = center.x - size.x / 2;
     rect.top = center.y - size.y / 2;
     rect.width = size.x;
     rect.height = size.y;
     if (sprite_is_in_float_rect(entity->sprite, rect) == sfTrue) {
+        set_all_box(entity, window);
         check_entity_insert_in_view_list(entity, biome);
     } else
         remove_entity_from_list(entity, biome);

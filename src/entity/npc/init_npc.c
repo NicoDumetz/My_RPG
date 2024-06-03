@@ -50,6 +50,7 @@ npc_t *init_npc(sfTexture *asset)
     npc->cur_attack = false;
     npc->hitbox = init_hitbox_rect();
     npc->hitbox_dim = (sfFloatRect){0, 0, 0, 0};
+    npc->special = NON_SPEC;
     for (int i = 0; i <= ATTACK_R; i++) {
         npc->attbox[i] = init_attbox_rect();
         npc->attbox_dim[i] = (sfFloatRect){0, 0, 0, 0};

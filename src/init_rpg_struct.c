@@ -38,6 +38,6 @@ rpg_t *create_rpg_struct(void)
     for (int i = 0; i < 256; i++)
         rpg->key_state[i] = false;
     for (int i = 0; i <= MINE; i++)
-        rpg->biome[i] = create_biome(i, rpg->heros);
+        rpg->biome[i] = create_biome(i);
     return rpg;
 }

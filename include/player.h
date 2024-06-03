@@ -11,6 +11,11 @@
     #include <stdbool.h>
     #include "background.h"
 
+typedef enum special_npc_e {
+    NON_SPEC = 0,
+    HEROS
+}special_npc_t;
+
 typedef enum deco_type_e {
     HOUSE_DECO = 0,
     TREE_DECO,
@@ -69,6 +74,7 @@ typedef struct npc_s {
     struct npc_s *next;
     struct npc_s *prev;
     sfVector2i action[9];
+    special_npc_t special;
 } npc_t;
 
 typedef struct deco_data_s {
@@ -105,18 +111,21 @@ void anim_attack(npc_t *npc, sfVector2i offset, bool ticks);
 void set_offset(entity_t *entity, sfVector2i size_sprite);
 void set_box(
     sfRectangleShape *rect, sfFloatRect floatrect, entity_t *entity);
+void set_all_box(entity_t *entity, sfRenderWindow *window);
+void manage_animation(entity_t *entity, bool ticks);
 
 /**BOT**/
 bot_data_t *init_bot_data(void);
 npc_t *set_archer(sfTexture *texture);
 void free_bot_data(bot_data_t *bot_data);
 void free_bot_list(npc_t *npc);
-void create_bot(bot_type_t bot_type, bot_data_t *bot_data_t);
+npc_t *create_bot(bot_type_t bot_type, bot_data_t *bot_data_t, sfVector2f pos);
 npc_t *set_goblins_b(sfTexture *texture);
 npc_t *set_goblins_d(sfTexture *texture);
 npc_t *set_goblins(sfTexture *texture);
 npc_t *set_knight(sfTexture *texture);
 npc_t *set_minions(sfTexture *texture);
+void manage_bot(entity_t *entity, heros_t *heros);
 
 /**DECO**/
 deco_data_t *init_deco_data(void);

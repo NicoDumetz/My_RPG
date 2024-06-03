@@ -31,7 +31,7 @@ SRC = main.c\
 	src/entity/bot/create_bot.c\
 	src/animations/anim_entity.c\
 	src/init_rpg_struct.c\
-	src/test.c\
+	src/biome/biome_loop.c\
 	src/background/init_background.c\
 	src/movements/movements.c\
 	src/event/manage_key/manage_down.c\
@@ -50,7 +50,15 @@ SRC = main.c\
 	src/entity/deco/display_deco.c\
 	src/collisions/static_collisions.c\
 	src/collisions/hit_collisions.c\
-	src/animations/anim_attack.c
+	src/animations/anim_attack.c\
+	src/collisions/put_black_rect_on_col.c\
+	src/entity_manager/sort_entity_in_view.c\
+	src/entity_manager/put_entity_in_view_list.c\
+	src/tools/sprite_is_in_float_rect.c\
+	src/entity_manager/entity_loop.c\
+	src/entity/heros/manage_heros.c\
+	src/entity/bot/ia/manage_bot.c\
+	src/entity/bot/bot_generator.c
 
 OBJ = $(SRC:.c=.o)
 
