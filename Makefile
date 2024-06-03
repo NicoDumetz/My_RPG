@@ -92,6 +92,7 @@ SRC = main.c\
 	src/save/init_load_page.c\
 	src/save/exit_button_released.c\
 	src/save/save_button_released.c\
+	src/save/remake_bot_list.c\
 
 OBJ = $(SRC:.c=.o)
 

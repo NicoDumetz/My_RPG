@@ -7,6 +7,22 @@
 
 #include "rpg.h"
 
+void write_bot_data(save_data_t *new_save, rpg_t *rpg, int i)
+{
+    int k = 0;
+
+    for (int j = 0; j <= ARCHER; j++) {
+        for (npc_t *curr = rpg->biome[i]->bot_data->bot_list[j];
+            curr; curr = curr->next) {
+                new_save->save_bot[i][k].id_bot = j;
+                new_save->save_bot[i][k].pv = curr->pv;
+                new_save->save_bot[i][k].pos_x = curr->entity->pos.x;
+                new_save->save_bot[i][k].pos_y = curr->entity->pos.y;
+                k++;
+            }
+    }
+}
+
 void write_data_in_save(save_data_t *new_save, rpg_t *rpg)
 {
     int j = 0;
@@ -19,6 +35,8 @@ void write_data_in_save(save_data_t *new_save, rpg_t *rpg)
         new_save->object_id_inv[j] = curr->id;
         j++;
     }
+    for (int i = 0; i <= MINE; i++)
+        write_bot_data(new_save, rpg, i);
     new_save->level_heros = rpg->heros->level_act;
     new_save->x_heros = rpg->heros->npc->entity->pos.x;
     new_save->y_heros = rpg->heros->npc->entity->pos.y;

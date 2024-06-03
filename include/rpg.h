@@ -132,6 +132,7 @@ void update_save_list(save_data_t *save, rpg_t *rpg);
 void create_save(rpg_t *rpg);
 void create_file_list(rpg_t *rpg);
 void load_page(rpg_t *rpg);
+void remake_bot_list(save_data_t *save, rpg_t *rpg);
 
 /**RPG**/
 void rpg(rpg_t *rpg);

@@ -16,6 +16,7 @@ void appli_save(rpg_t *rpg, save_data_t *save)
     rpg->heros->npc->entity->pos = (sfVector2f){save->x_heros, save->y_heros};
     sfSprite_setPosition(
         rpg->heros->npc->entity->sprite, rpg->heros->npc->entity->pos);
+    remake_bot_list(save, rpg);
 }
 
 void save_button_released(void *data, button_t *button)

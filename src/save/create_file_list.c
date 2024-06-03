@@ -50,6 +50,7 @@ save_data_t *open_save_file(struct dirent *entry)
         fprintf(stderr, "Error to take file information\n");
         return save;
     }
+    printf("%s\n", path);
     fd = open(path, O_RDONLY);
     if (fd > 1)
         save = copy_save_file(fd, path);

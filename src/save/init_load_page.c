@@ -26,10 +26,24 @@ void destroy_load_page(save_scene_t *save_scene)
 
 void add_load_button_to_list(save_scene_t *save_scene, button_t *button)
 {
-    button->next = save_scene->button_list;
-    if (save_scene->button_list)
-        save_scene->button_list->prev = button;
-    save_scene->button_list = button;
+    save_t *save = (save_t *)(button->child);
+    time_t new_timestamp = save->data->time_last_save;
+    button_t *current = save_scene->button_list;
+    button_t *prev = NULL;
+
+    while (current != NULL &&
+        ((save_t *)(current->child))->data->time_last_save > new_timestamp) {
+        prev = current;
+        current = current->next;
+    }
+    button->next = current;
+    button->prev = prev;
+    if (prev != NULL)
+        prev->next = button;
+    else
+        save_scene->button_list = button;
+    if (current != NULL)
+        current->prev = button;
 }
 
 save_scene_t *init_load_page(sfTexture **text_tab)
