@@ -9,7 +9,9 @@
 void destroy_inventory(inventory_t *inventory)
 {
     sfRectangleShape_destroy(inventory->hero_pos);
+    inventory->hero_pos = NULL;
     sfSprite_destroy(inventory->background);
+    inventory->background = NULL;
     destroy_slots(inventory);
     destroy_stats(inventory);
 }

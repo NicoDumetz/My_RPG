@@ -6,20 +6,25 @@
 */
 
 #include "rpg.h"
-#include <SFML/Graphics/Sprite.h>
 
 void destroy_back_obj(back_obj_t *back_obj)
 {
     sfSprite_destroy(back_obj->sprite);
+    back_obj->sprite = NULL;
     free(back_obj);
+    back_obj = NULL;
 }
 
 void destroy_front_obj(front_obj_t *front_obj, bool with_back)
 {
     sfSprite_destroy(front_obj->sprite);
-    if (with_back && front_obj->in)
+    front_obj->sprite = NULL;
+    if (with_back && front_obj->in) {
         destroy_back_obj(front_obj->in);
+        front_obj->in = NULL;
+    }
     free(front_obj);
+    front_obj = NULL;
 }
 
 back_obj_t *create_back_obj(object_drop_t type, sfTexture **text_tab)

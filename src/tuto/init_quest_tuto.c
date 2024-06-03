@@ -23,14 +23,14 @@ void set_func_quest_tuto(quest_t *quest_tab)
 void init_quest_tuto(quest_t *quest_tab, sfFont *font)
 {
     char *message[9] = {
-        "Deplacez vous à l'aide de ZQSD",
-        "Attaquez grace à IJKL",
-        "Tuez les goblin",
-        "Ramasser l'objet grâce à E",
-        "Ouvrer votre inventaire grâce à TAB et prenez une potion",
-        "Equipez vous un Objet",
-        "Jetez un objet",
-        "Passez le test",
+        "Move with ZQSD",
+        "Attack with IJKL",
+        "Kill weakened goblins",
+        "Pick up items with E",
+        "Open inventory with TAB and drink a potion",
+        "Equip an item with left click",
+        "Discard an item with Ctrl + left click",
+        "Eliminate the goblin army",
         NULL
     };
 

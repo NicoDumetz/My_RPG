@@ -46,7 +46,7 @@ npc_t *set_goblins(sfTexture *texture)
     goblins->view = 500;
     goblins->stamina = 25;
     goblins->max_stamina = 25;
-    goblins->damage = 20;
+    goblins->damage = 35;
     goblins->type = MELEE;
     return (goblins);
 }

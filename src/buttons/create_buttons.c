@@ -10,7 +10,9 @@
 void destroy_button(button_t *button)
 {
     sfSprite_destroy(button->sprite);
+    button->sprite = NULL;
     free(button);
+    button = NULL;
 }
 
 button_t *create_button(sfTexture **text_tab, int *text_id)

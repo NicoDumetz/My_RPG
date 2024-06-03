@@ -7,17 +7,26 @@
 
 #include "rpg.h"
 
-void write_bot_data(save_data_t *new_save, rpg_t *rpg, int i)
+static void is_champ(rpg_t *rpg, save_bot_t *save_bot, npc_t *curr, int j)
+{
+    if (curr != rpg->biome[CAMP]->boss &&
+        curr != rpg->biome[CASTLE]->boss &&
+        curr != rpg->biome[MINE]->boss) {
+        save_bot->id_bot = j;
+        save_bot->pv = curr->pv;
+        save_bot->pos_x = curr->entity->pos.x;
+        save_bot->pos_y = curr->entity->pos.y;
+    }
+}
+
+static void write_bot_data(save_data_t *new_save, rpg_t *rpg, int i)
 {
     int k = 0;
 
     for (int j = 0; j <= ARCHER; j++) {
         for (npc_t *curr = rpg->biome[i]->bot_data->bot_list[j];
             curr && k < 30; curr = curr->next) {
-                new_save->save_bot[i][k].id_bot = j;
-                new_save->save_bot[i][k].pv = curr->pv;
-                new_save->save_bot[i][k].pos_x = curr->entity->pos.x;
-                new_save->save_bot[i][k].pos_y = curr->entity->pos.y;
+                is_champ(rpg, &(new_save->save_bot[i][k]), curr, j);
                 k++;
             }
     }
@@ -69,6 +78,17 @@ void unappli_all_multi(rpg_t *rpg)
     }
 }
 
+void appli_all_multi(rpg_t *rpg)
+{
+    back_obj_t *back = NULL;
+
+    for (int i = 0; i < 4; i++) {
+        back = (back_obj_t *)rpg->inventory.equipment[i]->child;
+        if (back)
+            appli_multi_equip(rpg->heros, back);
+    }
+}
+
 void write_data_in_save(save_data_t *new_save, rpg_t *rpg)
 {
     unappli_all_multi(rpg);
@@ -86,4 +106,5 @@ void write_data_in_save(save_data_t *new_save, rpg_t *rpg)
     new_save->skill_point = rpg->heros->skill_point;
     write_quest_data(new_save, rpg);
     new_save->end_save = 42;
+    appli_all_multi(rpg);
 }

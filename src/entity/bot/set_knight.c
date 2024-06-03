@@ -40,13 +40,13 @@ npc_t *set_knight(sfTexture *texture)
     set_offset(knight->entity, (sfVector2i){6, 8});
     set_action_tab_knight(knight);
     set_attbox_dim_knight(knight);
-    knight->xp = 2000;
+    knight->xp = 150;
     knight->hitbox_dim = hitbox;
     knight->entity->colbox_dim = colbox;
     knight->view = 500;
     knight->stamina = 20;
     knight->max_stamina = 20;
-    knight->damage = 50;
+    knight->damage = 70;
     knight->type = MELEE;
     return (knight);
 }

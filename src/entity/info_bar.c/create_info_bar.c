@@ -10,11 +10,17 @@
 void destroy_info_bar(info_bar_t *info_bar)
 {
     sfRectangleShape_destroy(info_bar->bar);
-    if (info_bar->deco)
+    info_bar->bar = NULL;
+    if (info_bar->deco) {
         sfSprite_destroy(info_bar->deco);
-    if (info_bar->text)
+        info_bar->deco = NULL;
+    }
+    if (info_bar->text) {
         sfText_destroy(info_bar->text);
+        info_bar->text = NULL;
+    }
     free(info_bar);
+    info_bar = NULL;
 }
 
 sfRectangleShape *set_rect_bar(sfColor color, sfVector2f size)
