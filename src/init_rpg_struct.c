@@ -6,6 +6,8 @@
 */
 
 #include "rpg.h"
+#include <SFML/Graphics/Font.h>
+#include <SFML/Graphics/Texture.h>
 
 void destroy_save_list(rpg_t *rpg)
 {
@@ -19,6 +21,16 @@ void destroy_save_list(rpg_t *rpg)
         free(curr);
         curr = next;
     }
+}
+
+static void destroy_rpg_next(rpg_t *rpg)
+{
+    destroy_load_page(rpg->save_scene);
+    destroy_menu(rpg->start_menu);
+    destroy_param_struct(rpg->params);
+    destroy_inventory(&rpg->inventory);
+    free_game_over(rpg->end);
+    destroy_particules(rpg);
 }
 
 void destroy_rpg(rpg_t *rpg)
@@ -37,15 +49,19 @@ void destroy_rpg(rpg_t *rpg)
             sfTexture_destroy(rpg->text_tab[i]);
         for (int i = 0; i <= PIXEL; i++)
             sfFont_destroy(rpg->font_tab[i]);
-        destroy_load_page(rpg->save_scene);
-        destroy_inventory(&rpg->inventory);
-        free_game_over(rpg->end);
+        destroy_rpg_next(rpg);
         free(rpg);
     }
 }
 
 rpg_t *init_rpg_next(rpg_t *rpg)
 {
+    for (int i = 0; i <= MINE; i++)
+        rpg->biome[i] = create_biome(i, rpg->text_tab, rpg->font_tab);
+    rpg->tuto = create_tuto(rpg->text_tab, rpg->font_tab);
+    rpg->heros->npc->entity->pos = rpg->tuto->biome->last_pos;
+    sfSprite_setPosition(
+        rpg->heros->npc->entity->sprite, rpg->tuto->biome->last_pos);
     srand(time(NULL));
     rpg->ticks = false;
     init_quest(rpg->quest_tab, rpg->font_tab);
@@ -57,7 +73,27 @@ rpg_t *init_rpg_next(rpg_t *rpg)
     rpg->second = 0;
     rpg->time = 0;
     init_game_over(rpg);
+    init_particules(rpg);
     return (rpg);
+}
+
+static bool init_ressources(sfFont **font_tab, sfTexture **texture_tab,
+    rpg_t *rpg)
+{
+    set_all_font(font_tab);
+    set_all_texture(texture_tab);
+    if (!check_asset(texture_tab, font_tab))
+        return false;
+    for (int i = 0; i <= MINE_TEXT; i++) {
+        if (texture_tab[i])
+            sfTexture_destroy(texture_tab[i]);
+    }
+    for (int i = 0; i < FONT_COUNT; i++) {
+        if (font_tab[i])
+            sfFont_destroy(font_tab[i]);
+    }
+    free(rpg);
+    return true;
 }
 
 rpg_t *create_rpg_struct(void)
@@ -65,20 +101,18 @@ rpg_t *create_rpg_struct(void)
     rpg_t *rpg = malloc(sizeof(rpg_t));
     sfVideoMode mode = {1920, 1080, 32};
 
+    if (init_ressources(rpg->font_tab, rpg->text_tab, rpg))
+        return NULL;
+    rpg->start_menu = create_menu_struct(rpg);
+    rpg->params = init_param_struct(rpg->text_tab, rpg->font_tab);
     rpg->clock = sfClock_create();
-    rpg->scene = TUTO;
-    set_all_font(rpg->font_tab);
+    rpg->scene = MENU;
+    rpg->second = 0;
+    rpg->time = 0;
     rpg->window = sfRenderWindow_create(mode, "my_rpg", sfClose, NULL);
     sfRenderWindow_setPosition(rpg->window, (sfVector2i){0, 0});
-    set_all_texture(rpg->text_tab);
     rpg->heros = init_heros(rpg->text_tab, rpg->font_tab);
     for (int i = 0; i < 256; i++)
         rpg->key_state[i] = false;
-    for (int i = 0; i <= MINE; i++)
-        rpg->biome[i] = create_biome(i, rpg->text_tab, rpg->font_tab);
-    rpg->tuto = create_tuto(rpg->text_tab, rpg->font_tab);
-    rpg->heros->npc->entity->pos = rpg->tuto->biome->last_pos;
-    sfSprite_setPosition(
-    rpg->heros->npc->entity->sprite, rpg->tuto->biome->last_pos);
     return init_rpg_next(rpg);
 }

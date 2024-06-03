@@ -8,9 +8,12 @@
 #ifndef RPG_H
     #define RPG_H
     #include "lib.h"
+    #include "menu.h"
+    #include "params.h"
 
 typedef enum font_type_e {
     PIXEL = 0,
+    VINQUE_E,
     FONT_COUNT
 } font_type_t;
 
@@ -49,6 +52,51 @@ typedef enum texture_type_e {
     LIFE_B_TEXT,
     ENERGY_B_TEXT,
     XP_B_TEXT,
+    MENU_1,
+    MENU_2,
+    MENU_3,
+    MENU_4,
+    MENU_5,
+    MENU_6,
+    MENU_7,
+    MENU_8,
+    MENU_9,
+    MENU_10,
+    MENU_11,
+    MENU_12,
+    PLAY_E,
+    PLAY_PRESSED_E,
+    PLAY_HOVER_E,
+    B_SAVE_E,
+    B_SAVE_PRESSED_E,
+    B_SAVE_HOVER_E,
+    NEW_E,
+    NEW_PRESSED_E,
+    NEW_HOVER_E,
+    PARAM_E,
+    PARAM_PRESSED_E,
+    PARAM_HOVER_E,
+    QUIT_E,
+    QUIT_PRESSED_E,
+    QUIT_HOVER_E,
+    BACK_PARAM_E,
+    RIBBONS_PARAM_E,
+    RIBBONS_PARAM_PRESSED_E,
+    PAGE_PARAM_E,
+    BUTTON_FULL_E,
+    BUTTON_FULL_PRESSED_E,
+    BUTTON_WINDOW_PRESSED_E,
+    BUTTON_WINDOW_E,
+    R1920x1080_E,
+    R1280x720_E,
+    R850x480_E,
+    RES_SELECTION_E,
+    BUTTON_SOUND_E,
+    BUTTON_SOUND_PRESSED_E,
+    BUTTON_PLUS_E,
+    BUTTON_PLUS_PRESSED_E,
+    BUTTON_MINUS_E,
+    BUTTON_MINUS_PRESSED_E,
     INVENTORY_TEXT,
     INVENTORY_SLOT_TEXT,
     BACK_INVENTORY_HERO,
@@ -75,6 +123,8 @@ typedef enum scene_e {
     MINE,
     TUTO,
     SAVE,
+    MENU,
+    PARAMS,
     MAIN
 }scene_t;
 
@@ -82,6 +132,8 @@ typedef struct rpg_s {
     heros_t *heros;
     save_t *save_list;
     biome_t *biome[5];
+    menu_t *start_menu;
+    param_t *params;
     tuto_t *tuto;
     save_scene_t *save_scene;
     mouse_data_t mouse_data;
@@ -97,6 +149,7 @@ typedef struct rpg_s {
     sfFont *font_tab[FONT_COUNT];
     inventory_t inventory;
     game_over_t *end;
+    all_part_t *part;
     sfRenderWindow *window;
 } rpg_t;
 
@@ -136,6 +189,7 @@ typedef struct rpg_s {
     #define MINIONS_LIST_CAM rpg->biome[CAMP]->bot_data->bot_list[MINIONS]
 
 void test(rpg_t *rpg);
+void start_menu(rpg_t *rpg);
 
 /**TOOLS**/
 int my_strncmp(char const *s1, char const *s2, int len);
@@ -165,6 +219,7 @@ rpg_t *create_rpg_struct(void);
 void manage_heros(heros_t *heros, rpg_t *rpg);
 void set_all_texture(sfTexture **text_tab);
 void set_all_font(sfFont **font_tab);
+int check_asset(sfTexture **text_tab, sfFont **font_tab);
 
 /**EVENT**/
 void manage_event(rpg_t *rpg);

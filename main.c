@@ -7,8 +7,16 @@
 
 #include "rpg.h"
 
-int check_asset(rpg_t *)
+int check_asset(sfTexture **text_tab, sfFont **font_tab)
 {
+    for (int i = 0; i <= MINE_TEXT; i++) {
+        if (text_tab[i] == NULL)
+            return 1;
+    }
+    for (int i = 0; i < FONT_COUNT; i++) {
+        if (font_tab[i] == NULL)
+            return 1;
+    }
     return 0;
 }
 
@@ -50,10 +58,8 @@ int main(int ac, char **av, char **env)
     if (check_env(env) != 0)
         return (84);
     rpg_data = create_rpg_struct();
-    if (rpg_data == NULL || check_asset(rpg_data)) {
-        destroy_rpg(rpg_data);
+    if (rpg_data == NULL)
         return 84;
-    }
     rpg(rpg_data);
     return (0);
 }

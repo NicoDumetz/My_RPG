@@ -10,6 +10,7 @@
     #include "lib.h"
 
 typedef struct button_s button_t;
+typedef struct rpg_s rpg_t;
 
 typedef struct save_bot_t {
     int id_bot;
@@ -46,7 +47,7 @@ typedef struct save_data_s {
     int quest_state[3];
     save_bot_t save_bot[5][30];
     int object_id_inv[20];
-    int object_id_equip[4];
+    int object_id_equip[6];
     int skill_level[3];
     int end_save;
 } save_data_t;
@@ -66,4 +67,7 @@ void add_load_button_to_list(save_scene_t *save_scene, button_t *button);
 /**BUTTON_FUNCT*/
 void exit_button_released(void *data, button_t *button);
 void save_button_released(void *data, button_t *button);
+
+/**APPLI_SAVE**/
+void appli_save(rpg_t *rpg, save_data_t *save);
 #endif
