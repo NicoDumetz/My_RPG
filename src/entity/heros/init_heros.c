@@ -7,7 +7,7 @@
 
 #include "rpg.h"
 
-static void destroy_obj(back_obj_t **list)
+static void destroy_inventory(back_obj_t **list)
 {
     back_obj_t *next = NULL;
     back_obj_t *curr = *list;
@@ -23,8 +23,7 @@ static void destroy_obj(back_obj_t **list)
 void destroy_heros(heros_t *heros)
 {
     if (heros->inventory)
-        destroy_obj(&(heros->inventory));
-    destroy_inventory(&heros->invent);
+        destroy_inventory(&(heros->inventory));
     for (int i = 0; i <= STAMINA_BAR; i++)
         destroy_info_bar(heros->bar_tab[i]);
     sfText_destroy(heros->interact);
@@ -69,9 +68,8 @@ effect_t **create_effect_tab_heros(
 }
 
 static void init_heros_next_two(
-    heros_t *heros, sfTexture **texture_tab, sfFont **font_tab)
+    heros_t *heros, sfTexture **, sfFont **font_tab)
 {
-    init_inventory(&heros->invent, texture_tab);
     heros->can_interact = false;
     heros->interact = sfText_create();
     sfText_setString(heros->interact, "Press \"Key E\"");
@@ -111,7 +109,7 @@ heros_t *init_heros(sfTexture **text_tab, sfFont **font_tab)
     sfFloatRect hitbox = {30, 25, 55, 55};
     sfFloatRect colbox = {40, 60, 80, 90};
 
-    heros->speed = 200.f;
+    heros->speed = 700.f;
     heros->texture_base = text_tab[KNIGHT_TEXT];
     heros->npc = init_npc(heros->texture_base);
     heros->npc->attack = level_tab[0].attack;

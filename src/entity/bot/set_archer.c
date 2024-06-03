@@ -32,7 +32,7 @@ npc_t *set_archer(sfTexture *texture)
     set_offset(archer->entity, (sfVector2i){8, 7});
     set_action_tab_archer(archer);
     archer->entity->colbox_dim = colbox;
-    archer->xp = 30;
+    archer->xp = 2000;
     archer->hitbox_dim = hitbox;
     archer->view = 500;
     return (archer);

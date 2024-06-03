@@ -36,7 +36,6 @@
     #include <math.h>
     #include "biome.h"
     #include "collisions.h"
-    #include "inventory.h"
     #define ABS(x) ((x) < 0 ? x = -(x) : (x))
     #define KNIGHT_ASSET "tiny_world_asset/Factions/Knights/Troops/"
     #define GOBLINS_ASSET "tiny_world_asset/Factions/Goblins/Troops/"
@@ -77,4 +76,7 @@
     #define LIFE_BAR_PATH "info_bar_asset/BarreDeVie.png"
     #define ENERGY_BAR_PATH "info_bar_asset/Energie.png"
     #define XP_BAR_PATH "info_bar_asset/Niveau.png"
+    #define CAMP_BOSS_PATH "boss_asset/Torch_Purple.png"
+    #define MINE_BOSS_PATH "boss_asset/TNT_Yellow.png"
+    #define CASTLE_BOSS_PATH "boss_asset/Warrior_Purple.png"
 #endif

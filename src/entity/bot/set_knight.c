@@ -40,7 +40,7 @@ npc_t *set_knight(sfTexture *texture)
     set_offset(knight->entity, (sfVector2i){6, 8});
     set_action_tab_knight(knight);
     set_attbox_dim_knight(knight);
-    knight->xp = 35;
+    knight->xp = 2000;
     knight->hitbox_dim = hitbox;
     knight->entity->colbox_dim = colbox;
     knight->view = 500;
