@@ -79,7 +79,7 @@ void reinitalize_rpg(rpg_t *rpg)
     reinitialize_rpg_next(rpg);
 }
 
-static init_rpg_next2(rpg_t *rpg)
+static void init_rpg_next2(rpg_t *rpg)
 {
     init_game_over(rpg);
     init_particules(rpg);
