@@ -17,6 +17,8 @@ void destroy_menu_ingame(ingame_menu_t *menu)
     destroy_button(menu->load_save);
     destroy_button(menu->param);
     destroy_button(menu->quit);
+    if (menu->last_frame)
+        sfTexture_destroy(menu->last_frame);
     free(menu);
 }
 

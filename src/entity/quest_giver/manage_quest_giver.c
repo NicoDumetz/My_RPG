@@ -19,8 +19,11 @@ bool manage_dialogue(rpg_t *rpg,
 {
     static int spam = 0;
 
-    if (rpg->key_state[sfKeyE] && spam == 0) {
+    if (rpg->key_state[sfKeyE] && spam == 0 &&
+        quest_g->dial_tab[quest_g->act_dial]) {
         quest_g->act_dial++;
+        if (!quest_g->dial_tab[quest_g->act_dial])
+            return false;
         sfText_setString(quest_g->dial, quest_g->dial_tab[quest_g->act_dial]);
         if (strcmp(quest_g->dial_tab[quest_g->act_dial], "") == 0) {
             quest_g->act_quest++;
@@ -48,9 +51,10 @@ void manage_quest_giver(
     wich_img(rpg));
     if (quest_g->npc->in_chase && quest_g->is_interact)
         rpg->heros->can_interact = true;
-    if (quest_g->is_interact)
+    if (quest_g->is_interact && quest_g->dial_tab[quest_g->act_dial])
         sfRenderWindow_drawText(rpg->window, quest_g->signal, NULL);
-    if (quest_g->npc->in_chase && is_dial && quest_g->is_interact) {
+    if (quest_g->npc->in_chase && is_dial && quest_g->is_interact &&
+        quest_g->dial_tab[quest_g->act_dial]) {
         is_dial = manage_dialogue(rpg, quest_g, quest_tab);
         sfRenderWindow_drawText(rpg->window, quest_g->dial, NULL);
     }

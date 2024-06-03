@@ -46,7 +46,7 @@ const char *quest_giver_dial[] = {
     "Thank you, hero, for everything you have done.",
     "We will always remember your heroic deeds.",
     "May you find peace and happiness on your future journeys.",
-    ""
+    NULL
 };
 
 void destroy_quest_giver(quest_giver_t *quest_giver)

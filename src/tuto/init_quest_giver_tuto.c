@@ -88,7 +88,7 @@ const char *quest_giver_dial_tuto[] = {
     "Our future depends on your success. Good luck, recruit.",
     "",
     "Debrouille toi mon bezot",
-    ""
+    NULL
 };
 
 void set_action_tab_quest_giver_tuto(quest_giver_t *quest_giver)

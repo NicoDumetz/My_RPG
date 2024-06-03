@@ -13,6 +13,7 @@ void resume_button(void *data, button_t *)
 
     rpg->scene = rpg->ingame_menu->from;
     sfTexture_destroy(rpg->ingame_menu->last_frame);
+    rpg->ingame_menu->last_frame = NULL;
     set_view(rpg, rpg->heros->npc->entity->sprite, wich_back(rpg));
 }
 
@@ -47,5 +48,7 @@ void quit_game_button(void *data, button_t *)
 {
     rpg_t *rpg = (rpg_t *)data;
 
+    sfTexture_destroy(rpg->ingame_menu->last_frame);
+    rpg->ingame_menu->last_frame = NULL;
     rpg->scene = MENU;
 }
