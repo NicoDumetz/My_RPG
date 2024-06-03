@@ -7,11 +7,20 @@
 
 #include "rpg.h"
 
+static void equip_item_save(back_obj_t *back, rpg_t *rpg)
+{
+    button_t *free_equipment = get_free_slot(rpg->inventory.equipment,
+    NUM_EQUIPMENT);
+
+    if (free_equipment == NULL)
+        return;
+    free_equipment->child = back;
+}
+
 void reinit_skill(skill_t *skill, heros_t *heros)
 {
     shield_t *shield = (shield_t *)(skill->skill_tab[SHIELD]);
     run_t *run = (run_t *)(skill->skill_tab[RUN]);
-    fire_ball_t *fire_ball = (fire_ball_t *)(skill->skill_tab[FIRE_BALL]);
 
     shield->active = false;
     shield->hit_before_desactive = 0;
@@ -21,6 +30,27 @@ void reinit_skill(skill_t *skill, heros_t *heros)
         run->active = false;
     }
     heros->npc->projectile->active = 0;
+}
+
+void appli_save_inv(rpg_t *rpg, save_data_t *save)
+{
+    back_obj_t *back = NULL;
+
+    flush_inventory(&(rpg->inventory), rpg->heros);
+    for (int i = 0; i < 20; i++) {
+        if (save->object_id_inv[i] == 0)
+            continue;
+        add_to_inventory(
+            &(rpg->heros->inventory), NULL,
+            create_back_obj(save->object_id_inv[i], rpg->text_tab), rpg);
+    }
+    for (int i = 0; i < 4; i++) {
+        if (save->object_id_equip[i] == 0)
+            continue;
+        back = create_back_obj(save->object_id_equip[i], rpg->text_tab);
+        set_obj_scale(&rpg->inventory, back);
+        equip_item_save(back, rpg);
+    }
 }
 
 void appli_save_skill(rpg_t *rpg, save_data_t *save)
@@ -54,6 +84,7 @@ void appli_save(rpg_t *rpg, save_data_t *save)
         level_tab[save->level_heros].stamina_max;
     rpg->heros->bar_tab[XP_BAR]->max =
         level_tab[save->level_heros].xp_to_reach;
+    appli_save_inv(rpg, save);
     appli_save_skill(rpg, save);
     remake_bot_list(save, rpg);
     appli_save_quest(rpg, save);
