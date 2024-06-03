@@ -76,6 +76,8 @@ typedef struct npc_s {
     bool cur_attack;
     bool is_alive;
     bool allowed_dir[4];
+    bool in_chase;
+    int view;
     sfRectangleShape *attbox[4];
     sfRectangleShape *hitbox;
     sfFloatRect attbox_dim[4];
@@ -135,6 +137,8 @@ npc_t *set_goblins(sfTexture *texture);
 npc_t *set_knight(sfTexture *texture);
 npc_t *set_minions(sfTexture *texture);
 void manage_bot(entity_t *entity, heros_t *heros);
+void check_if_heros_attack_me(npc_t *to_check, heros_t *heros);
+void check_chase_heros(npc_t *to_check, heros_t *heros);
 
 /**DECO**/
 deco_data_t *init_deco_data(void);

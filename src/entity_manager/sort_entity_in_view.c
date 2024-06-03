@@ -19,6 +19,7 @@ void check_is_alive(npc_t **curr, npc_t **head, biome_t *biome)
             (*curr)->next->prev = (*curr)->prev;
         destroy_npc(*curr);
         *curr = NULL;
+        biome->nbr_bot = biome->nbr_bot - 1;
     }
 }
 

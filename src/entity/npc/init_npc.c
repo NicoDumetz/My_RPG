@@ -42,6 +42,8 @@ void init_npc_next(npc_t *npc)
         npc->action[i] = (sfVector2i){0, 0};
     for (int i = 0; i < 4; i++)
         npc->allowed_dir[i] = true;
+    npc->in_chase = false;
+    npc->view = 0;
 }
 
 npc_t *init_npc(sfTexture *asset)

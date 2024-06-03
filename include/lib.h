@@ -23,6 +23,7 @@
     #include "player.h"
     #include "background.h"
     #include <time.h>
+    #include <math.h>
     #include <stdbool.h>
     #include <biome.h>
     #include "collisions.h"

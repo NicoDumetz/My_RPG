@@ -34,7 +34,7 @@ npc_t *set_knight(sfTexture *texture)
     sfFloatRect hitbox = {30, 25, 55, 55};
     sfFloatRect colbox = {40, 60, 80, 90};
 
-    knight->pv = 0;
+    knight->pv = 50;
     knight->attack = 0;
     knight->entity->parent = knight;
     set_offset(knight->entity, (sfVector2i){6, 8});
@@ -42,5 +42,6 @@ npc_t *set_knight(sfTexture *texture)
     set_attbox_dim_knight(knight);
     knight->hitbox_dim = hitbox;
     knight->entity->colbox_dim = colbox;
+    knight->view = 500;
     return (knight);
 }
