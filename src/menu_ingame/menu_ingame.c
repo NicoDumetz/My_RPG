@@ -50,8 +50,8 @@ static void manage_menu_ingame_button(ingame_menu_t *menu, rpg_t *rpg)
 
 void manage_ingame_menu(rpg_t *rpg)
 {
-    if (rpg->key_state[sfKeyEscape] && rpg->scene >= PLAIN && rpg->scene <=
-        TUTO) {
+    if (rpg->key_state[sfKeyEscape] && rpg->scene != INGAME_MENU &&
+        rpg->scene != MENU) {
         rpg->ingame_menu->from = rpg->scene;
         rpg->scene = INGAME_MENU;
         set_view(rpg, rpg->ingame_menu->background,

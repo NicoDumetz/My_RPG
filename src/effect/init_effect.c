@@ -10,9 +10,7 @@
 void destroy_effect(effect_t *effect)
 {
     sfSprite_destroy(effect->sprite);
-    effect->sprite = NULL;
     free(effect);
-    effect = NULL;
 }
 
 void resize_sprite_to_match(

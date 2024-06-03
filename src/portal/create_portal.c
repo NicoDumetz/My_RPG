@@ -10,9 +10,7 @@
 void destroy_portal(portal_t *portal)
 {
     sfCircleShape_destroy(portal->zone);
-    portal->zone = NULL;
     free(portal);
-    portal = NULL;
 }
 
 sfCircleShape *create_portal_zone(sfVector2f pos)

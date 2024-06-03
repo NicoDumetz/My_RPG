@@ -34,7 +34,7 @@ npc_t *set_goblins(sfTexture *texture)
     sfFloatRect colbox = {37, 60, 73, 90};
     sfFloatRect hitbox = {30, 25, 65, 55};
 
-    goblins->pv = 50;
+    goblins->pv = 40;
     goblins->attack = 0;
     goblins->entity->parent = goblins;
     set_offset(goblins->entity, (sfVector2i){7, 5});
@@ -46,7 +46,7 @@ npc_t *set_goblins(sfTexture *texture)
     goblins->view = 500;
     goblins->stamina = 25;
     goblins->max_stamina = 25;
-    goblins->damage = 15;
+    goblins->damage = 20;
     goblins->type = MELEE;
     return (goblins);
 }

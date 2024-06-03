@@ -47,7 +47,7 @@ typedef struct save_data_s {
     int quest_state[3];
     save_bot_t save_bot[5][30];
     int object_id_inv[20];
-    int object_id_equip[6];
+    int object_id_equip[4];
     int skill_level[3];
     int end_save;
 } save_data_t;
@@ -70,4 +70,5 @@ void save_button_released(void *data, button_t *button);
 
 /**APPLI_SAVE**/
 void appli_save(rpg_t *rpg, save_data_t *save);
+void unappli_all_multi(rpg_t *rpg);
 #endif
