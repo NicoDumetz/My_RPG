@@ -7,10 +7,23 @@
 
 #include "rpg.h"
 
+
+static sfSprite *wich_back(rpg_t *rpg)
+{
+    back_t *current = rpg->back;
+
+    for (; current; current = current->next) {
+        if (current->scene == rpg->scene) {
+            return current->sprite.sprite;
+        }
+    }
+    return NULL;
+}
+
 static void moov_right(rpg_t *rpg)
 {
     sfVector2f pos = rpg->heros->npc->entity->pos;
-    sfFloatRect bounds = sfSprite_getGlobalBounds(rpg->back->sprite.sprite);
+    sfFloatRect bounds = sfSprite_getGlobalBounds(wich_back(rpg));
     sfFloatRect bounds2 = sfSprite_getGlobalBounds
     (rpg->heros->npc->entity->sprite);
     float window_width = sfRenderWindow_getSize(rpg->window).x;
@@ -33,7 +46,7 @@ static void moov_left(rpg_t *rpg)
 {
     sfVector2f pos = rpg->heros->npc->entity->pos;
     float window_width = sfRenderWindow_getSize(rpg->window).x;
-    sfFloatRect bounds = sfSprite_getGlobalBounds(rpg->back->sprite.sprite);
+    sfFloatRect bounds = sfSprite_getGlobalBounds(wich_back(rpg));
     sfFloatRect bounds2 = sfSprite_getGlobalBounds
     (rpg->heros->npc->entity->sprite);
     const sfView *view = sfRenderWindow_getView(rpg->window);
@@ -55,7 +68,7 @@ static void moov_up(rpg_t *rpg)
 {
     sfVector2f pos = rpg->heros->npc->entity->pos;
     const sfView *view = sfRenderWindow_getView(rpg->window);
-    sfFloatRect bounds = sfSprite_getGlobalBounds(rpg->back->sprite.sprite);
+    sfFloatRect bounds = sfSprite_getGlobalBounds(wich_back(rpg));
     sfFloatRect bounds2 = sfSprite_getGlobalBounds
     (rpg->heros->npc->entity->sprite);
     float window_height = sfRenderWindow_getSize(rpg->window).y;
@@ -77,7 +90,7 @@ static void moov_down(rpg_t *rpg)
 {
     sfVector2f pos = rpg->heros->npc->entity->pos;
     const sfView *view = sfRenderWindow_getView(rpg->window);
-    sfFloatRect bounds = sfSprite_getGlobalBounds(rpg->back->sprite.sprite);
+    sfFloatRect bounds = sfSprite_getGlobalBounds(wich_back(rpg));
     sfFloatRect bounds2 = sfSprite_getGlobalBounds
     (rpg->heros->npc->entity->sprite);
     float window_height = sfRenderWindow_getSize(rpg->window).y;
