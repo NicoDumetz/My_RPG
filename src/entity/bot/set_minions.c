@@ -23,12 +23,12 @@ void set_action_tab_minions(npc_t *minions)
 npc_t *set_minions(sfTexture *texture)
 {
     npc_t *minions = init_npc(texture);
+    sfFloatRect hitbox = {35, 35, 70, 70};
 
-    minions->next = NULL;
-    minions->prev = NULL;
     minions->pv = 0;
     minions->attack = 0;
     set_offset(minions->entity, (sfVector2i){6, 6});
     set_action_tab_minions(minions);
+    minions->entity->hitbox_dim = hitbox;
     return (minions);
 }

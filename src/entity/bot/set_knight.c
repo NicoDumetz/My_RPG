@@ -23,12 +23,12 @@ void set_action_tab_knight(npc_t *knight)
 npc_t *set_knight(sfTexture *texture)
 {
     npc_t *knight = init_npc(texture);
+    sfFloatRect hitbox = {30, 25, 55, 55};
 
-    knight->next = NULL;
-    knight->prev = NULL;
     knight->pv = 0;
     knight->attack = 0;
     set_offset(knight->entity, (sfVector2i){6, 8});
     set_action_tab_knight(knight);
+    knight->entity->hitbox_dim = hitbox;
     return (knight);
 }

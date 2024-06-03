@@ -13,14 +13,14 @@ void reverse_sprite(entity_t *entity, sfVector2i offset, float time)
     float frec = 1.0 / 10.0;
 
     sfSprite_setScale(entity->sprite, (sfVector2f){-1, 1});
-    entity->rect.top = ABS(offset.y) * entity->size.y;
+    entity->rect_sprite.top = ABS(offset.y) * entity->size.y;
     accu += time;
     if (accu >= frec) {
-        entity->rect.left -= entity->size.x;
-        if (entity->rect.left <= 0)
-            entity->rect.left = entity->size.x * (offset.x - 1);
+        entity->rect_sprite.left -= entity->size.x;
+        if (entity->rect_sprite.left <= 0)
+            entity->rect_sprite.left = entity->size.x * (offset.x - 1);
         accu = 0;
-        sfSprite_setTextureRect(entity->sprite, entity->rect);
+        sfSprite_setTextureRect(entity->sprite, entity->rect_sprite);
     }
 }
 
@@ -30,14 +30,14 @@ void right_sprite(entity_t *entity, sfVector2i offset, float time)
     float frec = 1.0 / 10.0;
 
     sfSprite_setScale(entity->sprite, (sfVector2f){1, 1});
-    entity->rect.top = ABS(offset.y) * entity->size.y;
+    entity->rect_sprite.top = ABS(offset.y) * entity->size.y;
     accu += time;
     if (accu >= frec) {
-        entity->rect.left += entity->size.x;
-        if (entity->rect.left >= entity->size.y * offset.x)
-            entity->rect.left = 0;
+        entity->rect_sprite.left += entity->size.x;
+        if (entity->rect_sprite.left >= entity->size.y * offset.x)
+            entity->rect_sprite.left = 0;
         accu = 0;
-        sfSprite_setTextureRect(entity->sprite, entity->rect);
+        sfSprite_setTextureRect(entity->sprite, entity->rect_sprite);
     }
 }
 

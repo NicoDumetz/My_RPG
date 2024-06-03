@@ -31,17 +31,17 @@ void free_bot_data(bot_data_t *bot_data)
 void set_texture_bot(bot_data_t *bot_data)
 {
     bot_data->bot_texture[GOBLINS_T] = sfTexture_createFromFile(
-        "tiny_world_asset/Factions/Goblins/Troops/Torch/Red/Torch_Red.png", NULL);
+        GOBLINS_T_SPRITE, NULL);
     bot_data->bot_texture[GOBLINS_B] = sfTexture_createFromFile(
-        "tiny_world_asset/Factions/Goblins/Troops/Barrel/Red/Barrel_Red.png", NULL);
+        GOBLINS_B_SPRITE, NULL);
     bot_data->bot_texture[GOBLINS_D] = sfTexture_createFromFile(
-        "tiny_world_asset/Factions/Goblins/Troops/TNT/Red/TNT_Red.png", NULL);
+        GOBLINS_D_SPRITE, NULL);
     bot_data->bot_texture[KINGHT] = sfTexture_createFromFile(
-        "tiny_world_asset/Factions/Knights/Troops/Warrior/Blue/Warrior_Blue.png", NULL);
+        KNIGHT_SPRITE, NULL);
     bot_data->bot_texture[ARCHER] = sfTexture_createFromFile(
-        "tiny_world_asset/Factions/Knights/Troops/Archer/Blue/Archer_Blue.png", NULL);
+        ARCHER_SPRITE, NULL);
     bot_data->bot_texture[MINIONS] = sfTexture_createFromFile(
-        "tiny_world_asset/Factions/Knights/Troops/Pawn/Blue/Pawn_Blue.png", NULL);
+        MINIONS_SPRITE, NULL);
 }
 
 bot_data_t *init_bot_data(void)

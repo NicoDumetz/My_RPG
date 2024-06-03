@@ -35,7 +35,9 @@ typedef struct entity_s {
     sfVector2f size;
     sfVector2f sprite_sheet_size;
     sfVector2f pos;
-    sfIntRect rect;
+    sfIntRect rect_sprite;
+    sfRectangleShape *hitbox;
+    sfFloatRect hitbox_dim;
     int frame_nbr;
 } entity_t;
 
@@ -74,13 +76,14 @@ void destroy_heros(heros_t *heros);
 /**OFFSET**/
 void anim_entity(entity_t *entity, sfVector2i offset, float time);
 void set_offset(entity_t *entity, sfVector2i size_sprite);
+void set_hitbox(entity_t *entity);
 
 /**BOT**/
 bot_data_t *init_bot_data(void);
 npc_t *set_archer(sfTexture *texture);
 void free_bot_data(bot_data_t *bot_data);
 void free_bot_list(npc_t *npc);
-void create_bot(npc_t **list, sfTexture *texture, bot_type_t bot_type);
+void create_bot(bot_type_t bot_type, bot_data_t *bot_data_t);
 npc_t *set_goblins_b(sfTexture *texture);
 npc_t *set_goblins_d(sfTexture *texture);
 npc_t *set_goblins(sfTexture *texture);

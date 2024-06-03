@@ -16,10 +16,10 @@ void destroy_heros(heros_t *heros)
 
 void set_action_tab_heros(heros_t *heros)
 {
-    heros->npc->action[ATTACK_F] = (sfVector2i){6, 4};
-    heros->npc->action[ATTACK_B] = (sfVector2i){6, 7};
-    heros->npc->action[ATTACK_L] = (sfVector2i){6, -1};
-    heros->npc->action[ATTACK_R] = (sfVector2i){6, 2};
+    heros->npc->action[ATTACK_F] = (sfVector2i){6, 6};
+    heros->npc->action[ATTACK_B] = (sfVector2i){6, 5};
+    heros->npc->action[ATTACK_L] = (sfVector2i){6, -3};
+    heros->npc->action[ATTACK_R] = (sfVector2i){6, 3};
     heros->npc->action[MOVE_R] = (sfVector2i){6, 1};
     heros->npc->action[MOVE_L] = (sfVector2i){6, -1};
     heros->npc->action[MOVE_F] = (sfVector2i){6, 1};
@@ -30,10 +30,12 @@ void set_action_tab_heros(heros_t *heros)
 heros_t *init_heros(char *asset)
 {
     heros_t *heros = malloc(sizeof(heros_t));
+    sfFloatRect hitbox = {30, 25, 55, 55};
 
     heros->texture_base = sfTexture_createFromFile(asset, NULL);
     heros->npc = init_npc(heros->texture_base);
     set_offset(heros->npc->entity, (sfVector2i){6, 8});
     set_action_tab_heros(heros);
+    heros->npc->entity->hitbox_dim = hitbox;
     return heros;
 }
