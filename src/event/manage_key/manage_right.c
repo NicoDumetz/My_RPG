@@ -19,7 +19,8 @@ static void moov_right(rpg_t *rpg)
     float movement = rpg->heros->speed * rpg->time;
 
     if (pos.x + bounds2.x + movement > bounds.width ||
-        static_collisions_right(rpg->heros->npc->entity->colbox, wich_img(rpg)))
+        static_collisions_right(
+            rpg->heros->npc->entity->colbox, wich_img(rpg)))
         return;
     rpg->heros->npc->entity->pos.x += movement;
     if (pos.x < bounds.width - window_width / 2 && right + movement <

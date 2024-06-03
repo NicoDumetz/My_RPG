@@ -42,6 +42,6 @@
     #define CAMP_COLISION "biome_asset/col_plaine.png"
     #define VILLAGE_SPRITE "biome_asset/Plaine.png"
     #define VILLAGE_COLISION "biome_asset/col_plaine.png"
-    #define CASTLE_SPRITE "biome_asset/Plaine.png"
-    #define CASTLE_COLISION "biome_asset/col_plaine.png"
+    #define CASTLE_SPRITE "biome_asset/chateau.png"
+    #define CASTLE_COLISION "biome_asset/col_chateau.png"
 #endif

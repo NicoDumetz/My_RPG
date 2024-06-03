@@ -19,9 +19,9 @@ void reverse_sprite(entity_t *entity, sfVector2i offset, bool ticks)
     }
     entity->rect_sprite.top = ABS(offset.y) * entity->size.y;
     if (ticks) {
-        entity->rect_sprite.left -= entity->size.x;
-        if (entity->rect_sprite.left <= 0)
-            entity->rect_sprite.left = entity->size.x * (offset.x - 1);
+        entity->rect_sprite.left += entity->size.x;
+        if (entity->rect_sprite.left >= entity->size.x * offset.x)
+            entity->rect_sprite.left = 0;
         sfSprite_setTextureRect(entity->sprite, entity->rect_sprite);
     }
 }

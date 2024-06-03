@@ -37,6 +37,6 @@ back_t *add_background(char *file, char *collision)
 
 void display_background(back_t *back, sfRenderWindow *window)
 {
-    sfRenderWindow_drawSprite(window, back->sprite.sprite, NULL);
     sfRenderWindow_drawSprite(window, back->collision.sprite, NULL);
+    sfRenderWindow_drawSprite(window, back->sprite.sprite, NULL);
 }
