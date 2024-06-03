@@ -24,6 +24,7 @@ void tuto_loop(rpg_t *rpg)
     heros_t *heros = rpg->heros;
     biome_t *biome = rpg->tuto->biome;
 
+    srand(time(NULL));
     if (!manage_test_tuto(rpg, NULL))
         return;
     display_background(biome->back, rpg->window);

@@ -71,6 +71,7 @@ void biome_loop(rpg_t *rpg, biome_t *biome)
         return;
     check_open_portal(rpg);
     manage_test_quest(rpg);
+    srand(time(NULL));
     display_background(biome->back, rpg->window);
     sort_entity_in_view(biome, rpg->window, heros, rpg);
     entity_loop(biome->entity_in_view_head, rpg);
