@@ -99,9 +99,18 @@ SRC = main.c\
 	src/entity/quest_giver/manage_quest_giver.c\
 	src/entity/quest_giver/next_quest.c\
 	src/save/appli_save_quest.c\
-	src/entity/bot/ia/attack_bot.c\
 	src/portal/check_open_portal.c\
 	src/quest/check_end_quest.c\
+	src/tuto/init_quest_giver_tuto.c\
+	src/tuto/create_tuto.c\
+	src/tuto/tuto_loop.c\
+	src/tuto/skip_released.c\
+	src/tuto/manage_skip_button.c\
+	src/tuto/init_quest_tuto.c\
+	src/tuto/quest/move_quest.c\
+	src/tuto/quest/manage_quest_tuto.c\
+	src/tuto/quest/check_if_pressed_touch.c\
+	src/tuto/quest/start_test_t.c\
 
 OBJ = $(SRC:.c=.o)
 

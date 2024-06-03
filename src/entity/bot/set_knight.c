@@ -44,9 +44,5 @@ npc_t *set_knight(sfTexture *texture)
     knight->hitbox_dim = hitbox;
     knight->entity->colbox_dim = colbox;
     knight->view = 500;
-    knight->stamina = 20;
-    knight->max_stamina = 20;
-    knight->damage = 40;
-    knight->type = MELEE;
     return (knight);
 }

@@ -28,6 +28,7 @@ void destroy_rpg(rpg_t *rpg)
         destroy_quest(rpg->quest_tab);
         destroy_heros(rpg->heros);
         sfClock_destroy(rpg->clock);
+        destroy_tuto(rpg->tuto);
         if (rpg->save_list)
             destroy_save_list(rpg);
         for (int i = 0; i <= MINE; i++)
@@ -49,6 +50,8 @@ rpg_t *init_rpg_next(rpg_t *rpg)
     memset(&(rpg->mouse_data), 0, sizeof(mouse_data_t));
     rpg->save_list = NULL;
     create_file_list(rpg);
+    rpg->second = 0;
+    rpg->time = 0;
     return (rpg);
 }
 
@@ -58,9 +61,7 @@ rpg_t *create_rpg_struct(void)
     sfVideoMode mode = {1920, 1080, 32};
 
     rpg->clock = sfClock_create();
-    rpg->scene = PLAIN;
-    rpg->second = 0;
-    rpg->time = 0;
+    rpg->scene = TUTO;
     set_all_font(rpg->font_tab);
     rpg->window = sfRenderWindow_create(mode, "my_rpg", sfClose, NULL);
     sfRenderWindow_setPosition(rpg->window, (sfVector2i){0, 0});
@@ -70,8 +71,9 @@ rpg_t *create_rpg_struct(void)
         rpg->key_state[i] = false;
     for (int i = 0; i <= MINE; i++)
         rpg->biome[i] = create_biome(i, rpg->text_tab, rpg->font_tab);
-    rpg->heros->npc->entity->pos = rpg->biome[PLAIN]->last_pos;
+    rpg->tuto = create_tuto(rpg->text_tab, rpg->font_tab);
+    rpg->heros->npc->entity->pos = rpg->tuto->biome->last_pos;
     sfSprite_setPosition(
-    rpg->heros->npc->entity->sprite, rpg->biome[PLAIN]->last_pos);
+    rpg->heros->npc->entity->sprite, rpg->tuto->biome->last_pos);
     return init_rpg_next(rpg);
 }

@@ -14,6 +14,8 @@ void exit_button_released(void *data, button_t *)
     if (rpg->save_scene->from <= MINE) {
         set_view(rpg, rpg->heros->npc->entity->sprite,
         rpg->biome[rpg->save_scene->from]->back->sprite.sprite);
-    }
+    } else if (rpg->save_scene->from == TUTO)
+        set_view(rpg, rpg->heros->npc->entity->sprite,
+        rpg->tuto->biome->back->sprite.sprite);
     rpg->scene = rpg->save_scene->from;
 }
