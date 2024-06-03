@@ -45,5 +45,6 @@ void set_all_texture(sfTexture **text_tab)
         KNIGHT_H_SPRITE, NULL);
     text_tab[TREE_SPRITE_TEXT] = sfTexture_createFromFile(TREE_SPRITE, NULL);
     text_tab[MINE_TEXT] = sfTexture_createFromFile(MINE_S, NULL);
+    text_tab[LEVEL_UP_TEXT] = sfTexture_createFromFile(LEVEL_UP_PATH, NULL);
     set_all_texture_next(text_tab);
 }

@@ -17,6 +17,7 @@ void manage_ticks_attack(npc_t *npc, sfVector2i offset)
         npc->is_attack = false;
         npc->cur_attack = false;
         npc->entity->rect_sprite.left = 0;
+        return;
     }
     sfSprite_setTextureRect(npc->entity->sprite, npc->entity->rect_sprite);
 }

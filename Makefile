@@ -64,6 +64,8 @@ SRC = main.c\
 	src/entity/bot/ia/check_chase_heros.c\
 	src/effect/init_effect.c\
 	src/set_all_texture.c\
+	src/animations/anim_effect_long.c\
+	src/animations/anim_effect_short.c\
 
 OBJ = $(SRC:.c=.o)
 

@@ -12,6 +12,7 @@
 
 typedef enum texture_type_e {
     DEATH_TEXT = 0,
+    LEVEL_UP_TEXT,
     KNIGHT_TEXT,
     ARCHER_TEXT,
     MINIONS_TEXT,
@@ -51,7 +52,7 @@ typedef struct rpg_s {
     bool key_state[256];
     int second;
     float time;
-    sfTexture *text_tab[20];
+    sfTexture *text_tab[21];
     sfRenderWindow *window;
 } rpg_t;
 
@@ -91,6 +92,9 @@ typedef struct rpg_s {
     #define MINIONS_LIST_CAM rpg->biome[CAMP]->bot_data->bot_list[MINIONS]
 
     #define DEATH_PATH "tiny_world_asset/Factions/Knights/Troops/Dead/Dead.png"
+
+    #define LEVEL_UP_PATH "effect_asset/level_up.png"
+
     #define KNIGHT_BUILDINGS "tiny_world_asset/Factions/Knights/Buildings/"
     #define TREE_SPRITE "tiny_world_asset/Resources/Trees/Tree.png"
     #define KNIGHT_H_SPRITE KNIGHT_BUILDINGS "House/House_Blue.png"

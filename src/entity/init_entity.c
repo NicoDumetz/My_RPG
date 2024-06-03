@@ -11,9 +11,11 @@ void destroy_entity(entity_t *entity)
 {
     sfSprite_destroy(entity->sprite);
     sfRectangleShape_destroy(entity->colbox);
-    if (entity->effect_tab)
+    if (entity->effect_tab) {
         for (int i = 0; entity->effect_tab[i]; i++)
             destroy_effect(entity->effect_tab[i]);
+        free(entity->effect_tab);
+    }
     free(entity);
 }
 

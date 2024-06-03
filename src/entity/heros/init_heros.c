@@ -34,15 +34,26 @@ void set_attbox_dim_heros(npc_t *npc)
     npc->attbox_dim[ATTACK_R] = (sfFloatRect){35, 30, 40, 55};
 }
 
-heros_t *init_heros(sfTexture *texture)
+effect_t **create_effect_tab_heros(sfTexture **text_tab)
+{
+    effect_t **effect_tab = malloc(sizeof(effect_t *) * 2);
+
+    effect_tab[LEVEL_UP_HEROS] = create_effect(
+        text_tab[LEVEL_UP_TEXT], false, (sfVector2i){7, 1});
+    effect_tab[1] = NULL;
+    return (effect_tab);
+}
+
+heros_t *init_heros(sfTexture **text_tab)
 {
     heros_t *heros = malloc(sizeof(heros_t));
     sfFloatRect hitbox = {30, 25, 55, 55};
     sfFloatRect colbox = {40, 60, 80, 90};
 
     heros->speed = 200.f;
-    heros->texture_base = texture;
+    heros->texture_base = text_tab[KNIGHT_TEXT];
     heros->npc = init_npc(heros->texture_base);
+    heros->npc->entity->effect_tab = create_effect_tab_heros(text_tab);
     heros->npc->attack = 10;
     heros->npc->pv = 100;
     heros->npc->entity->parent = heros->npc;

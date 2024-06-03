@@ -114,7 +114,7 @@ npc_t *init_npc(sfTexture *asset);
 void destroy_npc(npc_t *npc);
 
 /**HEROS**/
-heros_t *init_heros(sfTexture *texture);
+heros_t *init_heros(sfTexture **texture);
 void destroy_heros(heros_t *heros);
 
 /**OFFSET**/
