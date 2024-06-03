@@ -48,6 +48,7 @@ int unfade_rect(game_over_t *game, rpg_t *rpg)
 static void skip_tuto(rpg_t *rpg)
 {
     rpg->scene = PLAIN;
+    rpg->heros->npc->pv = rpg->heros->pv_max;
     sfSprite_setPosition(
         rpg->heros->npc->entity->sprite, rpg->biome[PLAIN]->last_pos);
     set_view(rpg, rpg->heros->npc->entity->sprite,

@@ -34,7 +34,7 @@ npc_t *set_goblins_d(sfTexture *texture)
     sfFloatRect hitbox = {30, 35, 60, 65};
     sfFloatRect colbox = {35, 60, 72, 90};
 
-    goblins_d->pv = 40;
+    goblins_d->pv = 60;
     goblins_d->attack = 0;
     goblins_d->entity->parent = goblins_d;
     set_offset(goblins_d->entity, (sfVector2i){7, 3});
@@ -44,8 +44,8 @@ npc_t *set_goblins_d(sfTexture *texture)
     goblins_d->xp = 60;
     goblins_d->hitbox_dim = hitbox;
     goblins_d->view = 500;
-    goblins_d->stamina = 50;
-    goblins_d->max_stamina = 50;
+    goblins_d->stamina = 20;
+    goblins_d->max_stamina = 20;
     goblins_d->damage = 30;
     goblins_d->type = DYNA;
     return (goblins_d);
