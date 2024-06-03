@@ -94,15 +94,6 @@ typedef struct rpg_s {
     #define KNIGHT_LIST_CAM rpg->biome[CAMP]->bot_data->bot_list[KNIGHT]
     #define MINIONS_LIST_CAM rpg->biome[CAMP]->bot_data->bot_list[MINIONS]
 
-    #define DEATH_PATH "tiny_world_asset/Factions/Knights/Troops/Dead/Dead.png"
-
-    #define LEVEL_UP_PATH "effect_asset/level_up.png"
-
-    #define KNIGHT_BUILDINGS "tiny_world_asset/Factions/Knights/Buildings/"
-    #define TREE_SPRITE "tiny_world_asset/Resources/Trees/Tree.png"
-    #define KNIGHT_H_SPRITE KNIGHT_BUILDINGS "House/House_Blue.png"
-    #define MINE_S "tiny_world_asset/Resources/Gold Mine/GoldMine_Active.png"
-
 void test(rpg_t *rpg);
 
 /**TOOLS**/
@@ -112,6 +103,7 @@ int my_putstr(char const *str);
 sfBool sprite_is_in_float_rect(sfSprite *sprite, sfFloatRect rect);
 void destroy_sprite(sfSprite *sprite);
 sfSprite *create_sprite(char *asset);
+bool is_rect_in_circle(sfRectangleShape* rectangle, sfCircleShape* circle);
 
 /**RPG**/
 void rpg(rpg_t *rpg);

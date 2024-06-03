@@ -23,6 +23,11 @@ void destroy_obj_list(front_obj_t **obj_list)
 void destroy_biome(biome_t *biome)
 {
     free_bot_data(biome->bot_data);
+    if (biome->portal) {
+        for (int i = 0; biome->portal[i]; i++)
+            destroy_portal(biome->portal[i]);
+        free(biome->portal);
+    }
     if (biome->back)
         destroy_background(biome->back);
     if (biome->deco_data)

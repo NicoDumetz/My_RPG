@@ -8,6 +8,14 @@
 #ifndef BIOME_S
     #define BIOME_S
     #include "lib.h"
+typedef enum scene_e scene_t;
+
+typedef struct portal_s {
+    bool is_open;
+    sfCircleShape *zone;
+    sfVector2f pos;
+    int scene;
+} portal_t;
 
 typedef struct biome_s {
     back_t *back;
@@ -15,6 +23,8 @@ typedef struct biome_s {
     deco_data_t *deco_data;
     int bot_type[6];
     int nbr_bot;
+    sfVector2f last_pos;
+    portal_t **portal;
     front_obj_t *obj_list;
     entity_t *entity_in_view_head;
     entity_t *entity_in_view_tail;
@@ -40,4 +50,11 @@ biome_t *set_mine(sfTexture **text_tab);
 
 /**BOT**/
 void bot_generator(biome_t *biome, int *who);
+
+/**PORTAL**/
+portal_t *create_portal(sfVector2f pos, int scene);
+void destroy_portal(portal_t *portal);
+
+/**SWITCH**/
+void switch_biome(biome_t *from, portal_t *portal, rpg_t *rpg, heros_t *heros);
 #endif

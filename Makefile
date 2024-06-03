@@ -73,7 +73,10 @@ SRC = main.c\
 	src/entity/bot/ia/random_moov.c\
 	src/entity/bot/ia/chase.c\
 	src/animations/anim_obj_long.c\
-	src/entity/bot/set_bot_effect.c
+	src/entity/bot/set_bot_effect.c\
+	src/portal/create_portal.c\
+	src/tools/rect_is_in_circleshape.c\
+	src/biome/switch_biome.c\
 
 OBJ = $(SRC:.c=.o)
 

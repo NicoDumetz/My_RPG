@@ -33,6 +33,7 @@ void init_clock(rpg_t *rpg)
 
 void rpg(rpg_t *rpg)
 {
+    usleep(10000);
     sfRenderWindow_setFramerateLimit(rpg->window, 60);
     while (sfRenderWindow_isOpen(rpg->window)) {
         while (sfRenderWindow_pollEvent(rpg->window, &(rpg->event))) {

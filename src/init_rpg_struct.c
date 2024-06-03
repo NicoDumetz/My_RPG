@@ -34,13 +34,13 @@ rpg_t *create_rpg_struct(void)
     sfRenderWindow_setPosition(rpg->window, (sfVector2i){0, 0});
     set_all_texture(rpg->text_tab);
     rpg->heros = init_heros(rpg->text_tab);
-    rpg->heros->npc->entity->pos = (sfVector2f){1000, 500};
-    sfSprite_setPosition(
-        rpg->heros->npc->entity->sprite, rpg->heros->npc->entity->pos);
     rpg->ticks = false;
     for (int i = 0; i < 256; i++)
         rpg->key_state[i] = false;
     for (int i = 0; i <= MINE; i++)
         rpg->biome[i] = create_biome(i, rpg->text_tab);
+    rpg->heros->npc->entity->pos = rpg->biome[PLAIN]->last_pos;
+    sfSprite_setPosition(
+        rpg->heros->npc->entity->sprite, rpg->biome[PLAIN]->last_pos);
     return rpg;
 }

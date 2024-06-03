@@ -15,5 +15,6 @@ biome_t *set_village(sfTexture **text_tab)
         text_tab[VILLAGE_SPRITE_TEXT], text_tab[VILLAGE_COLISION_TEXT]);
     village->bot_data = init_bot_data(text_tab);
     village->deco_data = NULL;
+    village->portal = NULL;
     return (village);
 }

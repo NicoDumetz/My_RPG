@@ -81,6 +81,14 @@ front_obj_t *obj_loop_sort(
     return next;
 }
 
+static void sort_deco_in_view_list(biome_t *biome, sfRenderWindow *window)
+{
+    for (int i = 0; i <= MINE_DECO; i++)
+        for (int j = 0; biome->deco_data->deco_entity[i][j]; j++)
+            put_entity_in_view_list(
+                biome->deco_data->deco_entity[i][j], biome, window);
+}
+
 void sort_entity_in_view(
     biome_t *biome, sfRenderWindow *window, heros_t *heros, rpg_t *rpg)
 {
@@ -88,10 +96,8 @@ void sort_entity_in_view(
     for (front_obj_t *curr = biome->obj_list; curr;) {
         curr = obj_loop_sort(curr, biome, rpg);
     }
-    for (int i = 0; i <= MINE_DECO; i++)
-        for (int j = 0; biome->deco_data->deco_entity[i][j]; j++)
-            put_entity_in_view_list(
-                biome->deco_data->deco_entity[i][j], biome, window);
+    if (biome->deco_data)
+        sort_deco_in_view_list(biome, window);
     for (int i = 0; i <= ARCHER; i++) {
         for (npc_t *curr =
             biome->bot_data->bot_list[i]; curr;) {
