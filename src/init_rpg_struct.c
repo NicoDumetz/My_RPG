@@ -37,7 +37,6 @@ void destroy_rpg(rpg_t *rpg)
         for (int i = 0; i <= PIXEL; i++)
             sfFont_destroy(rpg->font_tab[i]);
         destroy_load_page(rpg->save_scene);
-        destroy_menu(rpg->start_menu);
         free(rpg);
     }
 }
@@ -58,9 +57,8 @@ rpg_t *create_rpg_struct(void)
     rpg_t *rpg = malloc(sizeof(rpg_t));
     sfVideoMode mode = {1920, 1080, 32};
 
-    rpg->start_menu = create_menu_struct(rpg);
     rpg->clock = sfClock_create();
-    rpg->scene = MENU;
+    rpg->scene = PLAIN;
     rpg->second = 0;
     rpg->time = 0;
     set_all_font(rpg->font_tab);

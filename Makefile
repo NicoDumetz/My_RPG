@@ -99,10 +99,6 @@ SRC = main.c\
 	src/entity/quest_giver/manage_quest_giver.c\
 	src/entity/quest_giver/next_quest.c\
 	src/save/appli_save_quest.c\
-	src/menu/init_menu_struct.c\
-	src/menu/manage_menu_button.c\
-	src/menu/menu.c \
-
 
 OBJ = $(SRC:.c=.o)
 

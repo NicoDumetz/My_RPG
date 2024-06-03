@@ -9,7 +9,6 @@
     #define RPG_H
     #include "button.h"
     #include "lib.h"
-    #include "menu.h"
 
 typedef enum font_type_e {
     PIXEL = 0
@@ -60,7 +59,6 @@ typedef enum scene_e {
     VILLAGE,
     MINE,
     SAVE,
-    MENU,
     MAIN
 }scene_t;
 
@@ -68,7 +66,6 @@ typedef struct rpg_s {
     heros_t *heros;
     save_t *save_list;
     biome_t *biome[5];
-    menu_t *start_menu;
     save_scene_t *save_scene;
     mouse_data_t mouse_data;
     quest_t quest_tab[3];
@@ -79,7 +76,7 @@ typedef struct rpg_s {
     bool key_state[256];
     int second;
     float time;
-    sfTexture *text_tab[63];
+    sfTexture *text_tab[35];
     sfFont *font_tab[1];
     sfRenderWindow *window;
 } rpg_t;
@@ -120,7 +117,6 @@ typedef struct rpg_s {
     #define MINIONS_LIST_CAM rpg->biome[CAMP]->bot_data->bot_list[MINIONS]
 
 void test(rpg_t *rpg);
-void start_menu(rpg_t *rpg);
 
 /**TOOLS**/
 int my_strncmp(char const *s1, char const *s2, int len);

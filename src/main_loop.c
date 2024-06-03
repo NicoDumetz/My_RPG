@@ -17,9 +17,6 @@ void which_scene(rpg_t *rpg)
     if (rpg->scene == SAVE) {
         load_page(rpg);
     }
-    if (rpg->scene == MENU) {
-        start_menu(rpg);
-    }
 }
 
 void init_clock(rpg_t *rpg)
@@ -43,7 +40,7 @@ void init_clock(rpg_t *rpg)
 void rpg(rpg_t *rpg)
 {
     sfRenderWindow_setFramerateLimit(rpg->window, 60);
-//    set_view(rpg, rpg->heros->npc->entity->sprite, wich_back(rpg));
+    set_view(rpg, rpg->heros->npc->entity->sprite, wich_back(rpg));
     while (sfRenderWindow_isOpen(rpg->window)) {
         while (sfRenderWindow_pollEvent(rpg->window, &(rpg->event))) {
             manage_event(rpg);
