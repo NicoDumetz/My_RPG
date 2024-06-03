@@ -104,16 +104,16 @@ void manage_chase(npc_t *npc_act, rpg_t *rpg, heros_t *heros)
 
     if (col_hitbox(npc_act->attbox[0], heros->npc->hitbox) ||
     (npc_act->is_attack == true && npc_act->act_action == ATTACK_F))
-        attack_front(npc_act, rpg, heros, &chase);
+        attack_front(npc_act, heros, &chase);
     if (col_hitbox(npc_act->attbox[1], heros->npc->hitbox) ||
     (npc_act->is_attack == true && npc_act->act_action == ATTACK_B))
-        attack_back(npc_act, rpg, heros, &chase);
+        attack_back(npc_act, heros, &chase);
     if (col_hitbox(npc_act->attbox[2], heros->npc->hitbox) ||
         (npc_act->is_attack == true && npc_act->act_action == ATTACK_L))
-        attack_left(npc_act, rpg, heros, &chase);
+        attack_left(npc_act, heros, &chase);
     if (col_hitbox(npc_act->attbox[3], heros->npc->hitbox) ||
         (npc_act->is_attack == true && npc_act->act_action == ATTACK_R))
-        attack_right(npc_act, rpg, heros, &chase);
+        attack_right(npc_act, heros, &chase);
     if (chase == 0)
         chasing(npc_act, rpg);
 }
