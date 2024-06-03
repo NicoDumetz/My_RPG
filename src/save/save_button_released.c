@@ -7,6 +7,22 @@
 
 #include "rpg.h"
 
+void reinit_skill(skill_t *skill, heros_t *heros)
+{
+    shield_t *shield = (shield_t *)(skill->skill_tab[SHIELD]);
+    run_t *run = (run_t *)(skill->skill_tab[RUN]);
+    fire_ball_t *fire_ball = (fire_ball_t *)(skill->skill_tab[FIRE_BALL]);
+
+    shield->active = false;
+    shield->hit_before_desactive = 0;
+    heros->npc->entity->effect_tab[SHIELD_HEROS]->active = false;
+    if (run->active == true) {
+        heros->multi_speed /= run->speed_multi;
+        run->active = false;
+    }
+    heros->npc->projectile->active = 0;
+}
+
 void appli_save_skill(rpg_t *rpg, save_data_t *save)
 {
     for (int i = 0; i < 3; i++)
@@ -18,8 +34,7 @@ void appli_save_skill(rpg_t *rpg, save_data_t *save)
         &(shield_tab[save->skill_level[SHIELD]]);
     rpg->heros->skill_point = save->skill_point;
     rpg->heros->skill->act_skill = save->act_skill;
-    rpg->heros->npc->entity->effect_tab[SHIELD_HEROS]->active =
-        shield_tab[save->skill_level[SHIELD]].active;
+    reinit_skill(rpg->heros->skill, rpg->heros);
 }
 
 void appli_save(rpg_t *rpg, save_data_t *save)

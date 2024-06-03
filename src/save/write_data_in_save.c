@@ -13,7 +13,7 @@ void write_bot_data(save_data_t *new_save, rpg_t *rpg, int i)
 
     for (int j = 0; j <= ARCHER; j++) {
         for (npc_t *curr = rpg->biome[i]->bot_data->bot_list[j];
-            curr; curr = curr->next) {
+            curr && k < 30; curr = curr->next) {
                 new_save->save_bot[i][k].id_bot = j;
                 new_save->save_bot[i][k].pv = curr->pv;
                 new_save->save_bot[i][k].pos_x = curr->entity->pos.x;

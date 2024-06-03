@@ -123,6 +123,7 @@ SRC = main.c\
 	src/skill/init_run.c\
 	src/skill/init_skill.c\
 	src/skill/manage_skill.c\
+	src/biome/set_bot_donjon.c\
 
 OBJ = $(SRC:.c=.o)
 

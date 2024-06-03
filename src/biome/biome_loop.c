@@ -76,7 +76,8 @@ void biome_loop(rpg_t *rpg, biome_t *biome)
     sort_entity_in_view(biome, rpg->window, heros, rpg);
     entity_loop(biome->entity_in_view_head, rpg);
     check_end_quest(rpg);
-    bot_generator(biome, biome->bot_type);
+    if (rpg->scene == PLAIN)
+        bot_generator(biome, biome->bot_type);
     if (biome->portal)
         check_portal(biome, rpg, rpg->heros);
     if (biome->quest_giver)

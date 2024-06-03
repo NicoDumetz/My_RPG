@@ -56,5 +56,7 @@ biome_t *create_biome(int biome_type, sfTexture **text_tab, sfFont **font_tab)
     biome->obj_list = NULL;
     biome->entity_in_view_head = NULL;
     biome->entity_in_view_tail = NULL;
+    if (biome->pos_bot)
+        set_bot_donjon(biome, biome->pos_bot);
     return (biome);
 }

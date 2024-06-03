@@ -24,7 +24,7 @@ void manage_skip_button(button_t *button, rpg_t *rpg)
     sfVector2f center = sfView_getCenter(view);
     sfVector2f s_view = sfView_getSize(view);
     sfVector2f pos = {(center.x - s_view.x / 2) + ((s_view.x / 100) * 88),
-        center.y - s_view.y / 2 + ((s_view.x / 100) * 53)};
+        center.y - s_view.y / 2 + ((s_view.y / 100) * 90)};
     sfVector2f pos_but = align_centers(
         sfText_getGlobalBounds((sfText*)(button->child)),
         sfSprite_getGlobalBounds(button->sprite));

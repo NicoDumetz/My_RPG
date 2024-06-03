@@ -7,6 +7,39 @@
 
 #include "rpg.h"
 
+sfVector2f pos_bot_castle[] = {
+    {608, 2280},
+    {635, 2562},
+    {930, 1683},
+    {286, 1774},
+    {489, 1841},
+    {811, 1413},
+    {1441, 1252},
+    {1750, 1252},
+    {1642, 1520},
+    {1441, 1828},
+    {1790, 1774},
+    {2327, 1893},
+    {2393, 2175},
+    {2648, 2255},
+    {1897, 2739},
+    {1657, 2405},
+    {2006, 2405},
+    {2742, 1170},
+    {2568, 1358},
+    {2352, 633},
+    {1977, 727},
+    {1628, 526},
+    {1682, 217},
+    {2354, 498},
+    {2756, 620},
+    {181, 245},
+    {343, 916},
+    {933, 728},
+    {799, 233},
+    {0, 0}
+};
+
 npc_t *set_castle_boss(sfTexture **text_tab, biome_t *biome)
 {
     npc_t *castle_boss = set_knight(text_tab[CASTLE_BOSS_TEXT]);
@@ -47,5 +80,6 @@ biome_t *set_castle(sfTexture **text_tab, sfFont **)
     for (int i = 0; i < 6; i++)
         castle->bot_type[i] = bot_type[i];
     castle->boss = set_castle_boss(text_tab, castle);
+    castle->pos_bot = pos_bot_castle;
     return (castle);
 }
