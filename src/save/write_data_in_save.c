@@ -32,6 +32,7 @@ void write_quest_data(save_data_t *new_save, rpg_t *rpg)
         new_save->quest_state[i] =
         rpg->quest_tab[i].state;
     }
+    new_save->act_skill = rpg->heros->skill->act_skill;
 }
 
 void write_data_in_save(save_data_t *new_save, rpg_t *rpg)
@@ -51,6 +52,9 @@ void write_data_in_save(save_data_t *new_save, rpg_t *rpg)
     new_save->level_heros = rpg->heros->level_act;
     new_save->x_heros = rpg->heros->npc->entity->pos.x;
     new_save->y_heros = rpg->heros->npc->entity->pos.y;
+    for (int i = 0; i < 3; i++)
+        new_save->skill_level[i] = rpg->heros->skill->skill_level[i];
+    new_save->skill_point = rpg->heros->skill_point;
     write_quest_data(new_save, rpg);
     new_save->end_save = 42;
 }

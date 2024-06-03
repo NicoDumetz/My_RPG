@@ -38,6 +38,7 @@ typedef enum deco_type_e {
 
 typedef enum attack_type_e {
     EXPLOSIVE,
+    FIRE,
     ARCHERY,
     DYNA,
     MELEE
@@ -137,6 +138,7 @@ typedef struct heros_s {
     sfTexture *texture_base;
     skill_t *skill;
     sfText *interact;
+    int skill_point;
     bool restore;
     bool can_interact;
     int level_act;
@@ -195,7 +197,7 @@ void manage_bot(entity_t *entity, heros_t *heros, rpg_t *rpg);
 void manage_random_moov(npc_t *npc_act, rpg_t *rpg);
 void manage_chase(npc_t *npc_act, rpg_t *rpg, heros_t *heros);
 void check_if_heros_attack_me(npc_t *to_check, heros_t *heros);
-bool check_chase_heros(npc_t *to_check, heros_t *heros);
+bool check_chase_heros(npc_t *to_check, heros_t *heros, sfImage *img);
 void manage_animation_bot(entity_t *entity, bool ticks);
 void add_to_list_bot(npc_t *new_bot, npc_t **list);
 void manage_attack_bot(npc_t *npc_act, heros_t *heros, int *chase, int *stand);

@@ -76,6 +76,7 @@ void set_all_texture_next_three(sfTexture **text_tab)
     text_tab[ARROW_TEXT] = sfTexture_createFromFile(ARROWS, NULL);
     text_tab[DYNA_TEXT] = sfTexture_createFromFile(DYNAMITE, NULL);
     text_tab[SHIELD_TEXT] = sfTexture_createFromFile(SHIELD_PATH, NULL);
+    text_tab[FIRE_TEXT] = sfTexture_createFromFile(FIRE_PATH, NULL);
 }
 
 static void set_all_texture_next_four(sfTexture **text_tab)

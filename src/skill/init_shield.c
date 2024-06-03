@@ -7,6 +7,23 @@
 
 #include "rpg.h"
 
+/*
+typedef struct shield_s {
+    int level;
+    int nbr_of_hit;
+    int hit_before_desactive;
+    int active;
+    int stamina;
+} shield_t;
+*/
+
+shield_t shield_tab[] = {
+    {0, 0, false, 0},
+    {1, 0, false, 30},
+    {2, 0, false, 25},
+    {3, 0, false, 20}
+};
+
 void destroy_shield(shield_t *shield)
 {
     free(shield);
@@ -38,16 +55,4 @@ void shield_function(heros_t *heros, rpg_t *, void *skill_data)
         data->hit_before_desactive = data->nbr_of_hit;
         heros->npc->entity->effect_tab[SHIELD_HEROS]->active = true;
     }
-}
-
-shield_t *init_shield(void)
-{
-    shield_t *shield = malloc(sizeof(shield_t));
-
-    shield->level = 0;
-    shield->nbr_of_hit = 1;
-    shield->hit_before_desactive = 0;
-    shield->active = false;
-    shield->stamina = 10;
-    return (shield);
 }

@@ -7,6 +7,22 @@
 
 #include "rpg.h"
 
+/*typedef struct run_s {
+    int level;
+    bool active;
+    float speed_multi;
+    int stamina;
+} run_t;
+*/
+
+run_t run_tab[] = {
+    {false, 0, 0},
+    {false, 1.5, 20},
+    {false, 1.7, 18},
+    {false, 2, 16}
+};
+
+
 void destroy_run(run_t *run)
 {
     free(run);
@@ -27,15 +43,4 @@ void run_function(heros_t *heros, rpg_t *rpg, void *skill_data)
         heros->speed /= data->speed_multi;
         data->active = false;
     }
-}
-
-run_t *init_run(void)
-{
-    run_t *run = malloc(sizeof(run_t));
-
-    run->level = 0;
-    run->active = false;
-    run->speed_multi = 1.5;
-    run->stamina = 20;
-    return (run);
 }

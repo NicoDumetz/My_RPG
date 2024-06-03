@@ -63,6 +63,7 @@ typedef enum texture_type_e {
     SHIELD_TEXT,
     HEARTH_POTION_TEXT,
     HELMET_TEXT,
+    FIRE_TEXT,
     MINE_TEXT
 } texture_type_t;
 
@@ -95,6 +96,7 @@ typedef struct rpg_s {
     sfTexture *text_tab[MINE_TEXT + 1];
     sfFont *font_tab[FONT_COUNT];
     inventory_t inventory;
+    game_over_t *end;
     sfRenderWindow *window;
 } rpg_t;
 

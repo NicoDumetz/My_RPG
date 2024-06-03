@@ -18,10 +18,13 @@ void which_scene(rpg_t *rpg)
     if (rpg->scene == TUTO) {
         tuto_loop(rpg);
         manage_heros_bar(rpg->heros, rpg->window);
+    } else {
+        update_game_over(rpg->end, rpg);
     }
-    if (rpg->scene == SAVE) {
+    if (rpg->end->active == TUTO_FADE)
+        manage_switch_fade(rpg->end, rpg);
+    if (rpg->scene == SAVE)
         load_page(rpg);
-    }
 }
 
 void init_clock(rpg_t *rpg)

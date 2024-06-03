@@ -17,7 +17,6 @@ typedef enum skill_type_e {
 } skill_type_t;
 
 typedef struct shield_s {
-    int level;
     int nbr_of_hit;
     int hit_before_desactive;
     int active;
@@ -25,13 +24,10 @@ typedef struct shield_s {
 } shield_t;
 
 typedef struct fire_ball_s {
-    int level;
-    void *projectil;
     int stamina;
 } fire_ball_t;
 
 typedef struct run_s {
-    int level;
     bool active;
     float speed_multi;
     int stamina;
@@ -39,9 +35,14 @@ typedef struct run_s {
 
 typedef struct skill_s {
     int act_skill;
+    int skill_level[3];
     void *skill_tab[3];
     skill_func_t skill_funct_tab[3];
 } skill_t;
+
+extern shield_t shield_tab[];
+extern run_t run_tab[];
+extern fire_ball_t fireball_tab[];
 
 /**INIT**/
 void destroy_fire_ball(fire_ball_t *fire_ball);

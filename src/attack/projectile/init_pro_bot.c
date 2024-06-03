@@ -17,6 +17,16 @@ void init_archery_proj(projectile_t *new)
     {64 * 0.7, (128 / 2) * 0.7});
 }
 
+void init_fire_proj(projectile_t *new)
+{
+    sfIntRect rect = {0, 0, 625, 399};
+
+    sfSprite_setTextureRect(new->sprite, rect);
+    sfSprite_setScale(new->sprite, (sfVector2f){0.2, 0.2});
+    sfRectangleShape_setSize(new->hitbox,
+    (sfVector2f){625 * 0.2, 399 * 0.2});
+}
+
 void init_dyna_proj(projectile_t *new)
 {
     sfIntRect rect = {0, 0, 384 / 6, 64};
@@ -33,6 +43,8 @@ void init_npc_projectiles(npc_t *npc, sfTexture **text_tab)
         npc->projectile = init_projectile(text_tab[ARROW_TEXT], 400, ARCHERY);
     if (npc->type == DYNA)
         npc->projectile = init_projectile(text_tab[DYNA_TEXT], 400, DYNA);
+    if (npc->type == FIRE)
+        npc->projectile = init_projectile(text_tab[FIRE_TEXT], 800, FIRE);
 }
 
 projectile_t *init_projectile(sfTexture *texture, float speed,
@@ -51,5 +63,7 @@ projectile_t *init_projectile(sfTexture *texture, float speed,
         init_archery_proj(new);
     if (type == DYNA)
         init_dyna_proj(new);
+    if (type == FIRE)
+        init_fire_proj(new);
     return new;
 }

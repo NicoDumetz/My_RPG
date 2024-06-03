@@ -28,4 +28,5 @@ void init_archery_proj(projectile_t *new);
 void set_positions_projectile(npc_t *npc_act, heros_t *heros);
 void moov_projectile(npc_t *npc, rpg_t *rpg);
 void init_dyna_proj(projectile_t *new);
+void set_positions_fire_ball(npc_t *npc_act, sfVector2f pos_final);
 #endif
