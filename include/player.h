@@ -7,7 +7,6 @@
 
 #ifndef PLAYER_H
     #define PLAYER_H
-    #include "inventory.h"
     #include "lib.h"
     #include <stdbool.h>
     #include "background.h"
@@ -131,7 +130,6 @@ typedef struct heros_s {
     float stamina_max;
     float stami_per_sec;
     float pv_max;
-    inventory_t invent;
     back_obj_t *inventory;
     info_bar_t *bar_tab[3];
     npc_t *npc;
@@ -180,10 +178,14 @@ npc_t *set_knight(sfTexture *texture);
 npc_t *set_minions(sfTexture *texture);
 void manage_bot(entity_t *entity, heros_t *heros, rpg_t *rpg);
 void manage_random_moov(npc_t *npc_act, rpg_t *rpg);
-void manage_chase(npc_t *npc_act, rpg_t *rpg);
+void manage_chase(npc_t *npc_act, rpg_t *rpg, heros_t *heros);
 void check_if_heros_attack_me(npc_t *to_check, heros_t *heros);
 bool check_chase_heros(npc_t *to_check, heros_t *heros);
 void manage_animation_bot(entity_t *entity, bool ticks);
+void attack_left(npc_t *npc_act, rpg_t *rpg, heros_t *heros, int *chase);
+void attack_right(npc_t *npc_act, rpg_t *rpg, heros_t *heros, int *chase);
+void attack_back(npc_t *npc_act, rpg_t *rpg, heros_t *heros, int *chase);
+void attack_front(npc_t *npc_act, rpg_t *rpg, heros_t *heros, int *chase);
 
 /**DECO**/
 deco_data_t *init_deco_data(void);

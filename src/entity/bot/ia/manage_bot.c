@@ -33,7 +33,7 @@ void manage_bot(entity_t *entity, heros_t *heros, rpg_t *rpg)
         manage_random_moov(npc_act, rpg);
         npc_act->in_chase = check_chase_heros(npc_act, heros);
     } else
-        manage_chase(npc_act, rpg);
+        manage_chase(npc_act, rpg, heros);
     check_if_heros_attack_me(npc_act, heros);
     manage_bot_pv_bar(npc_act, rpg->window);
     for (entity_t *curr = entity; curr; curr = curr->next) {

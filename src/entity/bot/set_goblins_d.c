@@ -20,6 +20,14 @@ void set_action_tab_goblins_d(npc_t *goblins_d)
     goblins_d->action[STAND] = (sfVector2i){6, 0};
 }
 
+void set_attbox_dim_goblins_d(npc_t *npc)
+{
+    npc->attbox_dim[ATTACK_F] = (sfFloatRect){100,100,100,100};
+    npc->attbox_dim[ATTACK_B] = (sfFloatRect){100,100,100,100};
+    npc->attbox_dim[ATTACK_L] = (sfFloatRect){0, 0, 50, 0};
+    npc->attbox_dim[ATTACK_R] = (sfFloatRect){50, 0, 50, 0};
+}
+
 npc_t *set_goblins_d(sfTexture *texture)
 {
     npc_t *goblins_d = init_npc(texture);
@@ -31,6 +39,7 @@ npc_t *set_goblins_d(sfTexture *texture)
     goblins_d->entity->parent = goblins_d;
     set_offset(goblins_d->entity, (sfVector2i){7, 3});
     set_action_tab_goblins_d(goblins_d);
+    set_attbox_dim_goblins_d(goblins_d);
     goblins_d->entity->colbox_dim = colbox;
     goblins_d->xp = 30;
     goblins_d->hitbox_dim = hitbox;
