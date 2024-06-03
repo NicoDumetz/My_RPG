@@ -37,7 +37,6 @@ typedef struct back_obj_s {
 } back_obj_t;
 
 typedef struct front_obj_s {
-    entity_t *entity;
     int time_left;
     bool is_pickable;
     bool is_short;
@@ -46,6 +45,13 @@ typedef struct front_obj_s {
     struct front_obj_s *prev;
     sfVector2i rect_quad;
     bool is_active;
+    int frame_nbr;
+    sfSprite *sprite;
+    sfVector2f size;
+    sfVector2f sprite_sheet_size;
+    sfVector2f pos;
+    sfVector2i offset;
+    sfIntRect rect_sprite;
 } front_obj_t;
 
 /**INIT**/
@@ -59,7 +65,10 @@ void destroy_back_obj(back_obj_t *back_obj);
 /**ANIM**/
 void anim_obj_short(
     front_obj_t *obj, sfVector2i offset, bool ticks);
+void anim_obj_long(
+    front_obj_t *obj, sfVector2i offset, bool ticks);
+void manage_animation_obj(front_obj_t *obj, bool ticks);
 
 /**MANAGER**/
-void manage_obj(entity_t *entity, rpg_t *, heros_t *heros);
+void manage_obj(front_obj_t *obj, rpg_t *rpg, heros_t *heros);
 #endif

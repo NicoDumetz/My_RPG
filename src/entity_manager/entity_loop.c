@@ -37,34 +37,17 @@ void manage_animation_bot(entity_t *entity, bool ticks)
         anim_attack(npc, npc->action[npc->act_action], ticks);
 }
 
-void manage_animation_obj(entity_t *entity, bool ticks)
-{
-    front_obj_t *obj = (front_obj_t *)(entity->parent);
-
-    entity->parent = (npc_t *)(entity->parent);
-    if (obj->is_short == false)
-        anim_entity(obj->entity, obj->entity->simple_action, ticks);
-    if (obj->is_short == true)
-        anim_obj_short(obj, obj->entity->simple_action, ticks);
-}
-
 void which_entity(entity_t *curr, rpg_t *rpg)
 {
     npc_t *npc = NULL;
-    front_obj_t *obj = NULL;
 
     npc = curr->type == NPC ? curr->parent : NULL;
-    obj = curr->type == OBJ ? curr->parent : NULL;
     if (npc) {
         if (npc->special == NON_SPEC)
             manage_bot(curr, rpg->heros, rpg);
         manage_animation_bot(curr, rpg->ticks);
     }
-    if (obj) {
-        manage_obj(curr, rpg, rpg->heros);
-        manage_animation_obj(curr, rpg->ticks);
-    }
-    if (!npc && !obj) {
+    if (!npc) {
         anim_entity(curr, curr->simple_action, rpg->ticks);
     }
     sfRenderWindow_drawSprite(rpg->window, curr->sprite, NULL);

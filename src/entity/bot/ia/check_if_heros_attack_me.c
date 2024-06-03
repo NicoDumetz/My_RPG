@@ -20,6 +20,7 @@ void check_if_heros_attack_me(npc_t *to_check, heros_t *heros)
         if (heros->npc->act_action == (action_t)i &&
             col_hitbox(heros->npc->attbox[i], npc_rect)) {
             to_check->pv = to_check->pv - heros->npc->attack;
+            to_check->entity->effect_tab[BLOOD_BOT]->active = true;
             sfSprite_setColor(
                 to_check->entity->sprite, sfColor_fromRGBA(255, 0, 0, 255));
             heros->npc->cur_attack = false;

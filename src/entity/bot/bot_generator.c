@@ -41,10 +41,11 @@ void bot_generator(biome_t *biome, int *who)
 
     if (who[i] < 0 || i == 6)
         i = 0;
-    if ((rand_nbr % 3) != 0)
+    if ((rand_nbr % 7) != 0)
         already_do = 0;
-    if (biome->nbr_bot < 30 && (rand_nbr % 3) == 0 && already_do == 0) {
-        new_bot = create_bot(who[i], biome->bot_data, (sfVector2f){0, 0});
+    if (biome->nbr_bot < 30 && (rand_nbr % 7) == 0 && already_do == 0) {
+        new_bot = create_bot(who[i],
+            biome->bot_data, (sfVector2f){0, 0}, biome->text_tab);
         i++;
         biome->nbr_bot = biome->nbr_bot + 1;
         find_valid_pos(biome->back->collision.col_image, new_bot->entity);

@@ -49,13 +49,18 @@ void set_attbox_dim_heros(npc_t *npc)
     npc->attbox_dim[ATTACK_R] = (sfFloatRect){35, 30, 40, 55};
 }
 
-effect_t **create_effect_tab_heros(sfTexture **text_tab)
+effect_t **create_effect_tab_heros(
+    sfTexture **text_tab, sfSprite *heros_sprite)
 {
-    effect_t **effect_tab = malloc(sizeof(effect_t *) * 2);
+    effect_t **effect_tab = malloc(sizeof(effect_t *) * 4);
 
     effect_tab[LEVEL_UP_HEROS] = create_effect(
-        text_tab[LEVEL_UP_TEXT], true, (sfVector2i){7, 1});
-    effect_tab[1] = NULL;
+        text_tab[LEVEL_UP_TEXT], true, (sfVector2i){7, 1}, heros_sprite);
+    effect_tab[BLOOD_HEROS] = create_effect(
+        text_tab[BLOOD_TEXT], true, (sfVector2i){8, 1}, heros_sprite);
+    effect_tab[PICK_HEROS] = create_effect(
+        text_tab[COIN_TEXT], true, (sfVector2i){7, 1}, heros_sprite);
+    effect_tab[3] = NULL;
     return (effect_tab);
 }
 
@@ -68,13 +73,15 @@ heros_t *init_heros(sfTexture **text_tab)
     heros->speed = 200.f;
     heros->texture_base = text_tab[KNIGHT_TEXT];
     heros->npc = init_npc(heros->texture_base);
-    heros->npc->entity->effect_tab = create_effect_tab_heros(text_tab);
     heros->npc->attack = 10;
     heros->npc->pv = 100;
     heros->npc->entity->parent = heros->npc;
     set_offset(heros->npc->entity, (sfVector2i){6, 8});
     set_action_tab_heros(heros);
     set_attbox_dim_heros(heros->npc);
+    heros->npc->entity->effect_tab = create_effect_tab_heros(
+        text_tab, heros->npc->entity->sprite);
+    heros->inventory = NULL;
     heros->npc->special = HEROS;
     heros->npc->entity->colbox_dim = colbox;
     heros->npc->hitbox_dim = hitbox;

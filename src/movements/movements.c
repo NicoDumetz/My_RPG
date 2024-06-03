@@ -32,7 +32,8 @@ void manage_movements(rpg_t *rpg)
     if (rpg->key_state[sfKeyS] && rpg->heros->npc->allowed_dir[DOWN])
         manage_down(rpg);
     if (!rpg->key_state[sfKeyS] && !rpg->key_state[sfKeyD] &&
-        !rpg->key_state[sfKeyZ] && !rpg->key_state[sfKeyQ])
+        !rpg->key_state[sfKeyZ] && !rpg->key_state[sfKeyQ] &&
+        rpg->heros->npc->is_attack == false)
         rpg->heros->npc->act_action = STAND;
     sfSprite_setPosition(rpg->heros->npc->entity->sprite,
     rpg->heros->npc->entity->pos);

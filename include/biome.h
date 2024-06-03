@@ -26,7 +26,7 @@ void destroy_biome(biome_t *biome);
 
 /**SORTING**/
 void sort_entity_in_view(
-    biome_t *biome, sfRenderWindow *window, heros_t *heros);
+    biome_t *biome, sfRenderWindow *window, heros_t *heros, rpg_t *rpg);
 void put_entity_in_view_list(
     entity_t *entity, biome_t *biome, sfRenderWindow *window);
 void remove_entity_from_list(entity_t *entity, biome_t *biome);

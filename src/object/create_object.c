@@ -15,7 +15,7 @@ void destroy_back_obj(back_obj_t *back_obj)
 
 void destroy_front_obj(front_obj_t *front_obj, bool with_back)
 {
-    destroy_entity(front_obj->entity);
+    sfSprite_destroy(front_obj->sprite);
     if (with_back && front_obj->in)
         destroy_back_obj(front_obj->in);
     free(front_obj);
@@ -44,11 +44,20 @@ void put_obj_in_list(front_obj_t *to_put, front_obj_t **list)
 
 static void create_front_obj_next(front_obj_t *front_obj, object_drop_t type)
 {
+    sfFloatRect sprite_dim;
+    float width;
+    float height;
+
+    sprite_dim = sfSprite_getGlobalBounds(front_obj->sprite);
+    front_obj->frame_nbr = obj_tab[type].rect_quad.x;
+    width = sprite_dim.width / obj_tab[type].rect_quad.x;
+    height = sprite_dim.height / obj_tab[type].rect_quad.y;
+    front_obj->size = (sfVector2f){width, height};
+    front_obj->rect_sprite = (sfIntRect){0, 0, width, height};
     front_obj->time_left = obj_tab[type].time_left;
-    front_obj->entity->simple_action = obj_tab[type].offset;
-    set_offset(front_obj->entity, obj_tab[type].rect_quad);
+    front_obj->offset = obj_tab[type].offset;
     sfSprite_setTextureRect(
-        front_obj->entity->sprite, front_obj->entity->rect_sprite);
+        front_obj->sprite, front_obj->rect_sprite);
 }
 
 front_obj_t *create_front_obj(
@@ -57,19 +66,19 @@ front_obj_t *create_front_obj(
 {
     front_obj_t *front_obj = malloc(sizeof(front_obj_t));
 
-    front_obj->entity = init_entity(text_tab[obj_tab[type].text_id_front]);
     front_obj->is_pickable = obj_tab[type].is_pickable;
     front_obj->is_short = obj_tab[type].is_short;
     front_obj->next = NULL;
     front_obj->prev = NULL;
-    front_obj->entity->parent = front_obj;
-    front_obj->entity->type = OBJ;
     if (obj_tab[type].text_id_back >= 0)
         front_obj->in = create_back_obj(type, text_tab);
     else
         front_obj->in = NULL;
     front_obj->is_active = true;
-    sfSprite_setPosition(front_obj->entity->sprite, pos);
+    front_obj->sprite = sfSprite_create();
+    sfSprite_setTexture(front_obj->sprite,
+        text_tab[obj_tab[type].text_id_front], sfTrue);
+    sfSprite_setPosition(front_obj->sprite, pos);
     create_front_obj_next(front_obj, type);
     put_obj_in_list(front_obj, obj_list);
     return (front_obj);

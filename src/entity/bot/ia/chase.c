@@ -68,8 +68,8 @@ static void down_chase(npc_t *npc_act, sfVector2f movement_pos, rpg_t *rpg)
     sfSprite_setPosition(npc_act->entity->sprite, pos);
 }
 
-
-static void move_ia_to_heros(npc_t *npc_act, sfVector2f movement_pos, rpg_t *rpg)
+static void move_ia_to_heros(
+    npc_t *npc_act, sfVector2f movement_pos, rpg_t *rpg)
 {
     if (movement_pos.y < 0 && npc_act->allowed_dir[UP])
         up_chase(npc_act, movement_pos, rpg);

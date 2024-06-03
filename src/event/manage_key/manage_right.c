@@ -32,6 +32,7 @@ static void moov_right(rpg_t *rpg)
 
 void manage_right(rpg_t *rpg)
 {
-    rpg->heros->npc->act_action = MOVE_R;
+    if (rpg->heros->npc->is_attack == false)
+        rpg->heros->npc->act_action = MOVE_R;
     moov_right(rpg);
 }

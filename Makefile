@@ -72,6 +72,8 @@ SRC = main.c\
 	src/object/manage_obj.c\
 	src/entity/bot/ia/random_moov.c\
 	src/entity/bot/ia/chase.c\
+	src/animations/anim_obj_long.c\
+	src/entity/bot/set_bot_effect.c
 
 OBJ = $(SRC:.c=.o)
 

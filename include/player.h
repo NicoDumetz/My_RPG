@@ -139,7 +139,9 @@ bot_data_t *init_bot_data(sfTexture **text_tab);
 npc_t *set_archer(sfTexture *texture);
 void free_bot_data(bot_data_t *bot_data);
 void free_bot_list(npc_t *npc);
-npc_t *create_bot(bot_type_t bot_type, bot_data_t *bot_data_t, sfVector2f pos);
+npc_t *create_bot(
+    bot_type_t bot_type, bot_data_t *bot_data_t,
+    sfVector2f pos, sfTexture **text_tab);
 npc_t *set_goblins_b(sfTexture *texture);
 npc_t *set_goblins_d(sfTexture *texture);
 npc_t *set_goblins(sfTexture *texture);

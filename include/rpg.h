@@ -13,6 +13,8 @@
 typedef enum texture_type_e {
     DEATH_TEXT = 0,
     LEVEL_UP_TEXT,
+    BLOOD_TEXT,
+    COIN_TEXT,
     KNIGHT_TEXT,
     ARCHER_TEXT,
     MINIONS_TEXT,
@@ -53,7 +55,7 @@ typedef struct rpg_s {
     bool key_state[256];
     int second;
     float time;
-    sfTexture *text_tab[22];
+    sfTexture *text_tab[24];
     sfRenderWindow *window;
 } rpg_t;
 

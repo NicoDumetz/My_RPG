@@ -52,7 +52,6 @@ npc_t *bot_loop_sort(
 void check_is_active(front_obj_t **curr, front_obj_t **head, biome_t *biome)
 {
     if ((*curr)->is_active == false) {
-        remove_entity_from_list((*curr)->entity, biome);
         if ((*curr)->prev == NULL)
             *head = (*curr)->next;
         if ((*curr)->prev)
@@ -69,22 +68,25 @@ void check_is_active(front_obj_t **curr, front_obj_t **head, biome_t *biome)
 }
 
 front_obj_t *obj_loop_sort(
-    front_obj_t *curr, biome_t *biome, sfRenderWindow *window)
+    front_obj_t *curr, biome_t *biome, rpg_t *rpg)
 {
     front_obj_t *next = curr->next;
 
     check_is_active(&curr, &(biome->obj_list), biome);
-    if (curr != NULL)
-        put_entity_in_view_list(curr->entity, biome, window);
+    if (curr != NULL) {
+        manage_obj(curr, rpg, rpg->heros);
+        manage_animation_obj(curr, rpg->ticks);
+        sfRenderWindow_drawSprite(rpg->window, curr->sprite, NULL);
+    }
     return next;
 }
 
 void sort_entity_in_view(
-    biome_t *biome, sfRenderWindow *window, heros_t *heros)
+    biome_t *biome, sfRenderWindow *window, heros_t *heros, rpg_t *rpg)
 {
     put_entity_in_view_list(heros->npc->entity, biome, window);
     for (front_obj_t *curr = biome->obj_list; curr;) {
-        curr = obj_loop_sort(curr, biome, window);
+        curr = obj_loop_sort(curr, biome, rpg);
     }
     for (int i = 0; i <= MINE_DECO; i++)
         for (int j = 0; biome->deco_data->deco_entity[i][j]; j++)

@@ -54,5 +54,6 @@
     #define KNIGHT_H_SPRITE KNIGHT_BUILDINGS "House/House_Blue.png"
     #define MINE_S "tiny_world_asset/Resources/Gold Mine/GoldMine_Active.png"
     #define BAG_PATH "tiny_world_asset/Resources/Resources/G_Spawn.png"
-
+    #define BLOOD_PATH "effect_asset/blood_effect.png"
+    #define COIN_PATH "effect_asset/coin.png"
 #endif

@@ -7,6 +7,14 @@
 
 #include "rpg.h"
 
+void manage_animation_obj(front_obj_t *obj, bool ticks)
+{
+    if (obj->is_short == false)
+        anim_obj_long(obj, obj->offset, ticks);
+    if (obj->is_short == true)
+        anim_obj_short(obj, obj->offset, ticks);
+}
+
 void add_to_inventory(back_obj_t **inventory, front_obj_t *obj)
 {
     if (*inventory)
@@ -16,13 +24,12 @@ void add_to_inventory(back_obj_t **inventory, front_obj_t *obj)
     obj->in = NULL;
 }
 
-void manage_obj(entity_t *entity, rpg_t *rpg, heros_t *heros)
+void manage_obj(front_obj_t *obj, rpg_t *rpg, heros_t *heros)
 {
-    front_obj_t *obj = (front_obj_t *)(entity->parent);
-
-    if (sprite_is_in_float_rect(entity->sprite,
+    if (sprite_is_in_float_rect(obj->sprite,
         sfRectangleShape_getGlobalBounds(heros->npc->hitbox)) &&
         obj->is_pickable && rpg->key_state[sfKeyE]) {
+        heros->npc->entity->effect_tab[PICK_HEROS]->active = true;
         if (obj->in)
             add_to_inventory(&(heros->inventory), obj);
         obj->is_active = false;

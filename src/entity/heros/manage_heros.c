@@ -9,7 +9,6 @@
 
 void manage_heros(heros_t *heros, rpg_t *rpg)
 {
-    if (heros->npc->is_attack == false)
-        manage_movements(rpg);
-    manage_heros_attack(rpg->heros, rpg->key_state);
+    manage_movements(rpg);
+    manage_heros_attack(heros, rpg->key_state);
 }

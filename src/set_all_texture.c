@@ -47,5 +47,7 @@ void set_all_texture(sfTexture **text_tab)
     text_tab[MINE_TEXT] = sfTexture_createFromFile(MINE_S, NULL);
     text_tab[LEVEL_UP_TEXT] = sfTexture_createFromFile(LEVEL_UP_PATH, NULL);
     text_tab[BAG_TEXT] = sfTexture_createFromFile(BAG_PATH, NULL);
+    text_tab[BLOOD_TEXT] = sfTexture_createFromFile(BLOOD_PATH, NULL);
+    text_tab[COIN_TEXT] = sfTexture_createFromFile(COIN_PATH, NULL);
     set_all_texture_next(text_tab);
 }
