@@ -13,8 +13,8 @@ void destroy_rpg(rpg_t *rpg)
         sfRenderWindow_destroy(rpg->window);
         destroy_heros(rpg->heros);
         sfClock_destroy(rpg->clock);
-        free_bot_data(rpg->bot_data);
-        destroy_background(rpg->back);
+        for (int i = 0; i <= MINE; i++)
+            destroy_biome(rpg->biome[i]);
         free(rpg);
     }
 }
@@ -25,15 +25,15 @@ rpg_t *create_rpg_struct(void)
     sfVideoMode mode = {1920, 1080, 32};
 
     rpg->clock = sfClock_create();
-    rpg->scene = MAIN;
+    rpg->scene = PLAIN;
     rpg->second = 0;
     rpg->time = 0;
     rpg->window = sfRenderWindow_create(mode, "my_rpg", sfClose, NULL);
     rpg->heros = init_heros(KNIGHT_SPRITE);
-    rpg->bot_data = init_bot_data();
     rpg->ticks = false;
     for (int i = 0; i < 256; i++)
         rpg->key_state[i] = false;
-    rpg->back = add_background("maptest.png", "colisiontest.png");
+    for (int i = 0; i <= MINE; i++)
+        rpg->biome[i] = create_biome(i);
     return rpg;
 }

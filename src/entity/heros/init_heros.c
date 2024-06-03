@@ -31,12 +31,14 @@ heros_t *init_heros(char *asset)
 {
     heros_t *heros = malloc(sizeof(heros_t));
     sfFloatRect hitbox = {30, 25, 55, 55};
+    sfFloatRect colbox = {40, 60, 80, 90};
 
     heros->speed = 200.f;
     heros->texture_base = sfTexture_createFromFile(asset, NULL);
     heros->npc = init_npc(heros->texture_base);
     set_offset(heros->npc->entity, (sfVector2i){6, 8});
     set_action_tab_heros(heros);
-    heros->npc->entity->hitbox_dim = hitbox;
+    heros->npc->entity->colbox_dim = colbox;
+    heros->npc->hitbox_dim = hitbox;
     return heros;
 }

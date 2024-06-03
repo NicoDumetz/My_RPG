@@ -9,8 +9,8 @@
 
 sfSprite *wich_back(rpg_t *rpg)
 {
-    if (rpg->back)
-        return (rpg->back->sprite.sprite);
+    if (rpg->biome[rpg->scene]->back)
+        return (rpg->biome[rpg->scene]->back->sprite.sprite);
     return NULL;
 }
 

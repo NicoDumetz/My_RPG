@@ -23,12 +23,14 @@ void set_action_tab_archer(npc_t *archer)
 npc_t *set_archer(sfTexture *texture)
 {
     npc_t *archer = init_npc(texture);
+    sfFloatRect colbox = {40, 60, 80, 90};
     sfFloatRect hitbox = {30, 30, 60, 60};
 
     archer->pv = 0;
     archer->attack = 0;
     set_offset(archer->entity, (sfVector2i){8, 7});
     set_action_tab_archer(archer);
-    archer->entity->hitbox_dim = hitbox;
+    archer->entity->colbox_dim = colbox;
+    archer->hitbox_dim = hitbox;
     return (archer);
 }

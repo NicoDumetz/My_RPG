@@ -9,7 +9,7 @@
 
 void which_scene(rpg_t *rpg)
 {
-    if (rpg->scene == MAIN)
+    if (rpg->scene == PLAIN)
         test(rpg);
 }
 

@@ -11,12 +11,16 @@
     #include "lib.h"
 
 typedef enum scene_e {
-    MAIN = 0,
+    PLAIN = 0,
+    CASTLE,
+    CAMP,
+    VILLAGE,
+    MINE,
+    MAIN
 }scene_t;
 typedef struct rpg_s {
     heros_t *heros;
-    back_t *back;
-    bot_data_t *bot_data;
+    biome_t *biome[5];
     int scene;
     sfClock *clock;
     sfEvent event;
@@ -27,12 +31,40 @@ typedef struct rpg_s {
     sfRenderWindow *window;
 } rpg_t;
 
-    #define GOBLINS_T_LIST rpg->bot_data->bot_list[GOBLINS_T]
-    #define GOBLINS_B_LIST rpg->bot_data->bot_list[GOBLINS_B]
-    #define GOBLINS_D_LIST rpg->bot_data->bot_list[GOBLINS_D]
-    #define ARCHER_LIST rpg->bot_data->bot_list[ARCHER]
-    #define KNIGHT_LIST rpg->bot_data->bot_list[KINGHT]
-    #define MINIONS_LIST rpg->bot_data->bot_list[MINIONS]
+    #define GOBLINS_T_LIST_PLA rpg->biome[PLAIN]->bot_data->bot_list[GOBLINS_T]
+    #define GOBLINS_D_LIST_PLA rpg->biome[PLAIN]->bot_data->bot_list[GOBLINS_D]
+    #define GOBLINS_B_LIST_PLA rpg->biome[PLAIN]->bot_data->bot_list[GOBLINS_B]
+    #define ARCHER_LIST_PLA rpg->biome[PLAIN]->bot_data->bot_list[ARCHER]
+    #define KNIGHT_LIST_PLA rpg->biome[PLAIN]->bot_data->bot_list[KNIGHT]
+    #define MINIONS_LIST_PLA rpg->biome[PLAIN]->bot_data->bot_list[MINIONS]
+
+    #define GOBLIN_T_LIST_MIN rpg->biome[MINE]->bot_data->bot_list[GOBLINS_T]
+    #define GOBLIN_D_LIST_MIN rpg->biome[MINE]->bot_data->bot_list[GOBLINS_D]
+    #define GOBLIN_B_LIST_MIN rpg->biome[MINE]->bot_data->bot_list[GOBLINS_B]
+    #define ARCHER_LIST_MIN rpg->biome[MINE]->bot_data->bot_list[ARCHER]
+    #define KNIGHT_LIST_MIN rpg->biome[MINE]->bot_data->bot_list[KNIGHT]
+    #define MINIONS_LIST_MIN rpg->biome[MINE]->bot_data->bot_list[MINIONS]
+
+    #define GOBLIN_T_LIST_CAS rpg->biome[CASTLE]->bot_data->bot_list[GOBLINS_T]
+    #define GOBLIN_D_LIST_CAS rpg->biome[CASTLE]->bot_data->bot_list[GOBLINS_D]
+    #define GOBLIN_B_LIST_CAS rpg->biome[CASTLE]->bot_data->bot_list[GOBLINS_B]
+    #define ARCHER_LIST_CAS rpg->biome[CASTLE]->bot_data->bot_list[ARCHER]
+    #define KNIGHT_LIST_CAS rpg->biome[CASTLE]->bot_data->bot_list[KNIGHT]
+    #define MINIONS_LIST_CAS rpg->biome[CASTLE]->bot_data->bot_list[MINIONS]
+
+    #define GOBLIN_T_LIST_V rpg->biome[VILLAGE]->bot_data->bot_list[GOBLINS_T]
+    #define GOBLIN_D_LIST_V rpg->biome[VILLAGE]->bot_data->bot_list[GOBLINS_D]
+    #define GOBLIN_B_LIST_V rpg->biome[VILLAGE]->bot_data->bot_list[GOBLINS_B]
+    #define ARCHER_LIST_V rpg->biome[VILLAGE]->bot_data->bot_list[ARCHER]
+    #define KNIGHT_LIST_V rpg->biome[VILLAGE]->bot_data->bot_list[KNIGHT]
+    #define MINIONS_LIST_V rpg->biome[VILLAGE]->bot_data->bot_list[MINIONS]
+
+    #define GOBLINS_T_LIST_CAM rpg->biome[CAMP]->bot_data->bot_list[GOBLINS_T]
+    #define GOBLINS_D_LIST_CAM rpg->biome[CAMP]->bot_data->bot_list[GOBLINS_D]
+    #define GOBLINS_B_LIST_CAM rpg->biome[CAMP]->bot_data->bot_list[GOBLINS_B]
+    #define ARCHER_LIST_CAM rpg->biome[CAMP]->bot_data->bot_list[ARCHER]
+    #define KNIGHT_LIST_CAM rpg->biome[CAMP]->bot_data->bot_list[KNIGHT]
+    #define MINIONS_LIST_CAM rpg->biome[CAMP]->bot_data->bot_list[MINIONS]
 
 void test(rpg_t *rpg);
 
