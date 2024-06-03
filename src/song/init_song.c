@@ -17,7 +17,7 @@ void init_song(rpg_t *rpg)
 
 void set_all_volume(rpg_t *rpg)
 {
-    for (int i = 0; i < GUTS_S; i++) {
+    for (int i = 0; i <= GUTS_S; i++) {
         sfMusic_setVolume(rpg->song->song_tab[i], rpg->song->volume);
     }
 }

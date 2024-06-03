@@ -28,7 +28,6 @@ void display_projectiles(npc_t *npc, rpg_t *rpg)
         sfRenderWindow_drawSprite(rpg->window, current->sprite, NULL);
         sfRectangleShape_setPosition(current->hitbox,
         sfSprite_getPosition(current->sprite));
-        sfRenderWindow_drawRectangleShape(rpg->window, current->hitbox, NULL);
     }
 }
 
