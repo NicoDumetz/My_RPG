@@ -12,6 +12,7 @@ static void biome_scene(rpg_t *rpg)
     biome_loop(rpg, rpg->biome[rpg->scene]);
     manage_heros_bar(rpg->heros, rpg->window);
     quest_displayer(rpg->quest_tab, rpg->window);
+    manage_particules(rpg);
     manage_inventory(rpg);
 }
 
@@ -34,8 +35,6 @@ void which_scene(rpg_t *rpg)
         manage_switch_fade(rpg->end, rpg);
     if (rpg->scene == SAVE)
         load_page(rpg);
-    if (rpg->scene == INGAME_MENU)
-        menu_ingame(rpg);
 }
 
 void init_clock(rpg_t *rpg)

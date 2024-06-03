@@ -30,6 +30,7 @@ static void destroy_rpg_next(rpg_t *rpg)
     destroy_param_struct(rpg->params);
     destroy_inventory(&rpg->inventory);
     free_game_over(rpg->end);
+    destroy_particules(rpg);
 }
 
 void destroy_rpg(rpg_t *rpg)
@@ -72,6 +73,7 @@ rpg_t *init_rpg_next(rpg_t *rpg)
     rpg->second = 0;
     rpg->time = 0;
     init_game_over(rpg);
+    init_particules(rpg);
     return (rpg);
 }
 
@@ -107,7 +109,6 @@ rpg_t *create_rpg_struct(void)
     rpg->time = 0;
     if (init_ressources(rpg->font_tab, rpg->text_tab, rpg))
         return NULL;
-    rpg->ingame_menu = create_menu_ingame_struct(rpg);
     rpg->clock = sfClock_create();
     set_all_font(rpg->font_tab);
     rpg->window = sfRenderWindow_create(mode, "my_rpg", sfClose, NULL);

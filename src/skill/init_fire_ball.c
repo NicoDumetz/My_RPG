@@ -88,6 +88,7 @@ void fire_ball_function(heros_t *heros, rpg_t *rpg, void *skill_data)
 
     if (heros->stamina > data->stamina &&
         heros->npc->projectile->active == 0) {
+        launch_particules(rpg);
         heros->stamina -= data->stamina;
         set_direction_fire(heros, rpg);
     }
