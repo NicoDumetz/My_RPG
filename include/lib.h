@@ -41,6 +41,7 @@
     #include "inventory.h"
     #include "tuto.h"
     #include "particule.h"
+    #include "song.h"
     #define ABS(x) ((x) < 0 ? x = -(x) : (x))
     #define KNIGHT_ASSET "tiny_world_asset/Factions/Knights/Troops/"
     #define GOBLINS_ASSET "tiny_world_asset/Factions/Goblins/Troops/"

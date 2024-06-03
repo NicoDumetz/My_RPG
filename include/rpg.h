@@ -180,6 +180,7 @@ typedef struct rpg_s {
     inventory_t inventory;
     game_over_t *end;
     all_part_t *part;
+    song_management_t *song;
     sfRenderWindow *window;
 } rpg_t;
 

@@ -16,6 +16,7 @@ typedef enum tuto_type_e {
     TAKE_T,
     HEAL_T,
     EQUIP_T,
+    DROP_T,
     TEST_T
 } tuto_type_t;
 
@@ -62,6 +63,10 @@ void check_if_pressed_key(tuto_t *tuto, bool *key_tab);
 void manage_quest_tuto(tuto_t *tuto, rpg_t *rpg);
 bool start_final_test(quest_t *, void *data);
 bool check_test_quest(quest_t *quest, void *data);
+bool check_if_equip(quest_t *, void *data);
+bool check_if_consume(quest_t *, void *data);
+bool check_if_take(quest_t *, void *data);
+bool check_if_drop(quest_t *, void *data);
 
 /**BUTTON**/
 void skip_released(void *data, button_t *button);
