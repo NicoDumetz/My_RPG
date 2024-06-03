@@ -53,6 +53,8 @@ void which_entity(entity_t *curr, rpg_t *rpg)
         anim_entity(curr, curr->simple_action, rpg->ticks);
     }
     sfRenderWindow_drawSprite(rpg->window, curr->sprite, NULL);
+    if (npc && npc->special == NON_SPEC)
+        display_projectiles(curr->parent, rpg);
     if (npc && npc->entity->effect_tab)
         manage_effect(curr, rpg->window, rpg->ticks);
 }

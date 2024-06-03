@@ -55,7 +55,7 @@ void set_attbox_dim_heros(npc_t *npc)
 effect_t **create_effect_tab_heros(
     sfTexture **text_tab, sfSprite *heros_sprite)
 {
-    effect_t **effect_tab = malloc(sizeof(effect_t *) * 5);
+    effect_t **effect_tab = malloc(sizeof(effect_t *) * 4);
 
     effect_tab[LEVEL_UP_HEROS] = create_effect(
         text_tab[LEVEL_UP_TEXT], true, (sfVector2i){7, 1}, heros_sprite);
@@ -63,9 +63,7 @@ effect_t **create_effect_tab_heros(
         text_tab[BLOOD_TEXT], true, (sfVector2i){8, 1}, heros_sprite);
     effect_tab[PICK_HEROS] = create_effect(
         text_tab[COIN_TEXT], true, (sfVector2i){7, 1}, heros_sprite);
-    effect_tab[EXPLO_HEROS] = create_effect(
-        text_tab[EXPLO_TEXT], true, (sfVector2i){9, 1}, heros_sprite);
-    effect_tab[4] = NULL;
+    effect_tab[3] = NULL;
     return (effect_tab);
 }
 
@@ -105,13 +103,23 @@ static heros_t *init_heros_next(
     return (heros);
 }
 
-heros_t *init_heros(sfTexture **text_tab, sfFont **font_tab)
+static void set_variable_heros(heros_t *heros)
 {
-    heros_t *heros = malloc(sizeof(heros_t));
     sfFloatRect hitbox = {30, 25, 55, 55};
     sfFloatRect colbox = {40, 60, 80, 90};
 
-    heros->speed = 200.f;
+    heros->inventory = NULL;
+    heros->npc->special = HEROS;
+    heros->npc->entity->colbox_dim = colbox;
+    heros->npc->hitbox_dim = hitbox;
+    heros->npc->projectile = NULL;
+}
+
+heros_t *init_heros(sfTexture **text_tab, sfFont **font_tab)
+{
+    heros_t *heros = malloc(sizeof(heros_t));
+
+    heros->speed = 700.f;
     heros->texture_base = text_tab[KNIGHT_TEXT];
     heros->npc = init_npc(heros->texture_base);
     heros->npc->attack = level_tab[0].attack;
@@ -122,9 +130,6 @@ heros_t *init_heros(sfTexture **text_tab, sfFont **font_tab)
     set_attbox_dim_heros(heros->npc);
     heros->npc->entity->effect_tab = create_effect_tab_heros(
         text_tab, heros->npc->entity->sprite);
-    heros->inventory = NULL;
-    heros->npc->special = HEROS;
-    heros->npc->entity->colbox_dim = colbox;
-    heros->npc->hitbox_dim = hitbox;
+    set_variable_heros(heros);
     return init_heros_next(heros, text_tab, font_tab);
 }

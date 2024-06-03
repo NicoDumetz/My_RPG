@@ -75,6 +75,8 @@ npc_t *init_npc(sfTexture *asset)
     npc->pv = 0;
     npc->entity = init_entity(asset);
     npc->act_action = STAND;
+    npc->projectile = NULL;
+    npc->end_attack = false;
     init_variable_npc(npc);
     for (int i = 0; i <= ATTACK_R; i++) {
         npc->attbox[i] = init_attbox_rect();

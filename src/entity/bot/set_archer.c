@@ -47,6 +47,6 @@ npc_t *set_archer(sfTexture *texture)
     archer->stamina = 50;
     archer->max_stamina = 50;
     archer->damage = 35;
-    archer->type = PROJECTILE;
+    archer->type = ARCHERY;
     return (archer);
 }

@@ -108,6 +108,8 @@ void manage_chase(npc_t *npc_act, rpg_t *rpg, heros_t *heros)
     int chase = 0;
     int stand = 0;
 
+    if (npc_act->projectile != NULL && npc_act->projectile->active == 1)
+        moov_projectile(npc_act, rpg);
     manage_attack_bot(npc_act, heros, &chase, &stand);
     if (stand == 1)
         npc_act->act_action = STAND;

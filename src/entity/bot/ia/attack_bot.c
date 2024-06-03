@@ -9,7 +9,7 @@
 #include "player.h"
 
 
-static void lunch_attack(npc_t *npc_act, int i)
+static void lunch_attack(npc_t *npc_act, int i, heros_t *heros)
 {
     action_t anim[] = {ATTACK_F, ATTACK_B, ATTACK_L, ATTACK_R};
 
@@ -17,6 +17,15 @@ static void lunch_attack(npc_t *npc_act, int i)
     npc_act->act_action = anim[i];
     npc_act->is_attack = true;
     npc_act->stamina -= npc_act->max_stamina;
+    if (npc_act->type == ARCHERY)
+        set_positions_projectile(npc_act, heros);
+}
+
+static void check_touch_heros(npc_t *npc_act, heros_t *heros)
+{
+    heros->npc->pv -= npc_act->damage;
+    npc_act->cur_attack = false;
+    heros->npc->entity->effect_tab[BLOOD_HEROS]->active = true;
 }
 
 void manage_attack_bot(npc_t *npc_act, heros_t *heros, int *chase, int *stand)
@@ -28,12 +37,14 @@ void manage_attack_bot(npc_t *npc_act, heros_t *heros, int *chase, int *stand)
         *chase = touch ? 1 : *chase;
         if (npc_act->is_attack == false && touch &&
             npc_act->stamina >= npc_act->max_stamina)
-            lunch_attack(npc_act, i);
+            lunch_attack(npc_act, i, heros);
         if (npc_act->cur_attack == true && touch) {
-            heros->npc->pv -= npc_act->damage;
-            npc_act->cur_attack = false;
-            heros->npc->entity->effect_tab[BLOOD_HEROS]->active = true;
+            check_touch_heros(npc_act, heros);
             break;
+        }
+        if (npc_act->end_attack == true && npc_act->type == ARCHERY) {
+            npc_act->projectile->active = 1;
+            npc_act->end_attack = false;
         }
         if (touch && npc_act->is_attack == false)
             *stand = 1;

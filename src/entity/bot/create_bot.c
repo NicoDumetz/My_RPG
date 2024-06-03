@@ -30,6 +30,7 @@ npc_t *create_bot(
     };
     npc_t *new_bot = bot_gen[bot_type](bot_data->bot_texture[bot_type]);
 
+    init_npc_projectiles(new_bot, text_tab);
     new_bot->entity->effect_tab = set_effect_bot(
         text_tab, new_bot->entity->sprite);
     new_bot->entity->pos = pos;

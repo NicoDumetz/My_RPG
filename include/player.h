@@ -38,7 +38,8 @@ typedef enum deco_type_e {
 
 typedef enum attack_type_e {
     EXPLOSIVE,
-    PROJECTILE,
+    ARCHERY,
+    DYNA,
     MELEE
 } attack_type_t;
 typedef enum bot_type_e {
@@ -105,7 +106,9 @@ typedef struct npc_s {
     float stamina;
     float max_stamina;
     int damage;
+    bool end_attack;
     attack_type_t type;
+    struct projectile_s *projectile;
     special_npc_t special;
 } npc_t;
 
@@ -193,6 +196,7 @@ bool check_chase_heros(npc_t *to_check, heros_t *heros);
 void manage_animation_bot(entity_t *entity, bool ticks);
 void add_to_list_bot(npc_t *new_bot, npc_t **list);
 void manage_attack_bot(npc_t *npc_act, heros_t *heros, int *chase, int *stand);
+sfRectangleShape *init_hitbox_rect(void);
 
 /**DECO**/
 deco_data_t *init_deco_data(void);
