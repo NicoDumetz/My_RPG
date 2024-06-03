@@ -11,6 +11,7 @@ npc_t *set_mine_boss(sfTexture **text_tab, biome_t *biome)
 {
     npc_t *mine_boss = set_goblins_d(text_tab[MINE_BOSS_TEXT]);
 
+    init_npc_projectiles(mine_boss, text_tab);
     mine_boss->entity->effect_tab = set_effect_bot(
         text_tab, mine_boss->entity->sprite);
     mine_boss->entity->pos = (sfVector2f){1000, 1500};

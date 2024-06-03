@@ -15,6 +15,7 @@ void destroy_npc(npc_t *npc)
     sfRectangleShape_destroy(npc->hitbox);
     for (int i = 0; i <= ATTACK_R; i++)
         sfRectangleShape_destroy(npc->attbox[i]);
+    destroy_projectile(npc->projectile);
     free(npc);
 }
 

@@ -53,6 +53,16 @@ void set_positions_projectile(npc_t *npc_act, heros_t *heros)
     sfRectangleShape_setRotation(npc_act->projectile->hitbox, angle);
 }
 
+static void rotation_dyna(projectile_t *proj)
+{
+    float current_angle = sfSprite_getRotation(proj->sprite);
+    float additional_angle = 10.f;
+
+    current_angle -= additional_angle;
+    sfSprite_setRotation(proj->sprite, current_angle);
+    sfRectangleShape_setRotation(proj->hitbox, current_angle);
+}
+
 static void colision_projectile(npc_t *npc, heros_t *heros)
 {
     if (col_hitbox(npc->projectile->hitbox, heros->npc->hitbox)) {
@@ -60,6 +70,8 @@ static void colision_projectile(npc_t *npc, heros_t *heros)
         heros->npc->pv -= npc->damage;
         heros->npc->entity->effect_tab[BLOOD_HEROS]->active = true;
     }
+    if (npc->type == DYNA)
+        rotation_dyna(npc->projectile);
 }
 
 void moov_projectile(npc_t *npc, rpg_t *rpg)
