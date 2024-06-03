@@ -13,5 +13,6 @@ biome_t *set_camp(void)
 
     camp->back = add_background(CAMP_SPRITE, CAMP_COLISION);
     camp->bot_data = init_bot_data();
+    camp->deco_data = NULL;
     return (camp);
 }

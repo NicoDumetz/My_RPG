@@ -13,5 +13,6 @@ biome_t *set_mine(void)
 
     mine->back = add_background(MINE_SPRITE, MINE_COLISION);
     mine->bot_data = init_bot_data();
+    mine->deco_data = NULL;
     return (mine);
 }

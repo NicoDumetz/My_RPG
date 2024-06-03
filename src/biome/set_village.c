@@ -13,5 +13,6 @@ biome_t *set_village(void)
 
     village->back = add_background(VILLAGE_SPRITE, VILLAGE_COLISION);
     village->bot_data = init_bot_data();
+    village->deco_data = NULL;
     return (village);
 }

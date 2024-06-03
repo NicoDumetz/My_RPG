@@ -12,6 +12,8 @@ void destroy_biome(biome_t *biome)
     free_bot_data(biome->bot_data);
     if (biome->back)
         destroy_background(biome->back);
+    if (biome->deco_data)
+        free_deco_data(biome->deco_data);
     free(biome);
 }
 

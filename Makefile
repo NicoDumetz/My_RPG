@@ -44,6 +44,9 @@ SRC = main.c\
 	src/biome/set_mine.c\
 	src/biome/set_village.c\
 	src/biome/set_camp.c\
+	src/entity/deco/init_deco_data.c\
+	src/entity/deco/create_knight_house.c\
+	src/entity/deco/display_deco.c\
 
 OBJ = $(SRC:.c=.o)
 

@@ -13,5 +13,6 @@ biome_t *set_castle(void)
 
     castle->back = add_background(CASTLE_SPRITE, CASTLE_COLISION);
     castle->bot_data = init_bot_data();
+    castle->deco_data = NULL;
     return (castle);
 }

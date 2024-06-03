@@ -12,8 +12,8 @@
 typedef struct biome_s {
     back_t *back;
     bot_data_t *bot_data;
+    deco_data_t *deco_data;
 } biome_t;
-#endif
 
 biome_t *create_biome(int biome_type);
 void destroy_biome(biome_t *biome);
@@ -24,3 +24,4 @@ biome_t *set_camp(void);
 biome_t *set_plain(void);
 biome_t *set_castle(void);
 biome_t *set_mine(void);
+#endif
