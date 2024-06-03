@@ -6,6 +6,8 @@
 */
 
 #include "rpg.h"
+#include <SFML/Graphics/Font.h>
+#include <SFML/Graphics/Texture.h>
 
 void destroy_save_list(rpg_t *rpg)
 {
@@ -55,28 +57,12 @@ void destroy_rpg(rpg_t *rpg)
     }
 }
 
-static void reinitialize_rpg_next(rpg_t *rpg)
+static init_rpg_next2(rpg_t *rpg)
 {
-    destroy_inventory(&rpg->inventory);
-    init_inventory(&rpg->inventory, rpg->text_tab, rpg);
-}
-
-void reinitalize_rpg(rpg_t *rpg)
-{
-    destroy_heros(rpg->heros);
-    rpg->heros = init_heros(rpg->text_tab, rpg->font_tab);
-    rpg->heros->npc->entity->pos = rpg->tuto->biome->last_pos;
-    sfSprite_setPosition(
-        rpg->heros->npc->entity->sprite, rpg->tuto->biome->last_pos);
-    for (int i = 0; i <= MINE; i++)
-        destroy_biome(rpg->biome[i]);
-    for (int i = 0; i <= MINE; i++)
-        rpg->biome[i] = create_biome(i, rpg->text_tab, rpg->font_tab);
-    destroy_tuto(rpg->tuto);
-    rpg->tuto = create_tuto(rpg->text_tab, rpg->font_tab);
-    destroy_quest(rpg->quest_tab);
-    init_quest(rpg->quest_tab, rpg->font_tab);
-    reinitialize_rpg_next(rpg);
+    init_game_over(rpg);
+    init_particules(rpg);
+    set_all_volume(rpg);
+    sfMusic_play(rpg->song->song_tab[GUTS_S]);
 }
 
 rpg_t *init_rpg_next(rpg_t *rpg)
@@ -97,9 +83,7 @@ rpg_t *init_rpg_next(rpg_t *rpg)
     init_inventory(&rpg->inventory, rpg->text_tab, rpg);
     rpg->second = 0;
     rpg->time = 0;
-    init_game_over(rpg);
-    init_particules(rpg);
-    init_song(rpg);
+    init_rpg_next2(rpg);
     return (rpg);
 }
 
@@ -108,7 +92,8 @@ static bool init_ressources(sfFont **font_tab, sfTexture **texture_tab,
 {
     set_all_font(font_tab);
     set_all_texture(texture_tab);
-    if (!check_asset(texture_tab, font_tab))
+    init_song(rpg);
+    if (!check_asset(texture_tab, font_tab, rpg->song->song_tab))
         return false;
     for (int i = 0; i <= MINE_TEXT; i++) {
         if (texture_tab[i])
@@ -117,6 +102,10 @@ static bool init_ressources(sfFont **font_tab, sfTexture **texture_tab,
     for (int i = 0; i < FONT_COUNT; i++) {
         if (font_tab[i])
             sfFont_destroy(font_tab[i]);
+    }
+    for (int i = 0; i <= GUTS_S; i++) {
+        if (rpg->song->song_tab[i])
+            sfMusic_destroy(rpg->song->song_tab[i]);
     }
     free(rpg);
     return true;

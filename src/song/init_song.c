@@ -7,46 +7,42 @@
 
 #include "rpg.h"
 
-
-
-static play_song_t create_song(const char *file, float vol)
-{
-    play_song_t song;
-
-    song.music = sfMusic_createFromFile(file);
-    if (!song.music) {
-        fprintf(stderr, "Error with song files\n");
-        exit(84);
-    } else {
-        song.volume = vol;
-        sfMusic_setVolume(song.music, vol);
-    }
-    return song;
-}
-
 void init_song(rpg_t *rpg)
 {
     rpg->song = malloc(sizeof(song_management_t));
-    if (!rpg->song)
-        exit(84);
-    rpg->song->music = create_song(GUTS, 50.0f);
-    rpg->song->sword.music = NULL;
-    sfMusic_play(rpg->song->music.music);
+    rpg->song->volume = 50.f;
+    rpg->song->song_tab[SWORD_S] = sfMusic_createFromFile(SWORD_SONG);
+    rpg->song->song_tab[GUTS_S] = sfMusic_createFromFile(GUTS_SONG);
 }
 
-static void destroy_play_song(play_song_t *song)
+void set_all_volume(rpg_t *rpg)
 {
-    if (song && song->music) {
-        sfMusic_destroy(song->music);
-        song->music = NULL;
+    for (int i = 0; i < GUTS_S; i++) {
+        sfMusic_setVolume(rpg->song->song_tab[i], rpg->song->volume);
+    }
+}
+
+static void destroy_song(sfMusic *music)
+{
+    if (music) {
+        sfMusic_destroy(music);
+        music = NULL;
     }
 }
 
 void destroy_all_song(song_management_t *song_management)
 {
     if (song_management) {
-        destroy_play_song(&song_management->music);
-        destroy_play_song(&song_management->sword);
+        for (int i = 0; i <= GUTS_S; i++) {
+            destroy_song(song_management->song_tab[i]);
+        }
         free(song_management);
     }
+}
+
+int launch_sword_song(rpg_t *rpg)
+{
+    sfMusic_stop(rpg->song->song_tab[SWORD_S]);
+    sfMusic_play(rpg->song->song_tab[SWORD_S]);
+    return 1;
 }

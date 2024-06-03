@@ -102,10 +102,6 @@ typedef enum texture_type_e {
     BUTTON_PLUS_PRESSED_E,
     BUTTON_MINUS_E,
     BUTTON_MINUS_PRESSED_E,
-    RESUME_E,
-    RESUME_PRESSED_E,
-    RESUME_HOVER_E,
-    MENU_INGAME_E,
     INVENTORY_TEXT,
     INVENTORY_SLOT_TEXT,
     BACK_INVENTORY_HERO,
@@ -247,16 +243,15 @@ void appli_save_quest(rpg_t *rpg, save_data_t *save);
 void rpg(rpg_t *rpg);
 void destroy_rpg(rpg_t *rpg);
 rpg_t *create_rpg_struct(void);
-void reinitalize_rpg(rpg_t *rpg);
 void manage_heros(heros_t *heros, rpg_t *rpg);
 void set_all_texture(sfTexture **text_tab);
 void set_all_font(sfFont **font_tab);
-int check_asset(sfTexture **text_tab, sfFont **font_tab);
+int check_asset(sfTexture **text_tab, sfFont **font_tab, sfMusic **song_tab);
 
 /**EVENT**/
 void manage_event(rpg_t *rpg);
 void manage_movements(rpg_t *rpg);
-void manage_heros_attack(heros_t *heros, bool *key_code);
+void manage_heros_attack(heros_t *heros, bool *key_code, rpg_t *rpg);
 sfSprite *wich_back(rpg_t *rpg);
 sfImage *wich_img(rpg_t *rpg);
 void manage_right(rpg_t *rpg);
