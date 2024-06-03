@@ -41,6 +41,8 @@ npc_t *set_mine_boss(sfTexture **text_tab, biome_t *biome)
     mine_boss->pv = 600;
     mine_boss->damage = 120;
     init_npc_projectiles(mine_boss, text_tab);
+    mine_boss->stamina = 10;
+    mine_boss->max_stamina = 10;
     mine_boss->entity->effect_tab = set_effect_bot(
         text_tab, mine_boss->entity->sprite);
     mine_boss->entity->pos = (sfVector2f){1000, 1500};
