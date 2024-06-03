@@ -75,14 +75,7 @@ void load_page(rpg_t *rpg)
     const sfView *view = sfRenderWindow_getView(rpg->window);
     sfVector2f view_size = sfView_getSize(view);
     sfVector2f view_center = sfView_getCenter(view);
-    static int test2 = 0;
 
-    if (test2 == 0 && rpg->key_state[sfKeyC]) {
-        create_save(rpg);
-        test2 = 1;
-    }
-    if (!rpg->key_state[sfKeyC])
-        test2 = 0;
     sfRenderWindow_drawSprite(rpg->window, rpg->save_scene->back, NULL);
     if (save_scene->button_list)
         manage_load_button(rpg, save_scene, view_center);

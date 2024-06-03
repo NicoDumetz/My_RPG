@@ -46,4 +46,8 @@ typedef struct save_s {
 save_scene_t *init_load_page(sfTexture **text_tab);
 void destroy_load_page(save_scene_t *save_scene);
 void add_load_button_to_list(save_scene_t *save_scene, button_t *button);
+
+/**BUTTON_FUNCT*/
+void exit_button_released(void *data, button_t *button);
+void save_button_released(void *data, button_t *button);
 #endif

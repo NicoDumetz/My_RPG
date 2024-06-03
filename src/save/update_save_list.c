@@ -38,6 +38,7 @@ void update_save_list(save_data_t *save, rpg_t *rpg)
     new_node->name = create_text_save_node(save, rpg->font_tab);
     new_button = create_button(rpg->text_tab, text_id_save);
     new_button->child = new_node;
+    new_button->release = save_button_released;
     sfSprite_setScale(new_button->sprite, scale_button);
     add_load_button_to_list(rpg->save_scene, new_button);
     new_node->next = rpg->save_list;

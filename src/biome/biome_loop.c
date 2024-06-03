@@ -24,19 +24,33 @@ void check_portal(biome_t *biome, rpg_t *rpg, heros_t *heros)
         }
 }
 
+bool manage_test(rpg_t *rpg, biome_t *biome)
+{
+    static int test2 = 0;
+
+    if (test2 == 0 && rpg->key_state[sfKeyW]) {
+        create_save(rpg);
+        test2 = 1;
+        return true;
+    }
+    if (!rpg->key_state[sfKeyW])
+        test2 = 0;
+    if (rpg->key_state[sfKeyC]) {
+        set_view(rpg, rpg->save_scene->back, rpg->save_scene->back);
+        rpg->save_scene->from = rpg->scene;
+        clean_entity_list(biome);
+        rpg->scene = SAVE;
+        return false;
+    }
+    return true;
+}
+
 void biome_loop(rpg_t *rpg, biome_t *biome)
 {
     heros_t *heros = rpg->heros;
-    static int test = 0;
-    static int i = 0;
 
-    if (rpg->ticks)
-        i++;
-    if (test == 0) {
-        create_bot(GOBLINS_T, biome->bot_data,
-        (sfVector2f){1000, 1000}, rpg->text_tab);
-        test++;
-    }
+    if (!manage_test(rpg, biome))
+        return;
     srand(time(NULL));
     display_background(biome->back, rpg->window);
     sort_entity_in_view(biome, rpg->window, heros, rpg);

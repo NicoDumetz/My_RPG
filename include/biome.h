@@ -57,4 +57,5 @@ void destroy_portal(portal_t *portal);
 
 /**SWITCH**/
 void switch_biome(biome_t *from, portal_t *portal, rpg_t *rpg, heros_t *heros);
+void clean_entity_list(biome_t *biome);
 #endif

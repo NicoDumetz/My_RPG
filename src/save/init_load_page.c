@@ -45,6 +45,7 @@ save_scene_t *init_load_page(sfTexture **text_tab)
     sfSprite_setTexture(load_page->header, text_tab[HEADER_SAVE_TEXT], sfTrue);
     load_page->button_list = NULL;
     load_page->exit = create_button(text_tab, text_exit);
+    load_page->exit->release = exit_button_released;
     load_page->from = 0;
     load_page->begin_button_list = 300;
     return (load_page);

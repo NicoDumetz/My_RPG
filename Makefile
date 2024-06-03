@@ -90,6 +90,8 @@ SRC = main.c\
 	src/save/save_scene.c\
 	src/set_all_font.c\
 	src/save/init_load_page.c\
+	src/save/exit_button_released.c\
+	src/save/save_button_released.c\
 
 OBJ = $(SRC:.c=.o)
 
