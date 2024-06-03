@@ -156,6 +156,14 @@ static void set_all_texture_next_seven(sfTexture **text_tab)
     text_tab[RIBBONS_PARAM_PRESSED_E] = sfTexture_createFromFile(
     RIBBONS_PARAM_PRESSED, NULL);
     text_tab[PAGE_PARAM_E] = sfTexture_createFromFile(PAGE_PARAM, NULL);
+    text_tab[B_SAVE_BLOCK_E] = sfTexture_createFromFile(B_SAVE_BLOCK, NULL);
+    text_tab[B_NSAVE_E] = sfTexture_createFromFile(B_NSAVE, NULL);
+    text_tab[B_NSAVE_PRESSED_E] = sfTexture_createFromFile(B_NSAVE_PRESSED,
+        NULL);
+    text_tab[B_NSAVE_HOVER_E] = sfTexture_createFromFile(B_NSAVE_HOVER,
+        NULL);
+    text_tab[B_NSAVE_BLOCK_E] = sfTexture_createFromFile(B_NSAVE_BLOCK,
+        NULL);
 }
 
 void set_all_texture(sfTexture **text_tab)

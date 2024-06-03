@@ -35,12 +35,6 @@ typedef struct obj_template_s {
     int time_left;
     bool is_pickable;
     bool is_short;
-    int multi_speed;
-    int multi_live;
-    int multi_attack;
-    int add_stamina;
-    int add_live;
-    int add_xp;
     sfVector2i rect_quad;
     sfVector2i offset;
     sfVector2f scale;
@@ -53,12 +47,6 @@ typedef struct back_obj_s {
     sfSprite *sprite;
     object_usage_t usage;
     object_drop_t id;
-    int multi_speed;
-    int multi_live;
-    int multi_attack;
-    int add_stamina;
-    int add_live;
-    int add_xp;
     struct back_obj_s *next;
     struct back_obj_s *prev;
     void *data;
