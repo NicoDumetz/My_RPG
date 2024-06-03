@@ -140,6 +140,10 @@ typedef enum texture_type_e {
     STAMI_LVL_2_TEXT,
     XP_LVL_1_TEXT,
     FIRE_TEXT,
+    BLUE_PLUS_TEXT,
+    BLUE_PLUS_PRESSED_TEXT,
+    PLUS_HOVER_TEXT,
+    PLUS_BLOCK_TEXT,
     MINE_TEXT
 } texture_type_t;
 
@@ -251,12 +255,12 @@ void reinitalize_rpg(rpg_t *rpg);
 void manage_heros(heros_t *heros, rpg_t *rpg);
 void set_all_texture(sfTexture **text_tab);
 void set_all_font(sfFont **font_tab);
-int check_asset(sfTexture **text_tab, sfFont **font_tab, sfMusic **song_tab);
+int check_asset(sfTexture **text_tab, sfFont **font_tab);
 
 /**EVENT**/
 void manage_event(rpg_t *rpg);
 void manage_movements(rpg_t *rpg);
-void manage_heros_attack(heros_t *heros, bool *key_code, rpg_t *rpg);
+void manage_heros_attack(heros_t *heros, bool *key_code);
 sfSprite *wich_back(rpg_t *rpg);
 sfImage *wich_img(rpg_t *rpg);
 void manage_right(rpg_t *rpg);

@@ -7,20 +7,14 @@
 
 #include "rpg.h"
 
-int check_asset(sfTexture **text_tab, sfFont **font_tab, sfMusic **song_tab)
+int check_asset(sfTexture **text_tab, sfFont **font_tab)
 {
-    if (song_tab == NULL)
-        return 1;
     for (int i = 0; i <= MINE_TEXT; i++) {
         if (text_tab[i] == NULL)
             return 1;
     }
     for (int i = 0; i < FONT_COUNT; i++) {
         if (font_tab[i] == NULL)
-            return 1;
-    }
-    for (int i = 0; i <= GUTS_S; i++) {
-        if (song_tab[i] == NULL)
             return 1;
     }
     return 0;
