@@ -242,7 +242,6 @@ void appli_save_quest(rpg_t *rpg, save_data_t *save);
 void rpg(rpg_t *rpg);
 void destroy_rpg(rpg_t *rpg);
 rpg_t *create_rpg_struct(void);
-void reinitalize_rpg(rpg_t *rpg);
 void manage_heros(heros_t *heros, rpg_t *rpg);
 void set_all_texture(sfTexture **text_tab);
 void set_all_font(sfFont **font_tab);

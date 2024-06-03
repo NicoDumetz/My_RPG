@@ -19,7 +19,7 @@ void clean_entity_list(biome_t *biome)
         curr = next;
     }
     biome->entity_in_view_head = NULL;
-        biome->entity_in_view_tail = NULL;
+    biome->entity_in_view_tail = NULL;
 }
 
 void set_view(rpg_t *rpg, sfSprite* sprite, sfSprite *limit)

@@ -33,6 +33,7 @@ typedef struct game_over_s {
     sfRectangleShape *rect;
     action_end_t active;
     sfText *text;
+    sfText *space;
     float alpha;
     float alpha_text;
 } game_over_t;
