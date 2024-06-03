@@ -19,17 +19,26 @@ void init_game_over(rpg_t *rpg)
     sfText_setFont(new->text, rpg->font_tab[PIXEL]);
     sfText_setCharacterSize(new->text, 100);
     sfText_setFillColor(new->text, sfRed);
-
     new->space = sfText_create();
     sfText_setString(new->space, "Press space to return to last save");
     sfText_setFont(new->space, rpg->font_tab[PIXEL]);
     sfText_setCharacterSize(new->space, 50);
     sfText_setFillColor(new->space, sfRed);
-
-
     new->alpha = 0.0f;
     new->alpha_text = 0.0f;
     rpg->end = new;
+}
+
+static void set_space_text(game_over_t *game, sfFloatRect rect,
+    sfVector2f center, sfVector2f size)
+{
+    sfText_setOrigin(game->space, (sfVector2f)
+    {rect.width / 2.0f, rect.height / 2.0f});
+    sfText_setPosition(game->space,
+    (sfVector2f){center.x - 250, center.y + 250});
+    sfRectangleShape_setSize(game->rect, size);
+    sfRectangleShape_setPosition(game->rect,
+    (sfVector2f){center.x - size.x / 2.0f, center.y - size.y / 2.0f});
 }
 
 void lunch_end(rpg_t *rpg)
@@ -48,14 +57,7 @@ void lunch_end(rpg_t *rpg)
     sfRectangleShape_setSize(game->rect, size);
     sfRectangleShape_setPosition(game->rect,
     (sfVector2f){center.x - size.x / 2.0f, center.y - size.y / 2.0f});
-
-    sfText_setOrigin(game->space, (sfVector2f)
-    {rect.width / 2.0f, rect.height / 2.0f});
-    sfText_setPosition(game->space, (sfVector2f){center.x - 250, center.y + 250});
-    sfRectangleShape_setSize(game->rect, size);
-    sfRectangleShape_setPosition(game->rect,
-    (sfVector2f){center.x - size.x / 2.0f, center.y - size.y / 2.0f});
-
+    set_space_text(game, rect, center, size);
     game->active = ACTIVE;
 }
 

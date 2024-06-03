@@ -20,7 +20,8 @@ void nsave_button(void *data, button_t *)
     rpg_t *rpg = (rpg_t *)data;
 
     rpg->scene = rpg->ingame_menu->from;
-    create_save(rpg);
+    if (rpg->end->active == OFF)
+        create_save(rpg);
     rpg->scene = INGAME_MENU;
 }
 
