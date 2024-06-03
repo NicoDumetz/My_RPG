@@ -10,15 +10,10 @@
 void destroy_background(back_t *back)
 {
     sfSprite_destroy(back->collision.sprite);
-    back->collision.sprite = NULL;
-    if (back->collision.col_image != NULL) {
+    if (back->collision.col_image != NULL)
         sfImage_destroy(back->collision.col_image);
-        back->collision.col_image = NULL;
-    }
     sfSprite_destroy(back->sprite.sprite);
-    back->sprite.sprite = NULL;
     free(back);
-    back = NULL;
 }
 
 back_t *add_background(sfTexture *file, sfTexture *collision)
