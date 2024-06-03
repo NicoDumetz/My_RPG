@@ -87,8 +87,8 @@ typedef struct entity_s {
 typedef struct npc_s {
     entity_t *entity;
     action_t act_action;
-    float pv;
-    float attack;
+    int pv;
+    int attack;
     bool is_attack;
     bool cur_attack;
     bool is_alive;
