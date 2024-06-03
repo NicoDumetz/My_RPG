@@ -14,6 +14,10 @@ void which_scene(rpg_t *rpg)
         manage_heros_bar(rpg->heros, rpg->window);
         quest_displayer(rpg->quest_tab, rpg->window);
     }
+    if (rpg->scene == TUTO) {
+        tuto_loop(rpg);
+        manage_heros_bar(rpg->heros, rpg->window);
+    }
     if (rpg->scene == SAVE) {
         load_page(rpg);
     }
@@ -48,7 +52,7 @@ void rpg(rpg_t *rpg)
         init_clock(rpg);
         rpg->mouse_data.pos = recalculate_mouse_position(
             rpg->window, sfRenderWindow_getView(rpg->window));
-        sfRenderWindow_clear(rpg->window, sfWhite);
+        sfRenderWindow_clear(rpg->window, sfBlack);
         which_scene(rpg);
         sfRenderWindow_display(rpg->window);
     }

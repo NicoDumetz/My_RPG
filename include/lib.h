@@ -37,6 +37,7 @@
     #include "projectile.h"
     #include "biome.h"
     #include "collisions.h"
+    #include "tuto.h"
     #define ABS(x) ((x) < 0 ? x = -(x) : (x))
     #define KNIGHT_ASSET "tiny_world_asset/Factions/Knights/Troops/"
     #define GOBLINS_ASSET "tiny_world_asset/Factions/Goblins/Troops/"
@@ -82,4 +83,7 @@
     #define CASTLE_BOSS_PATH "boss_asset/Warrior_Purple.png"
     #define ARROWS "tiny_world_asset/Factions/Knights/Troops/Archer/Arrow.png"
     #define DYNAMITE "tiny_world_asset/Factions/Goblins/Troops/TNT/Dyna.png"
+    #define ARENE_PATH "biome_asset/Arène.png"
+    #define ARENE_COL_PATH "biome_asset/FondArene.png"
+    #define EXPLO_PATH "tiny_world_asset/Effects/Explosion/Explosions.png"
 #endif

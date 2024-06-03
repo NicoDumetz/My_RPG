@@ -11,12 +11,14 @@
 
 typedef enum heros_effect_e {
     LEVEL_UP_HEROS = 0,
+    EXPLO_HEROS,
     BLOOD_HEROS,
     PICK_HEROS,
 } heros_effect_t;
 
 typedef enum bot_effect_e {
     BLOOD_BOT = 0,
+    EXPLO_BOT,
 } bot_effect_t;
 
 typedef struct effect_s effect_t;
