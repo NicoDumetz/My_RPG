@@ -22,11 +22,11 @@ void quest_displayer(quest_t *quest_tab, sfRenderWindow *window)
     sfVector2f center = sfView_getCenter(view);
     sfVector2f size_view = sfView_getSize(view);
     sfVector2f pos =
-        {(center.x - size_view.x / 2) + ((size_view.x / 100) * 80),
-        center.y - size_view.y / 2 + ((size_view.x / 100) * 1)};
+        {(center.x - size_view.x / 2) + ((size_view.x / 100) * 2),
+        center.y - size_view.y / 2 + ((size_view.x / 100) * 35)};
     float delta = 0;
 
-    for (int i = 0; i <= KILL_CASTLE; i++) {
+    for (int i = 0; quest_tab[i].display; i++) {
         if (quest_tab[i].state != NOT_BEGIN) {
             delta = 40;
             set_position_quest(&(quest_tab[i]), pos);

@@ -16,6 +16,7 @@ biome_t *set_village(sfTexture **text_tab, sfFont **)
     village->bot_data = init_bot_data(text_tab);
     village->quest_giver = NULL;
     village->deco_data = NULL;
+    village->boss = NULL;
     village->portal = NULL;
     return (village);
 }

@@ -32,8 +32,12 @@ npc_t *set_goblins_b(sfTexture *texture)
     set_offset(goblins_b->entity, (sfVector2i){6, 6});
     set_action_tab_goblins_b(goblins_b);
     goblins_b->entity->colbox_dim = colbox;
-    goblins_b->xp = 25;
+    goblins_b->xp = 2000;
     goblins_b->hitbox_dim = hitbox;
     goblins_b->view = 500;
+    goblins_b->stamina = 50;
+    goblins_b->max_stamina = 50;
+    goblins_b->damage = 50;
+    goblins_b->type = EXPLOSIVE;
     return (goblins_b);
 }

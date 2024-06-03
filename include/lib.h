@@ -30,13 +30,15 @@
     #include "info_bar.h"
     #include "object.h"
     #include "effect.h"
+    #include "skill.h"
     #include "player.h"
     #include "background.h"
     #include <time.h>
     #include <math.h>
+    #include "projectile.h"
     #include "biome.h"
     #include "collisions.h"
-    #include "inventory.h"
+    #include "tuto.h"
     #define ABS(x) ((x) < 0 ? x = -(x) : (x))
     #define KNIGHT_ASSET "tiny_world_asset/Factions/Knights/Troops/"
     #define GOBLINS_ASSET "tiny_world_asset/Factions/Goblins/Troops/"
@@ -77,4 +79,13 @@
     #define LIFE_BAR_PATH "info_bar_asset/BarreDeVie.png"
     #define ENERGY_BAR_PATH "info_bar_asset/Energie.png"
     #define XP_BAR_PATH "info_bar_asset/Niveau.png"
+    #define CAMP_BOSS_PATH "boss_asset/Torch_Purple.png"
+    #define MINE_BOSS_PATH "boss_asset/TNT_Yellow.png"
+    #define CASTLE_BOSS_PATH "boss_asset/Warrior_Purple.png"
+    #define ARROWS "tiny_world_asset/Factions/Knights/Troops/Archer/Arrow.png"
+    #define DYNAMITE "tiny_world_asset/Factions/Goblins/Troops/TNT/Dyna.png"
+    #define ARENE_PATH "biome_asset/Arène.png"
+    #define ARENE_COL_PATH "biome_asset/FondArene.png"
+    #define EXPLO_PATH "tiny_world_asset/Effects/Explosion/Explosions.png"
+    #define SHIELD_PATH "effect_asset/shield.png"
 #endif
