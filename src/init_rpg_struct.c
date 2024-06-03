@@ -30,6 +30,7 @@ static void destroy_rpg_next(rpg_t *rpg)
     destroy_param_struct(rpg->params);
     destroy_inventory(&rpg->inventory);
     free_game_over(rpg->end);
+    destroy_menu_ingame(rpg->ingame_menu);
     destroy_particules(rpg);
 }
 
@@ -52,6 +53,30 @@ void destroy_rpg(rpg_t *rpg)
         destroy_rpg_next(rpg);
         free(rpg);
     }
+}
+
+static void reinitialize_rpg_next(rpg_t *rpg)
+{
+    destroy_inventory(&rpg->inventory);
+    init_inventory(&rpg->inventory, rpg->text_tab, rpg);
+}
+
+void reinitalize_rpg(rpg_t *rpg)
+{
+    destroy_heros(rpg->heros);
+    rpg->heros = init_heros(rpg->text_tab, rpg->font_tab);
+    rpg->heros->npc->entity->pos = rpg->tuto->biome->last_pos;
+    sfSprite_setPosition(
+        rpg->heros->npc->entity->sprite, rpg->tuto->biome->last_pos);
+    for (int i = 0; i <= MINE; i++)
+        destroy_biome(rpg->biome[i]);
+    for (int i = 0; i <= MINE; i++)
+        rpg->biome[i] = create_biome(i, rpg->text_tab, rpg->font_tab);
+    destroy_tuto(rpg->tuto);
+    rpg->tuto = create_tuto(rpg->text_tab, rpg->font_tab);
+    destroy_quest(rpg->quest_tab);
+    init_quest(rpg->quest_tab, rpg->font_tab);
+    reinitialize_rpg_next(rpg);
 }
 
 rpg_t *init_rpg_next(rpg_t *rpg)
@@ -105,6 +130,7 @@ rpg_t *create_rpg_struct(void)
         return NULL;
     rpg->start_menu = create_menu_struct(rpg);
     rpg->params = init_param_struct(rpg->text_tab, rpg->font_tab);
+    rpg->ingame_menu = create_menu_ingame_struct(rpg);
     rpg->clock = sfClock_create();
     rpg->scene = MENU;
     rpg->second = 0;

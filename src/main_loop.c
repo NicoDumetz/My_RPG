@@ -33,8 +33,7 @@ void which_scene(rpg_t *rpg)
         update_game_over(rpg->end, rpg);
     if (rpg->end->active == TUTO_FADE)
         manage_switch_fade(rpg->end, rpg);
-    if (rpg->scene == SAVE)
-        load_page(rpg);
+    manage_ingame_menu(rpg);
 }
 
 void init_clock(rpg_t *rpg)

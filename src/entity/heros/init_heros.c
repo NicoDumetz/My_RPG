@@ -27,9 +27,11 @@ void destroy_heros(heros_t *heros)
     for (int i = 0; i <= STAMINA_BAR; i++)
         destroy_info_bar(heros->bar_tab[i]);
     sfText_destroy(heros->interact);
+    heros->interact = NULL;
     destroy_skill(heros->skill);
     destroy_npc(heros->npc);
     free(heros);
+    heros = NULL;
 }
 
 void set_action_tab_heros(heros_t *heros)

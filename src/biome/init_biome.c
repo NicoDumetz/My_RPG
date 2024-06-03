@@ -27,6 +27,7 @@ void destroy_biome(biome_t *biome)
         for (int i = 0; biome->portal[i]; i++)
             destroy_portal(biome->portal[i]);
         free(biome->portal);
+        biome->portal = NULL;
     }
     if (biome->quest_giver)
         destroy_quest_giver(biome->quest_giver);
@@ -37,6 +38,7 @@ void destroy_biome(biome_t *biome)
     if (biome->obj_list)
         destroy_obj_list(&(biome->obj_list));
     free(biome);
+    biome = NULL;
 }
 
 biome_t *create_biome(int biome_type, sfTexture **text_tab, sfFont **font_tab)
