@@ -140,7 +140,19 @@ typedef enum texture_type_e {
     STAMI_LVL_2_TEXT,
     XP_LVL_1_TEXT,
     FIRE_TEXT,
-    CURSOR_TEXT,
+    BLUE_PLUS_TEXT,
+    BLUE_PLUS_PRESSED_TEXT,
+    PLUS_HOVER_TEXT,
+    PLUS_BLOCK_TEXT,
+    RUN_RELEASED_TEXT,
+    RUN_PRESSED_TEXT,
+    RUN_HOVER_TEXT,
+    FIRE_RELEASED_TEXT,
+    FIRE_PRESSED_TEXT,
+    FIRE_HOVER_TEXT,
+    SHIELD_RELEASED_TEXT,
+    SHIELD_PRESSED_TEXT,
+    SHIELD_HOVER_TEXT,
     MINE_TEXT
 } texture_type_t;
 
@@ -183,8 +195,6 @@ typedef struct rpg_s {
     all_part_t *part;
     song_management_t *song;
     sfRenderWindow *window;
-    sfImage *cursor_image;
-    sfCursor *cursor;
 } rpg_t;
 
     #define GOBLINS_T_LIST_PLA rpg->biome[PLAIN]->bot_data->bot_list[GOBLINS_T]
@@ -255,8 +265,6 @@ void manage_heros(heros_t *heros, rpg_t *rpg);
 void set_all_texture(sfTexture **text_tab);
 void set_all_font(sfFont **font_tab);
 int check_asset(sfTexture **text_tab, sfFont **font_tab, sfMusic **song_tab);
-void init_cursor(rpg_t *rpg);
-void destroy_cursor(rpg_t *rpg);
 
 /**EVENT**/
 void manage_event(rpg_t *rpg);

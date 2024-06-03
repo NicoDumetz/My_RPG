@@ -14,6 +14,7 @@ void destroy_inventory(inventory_t *inventory)
     inventory->background = NULL;
     destroy_slots(inventory);
     destroy_stats(inventory);
+    destroy_skill_tree(inventory);
 }
 
 void flush_inventory(inventory_t *inventory, heros_t *hero)
@@ -45,7 +46,10 @@ static void init_heros_square(inventory_t *inventory, sfTexture **texture_tab,
 
     inventory->hero_scale = (sfVector2f){hero_scale, hero_scale};
     inventory->hero_pos = sfRectangleShape_create();
-    sfRectangleShape_setOutlineColor(inventory->hero_pos, sfRed);
+    if (RECTANGLE_BOX)
+        sfRectangleShape_setOutlineColor(inventory->hero_pos, sfRed);
+    else
+        sfRectangleShape_setOutlineColor(inventory->hero_pos, sfTransparent);
     sfRectangleShape_setOutlineThickness(inventory->hero_pos, 2.f);
     sfRectangleShape_setSize(inventory->hero_pos,
     (sfVector2f){hero.width * hero_scale, equip_pos.height});
@@ -67,4 +71,5 @@ void init_inventory(inventory_t *inventory, sfTexture **texture_tab,
     init_slots(inventory, texture_tab);
     init_heros_square(inventory, texture_tab, rpg);
     init_stats(inventory, rpg->font_tab);
+    init_skill_tree(inventory, rpg->font_tab, rpg->text_tab);
 }

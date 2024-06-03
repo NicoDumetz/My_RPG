@@ -124,6 +124,10 @@ SRC = main.c\
 	src/inventory/slots/set_slots.c\
 	src/inventory/use_items.c\
 	src/inventory/stats.c\
+	src/inventory/skill_tree/init_skill_tree.c\
+	src/inventory/skill_tree/skill_tree.c\
+	src/inventory/skill_tree/skill_lvl_buttons.c\
+	src/inventory/skill_tree/equip_skill.c\
 	src/entity/bot/ia/attack_bot.c\
 	src/portal/check_open_portal.c\
 	src/quest/check_end_quest.c\
@@ -151,7 +155,6 @@ SRC = main.c\
 	src/object/set_all_texture_obj.c\
 	src/tuto/quest/inventory_quest.c\
 	src/song/init_song.c\
-	src/cursor/init_cursor.c\
 
 OBJ = $(SRC:.c=.o)
 

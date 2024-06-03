@@ -28,7 +28,10 @@ static sfVector2f set_back_pos(inventory_t *inventory, rpg_t *rpg)
     sfVector2f pos = {hero_pos.left + hero_pos.width + 10.f, hero_pos.top};
 
     sfRectangleShape_setPosition(inventory->stats_pos, pos);
-    sfRenderWindow_drawRectangleShape(rpg->window, inventory->stats_pos, NULL);
+    if (RECTANGLE_BOX) {
+        sfRenderWindow_drawRectangleShape(rpg->window, inventory->stats_pos,
+        NULL);
+    }
     return pos;
 }
 

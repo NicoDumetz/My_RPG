@@ -6,6 +6,7 @@
 */
 
 #include "rpg.h"
+#include <SFML/Graphics/Sprite.h>
 
 static bool inventory_state(rpg_t *rpg)
 {
@@ -40,6 +41,7 @@ static void hero_picture(rpg_t *rpg)
     sfVector2f pos = {equipment_rect.left + equipment_rect.width,
     equipment_rect.top};
     sfVector2f save_scale = sfSprite_getScale(hero_sprite);
+    sfVector2f save_pos = sfSprite_getPosition(hero_sprite);
     sfVector2f hero_scale = rpg->inventory.hero_scale;
 
     sfRectangleShape_setPosition(rpg->inventory.hero_pos, pos);
@@ -51,7 +53,7 @@ static void hero_picture(rpg_t *rpg)
     sfSprite_setPosition(hero_sprite, pos);
     sfRenderWindow_drawSprite(rpg->window, hero_sprite, NULL);
     sfSprite_setScale(hero_sprite, save_scale);
-    sfSprite_setPosition(hero_sprite, rpg->heros->npc->entity->pos);
+    sfSprite_setPosition(hero_sprite, save_pos);
 }
 
 void manage_inventory(rpg_t *rpg)
@@ -69,6 +71,7 @@ void manage_inventory(rpg_t *rpg)
     draw_slots(rpg, &rpg->inventory);
     hero_picture(rpg);
     set_stats(&rpg->inventory, rpg);
+    manage_skill_tree(&rpg->inventory, rpg);
 }
 
 button_t *get_free_slot(button_t **list, unsigned char size_list)

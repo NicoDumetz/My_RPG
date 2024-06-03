@@ -47,8 +47,10 @@ static void set_equipment_pos(rpg_t *rpg)
     pos.x = inventory_pos.left + inventory_pos.width + 10.f;
     pos.y = inventory_pos.top;
     sfRectangleShape_setPosition(inventory->equipment_pos, pos);
-    sfRenderWindow_drawRectangleShape(rpg->window, inventory->equipment_pos,
-    NULL);
+    if (RECTANGLE_BOX) {
+        sfRenderWindow_drawRectangleShape(rpg->window,
+        inventory->equipment_pos, NULL);
+    }
     for (unsigned char i = 0; i < NUM_EQUIPMENT; i++) {
         button_pos = inventory->equipment[i]->pos;
         button_pos.x += pos.x;
@@ -66,7 +68,8 @@ void set_slot_pos(rpg_t *rpg, sfFloatRect *background_pos)
     pos.x = background_pos->left + background_pos->width * 0.07;
     pos.y = background_pos->top + background_pos->height * 0.05;
     sfRectangleShape_setPosition(rpg->inventory.slot_pos, pos);
-    sfRenderWindow_drawRectangleShape(rpg->window, rpg->inventory.slot_pos,
+    if (RECTANGLE_BOX)
+        sfRenderWindow_drawRectangleShape(rpg->window, rpg->inventory.slot_pos,
     NULL);
     for (unsigned char i = 0; i < NUM_SLOT; i++) {
         button_pos = rpg->inventory.slot[i]->pos;

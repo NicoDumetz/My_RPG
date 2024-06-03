@@ -7,7 +7,6 @@
 
 #include "rpg.h"
 #include <SFML/Graphics/Texture.h>
-#include <SFML/Graphics/Types.h>
 
 void set_all_texture_next(sfTexture **text_tab)
 {
@@ -145,7 +144,6 @@ static void set_all_texture_next_six(sfTexture **text_tab)
     text_tab[R1280x720_E] = sfTexture_createFromFile(BUTTON_1280x720, NULL);
     text_tab[R850x480_E] = sfTexture_createFromFile(BUTTON_850x480, NULL);
     text_tab[RES_SELECTION_E] = sfTexture_createFromFile(RES_SELECTION, NULL);
-    text_tab[CURSOR_TEXT] = sfTexture_createFromFile(CURSOR_PATH, NULL);
 }
 
 static void set_all_texture_next_seven(sfTexture **text_tab)
@@ -170,6 +168,27 @@ static void set_all_texture_next_seven(sfTexture **text_tab)
     text_tab[RESUME_HOVER_E] = sfTexture_createFromFile(RESUME_HOVER, NULL);
 }
 
+static void set_all_texture_eight(sfTexture **text_tab)
+{
+    text_tab[BLUE_PLUS_TEXT] = sfTexture_createFromFile(BLUE_PLUS, NULL);
+    text_tab[BLUE_PLUS_PRESSED_TEXT] =
+    sfTexture_createFromFile(BLUE_PLUS_PRESSED, NULL);
+    text_tab[PLUS_HOVER_TEXT] = sfTexture_createFromFile(PLUS_HOVER, NULL);
+    text_tab[PLUS_BLOCK_TEXT] = sfTexture_createFromFile(DISABLED_PLUS, NULL);
+    text_tab[RUN_RELEASED_TEXT] = sfTexture_createFromFile(RUN_RELEASED, NULL);
+    text_tab[RUN_PRESSED_TEXT] = sfTexture_createFromFile(RUN_PRESSED, NULL);
+    text_tab[RUN_HOVER_TEXT] = sfTexture_createFromFile(RUN_HOVER, NULL);
+    text_tab[FIRE_RELEASED_TEXT] = sfTexture_createFromFile(FIRE_RELEASED,
+    NULL);
+    text_tab[FIRE_PRESSED_TEXT] = sfTexture_createFromFile(FIRE_PRESSED, NULL);
+    text_tab[FIRE_HOVER_TEXT] = sfTexture_createFromFile(FIRE_HOVER, NULL);
+    text_tab[SHIELD_RELEASED_TEXT] = sfTexture_createFromFile(SHIELD_RELEASED,
+    NULL);
+    text_tab[SHIELD_PRESSED_TEXT] = sfTexture_createFromFile(SHIELD_PRESSED,
+    NULL);
+    text_tab[SHIELD_HOVER_TEXT] = sfTexture_createFromFile(SHIELD_HOVER, NULL);
+}
+
 void set_all_texture(sfTexture **text_tab)
 {
     text_tab[VILLAGE_SPRITE_TEXT] = sfTexture_createFromFile(
@@ -182,6 +201,7 @@ void set_all_texture(sfTexture **text_tab)
         CASTLE_COLISION, NULL);
     text_tab[KNIGHT_HOUSE_TEXT] = sfTexture_createFromFile(
         KNIGHT_H_SPRITE, NULL);
+    set_all_texture_eight(text_tab);
     set_all_texture_next_seven(text_tab);
     set_all_texture_next_six(text_tab);
     set_all_texture_next_five(text_tab);
