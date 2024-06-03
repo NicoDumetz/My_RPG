@@ -36,6 +36,7 @@
     #include <math.h>
     #include "biome.h"
     #include "collisions.h"
+    #include "inventory.h"
     #define ABS(x) ((x) < 0 ? x = -(x) : (x))
     #define KNIGHT_ASSET "tiny_world_asset/Factions/Knights/Troops/"
     #define GOBLINS_ASSET "tiny_world_asset/Factions/Goblins/Troops/"

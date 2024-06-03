@@ -49,7 +49,8 @@ typedef enum texture_type_e {
     LIFE_B_TEXT,
     ENERGY_B_TEXT,
     XP_B_TEXT,
-    MINE_TEXT
+    MINE_TEXT,
+    INVENTORY_TEXT
 } texture_type_t;
 
 typedef enum scene_e {
@@ -76,7 +77,7 @@ typedef struct rpg_s {
     bool key_state[256];
     int second;
     float time;
-    sfTexture *text_tab[35];
+    sfTexture *text_tab[36];
     sfFont *font_tab[1];
     sfRenderWindow *window;
 } rpg_t;

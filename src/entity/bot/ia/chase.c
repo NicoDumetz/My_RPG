@@ -81,7 +81,7 @@ static void move_ia_to_heros(
         right_chase(npc_act, movement_pos, rpg);
 }
 
-static void chasing(npc_t *npc_act, rpg_t *rpg)
+void manage_chase(npc_t *npc_act, rpg_t *rpg)
 {
     sfVector2f pos_heros = rpg->heros->npc->entity->pos;
     sfVector2f pos = sfSprite_getPosition(npc_act->entity->sprite);
@@ -98,28 +98,4 @@ static void chasing(npc_t *npc_act, rpg_t *rpg)
     movement_pos.x = direction.x * movement;
     movement_pos.y = direction.y * movement;
     move_ia_to_heros(npc_act, movement_pos, rpg);
-}
-
-void manage_chase(npc_t *npc_act, rpg_t *rpg, heros_t *heros)
-{
-    int chase = 0;
-
-    if (col_hitbox(npc_act->attbox[0], heros->npc->hitbox)) {
-        npc_act->act_action = ATTACK_F;
-        chase = 1;
-    }
-    if (col_hitbox(npc_act->attbox[1], heros->npc->hitbox)) {
-        npc_act->act_action = ATTACK_B;
-        chase = 1;
-    }
-    if (col_hitbox(npc_act->attbox[2], heros->npc->hitbox)) {
-        npc_act->act_action = ATTACK_L;
-        chase = 1;
-    }
-    if (col_hitbox(npc_act->attbox[3], heros->npc->hitbox)) {
-        npc_act->act_action = ATTACK_R;
-        chase = 1;
-    }
-    if (chase == 0)
-        chasing(npc_act, rpg);
 }
