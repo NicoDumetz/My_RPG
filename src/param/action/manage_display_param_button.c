@@ -21,6 +21,7 @@ void fullscreen_p(void *data, button_t *button)
     sfRenderWindow_destroy(rpg->window);
     rpg->window = sfRenderWindow_create(rpg->params->view, "My_RPG",
         sfFullscreen, NULL);
+    sfRenderWindow_setMouseCursorVisible(rpg->window, sfFalse);
 }
 
 void windowed_p(void *data, button_t *button)
@@ -37,6 +38,7 @@ void windowed_p(void *data, button_t *button)
     sfRenderWindow_destroy(rpg->window);
     rpg->window = sfRenderWindow_create(rpg->params->view, "My_RPG",
         sfClose, NULL);
+    sfRenderWindow_setMouseCursorVisible(rpg->window, sfFalse);
     sfSprite_setScale(rpg->params->display->selection, (sfVector2f){1, 1});
     sfSprite_setPosition(rpg->params->display->selection,
         (sfVector2f){rpg->params->view.width * 0.25, rpg->params->view.height

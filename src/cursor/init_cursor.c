@@ -9,24 +9,18 @@
 
 void destroy_cursor(rpg_t *rpg)
 {
-    sfCursor_destroy(rpg->cursor);
-    sfImage_destroy(rpg->cursor_image);
+    sfSprite_destroy(rpg->cursor);
+}
+
+void manage_cursor(rpg_t *rpg)
+{
+    sfSprite_setPosition(rpg->cursor, rpg->mouse_data.pos);
+    sfRenderWindow_drawSprite(rpg->window, rpg->cursor, NULL);
 }
 
 void init_cursor(rpg_t *rpg)
 {
-    sfVector2u image_size;
-
-    rpg->cursor_image = sfImage_createFromFile(CURSOR_PATH);
-    if (rpg->cursor_image == NULL)
-        exit(84);
-    image_size = sfImage_getSize(rpg->cursor_image);
-    rpg->cursor = sfCursor_createFromPixels(
-        sfImage_getPixelsPtr(rpg->cursor_image),
-        image_size, (sfVector2u){0, 0});
-    if (rpg->cursor == NULL) {
-        sfImage_destroy(rpg->cursor_image);
-        exit(84);
-    }
-    sfRenderWindow_setMouseCursor(rpg->window, rpg->cursor);
+    rpg->cursor = sfSprite_create();
+    sfSprite_setTexture(rpg->cursor, rpg->text_tab[CURSOR_TEXT], sfTrue);
+    sfRenderWindow_setMouseCursorVisible(rpg->window, sfFalse);
 }

@@ -196,8 +196,7 @@ typedef struct rpg_s {
     all_part_t *part;
     song_management_t *song;
     sfRenderWindow *window;
-    sfImage *cursor_image;
-    sfCursor *cursor;
+    sfSprite *cursor;
 } rpg_t;
 
     #define GOBLINS_T_LIST_PLA rpg->biome[PLAIN]->bot_data->bot_list[GOBLINS_T]
@@ -235,8 +234,8 @@ typedef struct rpg_s {
     #define KNIGHT_LIST_CAM rpg->biome[CAMP]->bot_data->bot_list[KNIGHT]
     #define MINIONS_LIST_CAM rpg->biome[CAMP]->bot_data->bot_list[MINIONS]
 
-void test(rpg_t *rpg);
 void start_menu(rpg_t *rpg);
+void manage_cursor(rpg_t *rpg);
 
 /**TOOLS**/
 int my_strncmp(char const *s1, char const *s2, int len);

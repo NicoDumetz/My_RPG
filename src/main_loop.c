@@ -80,6 +80,7 @@ void rpg(rpg_t *rpg)
             rpg->window, sfRenderWindow_getView(rpg->window));
         clear_window(rpg);
         which_scene(rpg);
+        manage_cursor(rpg);
         sfRenderWindow_display(rpg->window);
     }
     destroy_rpg(rpg);
