@@ -64,6 +64,7 @@ ingame_menu_t *create_menu_ingame_struct(rpg_t *rpg)
     if (!menu)
         return (NULL);
     menu->pos = MENU_1;
+    menu->last_frame = NULL;
     menu->blur = sfRectangleShape_create();
     sfRectangleShape_setSize(menu->blur, (sfVector2f){1920, 1080});
     sfRectangleShape_setPosition(menu->blur, (sfVector2f){0, 0});
