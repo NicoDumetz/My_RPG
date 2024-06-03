@@ -50,5 +50,7 @@ void quit_game_button(void *data, button_t *)
 
     sfTexture_destroy(rpg->ingame_menu->last_frame);
     rpg->ingame_menu->last_frame = NULL;
+    unappli_all_multi(rpg);
+    rpg->heros->multi_speed = 1;
     rpg->scene = MENU;
 }

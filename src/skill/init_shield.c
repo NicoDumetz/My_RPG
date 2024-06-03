@@ -20,8 +20,8 @@ typedef struct shield_s {
 shield_t shield_tab[] = {
     {0, 0, false, 0},
     {1, 0, false, 30},
-    {2, 0, false, 25},
-    {3, 0, false, 20}
+    {1, 0, false, 25},
+    {2, 0, false, 20}
 };
 
 void destroy_shield(shield_t *shield)

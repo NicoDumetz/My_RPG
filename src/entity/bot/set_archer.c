@@ -34,7 +34,7 @@ npc_t *set_archer(sfTexture *texture)
     sfFloatRect colbox = {40, 60, 80, 90};
     sfFloatRect hitbox = {30, 30, 60, 60};
 
-    archer->pv = 80;
+    archer->pv = 200;
     archer->attack = 0;
     archer->entity->parent = archer;
     set_offset(archer->entity, (sfVector2i){8, 7});
@@ -44,9 +44,9 @@ npc_t *set_archer(sfTexture *texture)
     archer->xp = 150;
     archer->hitbox_dim = hitbox;
     archer->view = 500;
-    archer->stamina = 20;
-    archer->max_stamina = 20;
-    archer->damage = 70;
+    archer->stamina = 10;
+    archer->max_stamina = 10;
+    archer->damage = 150;
     archer->type = ARCHERY;
     return (archer);
 }

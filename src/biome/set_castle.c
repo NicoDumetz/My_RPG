@@ -44,9 +44,11 @@ npc_t *set_castle_boss(sfTexture **text_tab, biome_t *biome)
 {
     npc_t *castle_boss = set_knight(text_tab[CASTLE_BOSS_TEXT]);
 
-    castle_boss->pv = 800;
-    castle_boss->damage = 150;
+    castle_boss->pv = 900;
+    castle_boss->damage = 400;
     castle_boss->xp = 600;
+    castle_boss->stamina = 10;
+    castle_boss->max_stamina = 10;
     castle_boss->entity->effect_tab = set_effect_bot(
         text_tab, castle_boss->entity->sprite);
     castle_boss->entity->pos = (sfVector2f){1000, 1500};

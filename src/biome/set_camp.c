@@ -33,10 +33,12 @@ npc_t *set_camp_boss(sfTexture **text_tab, biome_t *biome)
 
     camp_boss->entity->effect_tab = set_effect_bot(
         text_tab, camp_boss->entity->sprite);
-    camp_boss->xp = 300;
+    camp_boss->xp = 400;
     camp_boss->entity->pos = (sfVector2f){1000, 1500};
     camp_boss->pv = 400;
-    camp_boss->damage = 90;
+    camp_boss->damage = 160;
+    camp_boss->stamina = 10;
+    camp_boss->max_stamina = 10;
     camp_boss->pv_bar =
         create_info_bar(sfRed, (sfVector2f){100, 7}, camp_boss->pv, NULL);
     camp_boss->pv_bar->act = camp_boss->pv;

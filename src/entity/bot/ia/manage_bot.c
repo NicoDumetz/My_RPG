@@ -20,7 +20,8 @@ void manage_bot_pv_bar(npc_t *npc, sfRenderWindow *window)
 
     npc->pv_bar->act = npc->pv;
     update_bar(npc->pv_bar, rect_pos);
-    sfRenderWindow_drawRectangleShape(window, npc->pv_bar->bar, NULL);
+    if (npc->in_chase)
+        sfRenderWindow_drawRectangleShape(window, npc->pv_bar->bar, NULL);
 }
 
 void manage_bot(entity_t *entity, heros_t *heros, rpg_t *rpg)

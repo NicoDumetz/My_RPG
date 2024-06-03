@@ -18,7 +18,7 @@ fire_ball_t fireball_tab[] = {
     {0},
     {80},
     {60},
-    {50},
+    {40},
 };
 
 void destroy_fire_ball(fire_ball_t *fire_ball)

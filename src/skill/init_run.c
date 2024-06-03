@@ -16,10 +16,10 @@
 */
 
 run_t run_tab[] = {
-    {false, 0, 0},
-    {false, 1.2, 20},
-    {false, 1.4, 18},
-    {false, 1.6, 16}
+    {false, 1, 0},
+    {false, 1.15, 20},
+    {false, 1.30, 18},
+    {false, 1.45, 16}
 };
 
 
@@ -40,7 +40,7 @@ void run_function(heros_t *heros, rpg_t *rpg, void *skill_data)
         }
     }
     if (heros->stamina < 1 && data->active) {
-        heros->speed /= data->speed_multi;
+        heros->multi_speed /= data->speed_multi;
         data->active = false;
     }
 }

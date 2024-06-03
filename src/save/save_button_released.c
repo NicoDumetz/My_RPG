@@ -102,6 +102,10 @@ void save_button_released(void *data, button_t *button)
 
     unappli_all_multi(rpg);
     appli_save(rpg, save->data);
+    if (rpg->ingame_menu->last_frame) {
+        sfTexture_destroy(rpg->ingame_menu->last_frame);
+        rpg->ingame_menu->last_frame = NULL;
+    }
     rpg->end->active = OFF;
     set_view(rpg,
     rpg->heros->npc->entity->sprite,
