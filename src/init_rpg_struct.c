@@ -14,6 +14,8 @@ void destroy_save_list(rpg_t *rpg)
 
     while (curr) {
         next = curr->next;
+        sfText_destroy(curr->name);
+        free(curr->data);
         free(curr);
         curr = next;
     }
@@ -31,15 +33,20 @@ void destroy_rpg(rpg_t *rpg)
             destroy_biome(rpg->biome[i]);
         for (int i = 0; i <= MINE_TEXT; i++)
             sfTexture_destroy(rpg->text_tab[i]);
+        for (int i = 0; i <= PIXEL; i++)
+            sfFont_destroy(rpg->font_tab[i]);
+        destroy_load_page(rpg->save_scene);
         free(rpg);
     }
 }
 
 rpg_t *init_rpg_next(rpg_t *rpg)
 {
+    set_all_font(rpg->font_tab);
     memset(&(rpg->mouse_data), 0, sizeof(mouse_data_t));
     rpg->save_list = NULL;
     create_file_list(rpg);
+    rpg->save_scene = init_load_page(rpg->save_list, rpg->text_tab);
     return (rpg);
 }
 

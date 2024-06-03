@@ -10,6 +10,10 @@
     #include "button.h"
     #include "lib.h"
 
+typedef enum font_type_e {
+    PIXEL = 0
+} font_type_t;
+
 typedef enum texture_type_e {
     DEATH_TEXT = 0,
     LEVEL_UP_TEXT,
@@ -34,6 +38,14 @@ typedef enum texture_type_e {
     KNIGHT_HOUSE_TEXT,
     TREE_SPRITE_TEXT,
     BAG_TEXT,
+    BACK_SAVE_TEXT,
+    FOOTER_SAVE_TEXT,
+    HEADER_SAVE_TEXT,
+    EXIT_B_P_TEXT,
+    EXIT_B_R_TEXT,
+    BLUE_LONG_P_TEXT,
+    BLUE_LONG_R_TEXT,
+    BUTTON_LONG_H_TEXT,
     MINE_TEXT
 } texture_type_t;
 
@@ -51,6 +63,7 @@ typedef struct rpg_s {
     heros_t *heros;
     save_t *save_list;
     biome_t *biome[5];
+    save_scene_t *save_scene;
     mouse_data_t mouse_data;
     int scene;
     sfClock *clock;
@@ -59,7 +72,8 @@ typedef struct rpg_s {
     bool key_state[256];
     int second;
     float time;
-    sfTexture *text_tab[24];
+    sfTexture *text_tab[32];
+    sfFont *font_tab[1];
     sfRenderWindow *window;
 } rpg_t;
 
@@ -113,11 +127,11 @@ sfVector2f recalculate_mouse_position(
     sfRenderWindow* window, const sfView* view);
 
 /**SAVE**/
-void write_data_in_save(save_t *new_save, rpg_t *rpg);
-void update_save_list(save_t *save, rpg_t *rpg);
+void write_data_in_save(save_data_t *new_save, rpg_t *rpg);
+void update_save_list(save_data_t *save, rpg_t *rpg);
 void create_save(rpg_t *rpg);
 void create_file_list(rpg_t *rpg);
-void save_scene(rpg_t *rpg);
+void load_page(rpg_t *rpg);
 
 /**RPG**/
 void rpg(rpg_t *rpg);
@@ -125,6 +139,7 @@ void destroy_rpg(rpg_t *rpg);
 rpg_t *create_rpg_struct(void);
 void manage_heros(heros_t *heros, rpg_t *rpg);
 void set_all_texture(sfTexture **text_tab);
+void set_all_font(sfFont **font_tab);
 
 /**EVENT**/
 void manage_event(rpg_t *rpg);

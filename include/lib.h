@@ -63,4 +63,13 @@
     #define BLOOD_PATH "effect_asset/blood_effect.png"
     #define COIN_PATH "effect_asset/coin.png"
     #define LEVEL_UP_PATH "effect_asset/level_up.png"
+    #define BACK_SAVE_PATH "save_asset/back_save.png"
+    #define FOOTER_SAVE_PATH "save_asset/footer_save.png"
+    #define HEADER_SAVE_PATH "save_asset/header_save.png"
+    #define EXIT_BUTTON_PRESS "tiny_world_asset/UI/Icons/Pressed_01.png"
+    #define EXIT_BUTTON_RELEASED "tiny_world_asset/UI/Icons/Regular_01.png"
+    #define BLUE_LONG_PRESS "tiny_world_asset/UI/Buttons/Blue_long_pressed.png"
+    #define BLUE_LONG_REL "tiny_world_asset/UI/Buttons/Blue_long_released.png"
+    #define HOVER_LONG_BUT "tiny_world_asset/UI/Buttons/Button_long_hover.png"
+    #define PIXEL_F_PATH "font/pixel_font.ttf"
 #endif

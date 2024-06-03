@@ -7,7 +7,7 @@
 
 #include "rpg.h"
 
-void write_data_in_save(save_t *new_save, rpg_t *rpg)
+void write_data_in_save(save_data_t *new_save, rpg_t *rpg)
 {
     int j = 0;
 

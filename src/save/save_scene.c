@@ -7,7 +7,9 @@
 
 #include "rpg.h"
 
-void save_scene(rpg_t *)
+void load_page(rpg_t *rpg)
 {
-    return;
+    sfRenderWindow_drawSprite(rpg->window, rpg->save_scene->back, NULL);
+    sfRenderWindow_drawSprite(rpg->window, rpg->save_scene->footer, NULL);
+    sfRenderWindow_drawSprite(rpg->window, rpg->save_scene->header, NULL);
 }

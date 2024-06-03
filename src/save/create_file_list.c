@@ -7,7 +7,7 @@
 
 #include "rpg.h"
 
-bool check_file_content(save_t *save, char *path)
+bool check_file_content(save_data_t *save, char *path)
 {
     struct stat st_file;
     time_t last_mod = 0;
@@ -21,17 +21,15 @@ bool check_file_content(save_t *save, char *path)
         printf("Save file Corrupted\n");
         return false;
     }
-    save->next = NULL;
-    save->prev = NULL;
     return true;
 }
 
-save_t *copy_save_file(int fd, char *path)
+save_data_t *copy_save_file(int fd, char *path)
 {
-    save_t *save = malloc(sizeof(save_t));
+    save_data_t *save = malloc(sizeof(save_data_t));
 
-    memset(save, 0, sizeof(save_t));
-    if (read(fd, save, sizeof(save_t)) != sizeof(save_t) ||
+    memset(save, 0, sizeof(save_data_t));
+    if (read(fd, save, sizeof(save_data_t)) != sizeof(save_data_t) ||
         !check_file_content(save, path)) {
         free(save);
         return NULL;
@@ -39,11 +37,11 @@ save_t *copy_save_file(int fd, char *path)
     return (save);
 }
 
-save_t *open_save_file(struct dirent *entry)
+save_data_t *open_save_file(struct dirent *entry)
 {
     char path[strlen("save_dir/") + strlen(entry->d_name) + 1];
     int fd;
-    save_t *save = NULL;
+    save_data_t *save = NULL;
     struct stat st_file;
 
     strcpy(path, "save_dir/");
@@ -63,7 +61,7 @@ void create_file_list(rpg_t *rpg)
 {
     struct dirent *entry;
     DIR *dir = opendir("save_dir");
-    save_t *save = NULL;
+    save_data_t *save = NULL;
 
     if (dir == NULL) {
         closedir(dir);

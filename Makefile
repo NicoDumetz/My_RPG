@@ -88,6 +88,8 @@ SRC = main.c\
 	src/save/create_file_list.c\
 	src/tools/mouse_pos_relative_to_view.c\
 	src/save/save_scene.c\
+	src/set_all_font.c\
+	src/save/init_load_page.c\
 
 OBJ = $(SRC:.c=.o)
 

@@ -14,7 +14,7 @@ void which_scene(rpg_t *rpg)
         manage_heros_bar(rpg->heros, rpg->window);
     }
     if (rpg->scene == SAVE) {
-        save_scene(rpg);
+        load_page(rpg);
     }
 }
 

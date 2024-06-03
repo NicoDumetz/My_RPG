@@ -31,6 +31,24 @@ void set_all_texture_next(sfTexture **text_tab)
         CAMP_COLISION, NULL);
 }
 
+void set_all_texture_next_two(sfTexture **text_tab)
+{
+    text_tab[HEADER_SAVE_TEXT] = sfTexture_createFromFile(
+        HEADER_SAVE_PATH, NULL);
+    text_tab[EXIT_B_P_TEXT] = sfTexture_createFromFile(
+        EXIT_BUTTON_PRESS, NULL);
+    text_tab[EXIT_B_R_TEXT] = sfTexture_createFromFile(
+        EXIT_BUTTON_RELEASED, NULL);
+    text_tab[FOOTER_SAVE_TEXT] = sfTexture_createFromFile(
+        FOOTER_SAVE_PATH, NULL);
+    text_tab[BLUE_LONG_P_TEXT] = sfTexture_createFromFile(
+        BLUE_LONG_PRESS, NULL);
+    text_tab[BLUE_LONG_R_TEXT] = sfTexture_createFromFile(
+        BLUE_LONG_REL, NULL);
+    text_tab[BUTTON_LONG_H_TEXT] = sfTexture_createFromFile(
+        HOVER_LONG_BUT, NULL);
+}
+
 void set_all_texture(sfTexture **text_tab)
 {
     text_tab[VILLAGE_SPRITE_TEXT] = sfTexture_createFromFile(
@@ -49,5 +67,7 @@ void set_all_texture(sfTexture **text_tab)
     text_tab[BAG_TEXT] = sfTexture_createFromFile(BAG_PATH, NULL);
     text_tab[BLOOD_TEXT] = sfTexture_createFromFile(BLOOD_PATH, NULL);
     text_tab[COIN_TEXT] = sfTexture_createFromFile(COIN_PATH, NULL);
+    text_tab[BACK_SAVE_TEXT] = sfTexture_createFromFile(BACK_SAVE_PATH, NULL);
+    set_all_texture_next_two(text_tab);
     set_all_texture_next(text_tab);
 }

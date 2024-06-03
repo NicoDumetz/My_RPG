@@ -15,12 +15,11 @@ typedef struct save_scene_s {
     sfSprite *back;
     sfSprite *header;
     sfSprite *footer;
-    button_t *save;
     button_t *exit;
     button_t *button_list;
 } save_scene_t;
 
-typedef struct save_s {
+typedef struct save_data_s {
     time_t time_last_save;
     int x_heros;
     int y_heros;
@@ -32,7 +31,16 @@ typedef struct save_s {
     int object_id_inv[20];
     int object_id_equip[6];
     int end_save;
+} save_data_t;
+
+typedef struct save_s {
+    save_data_t *data;
+    sfText *name;
     struct save_s *next;
     struct save_s *prev;
 } save_t;
+
+/**INIT**/
+save_scene_t *init_load_page(save_t *save_list, sfTexture **text_tab);
+void destroy_load_page(save_scene_t *save_scene);
 #endif
