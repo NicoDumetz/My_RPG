@@ -7,18 +7,40 @@
 
 #include "rpg.h"
 
+void destroy_save_list(rpg_t *rpg)
+{
+    save_t *curr = rpg->save_list;
+    save_t *next = NULL;
+
+    while (curr) {
+        next = curr->next;
+        free(curr);
+        curr = next;
+    }
+}
+
 void destroy_rpg(rpg_t *rpg)
 {
     if (rpg) {
         sfRenderWindow_destroy(rpg->window);
         destroy_heros(rpg->heros);
         sfClock_destroy(rpg->clock);
+        if (rpg->save_list)
+            destroy_save_list(rpg);
         for (int i = 0; i <= MINE; i++)
             destroy_biome(rpg->biome[i]);
         for (int i = 0; i <= MINE_TEXT; i++)
             sfTexture_destroy(rpg->text_tab[i]);
         free(rpg);
     }
+}
+
+rpg_t *init_rpg_next(rpg_t *rpg)
+{
+    memset(&(rpg->mouse_data), 0, sizeof(mouse_data_t));
+    rpg->save_list = NULL;
+    create_file_list(rpg);
+    return (rpg);
 }
 
 rpg_t *create_rpg_struct(void)
@@ -42,5 +64,5 @@ rpg_t *create_rpg_struct(void)
     rpg->heros->npc->entity->pos = rpg->biome[PLAIN]->last_pos;
     sfSprite_setPosition(
         rpg->heros->npc->entity->sprite, rpg->biome[PLAIN]->last_pos);
-    return rpg;
+    return init_rpg_next(rpg);
 }

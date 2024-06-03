@@ -81,6 +81,13 @@ SRC = main.c\
 	src/entity/heros/manage_heros_bar.c\
 	src/entity/heros/level_tab.c\
 	src/entity/info_bar.c/update_info_bar.c\
+	src/tools/convert_int_to_str.c\
+	src/save/write_data_in_save.c\
+	src/save/update_save_list.c\
+	src/save/create_save.c\
+	src/save/create_file_list.c\
+	src/tools/mouse_pos_relative_to_view.c\
+	src/save/save_scene.c\
 
 OBJ = $(SRC:.c=.o)
 

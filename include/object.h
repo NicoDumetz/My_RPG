@@ -31,6 +31,7 @@ extern obj_template_t obj_tab[];
 
 typedef struct back_obj_s {
     sfSprite *sprite;
+    int id;
     struct back_obj_s *next;
     struct back_obj_s *prev;
     void *data;

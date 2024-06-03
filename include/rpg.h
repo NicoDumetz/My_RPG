@@ -43,11 +43,15 @@ typedef enum scene_e {
     CAMP,
     VILLAGE,
     MINE,
+    SAVE,
     MAIN
 }scene_t;
+
 typedef struct rpg_s {
     heros_t *heros;
+    save_t *save_list;
     biome_t *biome[5];
+    mouse_data_t mouse_data;
     int scene;
     sfClock *clock;
     sfEvent event;
@@ -104,6 +108,16 @@ sfBool sprite_is_in_float_rect(sfSprite *sprite, sfFloatRect rect);
 void destroy_sprite(sfSprite *sprite);
 sfSprite *create_sprite(char *asset);
 bool is_rect_in_circle(sfRectangleShape* rectangle, sfCircleShape* circle);
+char *convert_int_to_str(int nbr);
+sfVector2f recalculate_mouse_position(
+    sfRenderWindow* window, const sfView* view);
+
+/**SAVE**/
+void write_data_in_save(save_t *new_save, rpg_t *rpg);
+void update_save_list(save_t *save, rpg_t *rpg);
+void create_save(rpg_t *rpg);
+void create_file_list(rpg_t *rpg);
+void save_scene(rpg_t *rpg);
 
 /**RPG**/
 void rpg(rpg_t *rpg);

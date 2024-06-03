@@ -27,6 +27,7 @@ back_obj_t *create_back_obj(object_drop_t type, sfTexture **text_tab)
 
     back_obj->next = NULL;
     back_obj->prev = NULL;
+    back_obj->id = type;
     back_obj->sprite = sfSprite_create();
     sfSprite_setTexture(back_obj->sprite,
         text_tab[obj_tab[type].text_id_back], sfTrue);

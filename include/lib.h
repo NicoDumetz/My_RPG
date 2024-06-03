@@ -21,7 +21,11 @@
     #include <string.h>
     #include <stdbool.h>
     #include <stdio.h>
+    #include <errno.h>
+    #include <dirent.h>
+    #include "button.h"
     #include "level.h"
+    #include "save.h"
     #include "info_bar.h"
     #include "object.h"
     #include "effect.h"
