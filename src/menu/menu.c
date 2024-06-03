@@ -36,6 +36,9 @@ static void display_menu_button(menu_t *menu, sfRenderWindow *window)
 
 static void manage_menu_button(menu_t *menu, rpg_t *rpg)
 {
+    if (rpg->save_scene->button_list == NULL ||
+        rpg->save_scene->button_list->child == NULL)
+        menu->saves->state = BLOCK;
     update_button(menu->play, &(rpg->mouse_data), rpg);
     update_button(menu->new, &(rpg->mouse_data), rpg);
     update_button(menu->saves, &(rpg->mouse_data), rpg);
