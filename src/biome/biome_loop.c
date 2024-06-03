@@ -46,14 +46,14 @@ bool manage_test(rpg_t *rpg, biome_t *biome)
 {
     static int test2 = 0;
 
-    if (test2 == 0 && rpg->key_state[sfKeyW]) {
+    if (test2 == 0 && rpg->key_state[sfKeyW] && rpg->end->active == OFF) {
         create_save(rpg);
         test2 = 1;
         return true;
     }
     if (!rpg->key_state[sfKeyW])
         test2 = 0;
-    if (rpg->key_state[sfKeyC]) {
+    if (rpg->key_state[sfKeyC] && rpg->end->active == OFF) {
         set_view(rpg, rpg->save_scene->back, rpg->save_scene->back);
         rpg->save_scene->from = rpg->scene;
         clean_entity_list(biome);

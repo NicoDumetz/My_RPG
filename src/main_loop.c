@@ -18,8 +18,10 @@ static void biome_scene(rpg_t *rpg)
 
 void which_scene(rpg_t *rpg)
 {
-    if (rpg->scene >= PLAIN && rpg->scene <= MINE)
+    if (rpg->scene >= PLAIN && rpg->scene <= MINE) {
         biome_scene(rpg);
+        update_game_over(rpg->end, rpg);
+    }
     if (rpg->scene == SAVE)
         load_page(rpg);
     if (rpg->scene == MENU)
@@ -30,8 +32,7 @@ void which_scene(rpg_t *rpg)
         tuto_loop(rpg);
         manage_heros_bar(rpg->heros, rpg->window);
         manage_inventory(rpg);
-    } else
-        update_game_over(rpg->end, rpg);
+    }
     if (rpg->end->active == TUTO_FADE)
         manage_switch_fade(rpg->end, rpg);
     manage_ingame_menu(rpg);

@@ -37,7 +37,7 @@ static int check_attack(npc_t *npc_act, int i, heros_t *heros, bool touch)
     if (npc_act->is_attack == false && touch &&
         npc_act->stamina >= npc_act->max_stamina)
         lunch_attack(npc_act, i, heros);
-    if (npc_act->cur_attack == true && touch) {
+    if (npc_act->cur_attack == true && touch && npc_act->type == MELEE) {
         check_touch_heros(npc_act, heros);
         return 1;
     }

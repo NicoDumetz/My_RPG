@@ -41,7 +41,7 @@ npc_t *set_goblins(sfTexture *texture)
     set_action_tab_goblins(goblins);
     set_attbox_dim_goblins(goblins);
     goblins->entity->colbox_dim = colbox;
-    goblins->xp = 2000;
+    goblins->xp = 50;
     goblins->hitbox_dim = hitbox;
     goblins->view = 500;
     goblins->stamina = 25;

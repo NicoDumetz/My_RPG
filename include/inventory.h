@@ -16,19 +16,13 @@
     #define SLOT_PER_LINE 4 // Need to be a diviser of NUM_SLOT
     #define NUM_EQUIPMENT 4
 
-enum stat_text_e {
-    PV_STAT = 0,
-    XP_STAT,
-    SPEED_STAT,
-    STAMINA_STAT,
-    ATTACK_STAT,
-    COUNT_STATS
+struct stats_text_s {
+    sfRectangleShape *stats_pos;
+    sfText *pv;
+    sfVector2f pv_pos;
+    sfText *xp;
+    sfVector2f xp_pox;
 };
-
-typedef struct stats_text_s {
-    sfText *text;
-    sfVector2f pos;
-} stats_text_t;
 
 typedef struct inventory_s {
     sfSprite *background;
@@ -39,8 +33,7 @@ typedef struct inventory_s {
     sfFloatRect slot_rect;
     sfRectangleShape *hero_pos;
     sfVector2f hero_scale;
-    sfRectangleShape *stats_pos;
-    stats_text_t stats[COUNT_STATS];
+    struct stats_text_s stats;
 } inventory_t;
 
 void init_inventory(inventory_t *inventory, sfTexture **texture_tab,

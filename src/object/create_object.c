@@ -6,6 +6,7 @@
 */
 
 #include "rpg.h"
+#include <SFML/Graphics/Sprite.h>
 
 void destroy_back_obj(back_obj_t *back_obj)
 {
