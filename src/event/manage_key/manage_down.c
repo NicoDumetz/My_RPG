@@ -9,21 +9,20 @@
 
 static void moov_down(rpg_t *rpg)
 {
-    sfVector2f pos = rpg->heros->npc->entity->pos;
+    sfVector2f pos = sfRectangleShape_getPosition(rpg->heros->npc->hitbox);
     const sfView *view = sfRenderWindow_getView(rpg->window);
     sfFloatRect bounds = sfSprite_getGlobalBounds(wich_back(rpg));
-    sfFloatRect bounds2 = sfSprite_getGlobalBounds(
-        rpg->heros->npc->entity->sprite);
+    sfVector2f bounds2 = sfRectangleShape_getSize(rpg->heros->npc->hitbox);
     float window_height = sfRenderWindow_getSize(rpg->window).y;
     sfVector2f viewCenter = sfView_getCenter(view);
     float bottom = viewCenter.y + window_height / 2;
     float movement = rpg->heros->speed * rpg->time;
 
-    if (pos.y + bounds2.height + movement > bounds.height)
+    if (pos.y + (bounds2.y * 2) + movement > bounds.height)
         return;
     rpg->heros->npc->entity->pos.y += movement;
     if (pos.y < bounds.height - window_height / 2 && bottom + movement <
-        bounds.height && pos.y + (bounds2.height / 2) >= window_height / 2) {
+        bounds.height && pos.y + (bounds2.x / 2) >= window_height / 2) {
         sfView_move((sfView *)view, (sfVector2f){0.f, movement});
         sfRenderWindow_setView(rpg->window, view);
     }
