@@ -19,7 +19,7 @@ skill_t *init_skill(void)
 
     for (int i = 0; i < 3; i++)
         skill->skill_level[i] = level_tab[i];
-    skill->act_skill = FIRE_BALL; // a changer
+    skill->act_skill = FIRE_BALL;
     skill->skill_tab[FIRE_BALL] = &(fireball_tab[1]);
     skill->skill_tab[SHIELD] = &(shield_tab[1]);
     skill->skill_tab[RUN] = &(run_tab[1]);
