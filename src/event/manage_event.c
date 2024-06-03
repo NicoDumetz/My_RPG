@@ -12,9 +12,13 @@ void close_window(sfRenderWindow *window, sfEvent *event)
 {
     if (event->type == sfEvtClosed)
         sfRenderWindow_close(window);
+    if (event->type == sfEvtKeyPressed && event->key.code == sfKeyEscape)
+        sfRenderWindow_close(window);
 }
 
 void manage_event(rpg_t *rpg)
 {
     close_window(rpg->window, &(rpg->event));
+    if (rpg->event.type == sfEvtKeyPressed)
+        manage_movements(rpg, &(rpg->event));
 }

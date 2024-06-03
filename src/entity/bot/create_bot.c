@@ -16,7 +16,7 @@ void add_to_list_bot(npc_t *new_bot, npc_t **list)
     *list = new_bot;
 }
 
-void create_bot(bot_type_t bot_type, bot_data_t *bot_data)
+void create_bot(npc_t **list, sfTexture *texture, bot_type_t bot_type)
 {
     npc_t *(*bot_gen[6])(sfTexture *) = {
         set_goblins,
@@ -26,7 +26,7 @@ void create_bot(bot_type_t bot_type, bot_data_t *bot_data)
         set_minions,
         set_archer
     };
-    npc_t *new_bot = bot_gen[bot_type](bot_data->bot_texture[bot_type]);
+    npc_t *new_bot = bot_gen[bot_type](texture);
 
-    add_to_list_bot(new_bot, &(bot_data->bot_list[bot_type]));
+    add_to_list_bot(new_bot, list);
 }

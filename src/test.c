@@ -10,9 +10,11 @@
 void test(rpg_t *rpg)
 {
     heros_t *heros = rpg->heros;
+    sfIntRect rect = {50, 40, 140, 130};
 
-    anim_entity(rpg->bot_data->bot_list[GOBLINS_B]->entity, rpg->bot_data->bot_list[GOBLINS_B]->action[MOVE_F], rpg->time);
-    sfSprite_setPosition(rpg->bot_data->bot_list[GOBLINS_B]->entity->sprite, (sfVector2f){500, 500});
-    sfRenderWindow_drawSprite(
-        rpg->window, rpg->bot_data->bot_list[GOBLINS_B]->entity->sprite, NULL);
+    display_background(rpg);
+    sfSprite_setTextureRect(heros->npc->entity->sprite, rect);
+    sfRenderWindow_drawSprite(rpg->window,
+    rpg->heros->npc->entity->sprite, NULL);
+    return;
 }
