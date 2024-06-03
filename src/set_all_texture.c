@@ -65,6 +65,7 @@ void set_all_texture_next_three(sfTexture **text_tab)
     text_tab[CASTLE_BOSS_TEXT] = sfTexture_createFromFile(
         CASTLE_BOSS_PATH, NULL);
     text_tab[ARROW_TEXT] = sfTexture_createFromFile(ARROWS, NULL);
+    text_tab[DYNA_TEXT] = sfTexture_createFromFile(DYNAMITE, NULL);
 }
 
 void set_all_texture(sfTexture **text_tab)

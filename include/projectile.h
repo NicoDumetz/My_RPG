@@ -27,4 +27,5 @@ void init_npc_projectiles(npc_t *npc, sfTexture **text_tab);
 void init_archery_proj(projectile_t *new);
 void set_positions_projectile(npc_t *npc_act, heros_t *heros);
 void moov_projectile(npc_t *npc, rpg_t *rpg);
+void init_dyna_proj(projectile_t *new);
 #endif

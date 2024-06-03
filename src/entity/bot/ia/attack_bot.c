@@ -17,7 +17,7 @@ static void lunch_attack(npc_t *npc_act, int i, heros_t *heros)
     npc_act->act_action = anim[i];
     npc_act->is_attack = true;
     npc_act->stamina -= npc_act->max_stamina;
-    if (npc_act->type == ARCHERY)
+    if (npc_act->type == ARCHERY || npc_act->type == DYNA)
         set_positions_projectile(npc_act, heros);
 }
 
@@ -28,6 +28,30 @@ static void check_touch_heros(npc_t *npc_act, heros_t *heros)
     heros->npc->entity->effect_tab[BLOOD_HEROS]->active = true;
 }
 
+static int check_attack(npc_t *npc_act, int i, heros_t *heros, bool touch)
+{
+    if (npc_act->is_attack == false && touch &&
+        npc_act->stamina >= npc_act->max_stamina)
+        lunch_attack(npc_act, i, heros);
+    if (npc_act->cur_attack == true && touch) {
+        check_touch_heros(npc_act, heros);
+        return 1;
+    }
+    return 0;
+}
+
+static void active_projectile(npc_t *npc_act)
+{
+    if (npc_act->cur_attack == true && npc_act->type == DYNA) {
+        npc_act->projectile->active = 1;
+        npc_act->cur_attack = false;
+    }
+    if (npc_act->end_attack == true && npc_act->type == ARCHERY) {
+        npc_act->projectile->active = 1;
+        npc_act->end_attack = false;
+    }
+}
+
 void manage_attack_bot(npc_t *npc_act, heros_t *heros, int *chase, int *stand)
 {
     bool touch = 0;
@@ -35,17 +59,9 @@ void manage_attack_bot(npc_t *npc_act, heros_t *heros, int *chase, int *stand)
     for (int i = 0; i <= 3; i++) {
         touch = col_hitbox(npc_act->attbox[i], heros->npc->hitbox);
         *chase = touch ? 1 : *chase;
-        if (npc_act->is_attack == false && touch &&
-            npc_act->stamina >= npc_act->max_stamina)
-            lunch_attack(npc_act, i, heros);
-        if (npc_act->cur_attack == true && touch) {
-            check_touch_heros(npc_act, heros);
+        if (check_attack(npc_act, i, heros, touch) == 1)
             break;
-        }
-        if (npc_act->end_attack == true && npc_act->type == ARCHERY) {
-            npc_act->projectile->active = 1;
-            npc_act->end_attack = false;
-        }
+        active_projectile(npc_act);
         if (touch && npc_act->is_attack == false)
             *stand = 1;
     }
