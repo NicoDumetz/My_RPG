@@ -64,6 +64,7 @@ static void reinitialize_rpg_next(rpg_t *rpg)
 void reinitalize_rpg(rpg_t *rpg)
 {
     destroy_heros(rpg->heros);
+    rpg->end->active = 0;
     rpg->heros = init_heros(rpg->text_tab, rpg->font_tab);
     rpg->heros->npc->entity->pos = rpg->tuto->biome->last_pos;
     sfSprite_setPosition(
