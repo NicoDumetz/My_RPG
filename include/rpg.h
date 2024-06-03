@@ -7,11 +7,14 @@
 
 #ifndef RPG_H
     #define RPG_H
+    #include "button.h"
     #include "lib.h"
+    #include "menu.h"
+    #include "params.h"
 
 typedef enum font_type_e {
     PIXEL = 0,
-    FONT_COUNT
+    VINQUE_E
 } font_type_t;
 
 typedef enum texture_type_e {
@@ -49,21 +52,51 @@ typedef enum texture_type_e {
     LIFE_B_TEXT,
     ENERGY_B_TEXT,
     XP_B_TEXT,
-    INVENTORY_TEXT,
-    INVENTORY_SLOT_TEXT,
-    BACK_INVENTORY_HERO,
-    CAMP_BOSS_TEXT,
-    MINE_BOSS_TEXT,
-    CASTLE_BOSS_TEXT,
-    ARENE_TEXT,
-    ARENE_COL_TEXT,
-    EXPLO_TEXT,
-    ARROW_TEXT,
-    DYNA_TEXT,
-    SHIELD_TEXT,
-    HEARTH_POTION_TEXT,
-    HELMET_TEXT,
-    FIRE_TEXT,
+    MENU_1,
+    MENU_2,
+    MENU_3,
+    MENU_4,
+    MENU_5,
+    MENU_6,
+    MENU_7,
+    MENU_8,
+    MENU_9,
+    MENU_10,
+    MENU_11,
+    MENU_12,
+    PLAY_E,
+    PLAY_PRESSED_E,
+    PLAY_HOVER_E,
+    B_SAVE_E,
+    B_SAVE_PRESSED_E,
+    B_SAVE_HOVER_E,
+    NEW_E,
+    NEW_PRESSED_E,
+    NEW_HOVER_E,
+    PARAM_E,
+    PARAM_PRESSED_E,
+    PARAM_HOVER_E,
+    QUIT_E,
+    QUIT_PRESSED_E,
+    QUIT_HOVER_E,
+    BACK_PARAM_E,
+    RIBBONS_PARAM_E,
+    RIBBONS_PARAM_PRESSED_E,
+    PAGE_PARAM_E,
+    BUTTON_FULL_E,
+    BUTTON_FULL_PRESSED_E,
+    BUTTON_WINDOW_PRESSED_E,
+    BUTTON_WINDOW_E,
+    R1920x1080_E,
+    R1280x720_E,
+    R850x480_E,
+    RES_SELECTION_E,
+    BUTTON_SOUND_E,
+    BUTTON_SOUND_PRESSED_E,
+    BUTTON_PLUS_E,
+    BUTTON_PLUS_PRESSED_E,
+    BUTTON_MINUS_E,
+    BUTTON_MINUS_PRESSED_E,
     MINE_TEXT
 } texture_type_t;
 
@@ -73,8 +106,9 @@ typedef enum scene_e {
     CAMP,
     VILLAGE,
     MINE,
-    TUTO,
     SAVE,
+    MENU,
+    PARAMS,
     MAIN
 }scene_t;
 
@@ -82,10 +116,11 @@ typedef struct rpg_s {
     heros_t *heros;
     save_t *save_list;
     biome_t *biome[5];
-    tuto_t *tuto;
+    menu_t *start_menu;
+    param_t *params;
     save_scene_t *save_scene;
     mouse_data_t mouse_data;
-    quest_t quest_tab[4];
+    quest_t quest_tab[3];
     int scene;
     sfClock *clock;
     sfEvent event;
@@ -93,10 +128,8 @@ typedef struct rpg_s {
     bool key_state[256];
     int second;
     float time;
-    sfTexture *text_tab[MINE_TEXT + 1];
-    sfFont *font_tab[FONT_COUNT];
-    inventory_t inventory;
-    game_over_t *end;
+    sfTexture *text_tab[100];
+    sfFont *font_tab[1];
     sfRenderWindow *window;
 } rpg_t;
 
@@ -136,6 +169,7 @@ typedef struct rpg_s {
     #define MINIONS_LIST_CAM rpg->biome[CAMP]->bot_data->bot_list[MINIONS]
 
 void test(rpg_t *rpg);
+void start_menu(rpg_t *rpg);
 
 /**TOOLS**/
 int my_strncmp(char const *s1, char const *s2, int len);
@@ -185,10 +219,4 @@ void entity_loop(
 /**QUEST_GIVER**/
 void manage_quest_giver(
     quest_t *quest_tab, quest_giver_t *quest_g, rpg_t *rpg);
-void check_open_portal(rpg_t *rpg);
-void check_end_quest(rpg_t *rpg);
-
-/**TUTO**/
-void tuto_loop(rpg_t *rpg);
-void manage_skip_button(button_t *button, rpg_t *rpg);
 #endif

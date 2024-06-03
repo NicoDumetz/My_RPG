@@ -1,8 +1,7 @@
 *.o
 .idea
 my_rpg
-menu_asset
-param_asset
+param_asset2
 prout.xcf
 save_dir
 reu.txt

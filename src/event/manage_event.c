@@ -6,7 +6,6 @@
 */
 
 #include "rpg.h"
-#include <stdio.h>
 
 void update_mouse_scroll(mouse_data_t *mouse_data, sfEvent *event)
 {
@@ -40,6 +39,8 @@ void update_mouse_state(mouse_data_t *mouse_data, sfEvent *event)
 void close_window(sfRenderWindow *window, sfEvent *event)
 {
     if (event->type == sfEvtClosed)
+        sfRenderWindow_close(window);
+    if (event->type == sfEvtKeyPressed && event->key.code == sfKeyEscape)
         sfRenderWindow_close(window);
 }
 

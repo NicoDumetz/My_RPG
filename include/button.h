@@ -49,6 +49,7 @@ void init_action_button(
     on_pressed_t pressed,
     on_hover_t hover,
     button_t *button);
+
 button_t *create_button(sfTexture **text_tab, int *text_id);
 void destroy_button(button_t *button);
 #endif

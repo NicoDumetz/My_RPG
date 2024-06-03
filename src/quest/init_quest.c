@@ -9,17 +9,10 @@
 
 void destroy_quest(quest_t *quest_tab)
 {
-    for (int i = 0; quest_tab[i].display != NULL; i++) {
+    for (int i = 0; i <= KILL_CASTLE; i++) {
         sfRectangleShape_destroy(quest_tab[i].box);
         sfText_destroy(quest_tab[i].display);
     }
-}
-
-void set_func_quest(
-    quest_t *quest, start_function_t start_f, check_function_t check_f)
-{
-    quest->start_f = start_f;
-    quest->check_f = check_f;
 }
 
 sfText *set_display_quest(char *message, sfFont *font)
@@ -34,14 +27,11 @@ sfText *set_display_quest(char *message, sfFont *font)
     return (text);
 }
 
-void set_quest(
-    quest_t *quest, char *message, sfFont *font)
+void set_quest(quest_t *quest, char *message, sfFont *font)
 {
     quest->display = set_display_quest(message, font);
     quest->box = sfRectangleShape_create();
     quest->state = NOT_BEGIN;
-    quest->start_f = NULL;
-    quest->check_f = NULL;
     sfRectangleShape_setSize(quest->box, (sfVector2f){10, 10});
     sfRectangleShape_setFillColor(quest->box, sfTransparent);
     sfRectangleShape_setOutlineColor(quest->box, sfBlack);
@@ -50,13 +40,12 @@ void set_quest(
 
 void init_quest(quest_t *quest_tab, sfFont **font_tab)
 {
-    char *message[4] = {
+    char *message[3] = {
         "Kill the Camp's Boss",
         "Kill the Mine's Boss",
-        "Kill the Castle's Boss",
+        "Kill the Castle's Boss"
     };
 
     for (int i = 0; i <= KILL_CASTLE; i++)
         set_quest(&(quest_tab[i]), message[i], font_tab[PIXEL]);
-    quest_tab[3].display = NULL;
 }
