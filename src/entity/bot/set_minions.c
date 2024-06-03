@@ -35,5 +35,6 @@ npc_t *set_minions(sfTexture *texture)
     minions->xp = 10;
     minions->hitbox_dim = hitbox;
     minions->view = 500;
+    minions->type = MELEE;
     return (minions);
 }

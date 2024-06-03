@@ -36,6 +36,12 @@ typedef enum deco_type_e {
     MINE_DECO
 } deco_type_t;
 
+typedef enum attack_type_e {
+    EXPLOSIVE,
+    ARCHERY,
+    DYNA,
+    MELEE
+} attack_type_t;
 typedef enum bot_type_e {
     GOBLINS_T = 0,
     GOBLINS_D,
@@ -97,6 +103,12 @@ typedef struct npc_s {
     struct npc_s *next;
     struct npc_s *prev;
     sfVector2i action[9];
+    float stamina;
+    float max_stamina;
+    int damage;
+    bool end_attack;
+    attack_type_t type;
+    struct projectile_s *projectile;
     special_npc_t special;
 } npc_t;
 
@@ -123,7 +135,9 @@ typedef struct quest_giver_s {
 
 typedef struct heros_s {
     sfTexture *texture_base;
+    skill_t *skill;
     sfText *interact;
+    bool restore;
     bool can_interact;
     int level_act;
     float stamina;
@@ -134,6 +148,7 @@ typedef struct heros_s {
     info_bar_t *bar_tab[3];
     npc_t *npc;
     float speed;
+    float multi_speed;
 } heros_t;
 
 /**ENTITY**/
@@ -178,10 +193,13 @@ npc_t *set_knight(sfTexture *texture);
 npc_t *set_minions(sfTexture *texture);
 void manage_bot(entity_t *entity, heros_t *heros, rpg_t *rpg);
 void manage_random_moov(npc_t *npc_act, rpg_t *rpg);
-void manage_chase(npc_t *npc_act, rpg_t *rpg);
+void manage_chase(npc_t *npc_act, rpg_t *rpg, heros_t *heros);
 void check_if_heros_attack_me(npc_t *to_check, heros_t *heros);
 bool check_chase_heros(npc_t *to_check, heros_t *heros);
 void manage_animation_bot(entity_t *entity, bool ticks);
+void add_to_list_bot(npc_t *new_bot, npc_t **list);
+void manage_attack_bot(npc_t *npc_act, heros_t *heros, int *chase, int *stand);
+sfRectangleShape *init_hitbox_rect(void);
 
 /**DECO**/
 deco_data_t *init_deco_data(void);

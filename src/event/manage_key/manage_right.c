@@ -16,7 +16,7 @@ static void moov_right(rpg_t *rpg)
     const sfView *view = sfRenderWindow_getView(rpg->window);
     sfVector2f viewCenter = sfView_getCenter(view);
     float right = viewCenter.x + window_width / 2;
-    float movement = rpg->heros->speed * rpg->time;
+    float movement = rpg->heros->speed * rpg->time * rpg->heros->multi_speed;
 
     if (pos.x + bounds2.x + movement > bounds.width ||
         static_collisions_right(
