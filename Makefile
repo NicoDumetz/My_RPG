@@ -151,6 +151,7 @@ SRC = main.c\
 	src/object/set_all_texture_obj.c\
 	src/tuto/quest/inventory_quest.c\
 	src/song/init_song.c\
+	src/cursor/init_cursor.c\
 
 OBJ = $(SRC:.c=.o)
 

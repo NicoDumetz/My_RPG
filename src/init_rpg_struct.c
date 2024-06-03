@@ -24,6 +24,7 @@ void destroy_save_list(rpg_t *rpg)
 static void destroy_rpg_next(rpg_t *rpg)
 {
     destroy_load_page(rpg->save_scene);
+    destroy_cursor(rpg);
     destroy_menu(rpg->start_menu);
     destroy_param_struct(rpg->params);
     destroy_inventory(&rpg->inventory);
@@ -150,6 +151,7 @@ rpg_t *create_rpg_struct(void)
     rpg->time = 0;
     rpg->window = sfRenderWindow_create(mode, "my_rpg", sfClose, NULL);
     sfRenderWindow_setPosition(rpg->window, (sfVector2i){0, 0});
+    init_cursor(rpg);
     rpg->heros = init_heros(rpg->text_tab, rpg->font_tab);
     for (int i = 0; i < 256; i++)
         rpg->key_state[i] = false;
