@@ -35,6 +35,7 @@ void write_inv_data(save_data_t *new_save, rpg_t *rpg)
         new_save->object_id_inv[j] = back_obj->id;
         j++;
     }
+    j = 0;
     for (int i = 0; i < 4; i++) {
         if (rpg->inventory.equipment[i]->child == NULL)
             continue;
@@ -57,8 +58,20 @@ void write_quest_data(save_data_t *new_save, rpg_t *rpg)
     write_inv_data(new_save, rpg);
 }
 
+void unappli_all_multi(rpg_t *rpg)
+{
+    back_obj_t *back = NULL;
+
+    for (int i = 0; i < 4; i++) {
+        back = (back_obj_t *)rpg->inventory.equipment[i]->child;
+        if (back)
+            unappli_multi_equip(rpg->heros, back);
+    }
+}
+
 void write_data_in_save(save_data_t *new_save, rpg_t *rpg)
 {
+    unappli_all_multi(rpg);
     new_save->heros_pv = rpg->heros->npc->pv;
     new_save->heros_stami = rpg->heros->stamina;
     new_save->id_biome = rpg->scene;

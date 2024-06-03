@@ -10,7 +10,7 @@
 bool start_kill_goblins(quest_t *, void *data)
 {
     rpg_t *rpg = (rpg_t *)(data);
-    int tab[] = {HEARTH_POTION, HELMET};
+    int tab[] = {PV_LVL_1, GLOVES_LVL_2};
     npc_t *npc = NULL;
 
     for (int i = 0; i < 2; i++) {

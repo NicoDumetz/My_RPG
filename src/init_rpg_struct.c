@@ -48,8 +48,9 @@ void destroy_rpg(rpg_t *rpg)
             destroy_biome(rpg->biome[i]);
         for (int i = 0; i <= MINE_TEXT; i++)
             sfTexture_destroy(rpg->text_tab[i]);
-        for (int i = 0; i <= PIXEL; i++)
+        for (int i = 0; i < FONT_COUNT; i++) {
             sfFont_destroy(rpg->font_tab[i]);
+        }
         destroy_rpg_next(rpg);
         free(rpg);
     }

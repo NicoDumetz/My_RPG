@@ -14,6 +14,11 @@ static void equip_item_save(back_obj_t *back, rpg_t *rpg)
 
     if (free_equipment == NULL)
         return;
+    back->next = rpg->heros->inventory;
+        if (rpg->heros->inventory)
+            rpg->heros->inventory->prev = back;
+    rpg->heros->inventory = back;
+    appli_multi_equip(rpg->heros, back);
     free_equipment->child = back;
 }
 
@@ -95,6 +100,7 @@ void save_button_released(void *data, button_t *button)
     rpg_t *rpg = (rpg_t *)(data);
     save_t *save = (save_t *)(button->child);
 
+    unappli_all_multi(rpg);
     appli_save(rpg, save->data);
     rpg->end->active = 0;
     set_view(rpg,
