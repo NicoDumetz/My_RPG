@@ -212,8 +212,4 @@ entity_t *create_knight_house(
 entity_t *create_mine(sfVector2f pos, sfTexture *texture, back_t *back);
 entity_t *create_tree_plain(sfVector2f pos, sfTexture *texture, back_t *back);
 void display_deco(deco_data_t *deco_data, sfRenderWindow *window, bool ticks);
-    #define KNIGHT_BUILDINGS "tiny_world_asset/Factions/Knights/Buildings/"
-    #define TREE_SPRITE "tiny_world_asset/Resources/Trees/Tree.png"
-    #define KNIGHT_H_SPRITE KNIGHT_BUILDINGS "House/House_Blue.png"
-    #define MINE_S "tiny_world_asset/Resources/Gold Mine/GoldMine_Active.png"
 #endif

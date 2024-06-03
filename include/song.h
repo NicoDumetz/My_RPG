@@ -8,8 +8,8 @@
 #ifndef SONG_H
     #define SONG_H
     #include "lib.h"
-    #define GUTS_SONG "music/guts.wav"
-    #define SWORD_SONG "music/sword.wav"
+    #define GUTS_SONG "assets/music/guts.wav"
+    #define SWORD_SONG "assets/music/sword.wav"
 
 typedef enum music_type_e {
     SWORD_S,

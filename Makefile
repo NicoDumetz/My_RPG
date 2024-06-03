@@ -161,7 +161,7 @@ OBJ = $(SRC:.c=.o)
 
 NAME = my_rpg
 
-CFLAGS += -Wall -Wextra -g \
+CFLAGS += -Wall -Wextra \
 		  -lcsfml-graphics -lcsfml-window -lcsfml-system -lcsfml-audio -lm \
 		  -I ./include
 

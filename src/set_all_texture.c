@@ -103,18 +103,18 @@ static void set_all_texture_next_four(sfTexture **text_tab)
 
 static void set_all_texture_next_five(sfTexture **text_tab)
 {
-    text_tab[MENU_1] = sfTexture_createFromFile("menu_asset/menu1.png", NULL);
-    text_tab[MENU_2] = sfTexture_createFromFile("menu_asset/menu2.png", NULL);
-    text_tab[MENU_3] = sfTexture_createFromFile("menu_asset/menu3.png", NULL);
-    text_tab[MENU_4] = sfTexture_createFromFile("menu_asset/menu4.png", NULL);
-    text_tab[MENU_5] = sfTexture_createFromFile("menu_asset/menu5.png", NULL);
-    text_tab[MENU_6] = sfTexture_createFromFile("menu_asset/menu6.png", NULL);
-    text_tab[MENU_7] = sfTexture_createFromFile("menu_asset/menu7.png", NULL);
-    text_tab[MENU_8] = sfTexture_createFromFile("menu_asset/menu8.png", NULL);
-    text_tab[MENU_9] = sfTexture_createFromFile("menu_asset/menu3.png", NULL);
-    text_tab[MENU_10] = sfTexture_createFromFile("menu_asset/menu4.png", NULL);
-    text_tab[MENU_11] = sfTexture_createFromFile("menu_asset/menu5.png", NULL);
-    text_tab[MENU_12] = sfTexture_createFromFile("menu_asset/menu6.png", NULL);
+    text_tab[MENU_1] = sfTexture_createFromFile(MENU_1_PATH, NULL);
+    text_tab[MENU_2] = sfTexture_createFromFile(MENU_2_PATH, NULL);
+    text_tab[MENU_3] = sfTexture_createFromFile(MENU_3_PATH, NULL);
+    text_tab[MENU_4] = sfTexture_createFromFile(MENU_4_PATH, NULL);
+    text_tab[MENU_5] = sfTexture_createFromFile(MENU_5_PATH, NULL);
+    text_tab[MENU_6] = sfTexture_createFromFile(MENU_6_PATH, NULL);
+    text_tab[MENU_7] = sfTexture_createFromFile(MENU_7_PATH, NULL);
+    text_tab[MENU_8] = sfTexture_createFromFile(MENU_8_PATH, NULL);
+    text_tab[MENU_9] = sfTexture_createFromFile(MENU_3_PATH, NULL);
+    text_tab[MENU_10] = sfTexture_createFromFile(MENU_4_PATH, NULL);
+    text_tab[MENU_11] = sfTexture_createFromFile(MENU_5_PATH, NULL);
+    text_tab[MENU_12] = sfTexture_createFromFile(MENU_6_PATH, NULL);
     text_tab[BAG_TEXT] = sfTexture_createFromFile(BAG_PATH, NULL);
     text_tab[BLOOD_TEXT] = sfTexture_createFromFile(BLOOD_PATH, NULL);
     text_tab[COIN_TEXT] = sfTexture_createFromFile(COIN_PATH, NULL);
