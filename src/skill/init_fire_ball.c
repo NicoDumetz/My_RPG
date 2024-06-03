@@ -16,9 +16,9 @@ typedef struct fire_ball_s {
 
 fire_ball_t fireball_tab[] = {
     {0},
-    {15},
-    {13},
-    {10},
+    {80},
+    {60},
+    {50},
 };
 
 void destroy_fire_ball(fire_ball_t *fire_ball)
