@@ -20,10 +20,17 @@ SRC = main.c\
 	src/entity/npc/init_npc.c\
 	src/entity/init_entity.c\
 	src/entity/set_offset.c\
+	src/entity/bot/init_bot_data.c\
+	src/entity/bot/set_minions.c\
+	src/entity/bot/set_goblins.c\
+	src/entity/bot/set_goblins_b.c\
+	src/entity/bot/set_goblins_d.c\
+	src/entity/bot/set_knight.c\
+	src/entity/bot/set_archer.c\
+	src/entity/bot/create_bot.c\
 	src/animations/anim_entity.c\
 	src/init_rpg_struct.c\
 	src/test.c\
-
 
 OBJ = $(SRC:.c=.o)
 

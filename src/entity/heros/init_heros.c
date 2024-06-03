@@ -10,27 +10,29 @@
 void destroy_heros(heros_t *heros)
 {
     destroy_npc(heros->npc);
+    sfTexture_destroy(heros->texture_base);
     free(heros);
 }
 
 void set_action_tab_heros(heros_t *heros)
 {
-    heros->npc->action[ATTACK_F] = 4;
-    heros->npc->action[ATTACK_B] = 7;
-    heros->npc->action[ATTACK_L] = -2;
-    heros->npc->action[ATTACK_R] = 2;
-    heros->npc->action[MOVE_R] = 1;
-    heros->npc->action[MOVE_L] = -1;
-    heros->npc->action[MOVE_F] = 1;
-    heros->npc->action[MOVE_B] = 1;
-    heros->npc->action[STAND] = 0;
+    heros->npc->action[ATTACK_F] = (sfVector2i){6, 4};
+    heros->npc->action[ATTACK_B] = (sfVector2i){6, 7};
+    heros->npc->action[ATTACK_L] = (sfVector2i){6, -1};
+    heros->npc->action[ATTACK_R] = (sfVector2i){6, 2};
+    heros->npc->action[MOVE_R] = (sfVector2i){6, 1};
+    heros->npc->action[MOVE_L] = (sfVector2i){6, -1};
+    heros->npc->action[MOVE_F] = (sfVector2i){6, 1};
+    heros->npc->action[MOVE_B] = (sfVector2i){6, 1};
+    heros->npc->action[STAND] = (sfVector2i){6, 0};
 }
 
 heros_t *init_heros(char *asset)
 {
     heros_t *heros = malloc(sizeof(heros_t));
 
-    heros->npc = init_npc(asset);
+    heros->texture_base = sfTexture_createFromFile(asset, NULL);
+    heros->npc = init_npc(heros->texture_base);
     set_offset(heros->npc->entity, (sfVector2i){6, 8});
     set_action_tab_heros(heros);
     return heros;

@@ -14,6 +14,7 @@ typedef enum scene_e {
 }scene_t;
 typedef struct rpg_s {
     heros_t *heros;
+    bot_data_t *bot_data;
     int scene;
     sfClock *clock;
     sfEvent event;

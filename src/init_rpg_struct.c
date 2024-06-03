@@ -13,6 +13,7 @@ void destroy_rpg(rpg_t *rpg)
         sfRenderWindow_destroy(rpg->window);
         destroy_heros(rpg->heros);
         sfClock_destroy(rpg->clock);
+        free_bot_data(rpg->bot_data);
         free(rpg);
     }
 }
@@ -29,5 +30,6 @@ rpg_t *create_rpg_struct(void)
     rpg->window = sfRenderWindow_create(mode, "my_rpg", sfClose, NULL);
     rpg->heros = init_heros(
         "tiny_world_asset/Factions/Knights/Troops/Warrior/Blue/Warrior_Blue.png");
+    rpg->bot_data = init_bot_data();
     return rpg;
 }

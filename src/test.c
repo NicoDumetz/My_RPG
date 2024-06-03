@@ -11,8 +11,8 @@ void test(rpg_t *rpg)
 {
     heros_t *heros = rpg->heros;
 
-    anim_entity(heros->npc->entity, heros->npc->action[ATTACK_R], rpg->time);
-    sfSprite_setPosition(heros->npc->entity->sprite, (sfVector2f){500, 500});
+    anim_entity(rpg->bot_data->bot_list[GOBLINS_B]->entity, rpg->bot_data->bot_list[GOBLINS_B]->action[MOVE_F], rpg->time);
+    sfSprite_setPosition(rpg->bot_data->bot_list[GOBLINS_B]->entity->sprite, (sfVector2f){500, 500});
     sfRenderWindow_drawSprite(
-        rpg->window, rpg->heros->npc->entity->sprite, NULL);
+        rpg->window, rpg->bot_data->bot_list[GOBLINS_B]->entity->sprite, NULL);
 }
