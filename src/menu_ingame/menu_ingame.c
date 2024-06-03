@@ -52,6 +52,7 @@ void manage_ingame_menu(rpg_t *rpg)
 {
     if (rpg->key_state[sfKeyEscape] && rpg->scene != INGAME_MENU &&
         rpg->scene != MENU) {
+        clean_entity_list(rpg->biome[rpg->scene]);
         rpg->ingame_menu->from = rpg->scene;
         rpg->scene = INGAME_MENU;
         set_view(rpg, rpg->ingame_menu->background,

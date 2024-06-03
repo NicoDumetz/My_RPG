@@ -9,7 +9,7 @@
 
 bool manage_test_tuto(rpg_t *rpg, biome_t *)
 {
-    if (rpg->key_state[sfKeyC]) {
+    if (rpg->key_state[sfKeyC] && rpg->end->active == OFF) {
         set_view(rpg, rpg->save_scene->back, rpg->save_scene->back);
         rpg->save_scene->from = rpg->scene;
         clean_entity_list(rpg->tuto->biome);
