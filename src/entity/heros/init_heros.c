@@ -10,7 +10,6 @@
 void destroy_heros(heros_t *heros)
 {
     destroy_npc(heros->npc);
-    sfTexture_destroy(heros->texture_base);
     free(heros);
 }
 
@@ -35,14 +34,14 @@ void set_attbox_dim_heros(npc_t *npc)
     npc->attbox_dim[ATTACK_R] = (sfFloatRect){35, 30, 40, 55};
 }
 
-heros_t *init_heros(char *asset)
+heros_t *init_heros(sfTexture *texture)
 {
     heros_t *heros = malloc(sizeof(heros_t));
     sfFloatRect hitbox = {30, 25, 55, 55};
     sfFloatRect colbox = {40, 60, 80, 90};
 
     heros->speed = 200.f;
-    heros->texture_base = sfTexture_createFromFile(asset, NULL);
+    heros->texture_base = texture;
     heros->npc = init_npc(heros->texture_base);
     heros->npc->attack = 10;
     heros->npc->pv = 100;

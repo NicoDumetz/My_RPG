@@ -38,11 +38,13 @@ void set_all_box(entity_t *entity, sfRenderWindow *window)
     set_box(npc->entity->colbox, npc->entity->colbox_dim, npc->entity);
     for (int i = 0; i <= ATTACK_R; i++) {
         set_box(npc->attbox[i], npc->attbox_dim[i], npc->entity);
-        sfRenderWindow_drawRectangleShape(
-        window, npc->attbox[i], NULL);
+        if (npc->special == HEROS)
+            sfRenderWindow_drawRectangleShape(
+            window, npc->attbox[i], NULL);
     }
     sfRenderWindow_drawRectangleShape(
         window, npc->entity->colbox, NULL);
-    sfRenderWindow_drawRectangleShape(
-        window, npc->hitbox, NULL);
+    if (npc->special == NON_SPEC)
+        sfRenderWindow_drawRectangleShape(
+            window, npc->hitbox, NULL);
 }

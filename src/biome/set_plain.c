@@ -29,7 +29,8 @@ sfVector2f pos_tree_plain[17] = {
     {3155.7f, 206.8f}
 };
 
-void set_deco_data_plain(deco_data_t *deco_data, back_t *back)
+void set_deco_data_plain(
+    deco_data_t *deco_data, back_t *back, sfTexture **text_tab)
 {
     deco_data->deco_entity[HOUSE_DECO] = malloc(sizeof(entity_t) * 3);
     deco_data->deco_entity[HOUSE_DECO][2] = NULL;
@@ -37,11 +38,9 @@ void set_deco_data_plain(deco_data_t *deco_data, back_t *back)
     deco_data->deco_entity[MINE_DECO][1] = NULL;
     deco_data->deco_entity[TREE_DECO] = malloc(sizeof(entity_t) * 10);
     deco_data->deco_entity[TREE_DECO][17] = NULL;
-    deco_data->texture[MINE_DECO] = sfTexture_createFromFile(MINE_S, NULL);
-    deco_data->texture[TREE_DECO] =
-        sfTexture_createFromFile(TREE_SPRITE, NULL);
-    deco_data->texture[HOUSE_DECO] =
-        sfTexture_createFromFile(KNIGHT_H_SPRITE, NULL);
+    deco_data->texture[MINE_DECO] = text_tab[MINE_TEXT];
+    deco_data->texture[TREE_DECO] = text_tab[TREE_SPRITE_TEXT];
+    deco_data->texture[HOUSE_DECO] = text_tab[KNIGHT_HOUSE_TEXT];
     for (int i = 0; i < 2; i++)
         deco_data->deco_entity[HOUSE_DECO][i] = create_knight_house(
             pos_house_plain[i], deco_data->texture[HOUSE_DECO], back);
@@ -53,16 +52,17 @@ void set_deco_data_plain(deco_data_t *deco_data, back_t *back)
         pos_tree_plain[i], deco_data->texture[TREE_DECO], back);
 }
 
-biome_t *set_plain(void)
+biome_t *set_plain(sfTexture **text_tab)
 {
     biome_t *plain = malloc(sizeof(biome_t));
     int bot_type[6] = {GOBLINS_B, GOBLINS_D, GOBLINS_T, KNIGHT, ARCHER, -1};
 
-    plain->back = add_background(PLAINE_SPRITE, PLAINE_COLISION);
-    plain->bot_data = init_bot_data();
+    plain->back = add_background(
+        text_tab[PLAINE_SPRITE_TEXT], text_tab[PLAINE_COLISION_TEXT]);
+    plain->bot_data = init_bot_data(text_tab);
     plain->deco_data = init_deco_data();
     for (int i = 0; bot_type[i] < 6; i++)
         plain->bot_type[i] = bot_type[i];
-    set_deco_data_plain(plain->deco_data, plain->back);
+    set_deco_data_plain(plain->deco_data, plain->back, text_tab);
     return (plain);
 }

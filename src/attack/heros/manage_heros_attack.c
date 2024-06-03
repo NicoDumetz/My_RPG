@@ -33,6 +33,5 @@ void manage_heros_attack(heros_t *heros, bool *key_code)
     if (heros->npc->is_attack == false && which_attack(heros, key_code) == 1){
         heros->npc->entity->rect_sprite.left = 0;
         heros->npc->is_attack = true;
-        heros->npc->cur_attack = true;
     }
 }

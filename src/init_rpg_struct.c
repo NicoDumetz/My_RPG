@@ -15,6 +15,8 @@ void destroy_rpg(rpg_t *rpg)
         sfClock_destroy(rpg->clock);
         for (int i = 0; i <= MINE; i++)
             destroy_biome(rpg->biome[i]);
+        for (int i = 0; i <= MINE_TEXT; i++)
+            sfTexture_destroy(rpg->text_tab[i]);
         free(rpg);
     }
 }
@@ -29,15 +31,16 @@ rpg_t *create_rpg_struct(void)
     rpg->second = 0;
     rpg->time = 0;
     rpg->window = sfRenderWindow_create(mode, "my_rpg", sfClose, NULL);
-    rpg->heros = init_heros(KNIGHT_SPRITE);
-    rpg->heros->npc->entity->pos = (sfVector2f){1000, 500};
+    set_all_texture(rpg->text_tab);
+    rpg->heros = init_heros(rpg->text_tab[KNIGHT_TEXT]);
     sfSprite_setPosition(
         rpg->heros->npc->entity->sprite, rpg->heros->npc->entity->pos);
+    rpg->heros->npc->entity->pos = (sfVector2f){1000, 500};
     sfRenderWindow_setPosition(rpg->window, (sfVector2i){0, 0});
     rpg->ticks = false;
     for (int i = 0; i < 256; i++)
         rpg->key_state[i] = false;
     for (int i = 0; i <= MINE; i++)
-        rpg->biome[i] = create_biome(i);
+        rpg->biome[i] = create_biome(i, rpg->text_tab);
     return rpg;
 }

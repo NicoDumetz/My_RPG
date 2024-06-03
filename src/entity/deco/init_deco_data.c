@@ -13,7 +13,6 @@ void free_deco_data(deco_data_t *deco_data)
         for (int j = 0; deco_data->deco_entity[i][j]; j++)
             destroy_entity(deco_data->deco_entity[i][j]);
         free(deco_data->deco_entity[i]);
-        sfTexture_destroy(deco_data->texture[i]);
     }
     free(deco_data);
 }

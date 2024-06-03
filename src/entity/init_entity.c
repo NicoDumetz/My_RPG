@@ -11,6 +11,9 @@ void destroy_entity(entity_t *entity)
 {
     sfSprite_destroy(entity->sprite);
     sfRectangleShape_destroy(entity->colbox);
+    if (entity->effect_tab)
+        for (int i = 0; entity->effect_tab[i]; i++)
+            destroy_effect(entity->effect_tab[i]);
     free(entity);
 }
 
@@ -22,6 +25,12 @@ sfRectangleShape *init_colbox_rect(void)
     sfRectangleShape_setFillColor(hitbox, sfTransparent);
     sfRectangleShape_setOutlineThickness(hitbox, 2);
     return hitbox;
+}
+
+entity_t *init_entity_next(entity_t *entity)
+{
+    entity->effect_tab = NULL;
+    return (entity);
 }
 
 entity_t *init_entity(sfTexture *asset)
@@ -45,5 +54,5 @@ entity_t *init_entity(sfTexture *asset)
     entity->colbox_dim = (sfFloatRect){0, 0, 0, 0};
     ss_size = sfSprite_getGlobalBounds(entity->sprite);
     entity->sprite_sheet_size = (sfVector2f){ss_size.width, ss_size.height};
-    return entity;
+    return init_entity_next(entity);
 }

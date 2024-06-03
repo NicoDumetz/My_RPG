@@ -62,6 +62,8 @@ SRC = main.c\
 	src/collisions/check_dynamic_collided.c\
 	src/entity/bot/ia/check_if_heros_attack_me.c\
 	src/entity/bot/ia/check_chase_heros.c\
+	src/effect/init_effect.c\
+	src/set_all_texture.c\
 
 OBJ = $(SRC:.c=.o)
 

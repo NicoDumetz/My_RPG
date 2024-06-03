@@ -10,6 +10,29 @@
     #include "button.h"
     #include "lib.h"
 
+typedef enum texture_type_e {
+    DEATH_TEXT = 0,
+    KNIGHT_TEXT,
+    ARCHER_TEXT,
+    MINIONS_TEXT,
+    GOBLINS_T_TEXT,
+    GOBLINS_B_TEXT,
+    GOBLINS_D_TEXT,
+    PLAINE_SPRITE_TEXT,
+    PLAINE_COLISION_TEXT,
+    MINE_B_TEXT,
+    MINE_COLISION_TEXT,
+    CAMP_SPRITE_TEXT,
+    CAMP_COLISION_TEXT,
+    VILLAGE_SPRITE_TEXT,
+    VILLAGE_COLISION_TEXT,
+    CASTLE_SPRITE_TEXT,
+    CASTLE_COLISION_TEXT,
+    KNIGHT_HOUSE_TEXT,
+    TREE_SPRITE_TEXT,
+    MINE_TEXT
+} texture_type_t;
+
 typedef enum scene_e {
     PLAIN = 0,
     CASTLE,
@@ -28,6 +51,7 @@ typedef struct rpg_s {
     bool key_state[256];
     int second;
     float time;
+    sfTexture *text_tab[20];
     sfRenderWindow *window;
 } rpg_t;
 
@@ -66,6 +90,12 @@ typedef struct rpg_s {
     #define KNIGHT_LIST_CAM rpg->biome[CAMP]->bot_data->bot_list[KNIGHT]
     #define MINIONS_LIST_CAM rpg->biome[CAMP]->bot_data->bot_list[MINIONS]
 
+    #define DEATH_PATH "tiny_world_asset/Factions/Knights/Troops/Dead/Dead.png"
+    #define KNIGHT_BUILDINGS "tiny_world_asset/Factions/Knights/Buildings/"
+    #define TREE_SPRITE "tiny_world_asset/Resources/Trees/Tree.png"
+    #define KNIGHT_H_SPRITE KNIGHT_BUILDINGS "House/House_Blue.png"
+    #define MINE_S "tiny_world_asset/Resources/Gold Mine/GoldMine_Active.png"
+
 void test(rpg_t *rpg);
 
 /**TOOLS**/
@@ -81,6 +111,7 @@ void rpg(rpg_t *rpg);
 void destroy_rpg(rpg_t *rpg);
 rpg_t *create_rpg_struct(void);
 void manage_heros(heros_t *heros, rpg_t *rpg);
+void set_all_texture(sfTexture **text_tab);
 
 /**EVENT**/
 void manage_event(rpg_t *rpg);

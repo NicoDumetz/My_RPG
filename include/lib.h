@@ -19,12 +19,13 @@
     #include <fcntl.h>
     #include <unistd.h>
     #include <string.h>
+    #include <stdbool.h>
     #include <stdio.h>
+    #include "effect.h"
     #include "player.h"
     #include "background.h"
     #include <time.h>
     #include <math.h>
-    #include <stdbool.h>
     #include <biome.h>
     #include "collisions.h"
     #define ABS(x) ((x) < 0 ? x = -(x) : (x))
@@ -46,4 +47,10 @@
     #define VILLAGE_COLISION "biome_asset/col_plaine.png"
     #define CASTLE_SPRITE "biome_asset/chateau.png"
     #define CASTLE_COLISION "biome_asset/col_chateau.png"
+    #define DEATH_PATH "tiny_world_asset/Factions/Knights/Troops/Dead/Dead.png"
+    #define KNIGHT_BUILDINGS "tiny_world_asset/Factions/Knights/Buildings/"
+    #define TREE_SPRITE "tiny_world_asset/Resources/Trees/Tree.png"
+    #define KNIGHT_H_SPRITE KNIGHT_BUILDINGS "House/House_Blue.png"
+    #define MINE_S "tiny_world_asset/Resources/Gold Mine/GoldMine_Active.png"
+
 #endif

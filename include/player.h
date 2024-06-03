@@ -55,6 +55,7 @@ typedef struct entity_s {
     sfVector2f size;
     sfVector2f sprite_sheet_size;
     sfVector2f pos;
+    effect_t **effect_tab;
     int level;
     sfIntRect rect_sprite;
     sfRectangleShape *colbox;
@@ -113,7 +114,7 @@ npc_t *init_npc(sfTexture *asset);
 void destroy_npc(npc_t *npc);
 
 /**HEROS**/
-heros_t *init_heros(char *asset);
+heros_t *init_heros(sfTexture *texture);
 void destroy_heros(heros_t *heros);
 
 /**OFFSET**/
@@ -126,7 +127,7 @@ void set_all_box(entity_t *entity, sfRenderWindow *window);
 void manage_animation(entity_t *entity, bool ticks);
 
 /**BOT**/
-bot_data_t *init_bot_data(void);
+bot_data_t *init_bot_data(sfTexture **text_tab);
 npc_t *set_archer(sfTexture *texture);
 void free_bot_data(bot_data_t *bot_data);
 void free_bot_list(npc_t *npc);
