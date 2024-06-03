@@ -42,7 +42,7 @@ static void destroy_play_song(play_song_t *song)
     }
 }
 
-void destroy_all_song(song_management_s *song_management)
+void destroy_all_song(song_management_t *song_management)
 {
     if (song_management) {
         destroy_play_song(&song_management->music);
