@@ -13,10 +13,7 @@ void which_scene(rpg_t *rpg)
         biome_loop(rpg, rpg->biome[rpg->scene]);
         manage_heros_bar(rpg->heros, rpg->window);
         quest_displayer(rpg->quest_tab, rpg->window);
-    }
-    if (rpg->scene == TUTO) {
-        tuto_loop(rpg);
-        manage_heros_bar(rpg->heros, rpg->window);
+        manage_inventory(rpg);
     }
     if (rpg->scene == SAVE) {
         load_page(rpg);
@@ -52,7 +49,7 @@ void rpg(rpg_t *rpg)
         init_clock(rpg);
         rpg->mouse_data.pos = recalculate_mouse_position(
             rpg->window, sfRenderWindow_getView(rpg->window));
-        sfRenderWindow_clear(rpg->window, sfBlack);
+        sfRenderWindow_clear(rpg->window, sfWhite);
         which_scene(rpg);
         sfRenderWindow_display(rpg->window);
     }
