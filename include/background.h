@@ -24,7 +24,8 @@ typedef struct background_s {
 
 typedef enum action_end_e {
     OFF,
-    ACTIVE
+    ACTIVE,
+    TUTO_FADE,
 } action_end_t;
 
 
@@ -48,4 +49,8 @@ void free_game_over(game_over_t *g);
 void lunch_end(rpg_t *rpg);
 void update_game_over(game_over_t *game, rpg_t *rpg);
 void display_game_over(game_over_t *game, rpg_t *rpg);
+int update_rect(game_over_t *game, rpg_t *rpg);
+void init_switch(rpg_t *rpg);
+int unfade_rect(game_over_t *game, rpg_t *rpg);
+void manage_switch_fade(game_over_t *game, rpg_t *rpg);
 #endif

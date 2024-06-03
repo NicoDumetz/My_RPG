@@ -32,6 +32,8 @@ void lunch_end(rpg_t *rpg)
     sfVector2f size = sfView_getSize(view);
     sfFloatRect rect = sfText_getLocalBounds(game->text);
 
+    game->alpha = 0;
+    game->alpha_text = 0;
     sfText_setOrigin(game->text, (sfVector2f)
     {rect.width / 2.0f, rect.height / 2.0f});
     sfText_setPosition(game->text, (sfVector2f){center.x, center.y});
@@ -41,7 +43,7 @@ void lunch_end(rpg_t *rpg)
     game->active = ACTIVE;
 }
 
-void display_game_over(game_over_t *game, rpg_t *rpg)
+static void display_game_over(game_over_t *game, rpg_t *rpg)
 {
     if (game->active == ACTIVE) {
         sfRenderWindow_drawRectangleShape(rpg->window, game->rect, NULL);
@@ -50,12 +52,14 @@ void display_game_over(game_over_t *game, rpg_t *rpg)
     }
 }
 
-static int update_rect(game_over_t *game, rpg_t *rpg)
+int update_rect(game_over_t *game, rpg_t *rpg)
 {
     float speed = rpg->time * 5;
     sfColor color;
 
-    if (game->active == ACTIVE && game->alpha < 255.0f) {
+    rpg->heros->npc->act_action = STAND;
+    if ((game->active == ACTIVE || game->active == TUTO_FADE)
+        && game->alpha < 255.0f) {
         game->alpha += 20.0f * speed;
         if (game->alpha > 255.0f)
             game->alpha = 255.0f;
@@ -84,6 +88,8 @@ static void update_text(game_over_t *game, rpg_t *rpg)
 
 void update_game_over(game_over_t *game, rpg_t *rpg)
 {
+    if (game->active != ACTIVE)
+        return;
     update_rect(game, rpg);
     if (game->alpha >= 255)
         update_text(game, rpg);

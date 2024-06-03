@@ -27,7 +27,7 @@ sfImage *wich_img(rpg_t *rpg)
 
 void manage_movements(rpg_t *rpg)
 {
-    if (rpg->end->active == ACTIVE)
+    if (rpg->end->active != OFF)
         return;
     if (rpg->key_state[sfKeyD] && rpg->heros->npc->allowed_dir[RIGHT])
         manage_right(rpg);

@@ -62,7 +62,7 @@ void manage_interact(heros_t *heros, sfRenderWindow *window)
 
 void manage_heros(heros_t *heros, rpg_t *rpg)
 {
-    if (heros->npc->pv <= 0 && rpg->end->active == OFF)
+    if (heros->npc->pv <= 0 && rpg->end->active == OFF && rpg->scene != TUTO)
         lunch_end(rpg);
     manage_skill(heros, rpg);
     manage_movements(rpg);

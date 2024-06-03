@@ -21,6 +21,8 @@ void which_scene(rpg_t *rpg)
     } else {
         update_game_over(rpg->end, rpg);
     }
+    if (rpg->end->active == TUTO_FADE)
+        manage_switch_fade(rpg->end, rpg);
     if (rpg->scene == SAVE)
         load_page(rpg);
 }
