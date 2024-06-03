@@ -54,6 +54,7 @@ typedef enum texture_type_e {
     CASTLE_BOSS_TEXT,
     ARENE_TEXT,
     ARENE_COL_TEXT,
+    EXPLO_TEXT,
     MINE_TEXT
 } texture_type_t;
 

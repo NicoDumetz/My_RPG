@@ -55,7 +55,7 @@ void set_attbox_dim_heros(npc_t *npc)
 effect_t **create_effect_tab_heros(
     sfTexture **text_tab, sfSprite *heros_sprite)
 {
-    effect_t **effect_tab = malloc(sizeof(effect_t *) * 4);
+    effect_t **effect_tab = malloc(sizeof(effect_t *) * 5);
 
     effect_tab[LEVEL_UP_HEROS] = create_effect(
         text_tab[LEVEL_UP_TEXT], true, (sfVector2i){7, 1}, heros_sprite);
@@ -63,7 +63,9 @@ effect_t **create_effect_tab_heros(
         text_tab[BLOOD_TEXT], true, (sfVector2i){8, 1}, heros_sprite);
     effect_tab[PICK_HEROS] = create_effect(
         text_tab[COIN_TEXT], true, (sfVector2i){7, 1}, heros_sprite);
-    effect_tab[3] = NULL;
+    effect_tab[EXPLO_HEROS] = create_effect(
+        text_tab[EXPLO_TEXT], true, (sfVector2i){9, 1}, heros_sprite);
+    effect_tab[4] = NULL;
     return (effect_tab);
 }
 

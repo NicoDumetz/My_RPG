@@ -82,4 +82,5 @@
     #define CASTLE_BOSS_PATH "boss_asset/Warrior_Purple.png"
     #define ARENE_PATH "biome_asset/Arène.png"
     #define ARENE_COL_PATH "biome_asset/FondArene.png"
+    #define EXPLO_PATH "tiny_world_asset/Effects/Explosion/Explosions.png"
 #endif
