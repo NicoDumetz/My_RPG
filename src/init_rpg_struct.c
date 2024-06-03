@@ -30,6 +30,7 @@ static void destroy_rpg_next(rpg_t *rpg)
     destroy_param_struct(rpg->params);
     destroy_inventory(&rpg->inventory);
     free_game_over(rpg->end);
+    destroy_particules(rpg);
 }
 
 void destroy_rpg(rpg_t *rpg)
@@ -72,6 +73,7 @@ rpg_t *init_rpg_next(rpg_t *rpg)
     rpg->second = 0;
     rpg->time = 0;
     init_game_over(rpg);
+    init_particules(rpg);
     return (rpg);
 }
 
@@ -99,14 +101,16 @@ rpg_t *create_rpg_struct(void)
     rpg_t *rpg = malloc(sizeof(rpg_t));
     sfVideoMode mode = {1920, 1080, 32};
 
-    if (init_ressources(rpg->font_tab, rpg->text_tab, rpg))
-        return NULL;
     rpg->start_menu = create_menu_struct(rpg);
     rpg->params = init_param_struct(rpg->text_tab, rpg->font_tab);
     rpg->clock = sfClock_create();
     rpg->scene = MENU;
     rpg->second = 0;
     rpg->time = 0;
+    if (init_ressources(rpg->font_tab, rpg->text_tab, rpg))
+        return NULL;
+    rpg->clock = sfClock_create();
+    set_all_font(rpg->font_tab);
     rpg->window = sfRenderWindow_create(mode, "my_rpg", sfClose, NULL);
     sfRenderWindow_setPosition(rpg->window, (sfVector2i){0, 0});
     rpg->heros = init_heros(rpg->text_tab, rpg->font_tab);

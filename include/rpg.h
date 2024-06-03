@@ -149,6 +149,7 @@ typedef struct rpg_s {
     sfFont *font_tab[FONT_COUNT];
     inventory_t inventory;
     game_over_t *end;
+    all_part_t *part;
     sfRenderWindow *window;
 } rpg_t;
 

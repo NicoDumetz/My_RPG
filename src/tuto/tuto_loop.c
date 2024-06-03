@@ -36,6 +36,7 @@ void tuto_loop(rpg_t *rpg)
         biome->quest_giver, rpg);
     manage_quest_tuto(rpg->tuto, rpg);
     quest_displayer(rpg->tuto->quest_tab, rpg->window);
+    manage_particules(rpg);
     if (rpg->heros->npc->pv <= 0 && rpg->end->active == OFF)
         init_switch(rpg);
     if (rpg->end->active == TUTO_FADE)
