@@ -70,6 +70,6 @@ rpg_t *create_rpg_struct(void)
         rpg->biome[i] = create_biome(i, rpg->text_tab);
     rpg->heros->npc->entity->pos = rpg->biome[PLAIN]->last_pos;
     sfSprite_setPosition(
-        rpg->heros->npc->entity->sprite, rpg->biome[PLAIN]->last_pos);
+    rpg->heros->npc->entity->sprite, rpg->biome[PLAIN]->last_pos);
     return init_rpg_next(rpg);
 }
