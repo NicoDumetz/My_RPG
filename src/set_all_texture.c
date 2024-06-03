@@ -6,7 +6,6 @@
 */
 
 #include "rpg.h"
-#include <SFML/Graphics/Texture.h>
 
 void set_all_texture_next(sfTexture **text_tab)
 {
@@ -59,29 +58,6 @@ void set_all_texture_next_three(sfTexture **text_tab)
 {
     text_tab[XP_B_TEXT] = sfTexture_createFromFile(
         XP_BAR_PATH, NULL);
-    text_tab[INVENTORY_TEXT] = sfTexture_createFromFile(INVENTORY_BACK, NULL);
-    text_tab[INVENTORY_SLOT_TEXT] = sfTexture_createFromFile(INVENTORY_SLOT,
-    NULL);
-    text_tab[MINE_BOSS_TEXT] = sfTexture_createFromFile(
-        MINE_BOSS_PATH, NULL);
-    text_tab[CAMP_BOSS_TEXT] = sfTexture_createFromFile(
-        CAMP_BOSS_PATH, NULL);
-    text_tab[CASTLE_BOSS_TEXT] = sfTexture_createFromFile(
-        CASTLE_BOSS_PATH, NULL);
-    text_tab[ARENE_COL_TEXT] = sfTexture_createFromFile(
-        ARENE_COL_PATH, NULL);
-    text_tab[ARENE_TEXT] = sfTexture_createFromFile(
-        ARENE_PATH, NULL);
-    text_tab[EXPLO_TEXT] = sfTexture_createFromFile(EXPLO_PATH, NULL);
-    text_tab[ARROW_TEXT] = sfTexture_createFromFile(ARROWS, NULL);
-    text_tab[DYNA_TEXT] = sfTexture_createFromFile(DYNAMITE, NULL);
-    text_tab[SHIELD_TEXT] = sfTexture_createFromFile(SHIELD_PATH, NULL);
-}
-
-static void set_all_texture_next_four(sfTexture **text_tab)
-{
-    text_tab[HEARTH_POTION_TEXT] =
-    sfTexture_createFromFile(HEARTH_POTION_PATH, NULL);
 }
 
 void set_all_texture(sfTexture **text_tab)
@@ -102,7 +78,6 @@ void set_all_texture(sfTexture **text_tab)
     text_tab[BAG_TEXT] = sfTexture_createFromFile(BAG_PATH, NULL);
     text_tab[BLOOD_TEXT] = sfTexture_createFromFile(BLOOD_PATH, NULL);
     text_tab[COIN_TEXT] = sfTexture_createFromFile(COIN_PATH, NULL);
-    set_all_texture_next_four(text_tab);
     set_all_texture_next_three(text_tab);
     set_all_texture_next_two(text_tab);
     set_all_texture_next(text_tab);
