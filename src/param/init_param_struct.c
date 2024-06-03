@@ -21,11 +21,6 @@ void destroy_param_struct(param_t *param)
 static void set_page(param_t *param, sfTexture **text_tab)
 {
     param->view = (sfVideoMode){1920, 1080, 32};
-    text_tab[BACK_PARAM_E] = sfTexture_createFromFile(BACK_PARAM, NULL);
-    text_tab[RIBBONS_PARAM_E] = sfTexture_createFromFile(RIBBONS_PARAM, NULL);
-    text_tab[RIBBONS_PARAM_PRESSED_E] = sfTexture_createFromFile(
-        RIBBONS_PARAM_PRESSED, NULL);
-    text_tab[PAGE_PARAM_E] = sfTexture_createFromFile(PAGE_PARAM, NULL);
     param->background = sfSprite_create();
     sfSprite_setTexture(param->background, text_tab[BACK_PARAM_E], sfTrue);
     param->page = sfSprite_create();

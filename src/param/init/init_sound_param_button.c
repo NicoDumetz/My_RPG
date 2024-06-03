@@ -72,16 +72,6 @@ int set_sound_param(param_t *param, sfTexture **text_tab, sfFont **font_tab)
         return 84;
     }
     param->sound->value_sound = 50;
-    text_tab[BUTTON_SOUND_E] = sfTexture_createFromFile(BUTTON_SOUND, NULL);
-    text_tab[BUTTON_SOUND_PRESSED_E] = sfTexture_createFromFile
-        (BUTTON_SOUND_PRESSED, NULL);
-    text_tab[BUTTON_PLUS_E] = sfTexture_createFromFile(BUTTON_PLUS, NULL);
-    text_tab[BUTTON_PLUS_PRESSED_E] = sfTexture_createFromFile
-        (BUTTON_PLUS_PRESSED, NULL);
-    text_tab[BUTTON_MINUS_E] = sfTexture_createFromFile(BUTTON_MINUS, NULL);
-    text_tab[BUTTON_MINUS_PRESSED_E] = sfTexture_createFromFile
-        (BUTTON_MINUS_PRESSED, NULL);
-    font_tab[VINQUE_E] = sfFont_createFromFile(VINQUE);
     set_button_sound_param(param, text_tab, font_tab);
     return 0;
 }
