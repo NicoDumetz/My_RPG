@@ -27,9 +27,11 @@ void destroy_heros(heros_t *heros)
     for (int i = 0; i <= STAMINA_BAR; i++)
         destroy_info_bar(heros->bar_tab[i]);
     sfText_destroy(heros->interact);
+    heros->interact = NULL;
     destroy_skill(heros->skill);
     destroy_npc(heros->npc);
     free(heros);
+    heros = NULL;
 }
 
 void set_action_tab_heros(heros_t *heros)
@@ -82,7 +84,7 @@ static void init_heros_next_two(
     sfText_setOutlineColor(heros->interact, sfBlack);
     sfText_setOutlineThickness(heros->interact, 2);
     heros->skill = init_skill();
-    heros->multi_speed = 1;
+    heros->multi_speed = 4;
     heros->restore = false;
     heros->skill_point = 0;
 }
@@ -134,7 +136,7 @@ heros_t *init_heros(sfTexture **text_tab, sfFont **font_tab)
 {
     heros_t *heros = malloc(sizeof(heros_t));
 
-    heros->speed = 300.f;
+    heros->speed = 200.f;
     heros->texture_base = text_tab[KNIGHT_TEXT];
     heros->npc = init_npc(heros->texture_base);
     heros->npc->attack = level_tab[0].attack;

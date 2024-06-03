@@ -102,6 +102,7 @@ typedef enum texture_type_e {
     BUTTON_PLUS_PRESSED_E,
     BUTTON_MINUS_E,
     BUTTON_MINUS_PRESSED_E,
+
     INVENTORY_TEXT,
     INVENTORY_SLOT_TEXT,
     BACK_INVENTORY_HERO,
@@ -114,27 +115,8 @@ typedef enum texture_type_e {
     ARROW_TEXT,
     DYNA_TEXT,
     SHIELD_TEXT,
-    PV_LVL_3_TEXT,
-    HELMET_LVL_3_TEXT,
-    PV_LVL_1_TEXT,
-    HELMET_LVL_1_TEXT,
-    PV_LVL_2_TEXT,
-    HELMET_LVL_2_TEXT,
-    BREASTPLATE_LVL_1_TEXT,
-    BREASTPLATE_LVL_2_TEXT,
-    BREASTPLATE_LVL_3_TEXT,
-    GLOVES_LVL_2_TEXT,
-    GLOVES_LVL_3_TEXT,
-    GREAVES_LVL_2_TEXT,
-    GREAVES_LVL_3_TEXT,
-    SHOES_LVL_1_TEXT,
-    SHOES_LVL_2_TEXT,
-    SHOES_LVL_3_TEXT,
-    STEAK_TEXT,
-    MUSHROOMS_TEXT,
-    STAMI_LVL_1_TEXT,
-    STAMI_LVL_2_TEXT,
-    XP_LVL_1_TEXT,
+    HEARTH_POTION_TEXT,
+    HELMET_TEXT,
     FIRE_TEXT,
     MINE_TEXT
 } texture_type_t;
@@ -242,6 +224,7 @@ void appli_save_quest(rpg_t *rpg, save_data_t *save);
 void rpg(rpg_t *rpg);
 void destroy_rpg(rpg_t *rpg);
 rpg_t *create_rpg_struct(void);
+void reinitalize_rpg(rpg_t *rpg);
 void manage_heros(heros_t *heros, rpg_t *rpg);
 void set_all_texture(sfTexture **text_tab);
 void set_all_font(sfFont **font_tab);

@@ -82,7 +82,9 @@ void set_all_texture_next_three(sfTexture **text_tab)
 
 static void set_all_texture_next_four(sfTexture **text_tab)
 {
-    set_all_texture_obj(text_tab);
+    text_tab[HEARTH_POTION_TEXT] =
+    sfTexture_createFromFile(HEARTH_POTION_PATH, NULL);
+    text_tab[HELMET_TEXT] = sfTexture_createFromFile(HELMET_PATH, NULL);
     text_tab[BACK_INVENTORY_HERO] = sfTexture_createFromFile(BACK_HERO, NULL);
     text_tab[PLAY_E] = sfTexture_createFromFile(PLAY, NULL);
     text_tab[PLAY_PRESSED_E] = sfTexture_createFromFile(PLAY_PRESSED, NULL);

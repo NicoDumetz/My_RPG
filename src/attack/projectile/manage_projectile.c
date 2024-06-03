@@ -11,8 +11,11 @@ void destroy_projectile(projectile_t *p)
 {
     if (p != NULL) {
         sfSprite_destroy(p->sprite);
+        p->sprite = NULL;
         sfRectangleShape_destroy(p->hitbox);
+        p->hitbox = NULL;
         free(p);
+        p = NULL;
     }
 }
 
