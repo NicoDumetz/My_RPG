@@ -86,6 +86,7 @@ static void init_rpg_next2(rpg_t *rpg)
     init_game_over(rpg);
     init_particules(rpg);
     set_all_volume(rpg, 50);
+    sfMusic_setLoop(rpg->song->song_tab[GUTS_S], sfTrue);
     sfMusic_play(rpg->song->song_tab[GUTS_S]);
 }
 
