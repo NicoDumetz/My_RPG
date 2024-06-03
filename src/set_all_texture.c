@@ -144,6 +144,7 @@ static void set_all_texture_next_six(sfTexture **text_tab)
     text_tab[R1280x720_E] = sfTexture_createFromFile(BUTTON_1280x720, NULL);
     text_tab[R850x480_E] = sfTexture_createFromFile(BUTTON_850x480, NULL);
     text_tab[RES_SELECTION_E] = sfTexture_createFromFile(RES_SELECTION, NULL);
+    text_tab[CURSOR_TEXT] = sfTexture_createFromFile(CURSOR_PATH, NULL);
 }
 
 static void set_all_texture_next_seven(sfTexture **text_tab)

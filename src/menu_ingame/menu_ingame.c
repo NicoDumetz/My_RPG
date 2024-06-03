@@ -10,10 +10,15 @@
 static void display_menu_back(rpg_t *rpg)
 {
     sfColor color_blur = sfColor_fromRGBA(0, 0, 0, 128);
+    sfVector2u size = sfTexture_getSize(rpg->ingame_menu->last_frame);
+    sfVector2f scale;
 
     sfRectangleShape_setFillColor(rpg->ingame_menu->blur, color_blur);
     sfSprite_setTexture(rpg->ingame_menu->background,
         rpg->ingame_menu->last_frame, sfTrue);
+    scale.x = 1920.0f / (float) size.x;
+    scale.y = 1080.0f / (float) size.y;
+    sfSprite_setScale(rpg->ingame_menu->background, scale);
     sfRenderWindow_drawSprite(rpg->window, rpg->ingame_menu->background,
         NULL);
     sfRenderWindow_drawRectangleShape(rpg->window, rpg->ingame_menu->blur,
@@ -59,7 +64,7 @@ void manage_ingame_menu(rpg_t *rpg)
             clean_entity_list(rpg->tuto->biome);
         rpg->ingame_menu->from = rpg->scene;
         rpg->scene = INGAME_MENU;
-        set_view(rpg, rpg->ingame_menu->background,
+        set_view(rpg, rpg->ingame_menu->page,
             rpg->ingame_menu->background);
     }
     if (rpg->scene == INGAME_MENU)

@@ -15,9 +15,10 @@ void init_song(rpg_t *rpg)
     rpg->song->song_tab[GUTS_S] = sfMusic_createFromFile(GUTS_SONG);
 }
 
-void set_all_volume(rpg_t *rpg)
+void set_all_volume(rpg_t *rpg, float volume)
 {
-    for (int i = 0; i < GUTS_S; i++) {
+    rpg->song->volume = volume;
+    for (int i = 0; i <= GUTS_S; i++) {
         sfMusic_setVolume(rpg->song->song_tab[i], rpg->song->volume);
     }
 }

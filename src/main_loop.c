@@ -65,6 +65,7 @@ void rpg(rpg_t *rpg)
         }
         init_clock(rpg);
         fetch_last_frame(rpg);
+        set_all_volume(rpg, rpg->params->sound->value_sound);
         rpg->mouse_data.pos = recalculate_mouse_position(
             rpg->window, sfRenderWindow_getView(rpg->window));
         sfRenderWindow_clear(rpg->window, sfBlack);

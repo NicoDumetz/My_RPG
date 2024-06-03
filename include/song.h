@@ -23,7 +23,7 @@ typedef struct song_management_s {
 
 
 void init_song(rpg_t *rpg);
-void set_all_volume(rpg_t *rpg);
+void set_all_volume(rpg_t *rpg, float volume);
 void destroy_all_song(song_management_t *song_management);
 int launch_sword_song(rpg_t *rpg);
 #endif

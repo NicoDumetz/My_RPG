@@ -7,7 +7,7 @@
 
 #include "rpg.h"
 
-static void is_champ(rpg_t *rpg, save_bot_t *save_bot, npc_t *curr, int j)
+static int is_champ(rpg_t *rpg, save_bot_t *save_bot, npc_t *curr, int j)
 {
     if (curr != rpg->biome[CAMP]->boss &&
         curr != rpg->biome[CASTLE]->boss &&
@@ -16,7 +16,9 @@ static void is_champ(rpg_t *rpg, save_bot_t *save_bot, npc_t *curr, int j)
         save_bot->pv = curr->pv;
         save_bot->pos_x = curr->entity->pos.x;
         save_bot->pos_y = curr->entity->pos.y;
+        return 1;
     }
+    return 0;
 }
 
 static void write_bot_data(save_data_t *new_save, rpg_t *rpg, int i)
@@ -26,8 +28,7 @@ static void write_bot_data(save_data_t *new_save, rpg_t *rpg, int i)
     for (int j = 0; j <= ARCHER; j++) {
         for (npc_t *curr = rpg->biome[i]->bot_data->bot_list[j];
             curr && k < 30; curr = curr->next) {
-                is_champ(rpg, &(new_save->save_bot[i][k]), curr, j);
-                k++;
+                k += is_champ(rpg, &(new_save->save_bot[i][k]), curr, j);
             }
     }
 }

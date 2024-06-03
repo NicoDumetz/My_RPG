@@ -34,19 +34,19 @@ npc_t *set_knight(sfTexture *texture)
     sfFloatRect hitbox = {30, 25, 55, 55};
     sfFloatRect colbox = {40, 60, 80, 90};
 
-    knight->pv = 70;
+    knight->pv = 100;
     knight->attack = 0;
     knight->entity->parent = knight;
     set_offset(knight->entity, (sfVector2i){6, 8});
     set_action_tab_knight(knight);
     set_attbox_dim_knight(knight);
-    knight->xp = 150;
+    knight->xp = 200;
     knight->hitbox_dim = hitbox;
     knight->entity->colbox_dim = colbox;
     knight->view = 500;
     knight->stamina = 20;
     knight->max_stamina = 20;
-    knight->damage = 70;
+    knight->damage = 100;
     knight->type = MELEE;
     return (knight);
 }

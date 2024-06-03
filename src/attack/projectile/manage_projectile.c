@@ -28,7 +28,6 @@ void display_projectiles(npc_t *npc, rpg_t *rpg)
         sfRenderWindow_drawSprite(rpg->window, current->sprite, NULL);
         sfRectangleShape_setPosition(current->hitbox,
         sfSprite_getPosition(current->sprite));
-        sfRenderWindow_drawRectangleShape(rpg->window, current->hitbox, NULL);
     }
 }
 
@@ -75,7 +74,10 @@ static void colision_projectile(npc_t *npc, heros_t *heros)
         }
         npc->projectile->active = 0;
         heros->npc->pv -= npc->damage;
-        heros->npc->entity->effect_tab[BLOOD_HEROS]->active = true;
+        if (npc->type != DYNA)
+            heros->npc->entity->effect_tab[BLOOD_HEROS]->active = true;
+        if (npc->type == DYNA)
+            heros->npc->entity->effect_tab[EXPLO_BOT]->active = true;
     }
     if (npc->type == DYNA)
         rotation_dyna(npc->projectile);

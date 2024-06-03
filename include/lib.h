@@ -135,4 +135,5 @@
     #define EXPLO_PATH "tiny_world_asset/Effects/Explosion/Explosions.png"
     #define SHIELD_PATH "effect_asset/shield.png"
     #define FIRE_PATH "tiny_world_asset/Effects/Fire/fireball.png"
+    #define CURSOR_PATH "tiny_world_asset/cursor.png"
 #endif
