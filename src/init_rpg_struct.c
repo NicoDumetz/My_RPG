@@ -1,0 +1,30 @@
+/*
+** EPITECH PROJECT, 2023
+** game
+** File description:
+** rpg.h
+*/
+
+#include "rpg.h"
+
+void destroy_rpg(rpg_t *rpg)
+{
+    if (rpg) {
+        sfRenderWindow_destroy(rpg->window);
+        sfClock_destroy(rpg->clock);
+        free(rpg);
+    }
+}
+
+rpg_t *create_rpg_struct(void)
+{
+    rpg_t *rpg = malloc(sizeof(rpg_t));
+    sfVideoMode mode = {1920, 1080, 32};
+
+    rpg->clock = sfClock_create();
+    rpg->scene = MAIN;
+    rpg->second = 0;
+    rpg->time = 0;
+    rpg->window = sfRenderWindow_create(mode, "my_rpg", sfClose, NULL);
+    return rpg;
+}
