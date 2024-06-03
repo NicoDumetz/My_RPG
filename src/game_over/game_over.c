@@ -108,6 +108,12 @@ void update_game_over(game_over_t *game, rpg_t *rpg)
         clean_entity_list(rpg->biome[rpg->scene]);
         save_button_released(rpg, rpg->save_scene->button_list);
     }
+    if (rpg->key_state[sfKeySpace] && rpg->save_scene->button_list == NULL) {
+        game->active = OFF;
+        rpg->scene = TUTO;
+        reinitalize_rpg(rpg);
+        set_view(rpg, rpg->heros->npc->entity->sprite, wich_back(rpg));
+    }
     display_game_over(game, rpg);
 }
 
