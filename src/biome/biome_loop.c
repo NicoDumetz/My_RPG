@@ -29,48 +29,11 @@ void check_portal(biome_t *biome, rpg_t *rpg, heros_t *heros)
     }
 }
 
-void manage_test_quest(rpg_t *rpg)
-{
-    static int test3 = 0;
-
-    if (test3 == 0 && rpg->key_state[sfKeyN]) {
-        next_quest(rpg->biome[PLAIN]->quest_giver, rpg->quest_tab);
-        test3 = 1;
-        return;
-    }
-    if (!rpg->key_state[sfKeyN])
-        test3 = 0;
-}
-
-bool manage_test(rpg_t *rpg, biome_t *biome)
-{
-    static int test2 = 0;
-
-    if (test2 == 0 && rpg->key_state[sfKeyW] && rpg->end->active == OFF) {
-        create_save(rpg);
-        test2 = 1;
-        return true;
-    }
-    if (!rpg->key_state[sfKeyW])
-        test2 = 0;
-    if (rpg->key_state[sfKeyC] && rpg->end->active == OFF) {
-        set_view(rpg, rpg->save_scene->back, rpg->save_scene->back);
-        rpg->save_scene->from = rpg->scene;
-        clean_entity_list(biome);
-        rpg->scene = SAVE;
-        return false;
-    }
-    return true;
-}
-
 void biome_loop(rpg_t *rpg, biome_t *biome)
 {
     heros_t *heros = rpg->heros;
 
-    if (!manage_test(rpg, biome))
-        return;
     check_open_portal(rpg);
-    manage_test_quest(rpg);
     srand(time(NULL));
     display_background(biome->back, rpg->window);
     sort_entity_in_view(biome, rpg->window, heros, rpg);

@@ -7,18 +7,6 @@
 
 #include "rpg.h"
 
-bool manage_test_tuto(rpg_t *rpg, biome_t *)
-{
-    if (rpg->key_state[sfKeyC] && rpg->end->active == OFF) {
-        set_view(rpg, rpg->save_scene->back, rpg->save_scene->back);
-        rpg->save_scene->from = rpg->scene;
-        clean_entity_list(rpg->tuto->biome);
-        rpg->scene = SAVE;
-        return false;
-    }
-    return true;
-}
-
 static void tuto_next(rpg_t *rpg)
 {
     manage_particules(rpg);
@@ -34,8 +22,6 @@ void tuto_loop(rpg_t *rpg)
     biome_t *biome = rpg->tuto->biome;
 
     srand(time(NULL));
-    if (!manage_test_tuto(rpg, NULL))
-        return;
     display_background(biome->back, rpg->window);
     sort_entity_in_view(biome, rpg->window, heros, rpg);
     entity_loop(biome->entity_in_view_head, rpg);
