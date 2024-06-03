@@ -7,76 +7,50 @@
 
 #include "rpg.h"
 
+void destroy_save_list(rpg_t *rpg)
+{
+    save_t *curr = rpg->save_list;
+    save_t *next = NULL;
+
+    while (curr) {
+        next = curr->next;
+        sfText_destroy(curr->name);
+        free(curr->data);
+        free(curr);
+        curr = next;
+    }
+}
+
 void destroy_rpg(rpg_t *rpg)
 {
     if (rpg) {
         sfRenderWindow_destroy(rpg->window);
+        destroy_quest(rpg->quest_tab);
         destroy_heros(rpg->heros);
         sfClock_destroy(rpg->clock);
+        if (rpg->save_list)
+            destroy_save_list(rpg);
         for (int i = 0; i <= MINE; i++)
             destroy_biome(rpg->biome[i]);
+        for (int i = 0; i <= MINE_TEXT; i++)
+            sfTexture_destroy(rpg->text_tab[i]);
+        for (int i = 0; i <= PIXEL; i++)
+            sfFont_destroy(rpg->font_tab[i]);
+        destroy_load_page(rpg->save_scene);
+        destroy_menu(rpg->start_menu);
         free(rpg);
     }
 }
 
-//static void add_sprite_loop(sprite_loop_t **begin, char *path)
-//{
-//    sprite_loop_t *new = malloc(sizeof(sprite_loop_t));
-//    sprite_loop_t *tmp = *begin;
-//
-//    new->sprite = sfSprite_create();
-//    new->texture = sfTexture_createFromFile(path, NULL);
-//    sfSprite_setTexture(new->sprite, new->texture, sfTrue);
-//    sfSprite_setPosition(new->sprite, (sfVector2f){0, 0});
-//    new->next = NULL;
-//    if (!tmp) {
-//        printf("tmp is null\n");
-//        *begin = new;
-//        new->next = new;
-//        return;
-//    }
-//    while (tmp->next != *begin)
-//        tmp = tmp->next;
-//    tmp->next = new;
-//    new->next = *begin;
-//}
-
-static void add_sprite_tab(menu_t *menu, char *path, int index)
+rpg_t *init_rpg_next(rpg_t *rpg)
 {
-    menu->sprite[index] = sfSprite_create();
-    menu->texture[index] = sfTexture_createFromFile(path, NULL);
-    sfSprite_setTexture(menu->sprite[index], menu->texture[index], true);
-    sfSprite_setPosition(menu->sprite[index], (sfVector2f){0, 0});
-}
-
-static void set_background(menu_t *menu)
-{
-    add_sprite_tab(menu, "menu_asset/menu1.png", 0);
-    add_sprite_tab(menu, "menu_asset/menu2.png", 1);
-    add_sprite_tab(menu, "menu_asset/menu3.png", 2);
-    add_sprite_tab(menu, "menu_asset/menu4.png", 3);
-    add_sprite_tab(menu, "menu_asset/menu5.png", 4);
-    add_sprite_tab(menu, "menu_asset/menu6.png", 5);
-    add_sprite_tab(menu, "menu_asset/menu7.png", 6);
-    add_sprite_tab(menu, "menu_asset/menu8.png", 7);
-    add_sprite_tab(menu, "menu_asset/menu3.png", 8);
-    add_sprite_tab(menu, "menu_asset/menu4.png", 9);
-    add_sprite_tab(menu, "menu_asset/menu5.png", 10);
-    add_sprite_tab(menu, "menu_asset/menu6.png", 11);
-}
-
-static menu_t *create_menu_struct(void)
-{
-    menu_t *menu = malloc(sizeof(menu_t));
-
-    if (!menu) {
-        return (NULL);
-    }
-    menu->pos = 0;
-    menu->sprite = malloc(sizeof(sfSprite *) * 12);
-    menu->texture = malloc(sizeof(sfTexture *) * 12);
-    set_background(menu);
-    return menu;
+    rpg->ticks = false;
+    init_quest(rpg->quest_tab, rpg->font_tab);
+    rpg->save_scene = init_load_page(rpg->text_tab);
+    memset(&(rpg->mouse_data), 0, sizeof(mouse_data_t));
+    rpg->save_list = NULL;
+    create_file_list(rpg);
+    return (rpg);
 }
 
 rpg_t *create_rpg_struct(void)
@@ -84,20 +58,22 @@ rpg_t *create_rpg_struct(void)
     rpg_t *rpg = malloc(sizeof(rpg_t));
     sfVideoMode mode = {1920, 1080, 32};
 
-    rpg->start_menu = create_menu_struct();
+    rpg->start_menu = create_menu_struct(rpg);
     rpg->clock = sfClock_create();
-    rpg->scene = MAIN;
+    rpg->scene = MENU;
     rpg->second = 0;
     rpg->time = 0;
+    set_all_font(rpg->font_tab);
     rpg->window = sfRenderWindow_create(mode, "my_rpg", sfClose, NULL);
-    rpg->heros = init_heros(KNIGHT_SPRITE);
-    rpg->heros->npc->entity->pos = (sfVector2f){1000, 500};
-    sfSprite_setPosition(rpg->heros->npc->entity->sprite, rpg->heros->npc->entity->pos);
     sfRenderWindow_setPosition(rpg->window, (sfVector2i){0, 0});
-    rpg->ticks = false;
+    set_all_texture(rpg->text_tab);
+    rpg->heros = init_heros(rpg->text_tab, rpg->font_tab);
     for (int i = 0; i < 256; i++)
         rpg->key_state[i] = false;
     for (int i = 0; i <= MINE; i++)
-        rpg->biome[i] = create_biome(i);
-    return rpg;
+        rpg->biome[i] = create_biome(i, rpg->text_tab, rpg->font_tab);
+    rpg->heros->npc->entity->pos = rpg->biome[PLAIN]->last_pos;
+    sfSprite_setPosition(
+    rpg->heros->npc->entity->sprite, rpg->biome[PLAIN]->last_pos);
+    return init_rpg_next(rpg);
 }

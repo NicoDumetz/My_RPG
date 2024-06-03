@@ -7,17 +7,40 @@
 
 #include "rpg.h"
 
-static void display_menu_back(sfRenderWindow *window, menu_t *menu, bool ticks)
+static void display_menu_back(rpg_t *rpg)
 {
-    sfRenderWindow_drawSprite(window, menu->sprite[menu->pos], NULL);
-    if (ticks) {
-        menu->pos += 1;
-        if (menu->pos == 12)
-            menu->pos = 0;
+    sfSprite_setTexture(rpg->start_menu->background,
+        rpg->text_tab[rpg->start_menu->pos], sfTrue);
+    sfRenderWindow_drawSprite(rpg->window, rpg->start_menu->background,
+        NULL);
+    if (rpg->ticks) {
+        rpg->start_menu->pos += 1;
+        if (rpg->start_menu->pos == 47)
+            rpg->start_menu->pos = 35;
     }
+}
+
+static void display_menu_button(menu_t *menu, sfRenderWindow *window)
+{
+    sfRenderWindow_drawSprite(window, menu->play->sprite, NULL);
+    sfRenderWindow_drawSprite(window, menu->saves->sprite, NULL);
+    sfRenderWindow_drawSprite(window, menu->del_save->sprite, NULL);
+    sfRenderWindow_drawSprite(window, menu->param->sprite, NULL);
+    sfRenderWindow_drawSprite(window, menu->quit->sprite, NULL);
+}
+
+static void manage_menu_button(menu_t *menu, rpg_t *rpg)
+{
+    update_button(menu->play, &(rpg->mouse_data), rpg);
+    update_button(menu->saves, &(rpg->mouse_data), rpg);
+    update_button(menu->del_save, &(rpg->mouse_data), NULL);
+    update_button(menu->param, &(rpg->mouse_data), rpg);
+    update_button(menu->quit, &(rpg->mouse_data), rpg->window);
 }
 
 void start_menu(rpg_t *rpg)
 {
-    display_menu_back(rpg->window, rpg->start_menu, rpg->ticks);
+    display_menu_back(rpg);
+    manage_menu_button(rpg->start_menu, rpg);
+    display_menu_button(rpg->start_menu, rpg->window);
 }

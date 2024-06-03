@@ -26,11 +26,14 @@ npc_t *set_minions(sfTexture *texture)
     sfFloatRect colbox = {40, 60, 80, 95};
     sfFloatRect hitbox = {35, 35, 70, 70};
 
-    minions->pv = 0;
+    minions->pv = 50;
     minions->attack = 0;
+    minions->entity->parent = minions;
     set_offset(minions->entity, (sfVector2i){6, 6});
     set_action_tab_minions(minions);
     minions->entity->colbox_dim = colbox;
+    minions->xp = 10;
     minions->hitbox_dim = hitbox;
+    minions->view = 500;
     return (minions);
 }

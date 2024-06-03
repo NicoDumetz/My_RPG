@@ -26,11 +26,14 @@ npc_t *set_archer(sfTexture *texture)
     sfFloatRect colbox = {40, 60, 80, 90};
     sfFloatRect hitbox = {30, 30, 60, 60};
 
-    archer->pv = 0;
+    archer->pv = 50;
     archer->attack = 0;
+    archer->entity->parent = archer;
     set_offset(archer->entity, (sfVector2i){8, 7});
     set_action_tab_archer(archer);
     archer->entity->colbox_dim = colbox;
+    archer->xp = 30;
     archer->hitbox_dim = hitbox;
+    archer->view = 500;
     return (archer);
 }

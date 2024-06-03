@@ -7,13 +7,20 @@
 
 #include "../../include/button.h"
 
+#include <SFML/Graphics.h>
+#include <SFML/Window.h>
+
+#include <SFML/Graphics.h>
+#include <SFML/Window.h>
+
 void button_is_press(button_t *button, void *data)
 {
     button->state = CLICK;
-    if (button->sprite_state->sprite_on_click)
-        button->sprite = button->sprite_state->sprite_on_click;
+    if (button->texture_state[CLICK])
+        sfSprite_setTexture(button->sprite,
+            button->texture_state[CLICK], sfTrue);
     if (button->pressed) {
-        button->pressed(data);
+        button->pressed(data, button);
     }
 }
 
@@ -21,17 +28,19 @@ void button_is_not_press(button_t *button, void *data)
 {
     if (button->state == CLICK) {
         button->state = RELEASE;
-        button->sprite = button->sprite_state->sprite_on_released;
+        sfSprite_setTexture(button->sprite,
+            button->texture_state[RELEASE], sfTrue);
         if (button->release)
-            button->release(data);
+            button->release(data, button);
         return;
     }
     if (button->state != CLICK) {
         button->state = HOVER;
-        if (button->sprite_state->sprite_on_hover)
-            button->sprite = button->sprite_state->sprite_on_hover;
+        if (button->texture_state[HOVER])
+            sfSprite_setTexture(button->sprite,
+            button->texture_state[HOVER], sfTrue);
         if (button->hover)
-            button->hover(data);
+            button->hover(data, button);
         return;
     }
 }
@@ -51,20 +60,22 @@ int case_is_over(button_t *button, void *data, int mouse_over, int mouse_state)
 int is_block(button_t *button)
 {
     if (button->state == BLOCK) {
-        if (button->sprite_state->sprite_on_block)
-            button->sprite = button->sprite_state->sprite_on_block;
+        if (button->texture_state[BLOCK])
+            sfSprite_setTexture(button->sprite,
+                button->texture_state[BLOCK], sfTrue);
         return (1);
     }
     return (0);
 }
 
 void update_button(
-    button_t *button, sfRenderWindow *window, int mouse_state, void *data)
+    button_t *button, mouse_data_t *mouse_data, void *data)
 {
-    sfVector2i mousePos = sfMouse_getPositionRenderWindow(window);
-    sfFloatRect buttonBounds = sfSprite_getGlobalBounds(button->sprite);
+    sfVector2f mouse_pos = mouse_data->pos;
+    int mouse_state = mouse_data->left ? 1 : 0;
+    sfFloatRect button_bounds = sfSprite_getGlobalBounds(button->sprite);
     int mouse_over =
-        sfFloatRect_contains(&buttonBounds, mousePos.x, mousePos.y);
+        sfFloatRect_contains(&button_bounds, mouse_pos.x, mouse_pos.y);
 
     if (mouse_state == 1 && button->state == CLICK) {
         button_is_press(button, data);
@@ -75,6 +86,7 @@ void update_button(
     if (case_is_over(button, data, mouse_over, mouse_state) == 0 &&
         ((!mouse_over && button->state != CLICK) || mouse_state == 0)) {
         button->state = NONE;
-        button->sprite = button->sprite_state->sprite_on_released;
+        sfSprite_setTexture(button->sprite,
+            button->texture_state[NONE], sfTrue);
     }
 }

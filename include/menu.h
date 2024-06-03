@@ -11,8 +11,20 @@
 
 typedef struct menu_s {
     int pos;
-    sfTexture **texture;
-    sfSprite **sprite;
+    int save;
+    sfSprite *background;
+    button_t *play;
+    button_t *saves;
+    button_t *del_save;
+    button_t *param;
+    button_t *quit;
 } menu_t;
 
+menu_t *create_menu_struct(rpg_t *rpg);
+void destroy_menu(menu_t *menu);
+void play_button(void *data, button_t *button);
+void saves_button(void *data, button_t *button);
+void del_save_button(void *data, button_t *button);
+void param_button(void *data, button_t *button);
+void quit_button(void *data, button_t *button);
 #endif /* !MENU_H_ */
