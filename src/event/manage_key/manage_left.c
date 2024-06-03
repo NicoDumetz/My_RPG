@@ -31,7 +31,6 @@ static void moov_left(rpg_t *rpg)
 
 void manage_left(rpg_t *rpg)
 {
-    if (rpg->heros->npc->is_attack == false)
-        rpg->heros->npc->act_action = MOVE_L;
+    rpg->heros->npc->act_action = MOVE_L;
     moov_left(rpg);
 }

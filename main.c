@@ -7,7 +7,7 @@
 
 #include "rpg.h"
 
-int check_asset(rpg_t *)
+int check_asset(rpg_t *rpg)
 {
     return 0;
 }
@@ -50,7 +50,7 @@ int main(int ac, char **av, char **env)
     if (check_env(env) != 0)
         return (84);
     rpg_data = create_rpg_struct();
-    if (rpg_data == NULL || check_asset(rpg_data)) {
+    if (rpg_data == NULL /*|| check_asset(rpg_data)*/) {
         destroy_rpg(rpg_data);
         return 84;
     }
