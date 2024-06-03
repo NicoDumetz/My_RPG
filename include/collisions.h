@@ -22,4 +22,5 @@ bool dynamique_col_left(sfRectangleShape *hit_left, sfRectangleShape *hitbox);
 bool dynamique_col_right(
     sfRectangleShape *hit_right, sfRectangleShape *hitbox);
 void draw_black_rect_on_image(sfRectangleShape* rectangle, sfImage* image);
+void check_dynamic_col(npc_t *npc_one, npc_t *npc_two);
 #endif

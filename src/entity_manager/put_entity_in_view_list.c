@@ -7,6 +7,16 @@
 
 #include "rpg.h"
 
+static void reset_npc(entity_t *entity, sfRenderWindow *window)
+{
+    npc_t *npc = (npc_t *)entity->parent;
+
+    set_all_box(entity, window);
+    if (npc)
+        for (int i = 0; i < 4; i++)
+            npc->allowed_dir[i] = true;
+}
+
 static void begin_from_head(entity_t *head, entity_t *entity)
 {
     entity_t *curr = head->next;
@@ -116,7 +126,7 @@ void put_entity_in_view_list(
     rect.width = size.x;
     rect.height = size.y;
     if (sprite_is_in_float_rect(entity->sprite, rect) == sfTrue) {
-        set_all_box(entity, window);
+        reset_npc(entity, window);
         check_entity_insert_in_view_list(entity, biome);
     } else
         remove_entity_from_list(entity, biome);

@@ -23,7 +23,7 @@ void set_action_tab_goblins_b(npc_t *goblins_b)
 npc_t *set_goblins_b(sfTexture *texture)
 {
     npc_t *goblins_b = init_npc(texture);
-    sfFloatRect colbox = {30, 25, 60, 60};
+    sfFloatRect colbox = {30, 65, 60, 90};
     sfFloatRect hitbox = {30, 25, 60, 50};
 
     goblins_b->pv = 0;

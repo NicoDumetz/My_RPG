@@ -58,7 +58,8 @@ SRC = main.c\
 	src/entity_manager/entity_loop.c\
 	src/entity/heros/manage_heros.c\
 	src/entity/bot/ia/manage_bot.c\
-	src/entity/bot/bot_generator.c
+	src/entity/bot/bot_generator.c\
+	src/collisions/check_dynamic_collided.c\
 
 OBJ = $(SRC:.c=.o)
 

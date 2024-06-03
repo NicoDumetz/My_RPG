@@ -11,6 +11,13 @@
     #include <stdbool.h>
     #include "background.h"
 
+typedef enum direction_e {
+    RIGHT = 0,
+    LEFT,
+    UP,
+    DOWN
+} direction_t;
+
 typedef enum special_npc_e {
     NON_SPEC = 0,
     HEROS
@@ -67,6 +74,8 @@ typedef struct npc_s {
     int attack;
     bool is_attack;
     bool cur_attack;
+    bool is_alive;
+    bool allowed_dir[4];
     sfRectangleShape *attbox[4];
     sfRectangleShape *hitbox;
     sfFloatRect attbox_dim[4];

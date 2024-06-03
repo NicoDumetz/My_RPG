@@ -36,6 +36,14 @@ sfRectangleShape *init_attbox_rect(void)
     return attbox;
 }
 
+void init_npc_next(npc_t *npc)
+{
+    for (int i = ATTACK_F; i <= STAND; i++)
+        npc->action[i] = (sfVector2i){0, 0};
+    for (int i = 0; i < 4; i++)
+        npc->allowed_dir[i] = true;
+}
+
 npc_t *init_npc(sfTexture *asset)
 {
     npc_t *npc = malloc(sizeof(npc_t));
@@ -51,11 +59,11 @@ npc_t *init_npc(sfTexture *asset)
     npc->hitbox = init_hitbox_rect();
     npc->hitbox_dim = (sfFloatRect){0, 0, 0, 0};
     npc->special = NON_SPEC;
+    npc->is_alive = true;
     for (int i = 0; i <= ATTACK_R; i++) {
         npc->attbox[i] = init_attbox_rect();
         npc->attbox_dim[i] = (sfFloatRect){0, 0, 0, 0};
     }
-    for (int i = ATTACK_F; i <= STAND; i++)
-        npc->action[i] = (sfVector2i){0, 0};
+    init_npc_next(npc);
     return npc;
 }

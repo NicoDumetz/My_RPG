@@ -27,6 +27,7 @@ void sort_entity_in_view(
     biome_t *biome, sfRenderWindow *window, heros_t *heros);
 void put_entity_in_view_list(
     entity_t *entity, biome_t *biome, sfRenderWindow *window);
+void remove_entity_from_list(entity_t *entity, biome_t *biome);
 
 /**BIOME_GEN**/
 biome_t *set_village(void);
