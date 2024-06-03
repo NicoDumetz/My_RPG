@@ -99,6 +99,21 @@ SRC = main.c\
 	src/entity/quest_giver/manage_quest_giver.c\
 	src/entity/quest_giver/next_quest.c\
 	src/save/appli_save_quest.c\
+	src/menu/init_menu_struct.c\
+	src/menu/manage_menu_button.c\
+	src/menu/menu.c \
+	src/param/init_param_struct.c\
+	src/param/manage_param_button.c\
+	src/param/param.c\
+	src/param/action/manage_display_param_button.c\
+	src/param/action/manage_sound_param_button.c\
+	src/param/action/manage_fps_param_button.c\
+	src/param/display/param_display.c\
+	src/param/display/param_sound.c\
+	src/param/display/param_fps.c\
+	src/param/init/init_display_param_button.c\
+	src/param/init/init_sound_param_button.c\
+	src/param/init/init_fps_param_button.c\
 	src/inventory/init_inventory.c\
 	src/inventory/inventory.c\
 	src/inventory/slots/init_slots.c\
