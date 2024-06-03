@@ -104,10 +104,16 @@ SRC = main.c\
 	src/menu/menu.c \
 	src/param/init_param_struct.c\
 	src/param/manage_param_button.c\
-	src/param/manage_display_param_button.c\
-	src/param/param_display.c\
 	src/param/param.c\
-
+	src/param/action/manage_display_param_button.c\
+	src/param/action/manage_sound_param_button.c\
+	src/param/action/manage_fps_param_button.c\
+	src/param/display/param_display.c\
+	src/param/display/param_sound.c\
+	src/param/display/param_fps.c\
+	src/param/init/init_display_param_button.c\
+	src/param/init/init_sound_param_button.c\
+	src/param/init/init_fps_param_button.c\
 
 OBJ = $(SRC:.c=.o)
 

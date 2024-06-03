@@ -11,11 +11,15 @@ static void update_param_button(rpg_t *rpg)
 {
     update_button(rpg->params->quit, &(rpg->mouse_data), rpg);
     update_param_button_display(rpg, rpg->params->display);
+    update_param_button_sound(rpg, rpg->params->sound);
+    update_param_button_fps(rpg, rpg->params->fps);
 }
 
 static void display_param_button(rpg_t *rpg)
 {
     display_param_button_display(rpg, rpg->params->display);
+    display_param_button_sound(rpg, rpg->params->sound);
+    display_param_button_fps(rpg, rpg->params->fps);
 }
 
 void params_page(rpg_t *rpg)

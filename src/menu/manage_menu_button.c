@@ -10,8 +10,7 @@
 void play_button(void *data, button_t *)
 {
     rpg_t *rpg = (rpg_t *)data;
-    save_t *save = rpg->save_scene->button_list->child;
-
+    save_t *save;
 
     if (rpg->save_scene->button_list == NULL ||
         rpg->save_scene->button_list->child == NULL) {
@@ -19,6 +18,7 @@ void play_button(void *data, button_t *)
         set_view(rpg, rpg->heros->npc->entity->sprite, wich_back(rpg));
         return;
     }
+    save = rpg->save_scene->button_list->child;
     appli_save(rpg, save->data);
     set_view(rpg, rpg->heros->npc->entity->sprite,
         rpg->biome[save->data->id_biome]->back->sprite.sprite);

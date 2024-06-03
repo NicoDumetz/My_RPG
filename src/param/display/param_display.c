@@ -5,7 +5,7 @@
 ** param_display.c
 */
 
-#include "../../include/rpg.h"
+#include "../../../include/rpg.h"
 
 void update_param_button_display(rpg_t *rpg, display_t *display)
 {

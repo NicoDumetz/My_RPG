@@ -109,4 +109,5 @@
     #define BUTTON_PLUS_PRESSED "param_asset/button_plus_pressed.png"
     #define BUTTON_MINUS "param_asset/button_minus.png"
     #define BUTTON_MINUS_PRESSED "param_asset/button_minus_pressed.png"
+    #define VINQUE "font/gothicrpgfont.ttf"
 #endif

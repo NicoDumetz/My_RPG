@@ -13,7 +13,8 @@
     #include "params.h"
 
 typedef enum font_type_e {
-    PIXEL = 0
+    PIXEL = 0,
+    VINQUE_E
 } font_type_t;
 
 typedef enum texture_type_e {
@@ -90,6 +91,12 @@ typedef enum texture_type_e {
     R1280x720_E,
     R850x480_E,
     RES_SELECTION_E,
+    BUTTON_SOUND_E,
+    BUTTON_SOUND_PRESSED_E,
+    BUTTON_PLUS_E,
+    BUTTON_PLUS_PRESSED_E,
+    BUTTON_MINUS_E,
+    BUTTON_MINUS_PRESSED_E,
     MINE_TEXT
 } texture_type_t;
 

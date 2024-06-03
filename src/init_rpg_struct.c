@@ -38,6 +38,7 @@ void destroy_rpg(rpg_t *rpg)
             sfFont_destroy(rpg->font_tab[i]);
         destroy_load_page(rpg->save_scene);
         destroy_menu(rpg->start_menu);
+        destroy_param_struct(rpg->params);
         free(rpg);
     }
 }
@@ -59,7 +60,7 @@ rpg_t *create_rpg_struct(void)
     sfVideoMode mode = {1920, 1080, 32};
 
     rpg->start_menu = create_menu_struct(rpg);
-    rpg->params = init_param_struct(rpg->text_tab);
+    rpg->params = init_param_struct(rpg->text_tab, rpg->font_tab);
     rpg->clock = sfClock_create();
     rpg->scene = MENU;
     rpg->second = 0;
