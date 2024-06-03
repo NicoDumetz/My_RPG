@@ -7,7 +7,7 @@
 
 #include "rpg.h"
 
-static void destroy_inventory(back_obj_t **list)
+static void destroy_obj(back_obj_t **list)
 {
     back_obj_t *next = NULL;
     back_obj_t *curr = *list;
@@ -23,7 +23,7 @@ static void destroy_inventory(back_obj_t **list)
 void destroy_heros(heros_t *heros)
 {
     if (heros->inventory)
-        destroy_inventory(&(heros->inventory));
+        destroy_obj(&(heros->inventory));
     for (int i = 0; i <= STAMINA_BAR; i++)
         destroy_info_bar(heros->bar_tab[i]);
     sfText_destroy(heros->interact);

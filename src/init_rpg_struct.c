@@ -38,6 +38,7 @@ void destroy_rpg(rpg_t *rpg)
         for (int i = 0; i <= PIXEL; i++)
             sfFont_destroy(rpg->font_tab[i]);
         destroy_load_page(rpg->save_scene);
+        destroy_inventory(&rpg->inventory);
         free(rpg);
     }
 }
@@ -50,6 +51,7 @@ rpg_t *init_rpg_next(rpg_t *rpg)
     memset(&(rpg->mouse_data), 0, sizeof(mouse_data_t));
     rpg->save_list = NULL;
     create_file_list(rpg);
+    init_inventory(&rpg->inventory, rpg->text_tab);
     rpg->second = 0;
     rpg->time = 0;
     return (rpg);

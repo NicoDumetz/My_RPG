@@ -8,6 +8,7 @@
 #ifndef RPG_H
     #define RPG_H
     #include "button.h"
+    #include "inventory.h"
     #include "lib.h"
 
 typedef enum font_type_e {
@@ -49,6 +50,9 @@ typedef enum texture_type_e {
     LIFE_B_TEXT,
     ENERGY_B_TEXT,
     XP_B_TEXT,
+    INVENTORY_TEXT,
+    INVENTORY_SLOT_TEXT,
+    MINE_TEXT,
     CAMP_BOSS_TEXT,
     MINE_BOSS_TEXT,
     CASTLE_BOSS_TEXT,
@@ -89,6 +93,7 @@ typedef struct rpg_s {
     float time;
     sfTexture *text_tab[MINE_TEXT + 1];
     sfFont *font_tab[1];
+    inventory_t inventory;
     sfRenderWindow *window;
 } rpg_t;
 

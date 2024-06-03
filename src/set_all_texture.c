@@ -6,6 +6,7 @@
 */
 
 #include "rpg.h"
+#include <SFML/Graphics/Texture.h>
 
 void set_all_texture_next(sfTexture **text_tab)
 {
@@ -58,6 +59,9 @@ void set_all_texture_next_three(sfTexture **text_tab)
 {
     text_tab[XP_B_TEXT] = sfTexture_createFromFile(
         XP_BAR_PATH, NULL);
+    text_tab[INVENTORY_TEXT] = sfTexture_createFromFile(INVENTORY_BACK, NULL);
+    text_tab[INVENTORY_SLOT_TEXT] = sfTexture_createFromFile(INVENTORY_SLOT,
+    NULL);
     text_tab[MINE_BOSS_TEXT] = sfTexture_createFromFile(
         MINE_BOSS_PATH, NULL);
     text_tab[CAMP_BOSS_TEXT] = sfTexture_createFromFile(
