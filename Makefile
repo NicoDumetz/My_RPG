@@ -71,6 +71,7 @@ SRC = main.c\
 	src/animations/anim_obj_short.c\
 	src/object/manage_obj.c\
 	src/entity/bot/ia/random_moov.c\
+	src/entity/bot/ia/chase.c\
 
 OBJ = $(SRC:.c=.o)
 

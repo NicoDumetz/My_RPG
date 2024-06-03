@@ -67,7 +67,7 @@ static void up_bot(sfVector2f pos, npc_t *npc_act, rpg_t *rpg)
     sfSprite_setPosition(npc_act->entity->sprite, pos);
 }
 
-void manage_random_moov(npc_t *npc_act, heros_t *heros, rpg_t *rpg)
+void manage_random_moov(npc_t *npc_act, rpg_t *rpg)
 {
     sfVector2f pos = sfSprite_getPosition(npc_act->entity->sprite);
     int rand_nbr = rand() % 6;
