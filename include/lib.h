@@ -22,4 +22,12 @@
     #include <stdio.h>
     #include "player.h"
     #define ABS(x) ((x) < 0 ? x = -(x) : (x))
+    #define KNIGHT_ASSET "tiny_world_asset/Factions/Knights/Troops/"
+    #define GOBLINS_ASSET "tiny_world_asset/Factions/Goblins/Troops/"
+    #define KNIGHT_SPRITE KNIGHT_ASSET "Warrior/Blue/Warrior_Blue.png"
+    #define ARCHER_SPRITE KNIGHT_ASSET "Archer/Blue/Archer_Blue.png"
+    #define MINIONS_SPRITE KNIGHT_ASSET "Pawn/Blue/Pawn_Blue.png"
+    #define GOBLINS_T_SPRITE GOBLINS_ASSET "Torch/Red/Torch_Red.png"
+    #define GOBLINS_B_SPRITE GOBLINS_ASSET "Barrel/Red/Barrel_Red.png"
+    #define GOBLINS_D_SPRITE GOBLINS_ASSET "TNT/Red/TNT_Red.png"
 #endif

@@ -23,12 +23,12 @@ void set_action_tab_goblins_b(npc_t *goblins_b)
 npc_t *set_goblins_b(sfTexture *texture)
 {
     npc_t *goblins_b = init_npc(texture);
+    sfFloatRect hitbox = {30, 25, 60, 50};
 
-    goblins_b->next = NULL;
-    goblins_b->prev = NULL;
     goblins_b->pv = 0;
     goblins_b->attack = 0;
     set_offset(goblins_b->entity, (sfVector2i){6, 6});
     set_action_tab_goblins_b(goblins_b);
+    goblins_b->entity->hitbox_dim = hitbox;
     return (goblins_b);
 }

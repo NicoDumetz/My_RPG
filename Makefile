@@ -19,6 +19,7 @@ SRC = main.c\
 	src/entity/heros/init_heros.c\
 	src/entity/npc/init_npc.c\
 	src/entity/init_entity.c\
+	src/entity/set_hitbox.c\
 	src/entity/set_offset.c\
 	src/entity/bot/init_bot_data.c\
 	src/entity/bot/set_minions.c\

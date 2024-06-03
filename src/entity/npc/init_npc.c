@@ -21,6 +21,8 @@ npc_t *init_npc(sfTexture *asset)
     npc->pv = 0;
     npc->entity = init_entity(asset);
     npc->act_action = STAND;
+    npc->next = NULL;
+    npc->prev = NULL;
     for (int i = ATTACK_F; i <= STAND; i++)
         npc->action[i] = (sfVector2i){0, 0};
     return npc;

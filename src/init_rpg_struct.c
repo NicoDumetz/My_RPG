@@ -28,9 +28,7 @@ rpg_t *create_rpg_struct(void)
     rpg->second = 0;
     rpg->time = 0;
     rpg->window = sfRenderWindow_create(mode, "my_rpg", sfClose, NULL);
-    rpg->heros = init_heros(
-    "tiny_world_asset/Factions/Knights/Troops/Warrior/Blue/Warrior_Blue.png");
-    sfRenderWindow_setPosition(rpg->window, (sfVector2i){0, 0});
+    rpg->heros = init_heros(KNIGHT_SPRITE);
     rpg->bot_data = init_bot_data();
     init_background(rpg);
     return rpg;

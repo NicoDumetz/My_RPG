@@ -15,5 +15,5 @@ void set_offset(entity_t *entity, sfVector2i size_sprite)
 
     entity->size = (sfVector2f){width, height};
     entity->frame_nbr = (int)size_sprite.x;
-    entity->rect = (sfIntRect){0, 0, width, height};
+    entity->rect_sprite = (sfIntRect){0, 0, width, height};
 }

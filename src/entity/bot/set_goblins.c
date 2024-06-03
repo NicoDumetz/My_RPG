@@ -17,18 +17,18 @@ void set_action_tab_goblins(npc_t *goblins)
     goblins->action[MOVE_L] = (sfVector2i){6, -1};
     goblins->action[MOVE_F] = (sfVector2i){6, 1};
     goblins->action[MOVE_B] = (sfVector2i){6, 1};
-    goblins->action[STAND] = (sfVector2i){7, 6};
+    goblins->action[STAND] = (sfVector2i){7, 0};
 }
 
 npc_t *set_goblins(sfTexture *texture)
 {
     npc_t *goblins = init_npc(texture);
+    sfFloatRect hitbox = {30, 25, 65, 55};
 
-    goblins->next = NULL;
-    goblins->prev = NULL;
     goblins->pv = 0;
     goblins->attack = 0;
     set_offset(goblins->entity, (sfVector2i){7, 5});
     set_action_tab_goblins(goblins);
+    goblins->entity->hitbox_dim = hitbox;
     return (goblins);
 }

@@ -28,6 +28,13 @@ typedef struct rpg_s {
     sfRenderWindow *window;
 } rpg_t;
 
+    #define GOBLINS_T_LIST rpg->bot_data->bot_list[GOBLINS_T]
+    #define GOBLINS_B_LIST rpg->bot_data->bot_list[GOBLINS_B]
+    #define GOBLINS_D_LIST rpg->bot_data->bot_list[GOBLINS_D]
+    #define ARCHER_LIST rpg->bot_data->bot_list[ARCHER]
+    #define KNIGHT_LIST rpg->bot_data->bot_list[KINGHT]
+    #define MINIONS_LIST rpg->bot_data->bot_list[MINIONS]
+
 void test(rpg_t *rpg);
 
 /**TOOLS**/
