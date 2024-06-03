@@ -74,6 +74,7 @@ static void consume_item(button_t *button, rpg_t *rpg)
         return;
     appli_item_stat(obj, rpg->heros);
     delete_from_list(obj, &rpg->heros->inventory);
+    destroy_back_obj(obj);
     button->child = NULL;
 }
 
