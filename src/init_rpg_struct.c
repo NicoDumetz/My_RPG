@@ -6,8 +6,6 @@
 */
 
 #include "rpg.h"
-#include <SFML/Graphics/Font.h>
-#include <SFML/Graphics/Texture.h>
 
 void destroy_save_list(rpg_t *rpg)
 {
