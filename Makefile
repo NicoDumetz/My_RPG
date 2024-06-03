@@ -38,6 +38,7 @@ SRC = main.c\
 	src/event/manage_key/manage_up.c\
 	src/event/manage_key/manage_left.c\
 	src/event/manage_key/manage_right.c\
+	src/attack/heros/manage_heros_attack.c\
 	src/biome/init_biome.c\
 	src/biome/set_castle.c\
 	src/biome/set_plain.c\
@@ -47,6 +48,7 @@ SRC = main.c\
 	src/entity/deco/init_deco_data.c\
 	src/entity/deco/create_knight_house.c\
 	src/entity/deco/display_deco.c\
+	src/animations/anim_attack.c
 
 OBJ = $(SRC:.c=.o)
 

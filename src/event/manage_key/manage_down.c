@@ -34,7 +34,8 @@ void manage_down(rpg_t *rpg)
     if (rpg->heros->npc->action[MOVE_B].x > 0)
         rpg->heros->npc->act_action = MOVE_B;
     else if (rpg->heros->npc->act_action == MOVE_R ||
-        rpg->heros->npc->act_action == STAND)
+        rpg->heros->npc->act_action == STAND ||
+        rpg->heros->npc->act_action <= ATTACK_R)
         rpg->heros->npc->act_action = MOVE_R;
     moov_down(rpg);
 }
