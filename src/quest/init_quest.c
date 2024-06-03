@@ -11,7 +11,9 @@ void destroy_quest(quest_t *quest_tab)
 {
     for (int i = 0; quest_tab[i].display != NULL; i++) {
         sfRectangleShape_destroy(quest_tab[i].box);
+        quest_tab[i].box = NULL;
         sfText_destroy(quest_tab[i].display);
+        quest_tab[i].display = NULL;
     }
 }
 
@@ -51,9 +53,9 @@ void set_quest(
 void init_quest(quest_t *quest_tab, sfFont **font_tab)
 {
     char *message[4] = {
-        "Kill the Camp's Boss",
-        "Kill the Mine's Boss",
-        "Kill the Castle's Boss",
+        "Defeat the Camp Boss to the west",
+        "Defeat the Mine Boss to the east",
+        "Defeat the Castle Boss to the north"
     };
 
     for (int i = 0; i <= KILL_CASTLE; i++)

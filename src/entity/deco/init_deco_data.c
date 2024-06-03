@@ -13,8 +13,10 @@ void free_deco_data(deco_data_t *deco_data)
         for (int j = 0; deco_data->deco_entity[i][j]; j++)
             destroy_entity(deco_data->deco_entity[i][j]);
         free(deco_data->deco_entity[i]);
+        deco_data->deco_entity[i] = NULL;
     }
     free(deco_data);
+    deco_data = NULL;
 }
 
 deco_data_t *init_deco_data(void)

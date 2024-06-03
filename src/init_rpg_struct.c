@@ -6,8 +6,6 @@
 */
 
 #include "rpg.h"
-#include <SFML/Graphics/Font.h>
-#include <SFML/Graphics/Texture.h>
 
 void destroy_save_list(rpg_t *rpg)
 {
@@ -55,6 +53,30 @@ void destroy_rpg(rpg_t *rpg)
         destroy_rpg_next(rpg);
         free(rpg);
     }
+}
+
+static void reinitialize_rpg_next(rpg_t *rpg)
+{
+    destroy_inventory(&rpg->inventory);
+    init_inventory(&rpg->inventory, rpg->text_tab, rpg);
+}
+
+void reinitalize_rpg(rpg_t *rpg)
+{
+    destroy_heros(rpg->heros);
+    rpg->heros = init_heros(rpg->text_tab, rpg->font_tab);
+    rpg->heros->npc->entity->pos = rpg->tuto->biome->last_pos;
+    sfSprite_setPosition(
+        rpg->heros->npc->entity->sprite, rpg->tuto->biome->last_pos);
+    for (int i = 0; i <= MINE; i++)
+        destroy_biome(rpg->biome[i]);
+    for (int i = 0; i <= MINE; i++)
+        rpg->biome[i] = create_biome(i, rpg->text_tab, rpg->font_tab);
+    destroy_tuto(rpg->tuto);
+    rpg->tuto = create_tuto(rpg->text_tab, rpg->font_tab);
+    destroy_quest(rpg->quest_tab);
+    init_quest(rpg->quest_tab, rpg->font_tab);
+    reinitialize_rpg_next(rpg);
 }
 
 static init_rpg_next2(rpg_t *rpg)

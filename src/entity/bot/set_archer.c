@@ -41,12 +41,12 @@ npc_t *set_archer(sfTexture *texture)
     set_action_tab_archer(archer);
     set_attbox_dim_archer(archer);
     archer->entity->colbox_dim = colbox;
-    archer->xp = 2000;
+    archer->xp = 100;
     archer->hitbox_dim = hitbox;
     archer->view = 500;
     archer->stamina = 50;
     archer->max_stamina = 50;
-    archer->damage = 20;
+    archer->damage = 40;
     archer->type = ARCHERY;
     return (archer);
 }

@@ -32,7 +32,8 @@ void which_scene(rpg_t *rpg)
         tuto_loop(rpg);
         manage_heros_bar(rpg->heros, rpg->window);
         manage_inventory(rpg);
-    }
+    } else
+        update_game_over(rpg->end, rpg);
     if (rpg->end->active == TUTO_FADE)
         manage_switch_fade(rpg->end, rpg);
     manage_ingame_menu(rpg);
@@ -64,6 +65,7 @@ void rpg(rpg_t *rpg)
             manage_event(rpg);
         }
         init_clock(rpg);
+        fetch_last_frame(rpg);
         rpg->mouse_data.pos = recalculate_mouse_position(
             rpg->window, sfRenderWindow_getView(rpg->window));
         sfRenderWindow_clear(rpg->window, sfBlack);

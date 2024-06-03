@@ -7,6 +7,14 @@
 
 #include "rpg.h"
 
+static void pv_recovery(heros_t *heros, float time)
+{
+    if (heros->npc->pv < heros->pv_max && heros->npc->pv > 0)
+        heros->npc->pv += time;
+    if (heros->npc->pv < 0)
+        heros->npc->pv = -1;
+}
+
 void recovery_stamina(heros_t *heros, float time)
 {
     run_t *run = (run_t *)heros->skill->skill_tab[RUN];
@@ -73,6 +81,7 @@ void manage_heros(heros_t *heros, rpg_t *rpg)
     if (heros->npc->pv <= 0 && rpg->end->active == OFF && rpg->scene != TUTO)
         lunch_end(rpg);
     manage_skill(heros, rpg);
+    pv_recovery(heros, rpg->time);
     manage_movements(rpg);
     manage_heros_attack(heros, rpg->key_state, rpg);
     if (heros->can_interact)
