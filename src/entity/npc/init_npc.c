@@ -77,6 +77,7 @@ npc_t *init_npc(sfTexture *asset)
     npc_t *npc = malloc(sizeof(npc_t));
 
     npc->attack = 0;
+    npc->object_id = NOTHING + rand() % (OBJ_COUNT - NOTHING);
     npc->pv = 0;
     npc->entity = init_entity(asset);
     npc->act_action = STAND;

@@ -36,6 +36,12 @@ back_obj_t *create_back_obj(object_drop_t type, sfTexture **text_tab)
     back_obj->prev = NULL;
     back_obj->id = type;
     back_obj->usage = obj_tab[type].usage;
+    back_obj->add_live = obj_tab[type].add_live;
+    back_obj->add_stamina = obj_tab[type].add_stamina;
+    back_obj->add_xp = obj_tab[type].add_xp;
+    back_obj->multi_speed = obj_tab[type].multi_speed;
+    back_obj->multi_attack = obj_tab[type].multi_attack;
+    back_obj->multi_live = obj_tab[type].multi_live;
     back_obj->sprite = sfSprite_create();
     sfSprite_setTexture(back_obj->sprite,
         text_tab[obj_tab[type].text_id_back], sfTrue);

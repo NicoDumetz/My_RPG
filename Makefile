@@ -147,6 +147,7 @@ SRC = main.c\
 	src/game_over/game_over.c\
 	src/game_over/fade_switch.c\
 	src/particules/manage_particules.c\
+	src/object/set_all_texture_obj.c\
 
 OBJ = $(SRC:.c=.o)
 
