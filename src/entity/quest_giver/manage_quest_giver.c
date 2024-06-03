@@ -7,13 +7,6 @@
 
 #include "rpg.h"
 
-void check_start_funtion(quest_t *quest, rpg_t *rpg)
-{
-    if (quest->start_f) {
-        quest->start_f(quest, rpg);
-    }
-}
-
 bool manage_dialogue(rpg_t *rpg,
     quest_giver_t *quest_g, quest_t *quest)
 {
@@ -26,7 +19,6 @@ bool manage_dialogue(rpg_t *rpg,
             quest_g->act_quest++;
             quest[quest_g->act_quest].state = BEGIN;
             quest_g->is_interact = false;
-            check_start_funtion(&(quest[quest_g->act_quest]), rpg);
             return false;
         }
         spam++;
