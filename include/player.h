@@ -7,6 +7,7 @@
 
 #ifndef PLAYER_H
     #define PLAYER_H
+    #include "inventory.h"
     #include "lib.h"
     #include <stdbool.h>
     #include "background.h"
@@ -130,6 +131,7 @@ typedef struct heros_s {
     float stamina_max;
     float stami_per_sec;
     float pv_max;
+    inventory_t invent;
     back_obj_t *inventory;
     info_bar_t *bar_tab[3];
     npc_t *npc;
@@ -182,7 +184,6 @@ void manage_chase(npc_t *npc_act, rpg_t *rpg);
 void check_if_heros_attack_me(npc_t *to_check, heros_t *heros);
 bool check_chase_heros(npc_t *to_check, heros_t *heros);
 void manage_animation_bot(entity_t *entity, bool ticks);
-void add_to_list_bot(npc_t *new_bot, npc_t **list);
 
 /**DECO**/
 deco_data_t *init_deco_data(void);
