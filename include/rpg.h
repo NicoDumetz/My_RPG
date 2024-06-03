@@ -52,7 +52,6 @@ typedef enum texture_type_e {
     XP_B_TEXT,
     INVENTORY_TEXT,
     INVENTORY_SLOT_TEXT,
-    MINE_TEXT,
     CAMP_BOSS_TEXT,
     MINE_BOSS_TEXT,
     CASTLE_BOSS_TEXT,
