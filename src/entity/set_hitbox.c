@@ -28,7 +28,7 @@ void set_box(
         rect, (sfVector2f){hitbox.left, hitbox.top});
 }
 
-void set_all_box(entity_t *entity, sfRenderWindow *window)
+void set_all_box(entity_t *entity, sfRenderWindow *)
 {
     npc_t *npc = (npc_t *)entity->parent;
 

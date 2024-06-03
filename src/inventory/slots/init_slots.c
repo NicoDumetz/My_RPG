@@ -10,7 +10,9 @@
 void destroy_slots(inventory_t *inventory)
 {
     sfRectangleShape_destroy(inventory->slot_pos);
+    inventory->slot_pos = NULL;
     sfRectangleShape_destroy(inventory->equipment_pos);
+    inventory->equipment_pos = NULL;
     for (unsigned char i = 0; i < NUM_SLOT; i++)
         destroy_button(inventory->slot[i]);
     for (unsigned char i = 0; i < NUM_EQUIPMENT; i++)

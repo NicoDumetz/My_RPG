@@ -29,8 +29,8 @@ void init_song(rpg_t *rpg)
     rpg->song = malloc(sizeof(song_management_t));
     if (!rpg->song)
         exit(84);
-    rpg->song->music = create_song(GUTS_SONG, 50.0f);
-    rpg->song->sword = create_song(SWORD_SONG, 50.0f);
+    rpg->song->music = create_song(GUTS, 50.0f);
+    rpg->song->sword.music = NULL;
     sfMusic_play(rpg->song->music.music);
 }
 
@@ -49,11 +49,4 @@ void destroy_all_song(song_management_t *song_management)
         destroy_play_song(&song_management->sword);
         free(song_management);
     }
-}
-
-int launch_sword_song(rpg_t *rpg)
-{
-    sfMusic_stop(rpg->song->sword.music);
-    sfMusic_play(rpg->song->sword.music);
-    return 1;
 }

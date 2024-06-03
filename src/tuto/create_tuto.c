@@ -11,9 +11,11 @@ void destroy_tuto(tuto_t *tuto)
 {
     destroy_biome(tuto->biome);
     sfText_destroy((sfText *)(tuto->skip_button->child));
+    tuto->skip_button->child = NULL;
     destroy_button(tuto->skip_button);
     destroy_quest(tuto->quest_tab);
     free(tuto);
+    tuto = NULL;
 }
 
 void create_tuto_next(sfTexture **text_tab, sfFont **, tuto_t *tuto)

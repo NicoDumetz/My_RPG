@@ -10,6 +10,7 @@
 void destroy_skill(skill_t *skill)
 {
     free(skill);
+    skill = NULL;
 }
 
 skill_t *init_skill(void)
