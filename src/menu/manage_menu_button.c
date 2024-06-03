@@ -46,6 +46,7 @@ void param_button(void *data, button_t *)
     rpg_t *rpg = (rpg_t *)data;
 
     rpg->scene = PARAMS;
+    rpg->params->from = MENU;
 }
 
 void quit_button(void *data, button_t *)
