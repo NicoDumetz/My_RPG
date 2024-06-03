@@ -10,7 +10,6 @@
 void destroy_menu_ingame(ingame_menu_t *menu)
 {
     sfSprite_destroy(menu->background);
-    sfTexture_destroy(menu->last_frame);
     sfRectangleShape_destroy(menu->blur);
     sfSprite_destroy(menu->page);
     destroy_button(menu->resume);
