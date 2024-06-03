@@ -43,15 +43,6 @@ void lunch_end(rpg_t *rpg)
     game->active = ACTIVE;
 }
 
-static void display_game_over(game_over_t *game, rpg_t *rpg)
-{
-    if (game->active == ACTIVE) {
-        sfRenderWindow_drawRectangleShape(rpg->window, game->rect, NULL);
-        if (game->alpha_text > 0)
-            sfRenderWindow_drawText(rpg->window, game->text, NULL);
-    }
-}
-
 int update_rect(game_over_t *game, rpg_t *rpg)
 {
     float speed = rpg->time * 5;
