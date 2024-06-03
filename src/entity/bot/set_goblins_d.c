@@ -22,10 +22,10 @@ void set_action_tab_goblins_d(npc_t *goblins_d)
 
 void set_attbox_dim_goblins_d(npc_t *npc)
 {
-    npc->attbox_dim[ATTACK_F] = (sfFloatRect){100, 100, 100, 100};
-    npc->attbox_dim[ATTACK_B] = (sfFloatRect){100, 100, 100, 100};
-    npc->attbox_dim[ATTACK_L] = (sfFloatRect){0, 0, 50, 0};
-    npc->attbox_dim[ATTACK_R] = (sfFloatRect){50, 0, 50, 0};
+    npc->attbox_dim[ATTACK_B] = (sfFloatRect){-50, 0, -100, -100};
+    npc->attbox_dim[ATTACK_F] = (sfFloatRect){-50, -100, -100, -100};
+    npc->attbox_dim[ATTACK_L] = (sfFloatRect){-100, -50, -100, -100};
+    npc->attbox_dim[ATTACK_R] = (sfFloatRect){0, -50, -100, -100};
 }
 
 npc_t *set_goblins_d(sfTexture *texture)
