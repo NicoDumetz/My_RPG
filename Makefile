@@ -146,6 +146,7 @@ SRC = main.c\
 	src/biome/set_bot_donjon.c\
 	src/game_over/game_over.c\
 	src/game_over/fade_switch.c\
+	src/particules/manage_particules.c\
 
 OBJ = $(SRC:.c=.o)
 

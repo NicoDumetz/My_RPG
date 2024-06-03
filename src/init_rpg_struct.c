@@ -31,6 +31,7 @@ static void destroy_rpg_next(rpg_t *rpg)
     destroy_inventory(&rpg->inventory);
     free_game_over(rpg->end);
     destroy_menu_ingame(rpg->ingame_menu);
+    destroy_particules(rpg);
 }
 
 void destroy_rpg(rpg_t *rpg)
@@ -73,6 +74,7 @@ rpg_t *init_rpg_next(rpg_t *rpg)
     rpg->second = 0;
     rpg->time = 0;
     init_game_over(rpg);
+    init_particules(rpg);
     return (rpg);
 }
 
