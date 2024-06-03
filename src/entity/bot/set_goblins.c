@@ -34,14 +34,12 @@ npc_t *set_goblins(sfTexture *texture)
     sfFloatRect colbox = {37, 60, 73, 90};
     sfFloatRect hitbox = {30, 25, 65, 55};
 
-    goblins->pv = 50;
+    goblins->pv = 0;
     goblins->attack = 0;
-    goblins->entity->parent = goblins;
     set_offset(goblins->entity, (sfVector2i){7, 5});
     set_action_tab_goblins(goblins);
     set_attbox_dim_goblins(goblins);
     goblins->entity->colbox_dim = colbox;
     goblins->hitbox_dim = hitbox;
-    goblins->view = 500;
     return (goblins);
 }
