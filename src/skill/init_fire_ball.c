@@ -80,6 +80,10 @@ static void set_direction_fire(heros_t *heros, rpg_t *rpg)
         pos = (sfVector2f){pos.x + 50, pos.y + 400};
     set_positions_fire_ball(heros->npc, pos);
     heros->npc->projectile->active = 1;
+    sfSprite_setPosition(heros->npc->projectile->sprite,
+    heros->npc->projectile->from);
+    sfRectangleShape_setPosition(heros->npc->projectile->hitbox,
+        sfSprite_getPosition(heros->npc->projectile->sprite));
 }
 
 void fire_ball_function(heros_t *heros, rpg_t *rpg, void *skill_data)
