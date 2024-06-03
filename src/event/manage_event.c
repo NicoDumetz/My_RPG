@@ -6,6 +6,7 @@
 */
 
 #include "rpg.h"
+#include <stdio.h>
 
 void update_mouse_scroll(mouse_data_t *mouse_data, sfEvent *event)
 {

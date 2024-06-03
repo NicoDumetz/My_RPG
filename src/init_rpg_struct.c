@@ -39,23 +39,22 @@ void destroy_rpg(rpg_t *rpg)
             sfFont_destroy(rpg->font_tab[i]);
         destroy_load_page(rpg->save_scene);
         destroy_inventory(&rpg->inventory);
-        free_game_over(rpg->end);
         free(rpg);
     }
 }
 
 rpg_t *init_rpg_next(rpg_t *rpg)
 {
+    srand(time(NULL));
     rpg->ticks = false;
     init_quest(rpg->quest_tab, rpg->font_tab);
     rpg->save_scene = init_load_page(rpg->text_tab);
     memset(&(rpg->mouse_data), 0, sizeof(mouse_data_t));
     rpg->save_list = NULL;
     create_file_list(rpg);
-    init_inventory(&rpg->inventory, rpg->text_tab);
+    init_inventory(&rpg->inventory, rpg->text_tab, rpg);
     rpg->second = 0;
     rpg->time = 0;
-    init_game_over(rpg);
     return (rpg);
 }
 

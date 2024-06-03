@@ -41,6 +41,7 @@ typedef struct button_s {
     button_t *next;
     button_t *prev;
 } button_t;
+
 void update_button(
     button_t *button, mouse_data_t *mouse_data, void *data);
 void init_action_button(

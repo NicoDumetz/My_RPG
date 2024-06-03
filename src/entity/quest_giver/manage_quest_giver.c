@@ -44,8 +44,7 @@ void manage_quest_giver(
     if (rpg->key_state[sfKeyE])
         is_dial = true;
     set_all_box(quest_g->npc->entity, rpg->window);
-    quest_g->npc->in_chase = check_chase_heros(quest_g->npc, rpg->heros,
-    wich_img(rpg));
+    quest_g->npc->in_chase = check_chase_heros(quest_g->npc, rpg->heros);
     if (quest_g->npc->in_chase && quest_g->is_interact)
         rpg->heros->can_interact = true;
     if (quest_g->is_interact)

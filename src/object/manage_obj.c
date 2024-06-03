@@ -6,7 +6,6 @@
 */
 
 #include "rpg.h"
-#include <SFML/Graphics/Sprite.h>
 
 void manage_animation_obj(front_obj_t *obj, bool ticks)
 {
@@ -20,20 +19,38 @@ static void set_obj_scale(inventory_t *inventory, back_obj_t *obj)
 {
     float min_slot = (inventory->slot_rect.width);
     sfFloatRect rect_obj = sfSprite_getLocalBounds(obj->sprite);
-    float min_obj = (rect_obj.width < rect_obj.height) ?
+    float min_obj = (rect_obj.width > rect_obj.height) ?
     rect_obj.width : rect_obj.height;
     float ratio = min_slot / min_obj;
 
     sfSprite_setScale(obj->sprite, (sfVector2f){ratio, ratio});
 }
 
+void delete_from_list(back_obj_t *obj, back_obj_t **list)
+{
+    back_obj_t *prev = obj->prev;
+    back_obj_t *next = obj->next;
+
+    if (prev == NULL) {
+        *list = next;
+        if (next)
+            next->prev = prev;
+    } else {
+        prev->next = next;
+        if (next)
+            next->prev = prev;
+    }
+    obj->prev = NULL;
+    obj->next = NULL;
+}
+
 bool add_to_inventory(back_obj_t **inventory, front_obj_t *obj, rpg_t *rpg)
 {
-    slot_t *slot = get_free_slot(&rpg->inventory);
+    button_t *slot = get_free_slot(rpg->inventory.slot, NUM_SLOT);
 
     if (slot == NULL)
         return true;
-    slot->obj = obj->in;
+    slot->child = obj->in;
     set_obj_scale(&rpg->inventory, obj->in);
     if (*inventory)
         (*inventory)->prev = obj->in;

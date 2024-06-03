@@ -10,12 +10,13 @@
 static void where_drop(npc_t *curr, biome_t *biome)
 {
     sfVector2f center = curr->entity->pos;
+    object_drop_t to_drop = NOTHING + rand() % (OBJ_COUNT - NOTHING);
 
     create_front_obj(
             DEATH, biome->text_tab, &(biome->obj_list),
             (sfVector2f){center.x + 20, center.y + 25});
     create_front_obj(
-            NOTHING, biome->text_tab,
+            to_drop, biome->text_tab,
             &(biome->obj_list),
             (sfVector2f){center.x + 55, center.y + 25});
 }
