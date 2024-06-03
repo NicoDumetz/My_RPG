@@ -45,25 +45,8 @@ int unfade_rect(game_over_t *game, rpg_t *rpg)
     return 0;
 }
 
-static void set_level_1(heros_t *heros)
-{
-    heros->level_act = 1;
-    heros->npc->xp = 0;
-    heros->stamina_max = level_tab[0].stamina_max;
-    heros->stamina = level_tab[0].stamina_max;
-    heros->pv_max = level_tab[0].pv_max;
-    heros->npc->pv = level_tab[0].pv_max;
-    heros->bar_tab[LIFE_BAR]->max = level_tab[0].pv_max;
-    heros->bar_tab[STAMINA_BAR]->max = level_tab[0].stamina_max;
-    heros->bar_tab[XP_BAR]->max = level_tab[0].xp_to_reach;
-    heros->stami_per_sec = level_tab[0].stami_per_sec;
-    heros->npc->attack = level_tab[0].attack;
-    heros->skill_point += 1;
-}
-
 static void skip_tuto(rpg_t *rpg)
 {
-    set_level_1(rpg->heros);
     rpg->scene = PLAIN;
     sfSprite_setPosition(
         rpg->heros->npc->entity->sprite, rpg->biome[PLAIN]->last_pos);

@@ -30,6 +30,7 @@ void load_save_button(void *data, button_t *)
 {
     rpg_t *rpg = (rpg_t *)data;
 
+    set_view(rpg, rpg->save_scene->back, rpg->save_scene->back);
     rpg->save_scene->from = INGAME_MENU;
     rpg->scene = SAVE;
 }
