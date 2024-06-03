@@ -42,7 +42,8 @@ void appli_item_stat(back_obj_t *back, heros_t *heros)
 
 static void drop_item(button_t *button, rpg_t *rpg)
 {
-    biome_t *biome = (rpg->scene == TUTO) ? rpg->tuto->biome : rpg->biome[rpg->scene];
+    biome_t *biome = (rpg->scene == TUTO) ?
+    rpg->tuto->biome : rpg->biome[rpg->scene];
     sfVector2f pos = rpg->heros->npc->entity->pos;
     back_obj_t *obj = button->child;
 
