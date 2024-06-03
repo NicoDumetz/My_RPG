@@ -34,7 +34,7 @@ void manage_bot(entity_t *entity, heros_t *heros, rpg_t *rpg)
     check_dynamic_col(npc_act, heros->npc);
     if (npc_act->in_chase == false) {
         manage_random_moov(npc_act, rpg);
-        npc_act->in_chase = check_chase_heros(npc_act, heros);
+        npc_act->in_chase = check_chase_heros(npc_act, heros, wich_img(rpg));
     } else
         manage_chase(npc_act, rpg, heros);
     check_if_heros_attack_me(npc_act, heros);
