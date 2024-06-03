@@ -9,20 +9,20 @@
 
 void destroy_skill(skill_t *skill)
 {
-    destroy_run((run_t *)skill->skill_tab[RUN]);
-    destroy_fire_ball((fire_ball_t *)skill->skill_tab[FIRE_BALL]);
-    destroy_shield((shield_t *)skill->skill_tab[SHIELD]);
     free(skill);
 }
 
 skill_t *init_skill(void)
 {
     skill_t *skill = malloc(sizeof(skill_t));
+    int level_tab[] = {1, 1, 1};
 
-    skill->act_skill = RUN;
-    skill->skill_tab[FIRE_BALL] = init_fire_ball();
-    skill->skill_tab[SHIELD] = init_shield();
-    skill->skill_tab[RUN] = init_run();
+    for (int i = 0; i < 3; i++)
+        skill->skill_level[i] = level_tab[i];
+    skill->act_skill = SHIELD;
+    skill->skill_tab[FIRE_BALL] = &(fireball_tab[1]);
+    skill->skill_tab[SHIELD] = &(shield_tab[1]);
+    skill->skill_tab[RUN] = &(run_tab[1]);
     skill->skill_funct_tab[FIRE_BALL] = fire_ball_function;
     skill->skill_funct_tab[SHIELD] = shield_function;
     skill->skill_funct_tab[RUN] = run_function;

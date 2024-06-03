@@ -22,23 +22,29 @@ void recovery_stamina(heros_t *heros, float time)
     }
 }
 
+void appli_level_up(heros_t *heros, int act)
+{
+    heros->level_act += 1;
+    heros->stamina_max = level_tab[act].stamina_max;
+    heros->stamina = level_tab[act].stamina_max;
+    heros->pv_max = level_tab[act].pv_max;
+    heros->npc->pv = level_tab[act].pv_max;
+    heros->bar_tab[LIFE_BAR]->max = level_tab[act].pv_max;
+    heros->bar_tab[STAMINA_BAR]->max = level_tab[act].stamina_max;
+    heros->bar_tab[XP_BAR]->max = level_tab[act].xp_to_reach;
+    heros->stami_per_sec = level_tab[act].stami_per_sec;
+    heros->npc->attack = level_tab[act].attack;
+    heros->npc->entity->effect_tab[LEVEL_UP_HEROS]->active = true;
+    heros->skill_point += 1;
+}
+
 void check_level_up(heros_t *heros)
 {
     int act = heros->level_act;
 
     if (heros->npc->xp >= level_tab[act].xp_to_reach && act < 10) {
-        heros->level_act += 1;
         act++;
-        heros->stamina_max = level_tab[act].stamina_max;
-        heros->stamina = level_tab[act].stamina_max;
-        heros->pv_max = level_tab[act].pv_max;
-        heros->npc->pv = level_tab[act].pv_max;
-        heros->bar_tab[LIFE_BAR]->max = level_tab[act].pv_max;
-        heros->bar_tab[STAMINA_BAR]->max = level_tab[act].stamina_max;
-        heros->bar_tab[XP_BAR]->max = level_tab[act].xp_to_reach;
-        heros->stami_per_sec = level_tab[act].stami_per_sec;
-        heros->npc->attack = level_tab[act].attack;
-        heros->npc->entity->effect_tab[LEVEL_UP_HEROS]->active = true;
+        appli_level_up(heros, act);
         if (heros->npc->xp > level_tab[act - 1].xp_to_reach) {
             heros->npc->xp = heros->npc->xp - level_tab[act - 1].xp_to_reach;
             check_level_up(heros);

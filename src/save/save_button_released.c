@@ -7,6 +7,21 @@
 
 #include "rpg.h"
 
+void appli_save_skill(rpg_t *rpg, save_data_t *save)
+{
+    for (int i = 0; i < 3; i++)
+        rpg->heros->skill->skill_level[i] = save->skill_level[i];
+    rpg->heros->skill->skill_tab[RUN] = &(run_tab[save->skill_level[RUN]]);
+    rpg->heros->skill->skill_tab[FIRE_BALL] =
+        &(fireball_tab[save->skill_level[FIRE_BALL]]);
+    rpg->heros->skill->skill_tab[SHIELD] =
+        &(shield_tab[save->skill_level[SHIELD]]);
+    rpg->heros->skill_point = save->skill_point;
+    rpg->heros->skill->act_skill = save->act_skill;
+    rpg->heros->npc->entity->effect_tab[SHIELD_HEROS]->active =
+        shield_tab[save->skill_level[SHIELD]].active;
+}
+
 void appli_save(rpg_t *rpg, save_data_t *save)
 {
     rpg->heros->npc->pv = save->heros_pv;
@@ -24,6 +39,7 @@ void appli_save(rpg_t *rpg, save_data_t *save)
         level_tab[save->level_heros].stamina_max;
     rpg->heros->bar_tab[XP_BAR]->max =
         level_tab[save->level_heros].xp_to_reach;
+    appli_save_skill(rpg, save);
     remake_bot_list(save, rpg);
     appli_save_quest(rpg, save);
 }

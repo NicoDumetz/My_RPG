@@ -84,6 +84,7 @@ static void init_heros_next_two(
     heros->skill = init_skill();
     heros->multi_speed = 1;
     heros->restore = false;
+    heros->skill_point = 0;
 }
 
 static heros_t *init_heros_next(
