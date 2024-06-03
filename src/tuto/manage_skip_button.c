@@ -25,12 +25,13 @@ void manage_skip_button(button_t *button, rpg_t *rpg)
     sfVector2f s_view = sfView_getSize(view);
     sfVector2f pos = {(center.x - s_view.x / 2) + ((s_view.x / 100) * 88),
         center.y - s_view.y / 2 + ((s_view.y / 100) * 90)};
-    sfVector2f pos_but = align_centers(
-        sfText_getGlobalBounds((sfText*)(button->child)),
-        sfSprite_getGlobalBounds(button->sprite));
+    sfVector2f pos_but;
 
     update_button(button, &(rpg->mouse_data), rpg);
     sfSprite_setPosition(button->sprite, pos);
+    pos_but = align_centers(
+        sfText_getGlobalBounds((sfText*)(button->child)),
+        sfSprite_getGlobalBounds(button->sprite));
     sfText_setPosition((sfText*)(button->child),
         (sfVector2f){pos_but.x, pos_but.y - 15});
     sfRenderWindow_drawSprite(rpg->window, button->sprite, NULL);

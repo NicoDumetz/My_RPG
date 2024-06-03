@@ -94,6 +94,7 @@ typedef struct npc_s {
     bool is_alive;
     bool allowed_dir[4];
     bool in_chase;
+    int object_id;
     int view;
     float xp;
     info_bar_t *pv_bar;

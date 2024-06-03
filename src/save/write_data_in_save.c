@@ -23,6 +23,27 @@ void write_bot_data(save_data_t *new_save, rpg_t *rpg, int i)
     }
 }
 
+void write_inv_data(save_data_t *new_save, rpg_t *rpg)
+{
+    back_obj_t *back_obj = NULL;
+    int j = 0;
+
+    for (int i = 0; i < 20; i++) {
+        if (rpg->inventory.slot[i]->child == NULL)
+            continue;
+        back_obj = (back_obj_t *)rpg->inventory.slot[i]->child;
+        new_save->object_id_inv[j] = back_obj->id;
+        j++;
+    }
+    for (int i = 0; i < 4; i++) {
+        if (rpg->inventory.equipment[i]->child == NULL)
+            continue;
+        back_obj = (back_obj_t *)rpg->inventory.equipment[i]->child;
+        new_save->object_id_equip[j] = back_obj->id;
+        j++;
+    }
+}
+
 void write_quest_data(save_data_t *new_save, rpg_t *rpg)
 {
     new_save->act_quest = rpg->biome[PLAIN]->quest_giver->act_quest;
@@ -33,20 +54,15 @@ void write_quest_data(save_data_t *new_save, rpg_t *rpg)
         rpg->quest_tab[i].state;
     }
     new_save->act_skill = rpg->heros->skill->act_skill;
+    write_inv_data(new_save, rpg);
 }
 
 void write_data_in_save(save_data_t *new_save, rpg_t *rpg)
 {
-    int j = 0;
-
     new_save->heros_pv = rpg->heros->npc->pv;
     new_save->heros_stami = rpg->heros->stamina;
     new_save->id_biome = rpg->scene;
     new_save->heros_xp = rpg->heros->npc->xp;
-    for (back_obj_t *curr = rpg->heros->inventory; curr; curr = curr->next) {
-        new_save->object_id_inv[j] = curr->id;
-        j++;
-    }
     for (int i = 0; i <= MINE; i++)
         write_bot_data(new_save, rpg, i);
     new_save->level_heros = rpg->heros->level_act;
