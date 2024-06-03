@@ -8,6 +8,7 @@
 #ifndef PLAYER_H
     #define PLAYER_H
     #include "lib.h"
+    #include <stdbool.h>
 
 typedef enum bot_type_e {
     GOBLINS_T = 0,
@@ -36,8 +37,9 @@ typedef struct entity_s {
     sfVector2f sprite_sheet_size;
     sfVector2f pos;
     sfIntRect rect_sprite;
-    sfRectangleShape *hitbox;
-    sfFloatRect hitbox_dim;
+    sfRectangleShape *colbox;
+    sfFloatRect colbox_dim;
+    int is_reverse;
     int frame_nbr;
 } entity_t;
 
@@ -46,10 +48,21 @@ typedef struct npc_s {
     action_t act_action;
     int pv;
     int attack;
+    sfRectangleShape *hitbox;
+    sfFloatRect hitbox_dim;
     struct npc_s *next;
     struct npc_s *prev;
     sfVector2i action[9];
 } npc_t;
+
+typedef struct deco_data_s {
+    entity_t **tree_tab;
+    entity_t **house_tab;
+    entity_t **mine_tab;
+    sfTexture *text_house;
+    sfTexture *text_tree;
+    sfTexture *text_mine;
+} deco_data_t;
 
 typedef struct bot_data_s {
     npc_t *bot_list[6];
@@ -75,9 +88,10 @@ heros_t *init_heros(char *asset);
 void destroy_heros(heros_t *heros);
 
 /**OFFSET**/
-void anim_entity(entity_t *entity, sfVector2i offset, float time);
+void anim_entity(entity_t *entity, sfVector2i offset, bool ticks);
 void set_offset(entity_t *entity, sfVector2i size_sprite);
-void set_hitbox(entity_t *entity);
+void set_hitbox(npc_t *npc);
+void set_colbox(entity_t *entity);
 
 /**BOT**/
 bot_data_t *init_bot_data(void);
@@ -90,4 +104,16 @@ npc_t *set_goblins_d(sfTexture *texture);
 npc_t *set_goblins(sfTexture *texture);
 npc_t *set_knight(sfTexture *texture);
 npc_t *set_minions(sfTexture *texture);
+
+/**DECO**/
+deco_data_t *init_deco_data(void);
+void free_deco_data(deco_data_t *deco_data);
+entity_t *create_knight_house(sfVector2f pos, sfTexture *texture);
+entity_t *create_mine(sfVector2f pos, sfTexture *texture);
+entity_t *create_tree_plain(sfVector2f pos, sfTexture *texture);
+void display_deco(deco_data_t *deco_data, sfRenderWindow *window, bool ticks);
+    #define KNIGHT_BUILDINGS "tiny_world_asset/Factions/Knights/Buildings/"
+    #define TREE_SPRITE "tiny_world_asset/Resources/Trees/Tree.png"
+    #define KNIGHT_H_SPRITE KNIGHT_BUILDINGS "House/House_Blue.png"
+    #define MINE_S "tiny_world_asset/Resources/Gold Mine/GoldMine_Inactive.png"
 #endif

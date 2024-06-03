@@ -16,9 +16,17 @@ void close_window(sfRenderWindow *window, sfEvent *event)
         sfRenderWindow_close(window);
 }
 
+void update_key_state(rpg_t *rpg, sfEvent *event)
+{
+    if (event->type == sfEvtKeyPressed) {
+        rpg->key_state[event->key.code] = true;
+    } else if (event->type == sfEvtKeyReleased) {
+        rpg->key_state[event->key.code] = false;
+    }
+}
+
 void manage_event(rpg_t *rpg)
 {
     close_window(rpg->window, &(rpg->event));
-    if (rpg->event.type == sfEvtKeyPressed)
-        manage_movements(rpg, &(rpg->event));
+    update_key_state(rpg, &(rpg)->event);
 }

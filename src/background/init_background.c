@@ -7,42 +7,33 @@
 
 #include "rpg.h"
 
-static void add_background(char *file, char *collision, rpg_t *rpg, int scene)
+void destroy_background(back_t *back)
+{
+    sfTexture_destroy(back->collision.texture);
+    sfSprite_destroy(back->collision.sprite);
+    sfTexture_destroy(back->sprite.texture);
+    sfSprite_destroy(back->sprite.sprite);
+    free(back);
+}
+
+back_t *add_background(char *file, char *collision)
 {
     back_t *new = malloc(sizeof(back_t));
 
     new->sprite.texture = sfTexture_createFromFile(file, NULL);
     new->sprite.sprite = sfSprite_create();
     new->sprite.pos = (sfVector2f){0, 0};
-    new->scene = scene;
     sfSprite_setPosition(new->sprite.sprite, new->sprite.pos);
     sfSprite_setTexture(new->sprite.sprite, new->sprite.texture, sfTrue);
-    sfSprite_setScale(new->sprite.sprite, (sfVector2f){3.5, 3.5});
     new->collision.texture = sfTexture_createFromFile(collision, NULL);
     new->collision.sprite = sfSprite_create();
     sfSprite_setPosition(new->collision.sprite, new->sprite.pos);
     sfSprite_setTexture(new->collision.sprite, new->collision.texture, sfTrue);
-    sfSprite_setScale(new->collision.sprite, (sfVector2f){3.5, 3.5});
-    new->next = rpg->back;
-    rpg->back = new;
+    return (new);
 }
 
-void init_background(rpg_t *rpg)
+void display_background(back_t *back, sfRenderWindow *window)
 {
-    rpg->back = NULL;
-    add_background("maptest.png", "colisiontest.png", rpg, MAIN);
-}
-
-void display_background(rpg_t *rpg)
-{
-    back_t *current = rpg->back;
-
-    for (; current; current = current->next) {
-        if (current->scene == rpg->scene) {
-            sfRenderWindow_drawSprite(rpg->window,
-            current->sprite.sprite, NULL);
-            sfRenderWindow_drawSprite(rpg->window,
-            current->collision.sprite, NULL);
-        }
-    }
+    sfRenderWindow_drawSprite(window, back->sprite.sprite, NULL);
+    sfRenderWindow_drawSprite(window, back->collision.sprite, NULL);
 }

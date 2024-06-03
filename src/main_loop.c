@@ -9,7 +9,7 @@
 
 void which_scene(rpg_t *rpg)
 {
-    if (rpg->scene == MAIN)
+    if (rpg->scene == PLAIN)
         test(rpg);
 }
 
@@ -17,8 +17,16 @@ void init_clock(rpg_t *rpg)
 {
     sfTime new_time = sfClock_restart(rpg->clock);
     static float accu = 0;
+    static float ticks = 0;
+    float frec = 1.0 / 10.0;
 
     rpg->time = sfTime_asSeconds(new_time);
+    ticks += rpg->time;
+    if (ticks >= frec) {
+        rpg->ticks = true;
+        ticks = 0;
+    } else
+        rpg->ticks = false;
     accu += rpg->time;
     rpg->second = (int)accu;
 }
