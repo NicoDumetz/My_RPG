@@ -32,24 +32,24 @@ void find_valid_pos(sfImage* map_image, entity_t *entity)
     }
 }
 
-void bot_generator(biome_t *biome, int *who)
+void bot_generator(biome_t *biome, int *who, float time)
 {
     npc_t *new_bot = NULL;
     static int i = 0;
-    static int time_to_wait = 0;
+    static float time_to_wait = 0;
     int rand_nbr = rand();
 
     if (who[i] < 0 || i == 6)
         i = 0;
-    if (time_to_wait > 0)
-        time_to_wait--;
-    if (biome->nbr_bot < 30 && (rand_nbr % 3) == 0 && time_to_wait == 0) {
+    if (time_to_wait >= 0)
+        time_to_wait -= time;
+    if (biome->nbr_bot < 30 && (rand_nbr % 3) == 0 && time_to_wait < 0) {
         new_bot = create_bot(who[i],
             biome->bot_data, (sfVector2f){0, 0}, biome->text_tab);
         i++;
         biome->nbr_bot = biome->nbr_bot + 1;
         find_valid_pos(biome->back->collision.col_image, new_bot->entity);
         manage_animation_bot(new_bot->entity, true);
-        time_to_wait = 300;
+        time_to_wait = 3;
     }
 }

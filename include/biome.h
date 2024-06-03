@@ -54,7 +54,7 @@ biome_t *set_castle(sfTexture **text_tab, sfFont **font_tab);
 biome_t *set_mine(sfTexture **text_tab, sfFont **font_tab);
 
 /**BOT**/
-void bot_generator(biome_t *biome, int *who);
+void bot_generator(biome_t *biome, int *who, float time);
 void set_bot_donjon(biome_t *biome, sfVector2f *pos_list);
 
 /**PORTAL**/
