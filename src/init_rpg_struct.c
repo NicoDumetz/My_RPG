@@ -11,6 +11,7 @@ void destroy_rpg(rpg_t *rpg)
 {
     if (rpg) {
         sfRenderWindow_destroy(rpg->window);
+        destroy_heros(rpg->heros);
         sfClock_destroy(rpg->clock);
         free(rpg);
     }
@@ -26,5 +27,7 @@ rpg_t *create_rpg_struct(void)
     rpg->second = 0;
     rpg->time = 0;
     rpg->window = sfRenderWindow_create(mode, "my_rpg", sfClose, NULL);
+    rpg->heros = init_heros(
+        "tiny_world_asset/Factions/Knights/Troops/Warrior/Blue/Warrior_Blue.png");
     return rpg;
 }

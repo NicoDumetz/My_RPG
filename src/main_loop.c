@@ -7,11 +7,6 @@
 
 #include "rpg.h"
 
-void test(rpg_t *rpg)
-{
-    return;
-}
-
 void which_scene(rpg_t *rpg)
 {
     if (rpg->scene == MAIN)

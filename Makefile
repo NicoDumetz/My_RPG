@@ -13,9 +13,16 @@ SRC = main.c\
 	src/buttons/update_button.c\
 	src/tools/destroy_sprite.c\
 	src/tools/my_strncmp.c\
+	src/tools/create_sprite.c\
 	src/tools/my_strlen.c\
 	src/tools/my_putstr.c\
+	src/entity/heros/init_heros.c\
+	src/entity/npc/init_npc.c\
+	src/entity/init_entity.c\
+	src/entity/set_offset.c\
+	src/animations/anim_entity.c\
 	src/init_rpg_struct.c\
+	src/test.c\
 
 
 OBJ = $(SRC:.c=.o)
