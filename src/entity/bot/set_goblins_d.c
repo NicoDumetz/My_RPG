@@ -47,5 +47,6 @@ npc_t *set_goblins_d(sfTexture *texture)
     goblins_d->stamina = 50;
     goblins_d->max_stamina = 50;
     goblins_d->damage = 50;
+    goblins_d->type = PROJECTILE;
     return (goblins_d);
 }

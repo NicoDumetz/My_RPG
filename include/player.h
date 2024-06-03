@@ -36,6 +36,11 @@ typedef enum deco_type_e {
     MINE_DECO
 } deco_type_t;
 
+typedef enum attack_type_e {
+    EXPLOSIVE,
+    PROJECTILE,
+    MELEE
+} attack_type_t;
 typedef enum bot_type_e {
     GOBLINS_T = 0,
     GOBLINS_D,
@@ -100,6 +105,7 @@ typedef struct npc_s {
     float stamina;
     float max_stamina;
     int damage;
+    attack_type_t type;
     special_npc_t special;
 } npc_t;
 

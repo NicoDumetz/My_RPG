@@ -38,5 +38,6 @@ npc_t *set_goblins_b(sfTexture *texture)
     goblins_b->stamina = 50;
     goblins_b->max_stamina = 50;
     goblins_b->damage = 50;
+    goblins_b->type = EXPLOSIVE;
     return (goblins_b);
 }

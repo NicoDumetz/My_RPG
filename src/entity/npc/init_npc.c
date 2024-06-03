@@ -64,6 +64,7 @@ static void init_variable_npc(npc_t *npc)
     npc->max_stamina = 0;
     npc->stamina = 0;
     npc->damage = 0;
+    npc->type = MELEE;
 }
 
 npc_t *init_npc(sfTexture *asset)
