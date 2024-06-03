@@ -22,6 +22,7 @@ button_t *create_button(sfTexture **text_tab, int *text_id)
     memset(button, 0, sizeof(button_t));
     button->pos = (sfVector2f){0, 0};
     button->visible = 1;
+    button->child = NULL;
     for (int i = 0; i < 5; i++) {
         if (text_id[i] >= 0)
             button->texture_state[i] = text_tab[text_id[i]];

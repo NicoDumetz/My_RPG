@@ -24,6 +24,8 @@ typedef struct mouse_data_s {
     sfVector2f pos;
     bool right;
     bool left;
+    bool scroll_up;
+    bool scroll_down;
 } mouse_data_t;
 
 typedef struct button_s {

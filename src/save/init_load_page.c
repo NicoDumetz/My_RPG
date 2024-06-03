@@ -32,22 +32,7 @@ void add_load_button_to_list(save_scene_t *save_scene, button_t *button)
     save_scene->button_list = button;
 }
 
-void create_button_load_list(
-    save_t *save_list, sfTexture **text_tab, save_scene_t *save_scene)
-{
-    button_t *new_button = NULL;
-    int text_id_save[] = {
-        BLUE_LONG_R_TEXT, BLUE_LONG_P_TEXT,
-        BUTTON_LONG_H_TEXT, BLUE_LONG_R_TEXT, -1};
-
-    for (save_t *curr = save_list; curr; curr = curr->next) {
-        new_button = create_button(text_tab, text_id_save);
-        new_button->child = curr;
-        add_load_button_to_list(save_scene, new_button);
-    }
-}
-
-save_scene_t *init_load_page(save_t *save_list, sfTexture **text_tab)
+save_scene_t *init_load_page(sfTexture **text_tab)
 {
     save_scene_t *load_page = malloc(sizeof(save_scene_t));
     int text_exit[] = {EXIT_B_R_TEXT, EXIT_B_P_TEXT, -1, EXIT_B_R_TEXT, -1};
@@ -61,6 +46,6 @@ save_scene_t *init_load_page(save_t *save_list, sfTexture **text_tab)
     load_page->button_list = NULL;
     load_page->exit = create_button(text_tab, text_exit);
     load_page->from = 0;
-    create_button_load_list(save_list, text_tab, load_page);
+    load_page->begin_button_list = 300;
     return (load_page);
 }

@@ -26,11 +26,20 @@ sfText *create_text_save_node(save_data_t *save, sfFont **font_tab)
 void update_save_list(save_data_t *save, rpg_t *rpg)
 {
     save_t *new_node = malloc(sizeof(save_t));
+    button_t *new_button = NULL;
+    int text_id_save[] = {
+        BLUE_LONG_R_TEXT, BLUE_LONG_P_TEXT,
+        BUTTON_LONG_H_TEXT, BLUE_LONG_R_TEXT, -1};
+    sfVector2f scale_button = {4, 2};
 
     new_node->next = NULL;
     new_node->prev = NULL;
     new_node->data = save;
     new_node->name = create_text_save_node(save, rpg->font_tab);
+    new_button = create_button(rpg->text_tab, text_id_save);
+    new_button->child = new_node;
+    sfSprite_setScale(new_button->sprite, scale_button);
+    add_load_button_to_list(rpg->save_scene, new_button);
     new_node->next = rpg->save_list;
     if (rpg->save_list)
         rpg->save_list->prev = new_node;

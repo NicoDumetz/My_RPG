@@ -12,10 +12,12 @@
 typedef struct button_s button_t;
 typedef struct save_scene_s {
     int from;
+    bool end_scroll;
     sfSprite *back;
     sfSprite *header;
     sfSprite *footer;
     button_t *exit;
+    float begin_button_list;
     button_t *button_list;
 } save_scene_t;
 
@@ -41,6 +43,7 @@ typedef struct save_s {
 } save_t;
 
 /**INIT**/
-save_scene_t *init_load_page(save_t *save_list, sfTexture **text_tab);
+save_scene_t *init_load_page(sfTexture **text_tab);
 void destroy_load_page(save_scene_t *save_scene);
+void add_load_button_to_list(save_scene_t *save_scene, button_t *button);
 #endif

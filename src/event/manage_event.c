@@ -7,6 +7,19 @@
 
 #include "rpg.h"
 
+void update_mouse_scroll(mouse_data_t *mouse_data, sfEvent *event)
+{
+    if (event->type == sfEvtMouseWheelScrolled) {
+        if (event->mouseWheelScroll.delta > 0)
+            mouse_data->scroll_down = true;
+        if (event->mouseWheelScroll.delta < 0)
+            mouse_data->scroll_up = true;
+    } else {
+        mouse_data->scroll_up = false;
+        mouse_data->scroll_down = false;
+    }
+}
+
 void update_mouse_state(mouse_data_t *mouse_data, sfEvent *event)
 {
     if (event->type == sfEvtMouseButtonPressed) {
@@ -45,4 +58,5 @@ void manage_event(rpg_t *rpg)
     close_window(rpg->window, &(rpg->event));
     update_key_state(rpg, &(rpg)->event);
     update_mouse_state(&(rpg->mouse_data), &(rpg->event));
+    update_mouse_scroll(&(rpg->mouse_data), &(rpg->event));
 }

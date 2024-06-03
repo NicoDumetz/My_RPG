@@ -26,6 +26,5 @@ typedef struct background_s {
 back_t *add_background(sfTexture *file, sfTexture *collision);
 void display_background(back_t *back, sfRenderWindow *window);
 void destroy_background(back_t *back);
-void set_view(rpg_t *rpg, sfSprite* sprite, sfSprite *limite);
 
 #endif
