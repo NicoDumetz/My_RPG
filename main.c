@@ -7,7 +7,7 @@
 
 #include "rpg.h"
 
-int check_asset(rpg_t *)
+int check_asset(rpg_t *rpg)
 {
     return 0;
 }

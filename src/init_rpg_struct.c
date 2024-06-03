@@ -28,7 +28,6 @@ void destroy_rpg(rpg_t *rpg)
         destroy_quest(rpg->quest_tab);
         destroy_heros(rpg->heros);
         sfClock_destroy(rpg->clock);
-        destroy_tuto(rpg->tuto);
         if (rpg->save_list)
             destroy_save_list(rpg);
         for (int i = 0; i <= MINE; i++)
@@ -38,8 +37,7 @@ void destroy_rpg(rpg_t *rpg)
         for (int i = 0; i <= PIXEL; i++)
             sfFont_destroy(rpg->font_tab[i]);
         destroy_load_page(rpg->save_scene);
-        destroy_inventory(&rpg->inventory);
-        free_game_over(rpg->end);
+        destroy_menu(rpg->start_menu);
         free(rpg);
     }
 }
@@ -52,10 +50,6 @@ rpg_t *init_rpg_next(rpg_t *rpg)
     memset(&(rpg->mouse_data), 0, sizeof(mouse_data_t));
     rpg->save_list = NULL;
     create_file_list(rpg);
-    init_inventory(&rpg->inventory, rpg->text_tab);
-    rpg->second = 0;
-    rpg->time = 0;
-    init_game_over(rpg);
     return (rpg);
 }
 
@@ -64,8 +58,12 @@ rpg_t *create_rpg_struct(void)
     rpg_t *rpg = malloc(sizeof(rpg_t));
     sfVideoMode mode = {1920, 1080, 32};
 
+    rpg->start_menu = create_menu_struct(rpg);
+    rpg->params = init_param_struct(rpg->text_tab);
     rpg->clock = sfClock_create();
-    rpg->scene = TUTO;
+    rpg->scene = MENU;
+    rpg->second = 0;
+    rpg->time = 0;
     set_all_font(rpg->font_tab);
     rpg->window = sfRenderWindow_create(mode, "my_rpg", sfClose, NULL);
     sfRenderWindow_setPosition(rpg->window, (sfVector2i){0, 0});
@@ -75,9 +73,8 @@ rpg_t *create_rpg_struct(void)
         rpg->key_state[i] = false;
     for (int i = 0; i <= MINE; i++)
         rpg->biome[i] = create_biome(i, rpg->text_tab, rpg->font_tab);
-    rpg->tuto = create_tuto(rpg->text_tab, rpg->font_tab);
-    rpg->heros->npc->entity->pos = rpg->tuto->biome->last_pos;
+    rpg->heros->npc->entity->pos = rpg->biome[PLAIN]->last_pos;
     sfSprite_setPosition(
-    rpg->heros->npc->entity->sprite, rpg->tuto->biome->last_pos);
+    rpg->heros->npc->entity->sprite, rpg->biome[PLAIN]->last_pos);
     return init_rpg_next(rpg);
 }
