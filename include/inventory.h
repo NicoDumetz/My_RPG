@@ -51,4 +51,7 @@ void set_stats(inventory_t *inventory, rpg_t *rpg);
 button_t *get_free_slot(button_t **list, unsigned char size_list);
 void use_item(void *data, button_t *button);
 void unequip_equipment(void *data, button_t *button);
+bool add_to_inventory(
+    back_obj_t **inventory, front_obj_t *obj, back_obj_t *back, rpg_t *rpg);
+void set_obj_scale(inventory_t *inventory, back_obj_t *obj);
 #endif

@@ -13,7 +13,8 @@ void manage_skill(heros_t *heros, rpg_t *rpg)
     run_t *run = (run_t *)heros->skill->skill_tab[RUN];
     static int spam = 0;
 
-    if (act_skill >= 0 && rpg->key_state[sfKeyLShift] && spam == 0) {
+    if (act_skill >= 0 &&
+        rpg->key_state[sfKeyLShift] && (spam == 0 || act_skill == RUN)) {
         heros->skill->skill_funct_tab[act_skill](
             heros, rpg, heros->skill->skill_tab[act_skill]);
         spam = 1;

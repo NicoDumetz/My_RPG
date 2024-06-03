@@ -9,7 +9,6 @@
 
 void set_bot_donjon(biome_t *biome, sfVector2f *pos_list)
 {
-    npc_t *new_bot = NULL;
     static int i = 0;
 
     for (int j = 0; pos_list[j].x != 0; j++) {
