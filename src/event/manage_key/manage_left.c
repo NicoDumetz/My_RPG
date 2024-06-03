@@ -16,7 +16,7 @@ static void moov_left(rpg_t *rpg)
     const sfView *view = sfRenderWindow_getView(rpg->window);
     sfVector2f viewCenter = sfView_getCenter(view);
     float left = viewCenter.x - window_width / 2;
-    float movement = rpg->heros->speed * rpg->time;
+    float movement = rpg->heros->speed * rpg->time * rpg->heros->multi_speed;
 
     if (pos.x - movement < 0 ||
         static_collisions_left(rpg->heros->npc->entity->colbox, wich_img(rpg)))

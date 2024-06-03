@@ -99,21 +99,33 @@ SRC = main.c\
 	src/entity/quest_giver/manage_quest_giver.c\
 	src/entity/quest_giver/next_quest.c\
 	src/save/appli_save_quest.c\
-	src/menu/init_menu_struct.c\
-	src/menu/manage_menu_button.c\
-	src/menu/menu.c \
-	src/param/init_param_struct.c\
-	src/param/manage_param_button.c\
-	src/param/param.c\
-	src/param/action/manage_display_param_button.c\
-	src/param/action/manage_sound_param_button.c\
-	src/param/action/manage_fps_param_button.c\
-	src/param/display/param_display.c\
-	src/param/display/param_sound.c\
-	src/param/display/param_fps.c\
-	src/param/init/init_display_param_button.c\
-	src/param/init/init_sound_param_button.c\
-	src/param/init/init_fps_param_button.c\
+	src/inventory/init_inventory.c\
+	src/inventory/inventory.c\
+	src/inventory/slots/init_slots.c\
+	src/inventory/slots/set_slots.c\
+	src/entity/bot/ia/attack_bot.c\
+	src/portal/check_open_portal.c\
+	src/quest/check_end_quest.c\
+	src/tuto/init_quest_giver_tuto.c\
+	src/tuto/create_tuto.c\
+	src/tuto/tuto_loop.c\
+	src/tuto/skip_released.c\
+	src/tuto/manage_skip_button.c\
+	src/tuto/init_quest_tuto.c\
+	src/tuto/quest/move_quest.c\
+	src/tuto/quest/manage_quest_tuto.c\
+	src/tuto/quest/check_if_pressed_touch.c\
+	src/tuto/quest/start_test_t.c\
+	src/attack/projectile/manage_projectile.c\
+	src/attack/projectile/init_pro_bot.c\
+	src/skill/init_fire_ball.c\
+	src/skill/init_shield.c\
+	src/skill/init_run.c\
+	src/skill/init_skill.c\
+	src/skill/manage_skill.c\
+	src/biome/set_bot_donjon.c\
+	src/game_over/game_over.c\
+	src/game_over/fade_switch.c\
 
 OBJ = $(SRC:.c=.o)
 

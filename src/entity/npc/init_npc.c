@@ -15,6 +15,7 @@ void destroy_npc(npc_t *npc)
     sfRectangleShape_destroy(npc->hitbox);
     for (int i = 0; i <= ATTACK_R; i++)
         sfRectangleShape_destroy(npc->attbox[i]);
+    destroy_projectile(npc->projectile);
     free(npc);
 }
 
@@ -51,14 +52,8 @@ void init_npc_next(npc_t *npc)
     npc->pv_bar = NULL;
 }
 
-npc_t *init_npc(sfTexture *asset)
+static void init_variable_npc(npc_t *npc)
 {
-    npc_t *npc = malloc(sizeof(npc_t));
-
-    npc->attack = 0;
-    npc->pv = 0;
-    npc->entity = init_entity(asset);
-    npc->act_action = STAND;
     npc->is_attack = false;
     npc->next = NULL;
     npc->prev = NULL;
@@ -67,6 +62,23 @@ npc_t *init_npc(sfTexture *asset)
     npc->hitbox_dim = (sfFloatRect){0, 0, 0, 0};
     npc->special = NON_SPEC;
     npc->is_alive = true;
+    npc->max_stamina = 0;
+    npc->stamina = 0;
+    npc->damage = 0;
+    npc->type = MELEE;
+}
+
+npc_t *init_npc(sfTexture *asset)
+{
+    npc_t *npc = malloc(sizeof(npc_t));
+
+    npc->attack = 0;
+    npc->pv = 0;
+    npc->entity = init_entity(asset);
+    npc->act_action = STAND;
+    npc->projectile = NULL;
+    npc->end_attack = false;
+    init_variable_npc(npc);
     for (int i = 0; i <= ATTACK_R; i++) {
         npc->attbox[i] = init_attbox_rect();
         npc->attbox_dim[i] = (sfFloatRect){0, 0, 0, 0};
