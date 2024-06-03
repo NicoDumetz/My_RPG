@@ -28,6 +28,7 @@ npc_t *set_archer(sfTexture *texture)
 
     archer->pv = 0;
     archer->attack = 0;
+    archer->entity->parent = archer;
     set_offset(archer->entity, (sfVector2i){8, 7});
     set_action_tab_archer(archer);
     archer->entity->colbox_dim = colbox;

@@ -44,6 +44,7 @@ heros_t *init_heros(char *asset)
     heros->speed = 200.f;
     heros->texture_base = sfTexture_createFromFile(asset, NULL);
     heros->npc = init_npc(heros->texture_base);
+    heros->npc->entity->parent = heros->npc;
     set_offset(heros->npc->entity, (sfVector2i){6, 8});
     set_action_tab_heros(heros);
     set_attbox_dim_heros(heros->npc);

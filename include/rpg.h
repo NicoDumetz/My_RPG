@@ -72,6 +72,7 @@ void test(rpg_t *rpg);
 int my_strncmp(char const *s1, char const *s2, int len);
 int my_strlen(char const *str);
 int my_putstr(char const *str);
+sfBool sprite_is_in_float_rect(sfSprite *sprite, sfFloatRect rect);
 void destroy_sprite(sfSprite *sprite);
 sfSprite *create_sprite(char *asset);
 

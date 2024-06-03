@@ -9,6 +9,7 @@
     #define PLAYER_H
     #include "lib.h"
     #include <stdbool.h>
+    #include "background.h"
 
 typedef enum deco_type_e {
     HOUSE_DECO = 0,
@@ -42,9 +43,14 @@ typedef struct entity_s {
     sfVector2f size;
     sfVector2f sprite_sheet_size;
     sfVector2f pos;
+    int level;
     sfIntRect rect_sprite;
     sfRectangleShape *colbox;
     sfFloatRect colbox_dim;
+    void *parent;
+    sfVector2i simple_action;
+    struct entity_s *prev;
+    struct entity_s *next;
     int is_reverse;
     int frame_nbr;
 } entity_t;
@@ -115,12 +121,13 @@ npc_t *set_minions(sfTexture *texture);
 /**DECO**/
 deco_data_t *init_deco_data(void);
 void free_deco_data(deco_data_t *deco_data);
-entity_t *create_knight_house(sfVector2f pos, sfTexture *texture);
-entity_t *create_mine(sfVector2f pos, sfTexture *texture);
-entity_t *create_tree_plain(sfVector2f pos, sfTexture *texture);
+entity_t *create_knight_house(
+    sfVector2f pos, sfTexture *texture, back_t *back);
+entity_t *create_mine(sfVector2f pos, sfTexture *texture, back_t *back);
+entity_t *create_tree_plain(sfVector2f pos, sfTexture *texture, back_t *back);
 void display_deco(deco_data_t *deco_data, sfRenderWindow *window, bool ticks);
     #define KNIGHT_BUILDINGS "tiny_world_asset/Factions/Knights/Buildings/"
     #define TREE_SPRITE "tiny_world_asset/Resources/Trees/Tree.png"
     #define KNIGHT_H_SPRITE KNIGHT_BUILDINGS "House/House_Blue.png"
-    #define MINE_S "tiny_world_asset/Resources/Gold Mine/GoldMine_Inactive.png"
+    #define MINE_S "tiny_world_asset/Resources/Gold Mine/GoldMine_Active.png"
 #endif

@@ -36,6 +36,7 @@ npc_t *set_goblins(sfTexture *texture)
 
     goblins->pv = 0;
     goblins->attack = 0;
+    goblins->entity->parent = goblins;
     set_offset(goblins->entity, (sfVector2i){7, 5});
     set_action_tab_goblins(goblins);
     set_attbox_dim_goblins(goblins);

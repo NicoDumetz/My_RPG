@@ -36,7 +36,12 @@ entity_t *init_entity(sfTexture *asset)
     entity->sprite = sfSprite_create();
     entity->colbox = init_colbox_rect();
     entity->is_reverse = 0;
+    entity->next = NULL;
+    entity->prev = NULL;
+    entity->parent = NULL;
+    entity->level = 0;
     sfSprite_setTexture(entity->sprite, asset, sfTrue);
+    entity->simple_action = (sfVector2i){1, 0};
     entity->colbox_dim = (sfFloatRect){0, 0, 0, 0};
     ss_size = sfSprite_getGlobalBounds(entity->sprite);
     entity->sprite_sheet_size = (sfVector2f){ss_size.width, ss_size.height};

@@ -36,6 +36,7 @@ npc_t *set_knight(sfTexture *texture)
 
     knight->pv = 0;
     knight->attack = 0;
+    knight->entity->parent = knight;
     set_offset(knight->entity, (sfVector2i){6, 8});
     set_action_tab_knight(knight);
     set_attbox_dim_knight(knight);
