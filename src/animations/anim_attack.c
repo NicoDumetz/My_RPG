@@ -11,12 +11,14 @@ void manage_ticks_attack(npc_t *npc, sfVector2i offset)
 {
     npc->entity->rect_sprite.left += npc->entity->size.x;
     if ((int)((npc->entity->size.x * offset.x) / 2) ==
-        (int)(npc->entity->rect_sprite.left))
+        (int)(npc->entity->rect_sprite.left) && npc->type == MELEE)
         npc->cur_attack = true;
     if (npc->entity->rect_sprite.left >= npc->entity->size.x * offset.x) {
         npc->is_attack = false;
         npc->cur_attack = false;
         npc->entity->rect_sprite.left = 0;
+        if (npc->type == EXPLOSIVE || npc->type == PROJECTILE)
+            npc->cur_attack = true;
         return;
     }
     sfSprite_setTextureRect(npc->entity->sprite, npc->entity->rect_sprite);

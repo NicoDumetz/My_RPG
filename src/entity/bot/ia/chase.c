@@ -83,11 +83,14 @@ static void chasing(npc_t *npc_act, rpg_t *rpg)
 {
     sfVector2f pos_heros = rpg->heros->npc->entity->pos;
     sfVector2f pos = sfSprite_getPosition(npc_act->entity->sprite);
+    sfFloatRect bounds = sfSprite_getGlobalBounds(npc_act->entity->sprite);
     float movement = 75 * rpg->time;
     sfVector2f direction;
     float distance;
     sfVector2f movement_pos;
 
+    pos.x = bounds.left + bounds.width / 2.0f;
+    pos.y = bounds.top + bounds.height / 2.0f;
     direction.x = pos_heros.x - pos.x;
     direction.y = pos_heros.y - pos.y;
     distance = sqrt(direction.x * direction.x + direction.y * direction.y);
