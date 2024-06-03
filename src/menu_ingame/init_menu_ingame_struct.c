@@ -68,7 +68,6 @@ ingame_menu_t *create_menu_ingame_struct(rpg_t *rpg)
     menu->background = sfSprite_create();
     sfSprite_setPosition(menu->background, (sfVector2f){0, 0});
     sfSprite_setTexture(menu->background, rpg->text_tab[MENU_1], sfTrue);
-    set_button(rpg->text_tab, menu);
     menu->page = sfSprite_create();
     sfSprite_setPosition(menu->page, (sfVector2f){660, 83});
     sfSprite_setTexture(menu->page, rpg->text_tab[MENU_INGAME_E], sfTrue);

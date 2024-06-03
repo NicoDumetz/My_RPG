@@ -140,10 +140,6 @@ typedef enum texture_type_e {
     STAMI_LVL_2_TEXT,
     XP_LVL_1_TEXT,
     FIRE_TEXT,
-    BLUE_PLUS_TEXT,
-    BLUE_PLUS_PRESSED_TEXT,
-    PLUS_HOVER_TEXT,
-    PLUS_BLOCK_TEXT,
     MINE_TEXT
 } texture_type_t;
 
