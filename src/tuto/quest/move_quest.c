@@ -10,14 +10,13 @@
 bool start_kill_goblins(quest_t *, void *data)
 {
     rpg_t *rpg = (rpg_t *)(data);
-    int tab[] = {XP_LVL_1, GLOVES_LVL_2, MUSHROOMS};
+    int tab[] = {PV_LVL_1, GLOVES_LVL_2};
     npc_t *npc = NULL;
 
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < 2; i++) {
         npc = create_bot(GOBLINS_T, rpg->tuto->biome->bot_data,
             (sfVector2f){200 * (i + 1), 300}, rpg->text_tab);
-        npc->pv = 10;
-        npc->damage = 0;
+        npc->attack = 0;
         npc->object_id = tab[i];
     }
     return true;

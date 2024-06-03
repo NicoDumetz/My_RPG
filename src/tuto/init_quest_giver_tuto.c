@@ -9,6 +9,7 @@
 
 const char *quest_giver_dial_tuto[] = {
     "",
+    "",
     "Welcome, recruit.",
     "The path of the warrior is strewn with trials and victories.",
     "Are you ready to begin your training?",
@@ -100,7 +101,7 @@ quest_giver_t *init_quest_giver_tuto(
     quest_giver_t *quest_giver = malloc(sizeof(quest_giver_t));
     sfFloatRect hitbox = {30, 25, 55, 55};
     sfFloatRect colbox = {40, 60, 80, 90};
-    sfVector2f pos = {600, 500};
+    sfVector2f pos = {700, 700};
 
     quest_giver->act_quest = -1;
     quest_giver->npc = init_npc(text_tab[KNIGHT_TEXT]);
