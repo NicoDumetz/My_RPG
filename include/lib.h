@@ -21,6 +21,8 @@
     #include <string.h>
     #include <stdbool.h>
     #include <stdio.h>
+    #include "level.h"
+    #include "info_bar.h"
     #include "object.h"
     #include "effect.h"
     #include "player.h"

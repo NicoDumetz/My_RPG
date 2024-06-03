@@ -32,6 +32,7 @@ npc_t *set_minions(sfTexture *texture)
     set_offset(minions->entity, (sfVector2i){6, 6});
     set_action_tab_minions(minions);
     minions->entity->colbox_dim = colbox;
+    minions->xp = 10;
     minions->hitbox_dim = hitbox;
     minions->view = 500;
     return (minions);

@@ -25,7 +25,7 @@ entity_t *create_tree_plain(sfVector2f pos, sfTexture *texture, back_t *back)
     entity_t *entity = init_entity(texture);
     sfFloatRect colbox = {40, 80, 80, 85};
 
-    entity->simple_action = (sfVector2i){3, 0};
+    entity->simple_action = (sfVector2i){4, 0};
     set_offset(entity, (sfVector2i){4, 3});
     sfSprite_setPosition(entity->sprite, pos);
     entity->colbox_dim = colbox;

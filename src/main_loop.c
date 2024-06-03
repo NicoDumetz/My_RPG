@@ -9,8 +9,10 @@
 
 void which_scene(rpg_t *rpg)
 {
-    if (rpg->scene >= PLAIN && rpg->scene <= MINE)
+    if (rpg->scene >= PLAIN && rpg->scene <= MINE) {
         biome_loop(rpg, rpg->biome[rpg->scene]);
+        manage_heros_bar(rpg->heros, rpg->window);
+    }
 }
 
 void init_clock(rpg_t *rpg)

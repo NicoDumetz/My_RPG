@@ -23,8 +23,8 @@ void find_valid_pos(sfImage* map_image, entity_t *entity)
     sfVector2f new_pos = {0, 0};
     npc_t *npc = (npc_t *)(entity->parent);
 
-    new_pos.x = rand() % image_size.x - 5;
-    new_pos.y = rand() % image_size.y - 5;
+    new_pos.x = rand() % (image_size.x - 20);
+    new_pos.y = rand() % (image_size.y - 20);
     sfSprite_setPosition(entity->sprite, new_pos);
     set_box(entity->colbox, entity->colbox_dim, entity);
     if (!is_position_allowed(map_image, entity->colbox)) {
@@ -43,7 +43,7 @@ void bot_generator(biome_t *biome, int *who)
         i = 0;
     if (time_to_wait > 0)
         time_to_wait--;
-    if (biome->nbr_bot < 30 && (rand_nbr % 5) == 0 && time_to_wait == 0) {
+    if (biome->nbr_bot < 30 && (rand_nbr % 3) == 0 && time_to_wait == 0) {
         new_bot = create_bot(who[i],
             biome->bot_data, (sfVector2f){0, 0}, biome->text_tab);
         i++;

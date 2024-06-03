@@ -87,6 +87,8 @@ typedef struct npc_s {
     bool allowed_dir[4];
     bool in_chase;
     int view;
+    float xp;
+    info_bar_t *pv_bar;
     sfRectangleShape *attbox[4];
     sfRectangleShape *hitbox;
     sfFloatRect attbox_dim[4];
@@ -109,7 +111,13 @@ typedef struct bot_data_s {
 
 typedef struct heros_s {
     sfTexture *texture_base;
+    int level_act;
+    float stamina;
+    float stamina_max;
+    float stami_per_sec;
+    float pv_max;
     back_obj_t *inventory;
+    info_bar_t *bar_tab[3];
     npc_t *npc;
     float speed;
 } heros_t;
@@ -125,6 +133,7 @@ void destroy_npc(npc_t *npc);
 /**HEROS**/
 heros_t *init_heros(sfTexture **texture);
 void destroy_heros(heros_t *heros);
+void manage_heros_bar(heros_t *heros, sfRenderWindow *window);
 
 /**OFFSET**/
 void anim_entity(entity_t *entity, sfVector2i offset, bool ticks);

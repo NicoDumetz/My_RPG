@@ -32,6 +32,7 @@ npc_t *set_goblins_b(sfTexture *texture)
     set_offset(goblins_b->entity, (sfVector2i){6, 6});
     set_action_tab_goblins_b(goblins_b);
     goblins_b->entity->colbox_dim = colbox;
+    goblins_b->xp = 25;
     goblins_b->hitbox_dim = hitbox;
     goblins_b->view = 500;
     return (goblins_b);

@@ -7,6 +7,14 @@
 
 #include "rpg.h"
 
+void check_bot_death(heros_t *heros, npc_t *to_check)
+{
+    if (to_check->pv <= 0) {
+        to_check->is_alive = false;
+        heros->npc->xp += to_check->xp;
+    }
+}
+
 void check_if_heros_attack_me(npc_t *to_check, heros_t *heros)
 {
     sfRectangleShape *npc_rect = to_check->hitbox;
@@ -26,6 +34,5 @@ void check_if_heros_attack_me(npc_t *to_check, heros_t *heros)
             heros->npc->cur_attack = false;
         }
     }
-    if (to_check->pv <= 0)
-        to_check->is_alive = false;
+    check_bot_death(heros, to_check);
 }

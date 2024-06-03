@@ -77,6 +77,10 @@ SRC = main.c\
 	src/portal/create_portal.c\
 	src/tools/rect_is_in_circleshape.c\
 	src/biome/switch_biome.c\
+	src/entity/info_bar.c/create_info_bar.c\
+	src/entity/heros/manage_heros_bar.c\
+	src/entity/heros/level_tab.c\
+	src/entity/info_bar.c/update_info_bar.c\
 
 OBJ = $(SRC:.c=.o)
 
