@@ -61,6 +61,7 @@ typedef enum texture_type_e {
     ARROW_TEXT,
     DYNA_TEXT,
     SHIELD_TEXT,
+    FIRE_TEXT,
     MINE_TEXT
 } texture_type_t;
 

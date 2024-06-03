@@ -86,7 +86,7 @@ void moov_projectile(npc_t *npc, rpg_t *rpg)
     float length = sqrt(direction.x * direction.x + direction.y * direction.y);
     float speed = proj->speed * rpg->time;
     sfVector2f movement;
-    float margin = 5.0f;
+    float margin = 15.0f;
 
     if (npc->type == ARCHERY || npc->type == DYNA)
         colision_projectile(npc, rpg->heros);

@@ -72,4 +72,7 @@ void manage_heros(heros_t *heros, rpg_t *rpg)
     if ((heros->level_act) == 10)
         heros->npc->xp = 0;
     heros->can_interact = false;
+    if (heros->npc->projectile->active == 1)
+        moov_projectile(heros->npc, rpg);
+    display_projectiles(heros->npc, rpg);
 }

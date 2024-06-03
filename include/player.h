@@ -38,6 +38,7 @@ typedef enum deco_type_e {
 
 typedef enum attack_type_e {
     EXPLOSIVE,
+    FIRE,
     ARCHERY,
     DYNA,
     MELEE
