@@ -7,10 +7,24 @@
 
 #include "rpg.h"
 
+static void destroy_inventory(back_obj_t **list)
+{
+    back_obj_t *next = NULL;
+    back_obj_t *curr = *list;
+
+    while (curr) {
+        next = curr->next;
+        destroy_back_obj(curr);
+        curr = next;
+    }
+    *list = NULL;
+}
+
 void destroy_heros(heros_t *heros)
 {
+    if (heros->inventory)
+        destroy_inventory(&(heros->inventory));
     destroy_npc(heros->npc);
-    sfTexture_destroy(heros->texture_base);
     free(heros);
 }
 
@@ -35,18 +49,33 @@ void set_attbox_dim_heros(npc_t *npc)
     npc->attbox_dim[ATTACK_R] = (sfFloatRect){35, 30, 40, 55};
 }
 
-heros_t *init_heros(char *asset)
+effect_t **create_effect_tab_heros(sfTexture **text_tab)
+{
+    effect_t **effect_tab = malloc(sizeof(effect_t *) * 2);
+
+    effect_tab[LEVEL_UP_HEROS] = create_effect(
+        text_tab[LEVEL_UP_TEXT], true, (sfVector2i){7, 1});
+    effect_tab[1] = NULL;
+    return (effect_tab);
+}
+
+heros_t *init_heros(sfTexture **text_tab)
 {
     heros_t *heros = malloc(sizeof(heros_t));
     sfFloatRect hitbox = {30, 25, 55, 55};
     sfFloatRect colbox = {40, 60, 80, 90};
 
     heros->speed = 200.f;
-    heros->texture_base = sfTexture_createFromFile(asset, NULL);
+    heros->texture_base = text_tab[KNIGHT_TEXT];
     heros->npc = init_npc(heros->texture_base);
+    heros->npc->entity->effect_tab = create_effect_tab_heros(text_tab);
+    heros->npc->attack = 10;
+    heros->npc->pv = 100;
+    heros->npc->entity->parent = heros->npc;
     set_offset(heros->npc->entity, (sfVector2i){6, 8});
     set_action_tab_heros(heros);
     set_attbox_dim_heros(heros->npc);
+    heros->npc->special = HEROS;
     heros->npc->entity->colbox_dim = colbox;
     heros->npc->hitbox_dim = hitbox;
     return heros;

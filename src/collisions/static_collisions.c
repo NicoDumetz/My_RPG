@@ -43,7 +43,8 @@ bool static_collisions_left(sfRectangleShape *hitbox, sfImage *collision_image)
     return false;
 }
 
-bool static_collisions_right(sfRectangleShape *hitbox, sfImage *collision_image)
+bool static_collisions_right(
+    sfRectangleShape *hitbox, sfImage *collision_image)
 {
     sfVector2u imgSize = sfImage_getSize(collision_image);
     sfVector2f cornerPos = sfRectangleShape_getPosition(hitbox);

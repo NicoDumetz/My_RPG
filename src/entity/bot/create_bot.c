@@ -16,7 +16,7 @@ void add_to_list_bot(npc_t *new_bot, npc_t **list)
     *list = new_bot;
 }
 
-void create_bot(bot_type_t bot_type, bot_data_t *bot_data)
+npc_t *create_bot(bot_type_t bot_type, bot_data_t *bot_data, sfVector2f pos)
 {
     npc_t *(*bot_gen[6])(sfTexture *) = {
         set_goblins,
@@ -28,5 +28,8 @@ void create_bot(bot_type_t bot_type, bot_data_t *bot_data)
     };
     npc_t *new_bot = bot_gen[bot_type](bot_data->bot_texture[bot_type]);
 
+    new_bot->entity->pos = pos;
+    sfSprite_setPosition(new_bot->entity->sprite, pos);
     add_to_list_bot(new_bot, &(bot_data->bot_list[bot_type]));
+    return (new_bot);
 }

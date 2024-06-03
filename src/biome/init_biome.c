@@ -7,6 +7,19 @@
 
 #include "rpg.h"
 
+void destroy_obj_list(front_obj_t **obj_list)
+{
+    front_obj_t *curr = *obj_list;
+    front_obj_t *next = NULL;
+
+    while (curr) {
+        next = curr->next;
+        destroy_front_obj(curr, true);
+        curr = next;
+    }
+    *obj_list = NULL;
+}
+
 void destroy_biome(biome_t *biome)
 {
     free_bot_data(biome->bot_data);
@@ -14,12 +27,15 @@ void destroy_biome(biome_t *biome)
         destroy_background(biome->back);
     if (biome->deco_data)
         free_deco_data(biome->deco_data);
+    if (biome->obj_list)
+        destroy_obj_list(&(biome->obj_list));
     free(biome);
 }
 
-biome_t *create_biome(int biome_type)
+biome_t *create_biome(int biome_type, sfTexture **text_tab)
 {
-    biome_t *(*biome_gen[5])() = {
+    biome_t *biome = NULL;
+    biome_t *(*biome_gen[5])(sfTexture **text_tab) = {
         set_plain,
         set_castle,
         set_camp,
@@ -27,5 +43,11 @@ biome_t *create_biome(int biome_type)
         set_mine
     };
 
-    return biome_gen[biome_type]();
+    biome = biome_gen[biome_type](text_tab);
+    biome->text_tab = text_tab;
+    biome->nbr_bot = 0;
+    biome->obj_list = NULL;
+    biome->entity_in_view_head = NULL;
+    biome->entity_in_view_tail = NULL;
+    return (biome);
 }

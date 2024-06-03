@@ -23,7 +23,7 @@ typedef struct background_s {
 } back_t;
 
 /*manage background*/
-back_t *add_background(char *file, char *collision);
+back_t *add_background(sfTexture *file, sfTexture *collision);
 void display_background(back_t *back, sfRenderWindow *window);
 void destroy_background(back_t *back);
 

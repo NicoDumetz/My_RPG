@@ -9,6 +9,25 @@
     #define PLAYER_H
     #include "lib.h"
     #include <stdbool.h>
+    #include "background.h"
+
+typedef enum entity_type_e {
+    WHITOUT = 0,
+    NPC,
+    OBJ
+}entity_type_t;
+
+typedef enum direction_e {
+    RIGHT = 0,
+    LEFT,
+    UP,
+    DOWN
+} direction_t;
+
+typedef enum special_npc_e {
+    NON_SPEC = 0,
+    HEROS
+}special_npc_t;
 
 typedef enum deco_type_e {
     HOUSE_DECO = 0,
@@ -42,11 +61,19 @@ typedef struct entity_s {
     sfVector2f size;
     sfVector2f sprite_sheet_size;
     sfVector2f pos;
+    effect_t **effect_tab;
+    int level;
     sfIntRect rect_sprite;
     sfRectangleShape *colbox;
     sfFloatRect colbox_dim;
+    void *parent;
+    sfVector2i simple_action;
+    struct entity_s *prev;
+    struct entity_s *next;
     int is_reverse;
     int frame_nbr;
+    entity_type_t type;
+
 } entity_t;
 
 typedef struct npc_s {
@@ -56,6 +83,10 @@ typedef struct npc_s {
     int attack;
     bool is_attack;
     bool cur_attack;
+    bool is_alive;
+    bool allowed_dir[4];
+    bool in_chase;
+    int view;
     sfRectangleShape *attbox[4];
     sfRectangleShape *hitbox;
     sfFloatRect attbox_dim[4];
@@ -63,6 +94,7 @@ typedef struct npc_s {
     struct npc_s *next;
     struct npc_s *prev;
     sfVector2i action[9];
+    special_npc_t special;
 } npc_t;
 
 typedef struct deco_data_s {
@@ -77,6 +109,7 @@ typedef struct bot_data_s {
 
 typedef struct heros_s {
     sfTexture *texture_base;
+    back_obj_t *inventory;
     npc_t *npc;
     float speed;
 } heros_t;
@@ -90,7 +123,7 @@ npc_t *init_npc(sfTexture *asset);
 void destroy_npc(npc_t *npc);
 
 /**HEROS**/
-heros_t *init_heros(char *asset);
+heros_t *init_heros(sfTexture **texture);
 void destroy_heros(heros_t *heros);
 
 /**OFFSET**/
@@ -99,28 +132,34 @@ void anim_attack(npc_t *npc, sfVector2i offset, bool ticks);
 void set_offset(entity_t *entity, sfVector2i size_sprite);
 void set_box(
     sfRectangleShape *rect, sfFloatRect floatrect, entity_t *entity);
+void set_all_box(entity_t *entity, sfRenderWindow *window);
 
 /**BOT**/
-bot_data_t *init_bot_data(void);
+bot_data_t *init_bot_data(sfTexture **text_tab);
 npc_t *set_archer(sfTexture *texture);
 void free_bot_data(bot_data_t *bot_data);
 void free_bot_list(npc_t *npc);
-void create_bot(bot_type_t bot_type, bot_data_t *bot_data_t);
+npc_t *create_bot(bot_type_t bot_type, bot_data_t *bot_data_t, sfVector2f pos);
 npc_t *set_goblins_b(sfTexture *texture);
 npc_t *set_goblins_d(sfTexture *texture);
 npc_t *set_goblins(sfTexture *texture);
 npc_t *set_knight(sfTexture *texture);
 npc_t *set_minions(sfTexture *texture);
+void manage_bot(entity_t *entity, heros_t *heros);
+void check_if_heros_attack_me(npc_t *to_check, heros_t *heros);
+void check_chase_heros(npc_t *to_check, heros_t *heros);
+void manage_animation_bot(entity_t *entity, bool ticks);
 
 /**DECO**/
 deco_data_t *init_deco_data(void);
 void free_deco_data(deco_data_t *deco_data);
-entity_t *create_knight_house(sfVector2f pos, sfTexture *texture);
-entity_t *create_mine(sfVector2f pos, sfTexture *texture);
-entity_t *create_tree_plain(sfVector2f pos, sfTexture *texture);
+entity_t *create_knight_house(
+    sfVector2f pos, sfTexture *texture, back_t *back);
+entity_t *create_mine(sfVector2f pos, sfTexture *texture, back_t *back);
+entity_t *create_tree_plain(sfVector2f pos, sfTexture *texture, back_t *back);
 void display_deco(deco_data_t *deco_data, sfRenderWindow *window, bool ticks);
     #define KNIGHT_BUILDINGS "tiny_world_asset/Factions/Knights/Buildings/"
     #define TREE_SPRITE "tiny_world_asset/Resources/Trees/Tree.png"
     #define KNIGHT_H_SPRITE KNIGHT_BUILDINGS "House/House_Blue.png"
-    #define MINE_S "tiny_world_asset/Resources/Gold Mine/GoldMine_Inactive.png"
+    #define MINE_S "tiny_world_asset/Resources/Gold Mine/GoldMine_Active.png"
 #endif

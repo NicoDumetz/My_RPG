@@ -37,7 +37,6 @@ typedef struct button_s {
     button_t *next;
     button_t *previous;
 } button_t;
-
 void update_button(
     button_t *button, sfRenderWindow *window, int mouse_state, void *data);
 void init_action_button(
@@ -45,7 +44,6 @@ void init_action_button(
     on_pressed_t pressed,
     on_hover_t hover,
     button_t *button);
-
 sprite_state_t *init_sprite_button(
     sfSprite *on_release,
     sfSprite *on_click,
