@@ -7,6 +7,18 @@
 
 #include "rpg.h"
 
+bool check_if_use_skill(quest_t *, void *data)
+{
+    rpg_t *rpg = (rpg_t *)data;
+    static int i = 0;
+
+    if (rpg->key_state[sfKeyLShift])
+        i = 1;
+    if (i == 1)
+        return true;
+    return false;
+}
+
 bool check_if_drop(quest_t *, void *data)
 {
     rpg_t *rpg = (rpg_t *)data;

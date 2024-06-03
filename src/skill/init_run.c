@@ -17,9 +17,9 @@
 
 run_t run_tab[] = {
     {false, 0, 0},
-    {false, 1.5, 20},
-    {false, 1.7, 18},
-    {false, 2, 16}
+    {false, 1.2, 20},
+    {false, 1.4, 18},
+    {false, 1.6, 16}
 };
 
 

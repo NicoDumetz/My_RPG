@@ -17,6 +17,8 @@ typedef enum tuto_type_e {
     HEAL_T,
     EQUIP_T,
     DROP_T,
+    UPGRADE_SKILL_T,
+    USE_SKILL_T,
     TEST_T
 } tuto_type_t;
 
@@ -67,6 +69,8 @@ bool check_if_equip(quest_t *, void *data);
 bool check_if_consume(quest_t *, void *data);
 bool check_if_take(quest_t *, void *data);
 bool check_if_drop(quest_t *, void *data);
+bool check_if_use_skill(quest_t *, void *data);
+bool check_if_equip_skill(quest_t *, void *data);
 
 /**BUTTON**/
 void skip_released(void *data, button_t *button);

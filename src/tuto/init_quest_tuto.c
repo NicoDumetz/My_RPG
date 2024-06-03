@@ -7,6 +7,15 @@
 
 #include "rpg.h"
 
+bool check_if_equip_skill(quest_t *, void *data)
+{
+    rpg_t *rpg = (rpg_t *)data;
+
+    if (rpg->heros->skill->act_skill != -1)
+        return true;
+    return false;
+}
+
 void set_func_quest_tuto(quest_t *quest_tab)
 {
     set_func_quest(&(quest_tab[MOVEMENT_T]), NULL, check_quest_move_tuto);
@@ -17,12 +26,14 @@ void set_func_quest_tuto(quest_t *quest_tab)
     set_func_quest(&(quest_tab[HEAL_T]), NULL, check_if_consume);
     set_func_quest(&(quest_tab[EQUIP_T]), NULL, check_if_equip);
     set_func_quest(&(quest_tab[DROP_T]), NULL, check_if_drop);
+    set_func_quest(&(quest_tab[USE_SKILL_T]), NULL, check_if_use_skill);
+    set_func_quest(&(quest_tab[UPGRADE_SKILL_T]), NULL, check_if_equip_skill);
     set_func_quest(&(quest_tab[TEST_T]), start_final_test, check_test_quest);
 }
 
 void init_quest_tuto(quest_t *quest_tab, sfFont *font)
 {
-    char *message[9] = {
+    char *message[11] = {
         "Move with ZQSD",
         "Attack with IJKL",
         "Kill weakened goblins",
@@ -30,6 +41,8 @@ void init_quest_tuto(quest_t *quest_tab, sfFont *font)
         "Open inventory with TAB and drink a potion",
         "Equip an item with left click",
         "Discard an item with Ctrl + left click",
+        "Equip skill in inventory",
+        "Use skill with left shift",
         "Eliminate the goblin army",
         NULL
     };
