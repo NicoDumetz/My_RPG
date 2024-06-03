@@ -30,6 +30,10 @@ typedef struct stats_text_s {
     sfVector2f pos;
 } stats_text_t;
 
+typedef struct skill_tree_s {
+
+} skill_tree_t;
+
 typedef struct inventory_s {
     sfSprite *background;
     sfRectangleShape *slot_pos;
@@ -41,6 +45,7 @@ typedef struct inventory_s {
     sfVector2f hero_scale;
     sfRectangleShape *stats_pos;
     stats_text_t stats[COUNT_STATS];
+
 } inventory_t;
 
 void init_inventory(inventory_t *inventory, sfTexture **texture_tab,
