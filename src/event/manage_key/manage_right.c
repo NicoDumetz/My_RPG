@@ -9,21 +9,21 @@
 
 static void moov_right(rpg_t *rpg)
 {
-    sfVector2f pos = rpg->heros->npc->entity->pos;
+    sfVector2f pos = sfRectangleShape_getPosition(rpg->heros->npc->hitbox);
     sfFloatRect bounds = sfSprite_getGlobalBounds(wich_back(rpg));
-    sfFloatRect bounds2 = sfSprite_getGlobalBounds(
-        rpg->heros->npc->entity->sprite);
+    sfVector2f bounds2 = sfRectangleShape_getSize(rpg->heros->npc->hitbox);
     float window_width = sfRenderWindow_getSize(rpg->window).x;
     const sfView *view = sfRenderWindow_getView(rpg->window);
     sfVector2f viewCenter = sfView_getCenter(view);
     float right = viewCenter.x + window_width / 2;
     float movement = rpg->heros->speed * rpg->time;
 
-    if (pos.x + bounds2.width + movement > bounds.width)
+    if (pos.x + bounds2.x + movement > bounds.width ||
+        static_collisions_right(rpg->heros->npc->entity->colbox, wich_img(rpg)))
         return;
     rpg->heros->npc->entity->pos.x += movement;
     if (pos.x < bounds.width - window_width / 2 && right + movement <
-        bounds.width && pos.x + (bounds2.width / 2) >= window_width / 2) {
+        bounds.width && pos.x + (bounds2.x / 2) >= window_width / 2) {
         sfView_move((sfView *)view, (sfVector2f){+movement, 0.f});
         sfRenderWindow_setView(rpg->window, view);
     }

@@ -30,6 +30,9 @@ rpg_t *create_rpg_struct(void)
     rpg->time = 0;
     rpg->window = sfRenderWindow_create(mode, "my_rpg", sfClose, NULL);
     rpg->heros = init_heros(KNIGHT_SPRITE);
+    rpg->heros->npc->entity->pos = (sfVector2f){1000, 500};
+    sfSprite_setPosition(rpg->heros->npc->entity->sprite, rpg->heros->npc->entity->pos );
+    sfRenderWindow_setPosition(rpg->window, (sfVector2i){0, 0});
     rpg->ticks = false;
     for (int i = 0; i < 256; i++)
         rpg->key_state[i] = false;

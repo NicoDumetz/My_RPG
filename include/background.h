@@ -14,6 +14,7 @@ typedef struct sprite_back_t {
     sfSprite *sprite;
     sfVector2f pos;
     sfVector2f scale;
+    sfImage *col_image;
 } sprite_back_t;
 
 typedef struct background_s {

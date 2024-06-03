@@ -14,6 +14,13 @@ sfSprite *wich_back(rpg_t *rpg)
     return NULL;
 }
 
+sfImage *wich_img(rpg_t *rpg)
+{
+    if (rpg->biome[rpg->scene]->back)
+        return (rpg->biome[rpg->scene]->back->collision.col_image);
+    return NULL;
+}
+
 void manage_movements(rpg_t *rpg)
 {
     if (rpg->key_state[sfKeyD])
