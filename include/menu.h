@@ -22,7 +22,10 @@ typedef struct menu_s {
 typedef struct ingame_menu_s {
     int from;
     int pos;
+    sfTexture *last_frame;
+    sfRectangleShape *blur;
     sfSprite *background;
+    sfSprite *page;
     button_t *resume;
     button_t *save;
     button_t *load_save;
@@ -30,6 +33,7 @@ typedef struct ingame_menu_s {
     button_t *quit;
 } ingame_menu_t;
 
+void fetch_last_frame(rpg_t *rpg);
 menu_t *create_menu_struct(rpg_t *rpg);
 void destroy_menu(menu_t *menu);
 void play_button(void *data, button_t *button);

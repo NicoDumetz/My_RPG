@@ -105,6 +105,7 @@ SRC = main.c\
 	src/menu_ingame/init_menu_ingame_struct.c\
 	src/menu_ingame/manage_menu_ingame_button.c\
 	src/menu_ingame/menu_ingame.c \
+	src/menu_ingame/fetch_last_frame.c\
 	src/param/init_param_struct.c\
 	src/param/manage_param_button.c\
 	src/param/param.c\
@@ -148,8 +149,6 @@ SRC = main.c\
 	src/game_over/fade_switch.c\
 	src/particules/manage_particules.c\
 	src/object/set_all_texture_obj.c\
-	src/tuto/quest/inventory_quest.c\
-	src/song/init_song.c\
 
 OBJ = $(SRC:.c=.o)
 

@@ -10,13 +10,17 @@
 void destroy_entity(entity_t *entity)
 {
     sfSprite_destroy(entity->sprite);
+    entity->sprite = NULL;
     sfRectangleShape_destroy(entity->colbox);
+    entity->colbox = NULL;
     if (entity->effect_tab) {
         for (int i = 0; entity->effect_tab[i]; i++)
             destroy_effect(entity->effect_tab[i]);
         free(entity->effect_tab);
+        entity->effect_tab = NULL;
     }
     free(entity);
+    entity = NULL;
 }
 
 sfRectangleShape *init_colbox_rect(void)

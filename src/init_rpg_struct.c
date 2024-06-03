@@ -32,7 +32,6 @@ static void destroy_rpg_next(rpg_t *rpg)
     free_game_over(rpg->end);
     destroy_menu_ingame(rpg->ingame_menu);
     destroy_particules(rpg);
-    destroy_all_song(rpg->song);
 }
 
 void destroy_rpg(rpg_t *rpg)
@@ -57,6 +56,30 @@ void destroy_rpg(rpg_t *rpg)
     }
 }
 
+static void reinitialize_rpg_next(rpg_t *rpg)
+{
+    destroy_inventory(&rpg->inventory);
+    init_inventory(&rpg->inventory, rpg->text_tab, rpg);
+}
+
+void reinitalize_rpg(rpg_t *rpg)
+{
+    destroy_heros(rpg->heros);
+    rpg->heros = init_heros(rpg->text_tab, rpg->font_tab);
+    rpg->heros->npc->entity->pos = rpg->tuto->biome->last_pos;
+    sfSprite_setPosition(
+        rpg->heros->npc->entity->sprite, rpg->tuto->biome->last_pos);
+    for (int i = 0; i <= MINE; i++)
+        destroy_biome(rpg->biome[i]);
+    for (int i = 0; i <= MINE; i++)
+        rpg->biome[i] = create_biome(i, rpg->text_tab, rpg->font_tab);
+    destroy_tuto(rpg->tuto);
+    rpg->tuto = create_tuto(rpg->text_tab, rpg->font_tab);
+    destroy_quest(rpg->quest_tab);
+    init_quest(rpg->quest_tab, rpg->font_tab);
+    reinitialize_rpg_next(rpg);
+}
+
 rpg_t *init_rpg_next(rpg_t *rpg)
 {
     for (int i = 0; i <= MINE; i++)
@@ -77,7 +100,6 @@ rpg_t *init_rpg_next(rpg_t *rpg)
     rpg->time = 0;
     init_game_over(rpg);
     init_particules(rpg);
-    init_song(rpg);
     return (rpg);
 }
 

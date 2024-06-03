@@ -162,6 +162,11 @@ static void set_all_texture_next_seven(sfTexture **text_tab)
         NULL);
     text_tab[B_NSAVE_BLOCK_E] = sfTexture_createFromFile(B_NSAVE_BLOCK,
         NULL);
+    text_tab[MENU_INGAME_E] = sfTexture_createFromFile(MENU_INGAME, NULL);
+    text_tab[RESUME_E] = sfTexture_createFromFile(RESUME, NULL);
+    text_tab[RESUME_PRESSED_E] = sfTexture_createFromFile(RESUME_PRESSED,
+        NULL);
+    text_tab[RESUME_HOVER_E] = sfTexture_createFromFile(RESUME_HOVER, NULL);
 }
 
 void set_all_texture(sfTexture **text_tab)

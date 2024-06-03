@@ -41,7 +41,6 @@
     #include "inventory.h"
     #include "tuto.h"
     #include "particule.h"
-    #include "song.h"
     #define ABS(x) ((x) < 0 ? x = -(x) : (x))
     #define KNIGHT_ASSET "tiny_world_asset/Factions/Knights/Troops/"
     #define GOBLINS_ASSET "tiny_world_asset/Factions/Goblins/Troops/"
@@ -120,6 +119,10 @@
     #define BUTTON_PLUS_PRESSED "param_asset/button_plus_pressed.png"
     #define BUTTON_MINUS "param_asset/button_minus.png"
     #define BUTTON_MINUS_PRESSED "param_asset/button_minus_pressed.png"
+    #define MENU_INGAME "menu_asset/menu_ingame.png"
+    #define RESUME "menu_asset/button_resume.png"
+    #define RESUME_PRESSED "menu_asset/button_resume_pressed.png"
+    #define RESUME_HOVER "menu_asset/button_resume_hover.png"
     #define VINQUE "font/gothicrpgfont.ttf"
     #define CAMP_BOSS_PATH "boss_asset/Torch_Purple.png"
     #define MINE_BOSS_PATH "boss_asset/TNT_Yellow.png"
