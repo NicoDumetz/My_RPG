@@ -53,8 +53,11 @@ void destroy_quest_giver(quest_giver_t *quest_giver)
 {
     destroy_npc(quest_giver->npc);
     sfText_destroy(quest_giver->dial);
+    quest_giver->dial = NULL;
     sfText_destroy(quest_giver->signal);
+    quest_giver->signal = NULL;
     free(quest_giver);
+    quest_giver = NULL;
 }
 
 void set_action_tab_quest_giver(quest_giver_t *quest_giver)

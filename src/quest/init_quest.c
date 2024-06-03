@@ -11,7 +11,9 @@ void destroy_quest(quest_t *quest_tab)
 {
     for (int i = 0; quest_tab[i].display != NULL; i++) {
         sfRectangleShape_destroy(quest_tab[i].box);
+        quest_tab[i].box = NULL;
         sfText_destroy(quest_tab[i].display);
+        quest_tab[i].display = NULL;
     }
 }
 
