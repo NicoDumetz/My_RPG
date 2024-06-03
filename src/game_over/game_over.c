@@ -19,6 +19,14 @@ void init_game_over(rpg_t *rpg)
     sfText_setFont(new->text, rpg->font_tab[PIXEL]);
     sfText_setCharacterSize(new->text, 100);
     sfText_setFillColor(new->text, sfRed);
+
+    new->space = sfText_create();
+    sfText_setString(new->space, "Press space to return to last save");
+    sfText_setFont(new->space, rpg->font_tab[PIXEL]);
+    sfText_setCharacterSize(new->space, 50);
+    sfText_setFillColor(new->space, sfRed);
+
+
     new->alpha = 0.0f;
     new->alpha_text = 0.0f;
     rpg->end = new;
@@ -40,6 +48,14 @@ void lunch_end(rpg_t *rpg)
     sfRectangleShape_setSize(game->rect, size);
     sfRectangleShape_setPosition(game->rect,
     (sfVector2f){center.x - size.x / 2.0f, center.y - size.y / 2.0f});
+
+    sfText_setOrigin(game->space, (sfVector2f)
+    {rect.width / 2.0f, rect.height / 2.0f});
+    sfText_setPosition(game->space, (sfVector2f){center.x - 250, center.y + 250});
+    sfRectangleShape_setSize(game->rect, size);
+    sfRectangleShape_setPosition(game->rect,
+    (sfVector2f){center.x - size.x / 2.0f, center.y - size.y / 2.0f});
+
     game->active = ACTIVE;
 }
 
@@ -74,6 +90,7 @@ static void update_text(game_over_t *game, rpg_t *rpg)
         color = sfText_getFillColor(game->text);
         color.a = (sfUint8)game->alpha_text;
         sfText_setFillColor(game->text, color);
+        sfText_setFillColor(game->space, color);
     }
 }
 
@@ -93,6 +110,8 @@ void free_game_over(game_over_t *g)
         sfRectangleShape_destroy(g->rect);
     if (g->text)
         sfText_destroy(g->text);
+    if (g->space)
+        sfText_destroy(g->space);
     if (g)
         free(g);
 }

@@ -70,11 +70,6 @@ typedef enum texture_type_e {
     B_SAVE_E,
     B_SAVE_PRESSED_E,
     B_SAVE_HOVER_E,
-    B_SAVE_BLOCK_E,
-    B_NSAVE_E,
-    B_NSAVE_PRESSED_E,
-    B_NSAVE_HOVER_E,
-    B_NSAVE_BLOCK_E,
     NEW_E,
     NEW_PRESSED_E,
     NEW_HOVER_E,
@@ -102,7 +97,6 @@ typedef enum texture_type_e {
     BUTTON_PLUS_PRESSED_E,
     BUTTON_MINUS_E,
     BUTTON_MINUS_PRESSED_E,
-
     INVENTORY_TEXT,
     INVENTORY_SLOT_TEXT,
     BACK_INVENTORY_HERO,
@@ -130,7 +124,6 @@ typedef enum scene_e {
     TUTO,
     SAVE,
     MENU,
-    INGAME_MENU,
     PARAMS,
     MAIN
 }scene_t;
@@ -140,7 +133,6 @@ typedef struct rpg_s {
     save_t *save_list;
     biome_t *biome[5];
     menu_t *start_menu;
-    ingame_menu_t *ingame_menu;
     param_t *params;
     tuto_t *tuto;
     save_scene_t *save_scene;

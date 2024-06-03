@@ -30,7 +30,6 @@ static void destroy_rpg_next(rpg_t *rpg)
     destroy_param_struct(rpg->params);
     destroy_inventory(&rpg->inventory);
     free_game_over(rpg->end);
-    destroy_menu_ingame(rpg->ingame_menu);
     destroy_particules(rpg);
 }
 
@@ -106,7 +105,6 @@ rpg_t *create_rpg_struct(void)
         return NULL;
     rpg->start_menu = create_menu_struct(rpg);
     rpg->params = init_param_struct(rpg->text_tab, rpg->font_tab);
-    rpg->ingame_menu = create_menu_ingame_struct(rpg);
     rpg->clock = sfClock_create();
     rpg->scene = MENU;
     rpg->second = 0;
