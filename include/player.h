@@ -20,7 +20,7 @@ typedef enum bot_type_e {
     GOBLINS_T = 0,
     GOBLINS_D,
     GOBLINS_B,
-    KINGHT,
+    KNIGHT,
     MINIONS,
     ARCHER,
 } bot_type_t;
@@ -54,7 +54,11 @@ typedef struct npc_s {
     action_t act_action;
     int pv;
     int attack;
+    bool is_attack;
+    bool cur_attack;
+    sfRectangleShape *attbox[4];
     sfRectangleShape *hitbox;
+    sfFloatRect attbox_dim[4];
     sfFloatRect hitbox_dim;
     struct npc_s *next;
     struct npc_s *prev;
@@ -91,9 +95,10 @@ void destroy_heros(heros_t *heros);
 
 /**OFFSET**/
 void anim_entity(entity_t *entity, sfVector2i offset, bool ticks);
+void anim_attack(npc_t *npc, sfVector2i offset, bool ticks);
 void set_offset(entity_t *entity, sfVector2i size_sprite);
-void set_hitbox(npc_t *npc);
-void set_colbox(entity_t *entity);
+void set_box(
+    sfRectangleShape *rect, sfFloatRect floatrect, entity_t *entity);
 
 /**BOT**/
 bot_data_t *init_bot_data(void);

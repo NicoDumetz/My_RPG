@@ -14,7 +14,8 @@ static void deco_anim_loop(
         sfRenderWindow_drawSprite(
             window, entity_tab[i]->sprite, NULL);
         anim_entity(entity_tab[i], (sfVector2i){3, 0}, ticks);
-        set_colbox(entity_tab[i]);
+        set_box(
+            entity_tab[i]->colbox, entity_tab[i]->colbox_dim, entity_tab[i]);
         sfRenderWindow_drawRectangleShape(
             window, entity_tab[i]->colbox, NULL);
     }
@@ -25,7 +26,8 @@ static void deco_static_loop(entity_t **entity_tab, sfRenderWindow *window)
     for (int i = 0; entity_tab[i]; i++) {
         sfRenderWindow_drawSprite(
             window, entity_tab[i]->sprite, NULL);
-        set_colbox(entity_tab[i]);
+        set_box(
+            entity_tab[i]->colbox, entity_tab[i]->colbox_dim, entity_tab[i]);
         sfRenderWindow_drawRectangleShape(
             window, entity_tab[i]->colbox, NULL);
     }

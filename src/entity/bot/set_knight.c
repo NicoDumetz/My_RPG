@@ -9,15 +9,23 @@
 
 void set_action_tab_knight(npc_t *knight)
 {
-    knight->action[ATTACK_F] = (sfVector2i){6, 4};
-    knight->action[ATTACK_B] = (sfVector2i){6, 7};
-    knight->action[ATTACK_L] = (sfVector2i){6, -2};
-    knight->action[ATTACK_R] = (sfVector2i){6, 2};
+    knight->action[ATTACK_F] = (sfVector2i){6, 6};
+    knight->action[ATTACK_B] = (sfVector2i){6, 5};
+    knight->action[ATTACK_L] = (sfVector2i){6, -3};
+    knight->action[ATTACK_R] = (sfVector2i){6, 3};
     knight->action[MOVE_R] = (sfVector2i){6, 1};
     knight->action[MOVE_L] = (sfVector2i){6, -1};
-    knight->action[MOVE_F] = (sfVector2i){6, 1};
-    knight->action[MOVE_B] = (sfVector2i){6, 1};
+    knight->action[MOVE_F] = (sfVector2i){-1, 0};
+    knight->action[MOVE_B] = (sfVector2i){-1, 0};
     knight->action[STAND] = (sfVector2i){6, 0};
+}
+
+void set_attbox_dim_knight(npc_t *npc)
+{
+    npc->attbox_dim[ATTACK_F] = (sfFloatRect){15, 15, 30, 70};
+    npc->attbox_dim[ATTACK_B] = (sfFloatRect){20, 50, 25, 65};
+    npc->attbox_dim[ATTACK_L] = (sfFloatRect){5, 30, 40, 55};
+    npc->attbox_dim[ATTACK_R] = (sfFloatRect){35, 30, 40, 55};
 }
 
 npc_t *set_knight(sfTexture *texture)
@@ -30,6 +38,7 @@ npc_t *set_knight(sfTexture *texture)
     knight->attack = 0;
     set_offset(knight->entity, (sfVector2i){6, 8});
     set_action_tab_knight(knight);
+    set_attbox_dim_knight(knight);
     knight->hitbox_dim = hitbox;
     knight->entity->colbox_dim = colbox;
     return (knight);
