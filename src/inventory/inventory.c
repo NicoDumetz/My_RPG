@@ -6,11 +6,6 @@
 */
 
 #include "rpg.h"
-#include <SFML/Graphics/Rect.h>
-#include <SFML/Graphics/RenderWindow.h>
-#include <SFML/Graphics/Sprite.h>
-#include <SFML/Graphics/View.h>
-#include <SFML/Window/Keyboard.h>
 
 static bool inventory_state(rpg_t *rpg)
 {
@@ -29,10 +24,10 @@ static bool inventory_state(rpg_t *rpg)
 }
 
 static void inventory_slot_management(inventory_t *inventory,
-    mouse_data_t *mouse_data)
+    mouse_data_t *mouse_data, rpg_t *rpg)
 {
     for (unsigned char i = 0; i < NUM_SLOT; i++)
-        update_button(inventory->slot[i].button, mouse_data, NULL);
+        update_button(inventory->slot[i], mouse_data, rpg);
 }
 
 void manage_inventory(rpg_t *rpg)
@@ -46,15 +41,15 @@ void manage_inventory(rpg_t *rpg)
     pos = sfSprite_getGlobalBounds(rpg->inventory.background);
     sfRenderWindow_drawSprite(rpg->window, rpg->inventory.background, NULL);
     set_slot_pos(rpg, &pos);
-    inventory_slot_management(&rpg->inventory, &rpg->mouse_data);
+    inventory_slot_management(&rpg->inventory, &rpg->mouse_data, rpg);
     draw_slots(rpg, &rpg->inventory);
 }
 
-slot_t *get_free_slot(inventory_t *inventory)
+button_t *get_free_slot(inventory_t *inventory)
 {
     for (unsigned char i = 0; i < NUM_SLOT; i++) {
-        if (inventory->slot[i].obj == NULL)
-            return &inventory->slot[i];
+        if (inventory->slot[i]->child == NULL)
+            return inventory->slot[i];
     }
     return NULL;
 }

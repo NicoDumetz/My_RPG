@@ -7,8 +7,6 @@
 
 #ifndef RPG_H
     #define RPG_H
-    #include "button.h"
-    #include "inventory.h"
     #include "lib.h"
 
 typedef enum font_type_e {
@@ -61,7 +59,7 @@ typedef enum texture_type_e {
     ARROW_TEXT,
     DYNA_TEXT,
     SHIELD_TEXT,
-    FIRE_TEXT,
+    HEARTH_POTION_TEXT,
     MINE_TEXT
 } texture_type_t;
 

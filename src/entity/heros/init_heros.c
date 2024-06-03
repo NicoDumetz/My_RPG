@@ -82,9 +82,8 @@ static void init_heros_next_two(
     sfText_setOutlineColor(heros->interact, sfBlack);
     sfText_setOutlineThickness(heros->interact, 2);
     heros->skill = init_skill();
-    heros->multi_speed = 4;
+    heros->multi_speed = 1;
     heros->restore = false;
-    heros->skill_point = 0;
 }
 
 static heros_t *init_heros_next(
@@ -124,12 +123,6 @@ static void set_variable_heros(heros_t *heros)
     heros->npc->projectile = NULL;
 }
 
-static void init_heros_fire(sfTexture **text_tab, heros_t *heros)
-{
-    heros->npc->type = FIRE;
-    init_npc_projectiles(heros->npc, text_tab);
-}
-
 heros_t *init_heros(sfTexture **text_tab, sfFont **font_tab)
 {
     heros_t *heros = malloc(sizeof(heros_t));
@@ -146,6 +139,5 @@ heros_t *init_heros(sfTexture **text_tab, sfFont **font_tab)
     heros->npc->entity->effect_tab = create_effect_tab_heros(
         text_tab, heros->npc->entity->sprite);
     set_variable_heros(heros);
-    init_heros_fire(text_tab, heros);
     return init_heros_next(heros, text_tab, font_tab);
 }

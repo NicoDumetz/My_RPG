@@ -6,6 +6,7 @@
 */
 
 #include "rpg.h"
+#include <SFML/Graphics/Sprite.h>
 
 void destroy_back_obj(back_obj_t *back_obj)
 {
@@ -57,8 +58,11 @@ static void create_front_obj_next(front_obj_t *front_obj, object_drop_t type)
     front_obj->rect_sprite = (sfIntRect){0, 0, width, height};
     front_obj->time_left = obj_tab[type].time_left;
     front_obj->offset = obj_tab[type].offset;
+    front_obj->rect_quad = obj_tab[type].rect_quad;
+    if (front_obj->rect_quad.x > 1 || front_obj->rect_quad.y > 1) {
     sfSprite_setTextureRect(
         front_obj->sprite, front_obj->rect_sprite);
+    }
 }
 
 front_obj_t *create_front_obj(
@@ -80,6 +84,7 @@ front_obj_t *create_front_obj(
     sfSprite_setTexture(front_obj->sprite,
         text_tab[obj_tab[type].text_id_front], sfTrue);
     sfSprite_setPosition(front_obj->sprite, pos);
+    sfSprite_setScale(front_obj->sprite, obj_tab[type].scale);
     create_front_obj_next(front_obj, type);
     put_obj_in_list(front_obj, obj_list);
     return (front_obj);

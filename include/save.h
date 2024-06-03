@@ -33,8 +33,6 @@ typedef struct save_data_s {
     time_t time_last_save;
     int x_heros;
     int y_heros;
-    int skill_point;
-    int act_skill;
     int level_heros;
     int heros_xp;
     int heros_stami;
@@ -47,7 +45,6 @@ typedef struct save_data_s {
     save_bot_t save_bot[5][30];
     int object_id_inv[20];
     int object_id_equip[6];
-    int skill_level[3];
     int end_save;
 } save_data_t;
 

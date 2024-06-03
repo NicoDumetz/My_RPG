@@ -18,6 +18,5 @@ biome_t *set_village(sfTexture **text_tab, sfFont **)
     village->deco_data = NULL;
     village->boss = NULL;
     village->portal = NULL;
-    village->pos_bot = NULL;
     return (village);
 }

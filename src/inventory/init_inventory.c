@@ -5,14 +5,22 @@
 ** init_inventory.c
 */
 #include "rpg.h"
-#include <SFML/Graphics/Sprite.h>
-#include <SFML/Graphics/Texture.h>
-#include <SFML/Graphics/Types.h>
 
 void destroy_inventory(inventory_t *inventory)
 {
     sfSprite_destroy(inventory->background);
     destroy_slots(inventory);
+}
+
+void flush_inventory(inventory_t *inventory, heros_t *hero)
+{
+    for (unsigned char i = 0; i < NUM_SLOT; i++) {
+        if (inventory->slot[i]->child == NULL)
+            continue;
+        delete_from_list(inventory->slot[i]->child, &hero->inventory);
+        destroy_back_obj(inventory->slot[i]->child);
+        inventory->slot[i]->child = NULL;
+    }
 }
 
 void init_inventory(inventory_t *inventory, sfTexture **texture_tab)

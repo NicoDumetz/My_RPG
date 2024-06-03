@@ -38,7 +38,6 @@ typedef enum deco_type_e {
 
 typedef enum attack_type_e {
     EXPLOSIVE,
-    FIRE,
     ARCHERY,
     DYNA,
     MELEE
@@ -138,7 +137,6 @@ typedef struct heros_s {
     sfTexture *texture_base;
     skill_t *skill;
     sfText *interact;
-    int skill_point;
     bool restore;
     bool can_interact;
     int level_act;

@@ -15,7 +15,7 @@ static void where_drop(npc_t *curr, biome_t *biome)
             DEATH, biome->text_tab, &(biome->obj_list),
             (sfVector2f){center.x + 20, center.y + 25});
     create_front_obj(
-            NOTHING, biome->text_tab,
+            HEARTH_POTION, biome->text_tab,
             &(biome->obj_list),
             (sfVector2f){center.x + 55, center.y + 25});
 }

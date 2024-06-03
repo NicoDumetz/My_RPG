@@ -6,20 +6,18 @@
 */
 
 #include "rpg.h"
-#include <SFML/Graphics/RenderWindow.h>
-#include <SFML/Graphics/Sprite.h>
-#include <SFML/System/Vector2.h>
-#include <stdio.h>
 
 void draw_slots(rpg_t *rpg, inventory_t *inventory)
 {
+    back_obj_t *obj;
+
     for (unsigned char i = 0; i < NUM_SLOT; i++) {
+        obj = inventory->slot[i]->child;
         sfRenderWindow_drawSprite(rpg->window,
-        inventory->slot[i].button->sprite, NULL);
-        if (inventory->slot[i].obj == NULL)
+        inventory->slot[i]->sprite, NULL);
+        if (obj == NULL)
             continue;
-        sfRenderWindow_drawSprite(rpg->window, inventory->slot[i].obj->sprite,
-        NULL);
+        sfRenderWindow_drawSprite(rpg->window, obj->sprite, NULL);
     }
 }
 
@@ -41,11 +39,11 @@ void set_slot_pos(rpg_t *rpg, sfFloatRect *background_pos)
     sfRenderWindow_drawRectangleShape(rpg->window, rpg->inventory.slot_pos,
     NULL);
     for (unsigned char i = 0; i < NUM_SLOT; i++) {
-        button_pos = rpg->inventory.slot[i].pos;
+        button_pos = rpg->inventory.slot[i]->pos;
         button_pos.x += pos.x;
         button_pos.y += pos.y;
-        sfSprite_setPosition(rpg->inventory.slot[i].button->sprite,
+        sfSprite_setPosition(rpg->inventory.slot[i]->sprite,
         button_pos);
-        set_obj_pos(rpg->inventory.slot[i].obj, &button_pos);
+        set_obj_pos(rpg->inventory.slot[i]->child, &button_pos);
     }
 }

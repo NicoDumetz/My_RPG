@@ -19,7 +19,7 @@ void destroy_slots(inventory_t *inventory)
 {
     sfRectangleShape_destroy(inventory->slot_pos);
     for (unsigned char i = 0; i < NUM_SLOT; i++) {
-        destroy_button(inventory->slot[i].button);
+        destroy_button(inventory->slot[i]);
     }
 }
 
@@ -27,7 +27,7 @@ static void set_inventory_slot_pos(inventory_t *inventory)
 {
     sfVector2f back_size = sfRectangleShape_getSize(inventory->slot_pos);
     sfFloatRect button_rect =
-    sfSprite_getGlobalBounds(inventory->slot[0].button->sprite);
+    sfSprite_getGlobalBounds(inventory->slot[0]->sprite);
     float space = (back_size.x - button_rect.width * SLOT_PER_LINE) /
     (SLOT_PER_LINE + 1);
     sfVector2f pos = {0.f, 0.f};
@@ -36,7 +36,7 @@ static void set_inventory_slot_pos(inventory_t *inventory)
         pos.y += space;
         for (unsigned char j = 0; j < SLOT_PER_LINE; j++) {
             pos.x += space;
-            inventory->slot[i + j].pos = pos;
+            inventory->slot[i + j]->pos = pos;
             pos.x += button_rect.width;
         }
         pos.y += button_rect.width;
@@ -64,13 +64,11 @@ void init_slots(inventory_t *inventory, sfTexture **texture_tab)
     int text_index[5] = {INVENTORY_SLOT_TEXT, -1, -1, -1, -1};
 
     for (unsigned char i = 0; i < NUM_SLOT; i++) {
-        inventory->slot[i].obj = NULL;
-        inventory->slot[i].button = create_button(texture_tab, text_index);
-        init_action_button(NULL, NULL, NULL, inventory->slot[i].button);
-        sfSprite_setScale(inventory->slot[i].button->sprite,
-        (sfVector2f){1.2, 1.2});
+        inventory->slot[i] = create_button(texture_tab, text_index);
+        init_action_button(use_item, NULL, NULL, inventory->slot[i]);
+        sfSprite_setScale(inventory->slot[i]->sprite, (sfVector2f){1.2, 1.2});
     }
     init_slot_pos(inventory);
     inventory->slot_rect =
-    sfSprite_getGlobalBounds(inventory->slot[0].button->sprite);
+    sfSprite_getGlobalBounds(inventory->slot[0]->sprite);
 }

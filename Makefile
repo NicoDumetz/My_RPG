@@ -103,6 +103,7 @@ SRC = main.c\
 	src/inventory/inventory.c\
 	src/inventory/slots/init_slots.c\
 	src/inventory/slots/set_slots.c\
+	src/inventory/use_items.c\
 	src/entity/bot/ia/attack_bot.c\
 	src/portal/check_open_portal.c\
 	src/quest/check_end_quest.c\
@@ -123,7 +124,6 @@ SRC = main.c\
 	src/skill/init_run.c\
 	src/skill/init_skill.c\
 	src/skill/manage_skill.c\
-	src/biome/set_bot_donjon.c\
 
 OBJ = $(SRC:.c=.o)
 

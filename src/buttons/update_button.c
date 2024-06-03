@@ -10,9 +10,6 @@
 #include <SFML/Graphics.h>
 #include <SFML/Window.h>
 
-#include <SFML/Graphics.h>
-#include <SFML/Window.h>
-
 void button_is_press(button_t *button, void *data)
 {
     button->state = CLICK;

@@ -12,10 +12,19 @@ typedef struct entity_s entity_t;
 typedef struct heros_s heros_t;
 typedef struct rpg_s rpg_t;
 
+    #define HEARTH_POTION_PATH "MF_Items/hearth_potion.png"
+
 typedef enum object_drop_e {
     DEATH = 0,
     NOTHING,
+    HEARTH_POTION,
 } object_drop_t;
+
+typedef enum object_usage_e {
+    NO_USAGE = 0,
+    CONSOMABLE,
+    EQUIPABLE
+} object_usage_t;
 
 typedef struct obj_template_s {
     int text_id_front;
@@ -25,6 +34,8 @@ typedef struct obj_template_s {
     bool is_short;
     sfVector2i rect_quad;
     sfVector2i offset;
+    sfVector2f scale;
+    object_usage_t usage;
 } obj_template_t;
 
 extern obj_template_t obj_tab[];
@@ -32,6 +43,7 @@ extern obj_template_t obj_tab[];
 typedef struct back_obj_s {
     sfSprite *sprite;
     int id;
+    object_drop_t type;
     struct back_obj_s *next;
     struct back_obj_s *prev;
     void *data;
@@ -72,4 +84,5 @@ void manage_animation_obj(front_obj_t *obj, bool ticks);
 
 /**MANAGER**/
 void manage_obj(front_obj_t *obj, rpg_t *rpg, heros_t *heros);
+void delete_from_list(back_obj_t *obj, back_obj_t **list);
 #endif
