@@ -17,10 +17,12 @@ void check_portal(biome_t *biome, rpg_t *rpg, heros_t *heros)
     if (!rpg->key_state[sfKeyE])
         is_pressed = 0;
     for (int i = 0; biome->portal[i]; i++) {
-        if (is_rect_in_circle(heros->npc->hitbox, biome->portal[i]->zone))
+        if (is_rect_in_circle(heros->npc->hitbox, biome->portal[i]->zone) &&
+            biome->portal[i]->is_open == true)
             heros->can_interact = true;
         if (is_rect_in_circle(heros->npc->hitbox, biome->portal[i]->zone) &&
-            rpg->key_state[sfKeyE] && is_pressed == 0) {
+            rpg->key_state[sfKeyE] && is_pressed == 0 &&
+            biome->portal[i]->is_open) {
             switch_biome(biome, biome->portal[i], rpg, heros);
             is_pressed = 1;
         }
@@ -67,12 +69,15 @@ void biome_loop(rpg_t *rpg, biome_t *biome)
 
     if (!manage_test(rpg, biome))
         return;
+    check_open_portal(rpg);
     manage_test_quest(rpg);
     srand(time(NULL));
     display_background(biome->back, rpg->window);
     sort_entity_in_view(biome, rpg->window, heros, rpg);
     entity_loop(biome->entity_in_view_head, rpg);
-    bot_generator(biome, biome->bot_type);
+    check_end_quest(rpg);
+    if (rpg->scene == PLAIN)
+        bot_generator(biome, biome->bot_type);
     if (biome->portal)
         check_portal(biome, rpg, rpg->heros);
     if (biome->quest_giver)

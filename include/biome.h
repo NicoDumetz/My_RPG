@@ -19,12 +19,15 @@ typedef struct portal_s {
 
 typedef struct biome_s {
     back_t *back;
+    sfVector2f *pos_bot;
+    npc_t *boss;
     bot_data_t *bot_data;
     deco_data_t *deco_data;
     quest_giver_t *quest_giver;
     int bot_type[6];
     int nbr_bot;
     sfVector2f last_pos;
+    quest_t *quest;
     portal_t **portal;
     front_obj_t *obj_list;
     entity_t *entity_in_view_head;
@@ -52,6 +55,7 @@ biome_t *set_mine(sfTexture **text_tab, sfFont **font_tab);
 
 /**BOT**/
 void bot_generator(biome_t *biome, int *who);
+void set_bot_donjon(biome_t *biome, sfVector2f *pos_list);
 
 /**PORTAL**/
 portal_t *create_portal(sfVector2f pos, int scene);
@@ -60,4 +64,9 @@ void destroy_portal(portal_t *portal);
 /**SWITCH**/
 void switch_biome(biome_t *from, portal_t *portal, rpg_t *rpg, heros_t *heros);
 void clean_entity_list(biome_t *biome);
+
+/**BOSS**/
+npc_t *set_camp_boss(sfTexture **text_tab, biome_t *biome);
+npc_t *set_mine_boss(sfTexture **text_tab, biome_t *biome);
+npc_t *set_castle_boss(sfTexture **text_tab, biome_t *biome);
 #endif

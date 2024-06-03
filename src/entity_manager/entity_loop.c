@@ -31,8 +31,10 @@ void manage_animation_bot(entity_t *entity, bool ticks)
     npc_t *npc = (npc_t *)(entity->parent);
 
     entity->parent = (npc_t *)(entity->parent);
-    if (npc->is_attack == false)
+    if (npc->is_attack == false) {
         anim_entity(entity, npc->action[npc->act_action], ticks);
+        npc->cur_attack = false;
+    }
     if (npc->is_attack == true)
         anim_attack(npc, npc->action[npc->act_action], ticks);
 }
@@ -51,6 +53,8 @@ void which_entity(entity_t *curr, rpg_t *rpg)
         anim_entity(curr, curr->simple_action, rpg->ticks);
     }
     sfRenderWindow_drawSprite(rpg->window, curr->sprite, NULL);
+    if (npc && npc->special == NON_SPEC)
+        display_projectiles(curr->parent, rpg);
     if (npc && npc->entity->effect_tab)
         manage_effect(curr, rpg->window, rpg->ticks);
 }

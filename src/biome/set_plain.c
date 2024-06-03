@@ -57,8 +57,8 @@ portal_t **create_portal_plain(void)
     portal_t **portal = malloc(sizeof(portal_t *) * 4);
 
     portal[0] = create_portal((sfVector2f){62, 780}, CAMP);
-    portal[1] = create_portal((sfVector2f){1690, 0}, CASTLE);
-    portal[2] = create_portal((sfVector2f){3449, 1496}, MINE);
+    portal[1] = create_portal((sfVector2f){3449, 1496}, MINE);
+    portal[2] = create_portal((sfVector2f){1690, 0}, CASTLE);
     portal[3] = NULL;
     return portal;
 }
@@ -66,7 +66,7 @@ portal_t **create_portal_plain(void)
 biome_t *set_plain(sfTexture **text_tab, sfFont **font_tab)
 {
     biome_t *plain = malloc(sizeof(biome_t));
-    int bot_type[6] = {GOBLINS_B, GOBLINS_D, GOBLINS_T, KNIGHT, ARCHER, -1};
+    int bot_type[6] = {GOBLINS_D, GOBLINS_T, KNIGHT, ARCHER, -1, -1};
 
     plain->back = add_background(
         text_tab[PLAINE_SPRITE_TEXT], text_tab[PLAINE_COLISION_TEXT]);
@@ -75,8 +75,10 @@ biome_t *set_plain(sfTexture **text_tab, sfFont **font_tab)
     plain->portal = create_portal_plain();
     plain->last_pos = (sfVector2f){1700.0, 200.0};
     plain->quest_giver = init_quest_giver(text_tab, plain->back, font_tab);
+    plain->boss = NULL;
     for (int i = 0; i < 6; i++)
         plain->bot_type[i] = bot_type[i];
     set_deco_data_plain(plain->deco_data, plain->back, text_tab);
+    plain->pos_bot = NULL;
     return (plain);
 }

@@ -7,16 +7,32 @@
 
 #include "rpg.h"
 
+static bool is_attack_condition_met(npc_t *npc, float offset_x)
+{
+    int sprite_center_x = (int)((npc->entity->size.x * offset_x) / 2);
+    int sprite_left = (int)(npc->entity->rect_sprite.left);
+
+    if (sprite_center_x == sprite_left && npc->type != ARCHERY)
+        return true;
+    if ((int)((npc->entity->size.x * offset_x) / 3) >= sprite_left &&
+        npc->type == DYNA && npc->projectile->active == 0)
+        return true;
+    return false;
+}
+
 void manage_ticks_attack(npc_t *npc, sfVector2i offset)
 {
+    npc->end_attack = false;
     npc->entity->rect_sprite.left += npc->entity->size.x;
-    if ((int)((npc->entity->size.x * offset.x) / 2) ==
-        (int)(npc->entity->rect_sprite.left))
+    if (is_attack_condition_met(npc, offset.x))
         npc->cur_attack = true;
     if (npc->entity->rect_sprite.left >= npc->entity->size.x * offset.x) {
         npc->is_attack = false;
         npc->cur_attack = false;
+        npc->end_attack = true;
         npc->entity->rect_sprite.left = 0;
+        if (npc->type == EXPLOSIVE)
+            npc->cur_attack = true;
         return;
     }
     sfSprite_setTextureRect(npc->entity->sprite, npc->entity->rect_sprite);

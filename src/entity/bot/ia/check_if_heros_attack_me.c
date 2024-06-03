@@ -15,10 +15,24 @@ void check_bot_death(heros_t *heros, npc_t *to_check)
     }
 }
 
+static void check_fire_touch(heros_t *heros, npc_t *npc)
+{
+    if (col_hitbox(heros->npc->projectile->hitbox, npc->hitbox)) {
+        npc->pv = npc->pv - (heros->npc->attack * 1.5);
+        npc->entity->effect_tab[EXPLO_BOT]->active = true;
+        sfSprite_setColor(
+            npc->entity->sprite, sfColor_fromRGBA(255, 0, 0, 255));
+        heros->npc->projectile->active = 0;
+        check_bot_death(heros, npc);
+    }
+}
+
 void check_if_heros_attack_me(npc_t *to_check, heros_t *heros)
 {
     sfRectangleShape *npc_rect = to_check->hitbox;
 
+    if (heros->npc->projectile->active == 1)
+        check_fire_touch(heros, to_check);
     if (heros->npc->act_action > ATTACK_R || heros->npc->cur_attack == false) {
         sfSprite_setColor(
             to_check->entity->sprite, sfColor_fromRGBA(255, 255, 255, 255));

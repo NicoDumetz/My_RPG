@@ -7,8 +7,6 @@
 
 #include "rpg.h"
 
-
-
 static void left_chase(npc_t *npc_act, sfVector2f movement_pos, rpg_t *rpg)
 {
     sfVector2f pos = sfSprite_getPosition(npc_act->entity->sprite);
@@ -81,21 +79,40 @@ static void move_ia_to_heros(
         right_chase(npc_act, movement_pos, rpg);
 }
 
-void manage_chase(npc_t *npc_act, rpg_t *rpg)
+static void chasing(npc_t *npc_act, rpg_t *rpg)
 {
-    sfVector2f pos_heros = rpg->heros->npc->entity->pos;
-    sfVector2f pos = sfSprite_getPosition(npc_act->entity->sprite);
+    sfVector2f pos_heros;
+    sfVector2f pos;
+    sfFloatRect bounds_h = sfSprite_getGlobalBounds
+    (rpg->heros->npc->entity->sprite);
+    sfFloatRect bounds = sfSprite_getGlobalBounds(npc_act->entity->sprite);
     float movement = 75 * rpg->time;
     sfVector2f direction;
     float distance;
     sfVector2f movement_pos;
 
-    direction.x = pos_heros.x - pos.x;
-    direction.y = pos_heros.y - pos.y;
+    pos.x = bounds.left + bounds.width / 2.0f;
+    pos.y = bounds.top + bounds.height / 2.0f;
+    pos_heros.x = bounds_h.left + bounds_h.width / 2.0f;
+    pos_heros.y = bounds_h.top + bounds_h.height / 2.0f;
+    direction = (sfVector2f){pos_heros.x - pos.x, pos_heros.y - pos.y};
     distance = sqrt(direction.x * direction.x + direction.y * direction.y);
-    direction.x /= distance;
-    direction.y /= distance;
+    direction = (sfVector2f){direction.x / distance, direction.y / distance};
     movement_pos.x = direction.x * movement;
     movement_pos.y = direction.y * movement;
     move_ia_to_heros(npc_act, movement_pos, rpg);
+}
+
+void manage_chase(npc_t *npc_act, rpg_t *rpg, heros_t *heros)
+{
+    int chase = 0;
+    int stand = 0;
+
+    if (npc_act->projectile != NULL && npc_act->projectile->active == 1)
+        moov_projectile(npc_act, rpg);
+    manage_attack_bot(npc_act, heros, &chase, &stand);
+    if (stand == 1)
+        npc_act->act_action = STAND;
+    if (npc_act->is_attack == false && chase == 0 && stand == 0)
+        chasing(npc_act, rpg);
 }

@@ -17,6 +17,7 @@ void anim_obj_long(
             obj->rect_sprite.left = 0;
             return;
         }
-        sfSprite_setTextureRect(obj->sprite, obj->rect_sprite);
+        if (obj->rect_quad.x > 1 || obj->rect_quad.y > 1)
+            sfSprite_setTextureRect(obj->sprite, obj->rect_sprite);
     }
 }
