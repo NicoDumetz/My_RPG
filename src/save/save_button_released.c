@@ -65,6 +65,7 @@ void save_button_released(void *data, button_t *button)
     save_t *save = (save_t *)(button->child);
 
     appli_save(rpg, save->data);
+    rpg->end->active = 0;
     set_view(rpg,
     rpg->heros->npc->entity->sprite,
     rpg->biome[save->data->id_biome]->back->sprite.sprite);
