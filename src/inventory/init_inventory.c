@@ -14,6 +14,7 @@ void destroy_inventory(inventory_t *inventory)
     inventory->background = NULL;
     destroy_slots(inventory);
     destroy_stats(inventory);
+    destroy_skill_tree(inventory);
 }
 
 void flush_inventory(inventory_t *inventory, heros_t *hero)
@@ -67,4 +68,5 @@ void init_inventory(inventory_t *inventory, sfTexture **texture_tab,
     init_slots(inventory, texture_tab);
     init_heros_square(inventory, texture_tab, rpg);
     init_stats(inventory, rpg->font_tab);
+    init_skill_tree(inventory, rpg->font_tab, rpg->texture_tab);
 }

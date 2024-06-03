@@ -69,6 +69,7 @@ void manage_inventory(rpg_t *rpg)
     draw_slots(rpg, &rpg->inventory);
     hero_picture(rpg);
     set_stats(&rpg->inventory, rpg);
+    manage_skill_tree(&rpg->inventory, rpg);
 }
 
 button_t *get_free_slot(button_t **list, unsigned char size_list)
