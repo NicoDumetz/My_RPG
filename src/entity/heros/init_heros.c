@@ -66,17 +66,22 @@ effect_t **create_effect_tab_heros(
     return (effect_tab);
 }
 
-static heros_t *init_heros_next(heros_t *heros, sfTexture **)
+static heros_t *init_heros_next(
+    heros_t *heros, sfTexture **text_tab, sfFont **font_tab)
 {
     heros->level_act = 0;
     heros->bar_tab[LIFE_BAR] =
-        create_info_bar(sfRed, (sfVector2f){300, 20}, level_tab[0].pv_max);
+        create_info_bar(sfRed, (sfVector2f){300, 20},
+            level_tab[0].pv_max, text_tab[LIFE_B_TEXT]);
     heros->bar_tab[XP_BAR] =
         create_info_bar(sfBlue,
-        (sfVector2f){300, 20}, level_tab[0].xp_to_reach);
+        (sfVector2f){300, 20}, level_tab[0].xp_to_reach, text_tab[XP_B_TEXT]);
     heros->bar_tab[STAMINA_BAR] =
         create_info_bar(sfYellow,
-        (sfVector2f){300, 20}, level_tab[0].stamina_max);
+        (sfVector2f){300, 20},
+            level_tab[0].stamina_max, text_tab[ENERGY_B_TEXT]);
+    heros->bar_tab[XP_BAR]->text = sfText_create();
+    sfText_setFont(heros->bar_tab[XP_BAR]->text, font_tab[PIXEL]);
     heros->stamina = level_tab[0].stamina_max;
     heros->npc->xp = 0;
     heros->pv_max = level_tab[0].pv_max;
@@ -85,7 +90,7 @@ static heros_t *init_heros_next(heros_t *heros, sfTexture **)
     return (heros);
 }
 
-heros_t *init_heros(sfTexture **text_tab)
+heros_t *init_heros(sfTexture **text_tab, sfFont **font_tab)
 {
     heros_t *heros = malloc(sizeof(heros_t));
     sfFloatRect hitbox = {30, 25, 55, 55};
@@ -106,5 +111,5 @@ heros_t *init_heros(sfTexture **text_tab)
     heros->npc->special = HEROS;
     heros->npc->entity->colbox_dim = colbox;
     heros->npc->hitbox_dim = hitbox;
-    return init_heros_next(heros, text_tab);
+    return init_heros_next(heros, text_tab, font_tab);
 }

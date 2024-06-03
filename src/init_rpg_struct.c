@@ -42,7 +42,7 @@ void destroy_rpg(rpg_t *rpg)
 
 rpg_t *init_rpg_next(rpg_t *rpg)
 {
-    set_all_font(rpg->font_tab);
+    rpg->ticks = false;
     rpg->save_scene = init_load_page(rpg->text_tab);
     memset(&(rpg->mouse_data), 0, sizeof(mouse_data_t));
     rpg->save_list = NULL;
@@ -59,11 +59,11 @@ rpg_t *create_rpg_struct(void)
     rpg->scene = PLAIN;
     rpg->second = 0;
     rpg->time = 0;
+    set_all_font(rpg->font_tab);
     rpg->window = sfRenderWindow_create(mode, "my_rpg", sfClose, NULL);
     sfRenderWindow_setPosition(rpg->window, (sfVector2i){0, 0});
     set_all_texture(rpg->text_tab);
-    rpg->heros = init_heros(rpg->text_tab);
-    rpg->ticks = false;
+    rpg->heros = init_heros(rpg->text_tab, rpg->font_tab);
     for (int i = 0; i < 256; i++)
         rpg->key_state[i] = false;
     for (int i = 0; i <= MINE; i++)

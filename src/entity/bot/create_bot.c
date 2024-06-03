@@ -34,7 +34,7 @@ npc_t *create_bot(
         text_tab, new_bot->entity->sprite);
     new_bot->entity->pos = pos;
     new_bot->pv_bar =
-        create_info_bar(sfRed, (sfVector2f){100, 7}, new_bot->pv);
+        create_info_bar(sfRed, (sfVector2f){100, 7}, new_bot->pv, NULL);
     new_bot->pv_bar->act = new_bot->pv;
     sfSprite_setPosition(new_bot->entity->sprite, pos);
     add_to_list_bot(new_bot, &(bot_data->bot_list[bot_type]));

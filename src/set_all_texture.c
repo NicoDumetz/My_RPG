@@ -47,6 +47,17 @@ void set_all_texture_next_two(sfTexture **text_tab)
         BLUE_LONG_REL, NULL);
     text_tab[BUTTON_LONG_H_TEXT] = sfTexture_createFromFile(
         HOVER_LONG_BUT, NULL);
+    text_tab[BACK_SAVE_TEXT] = sfTexture_createFromFile(BACK_SAVE_PATH, NULL);
+    text_tab[LIFE_B_TEXT] = sfTexture_createFromFile(
+        LIFE_BAR_PATH, NULL);
+    text_tab[ENERGY_B_TEXT] = sfTexture_createFromFile(
+        ENERGY_BAR_PATH, NULL);
+}
+
+void set_all_texture_next_three(sfTexture **text_tab)
+{
+    text_tab[XP_B_TEXT] = sfTexture_createFromFile(
+        XP_BAR_PATH, NULL);
 }
 
 void set_all_texture(sfTexture **text_tab)
@@ -67,7 +78,7 @@ void set_all_texture(sfTexture **text_tab)
     text_tab[BAG_TEXT] = sfTexture_createFromFile(BAG_PATH, NULL);
     text_tab[BLOOD_TEXT] = sfTexture_createFromFile(BLOOD_PATH, NULL);
     text_tab[COIN_TEXT] = sfTexture_createFromFile(COIN_PATH, NULL);
-    text_tab[BACK_SAVE_TEXT] = sfTexture_createFromFile(BACK_SAVE_PATH, NULL);
+    set_all_texture_next_three(text_tab);
     set_all_texture_next_two(text_tab);
     set_all_texture_next(text_tab);
 }

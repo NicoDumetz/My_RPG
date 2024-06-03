@@ -131,7 +131,7 @@ npc_t *init_npc(sfTexture *asset);
 void destroy_npc(npc_t *npc);
 
 /**HEROS**/
-heros_t *init_heros(sfTexture **texture);
+heros_t *init_heros(sfTexture **texture, sfFont **font_tab);
 void destroy_heros(heros_t *heros);
 void manage_heros_bar(heros_t *heros, sfRenderWindow *window);
 

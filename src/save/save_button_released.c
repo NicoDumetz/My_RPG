@@ -13,9 +13,16 @@ void appli_save(rpg_t *rpg, save_data_t *save)
     rpg->heros->stamina = save->heros_stami;
     rpg->heros->npc->xp = save->heros_xp;
     rpg->heros->level_act = save->level_heros;
+    rpg->heros->stamina_max = level_tab[save->level_heros].stamina_max;
+    rpg->heros->pv_max = level_tab[save->level_heros].pv_max;
     rpg->heros->npc->entity->pos = (sfVector2f){save->x_heros, save->y_heros};
     sfSprite_setPosition(
         rpg->heros->npc->entity->sprite, rpg->heros->npc->entity->pos);
+    rpg->heros->bar_tab[LIFE_BAR]->max = level_tab[save->level_heros].pv_max;
+    rpg->heros->bar_tab[STAMINA_BAR]->max =
+        level_tab[save->level_heros].stamina_max;
+    rpg->heros->bar_tab[XP_BAR]->max =
+        level_tab[save->level_heros].xp_to_reach;
     remake_bot_list(save, rpg);
 }
 

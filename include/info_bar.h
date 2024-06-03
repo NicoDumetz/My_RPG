@@ -17,13 +17,16 @@ typedef enum bar_heros_e {
 
 typedef struct info_bar_s {
     sfRectangleShape *bar;
+    sfSprite *deco;
+    sfText *text;
     float max;
     float act;
     sfVector2f size;
 } info_bar_t;
 
 /**INIT**/
-info_bar_t *create_info_bar(sfColor color, sfVector2f size, float max);
+info_bar_t *create_info_bar(
+    sfColor color, sfVector2f size, float max, sfTexture *text_deco);
 void destroy_info_bar(info_bar_t *info_bar);
 
 /**UPDATE**/

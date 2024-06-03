@@ -72,4 +72,7 @@
     #define BLUE_LONG_REL "tiny_world_asset/UI/Buttons/Blue_long_released.png"
     #define HOVER_LONG_BUT "tiny_world_asset/UI/Buttons/Button_long_hover.png"
     #define PIXEL_F_PATH "font/pixel_font.ttf"
+    #define LIFE_BAR_PATH "info_bar_asset/BarreDeVie.png"
+    #define ENERGY_BAR_PATH "info_bar_asset/Energie.png"
+    #define XP_BAR_PATH "info_bar_asset/Niveau.png"
 #endif
