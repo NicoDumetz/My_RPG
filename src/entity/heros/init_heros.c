@@ -27,6 +27,14 @@ void set_action_tab_heros(heros_t *heros)
     heros->npc->action[STAND] = (sfVector2i){6, 0};
 }
 
+void set_attbox_dim_heros(npc_t *npc)
+{
+    npc->attbox_dim[ATTACK_F] = (sfFloatRect){15, 15, 30, 70};
+    npc->attbox_dim[ATTACK_B] = (sfFloatRect){20, 50, 25, 65};
+    npc->attbox_dim[ATTACK_L] = (sfFloatRect){5, 30, 40, 55};
+    npc->attbox_dim[ATTACK_R] = (sfFloatRect){35, 30, 40, 55};
+}
+
 heros_t *init_heros(char *asset)
 {
     heros_t *heros = malloc(sizeof(heros_t));
@@ -38,6 +46,7 @@ heros_t *init_heros(char *asset)
     heros->npc = init_npc(heros->texture_base);
     set_offset(heros->npc->entity, (sfVector2i){6, 8});
     set_action_tab_heros(heros);
+    set_attbox_dim_heros(heros->npc);
     heros->npc->entity->colbox_dim = colbox;
     heros->npc->hitbox_dim = hitbox;
     return heros;

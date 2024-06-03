@@ -36,7 +36,7 @@ void set_texture_bot(bot_data_t *bot_data)
         GOBLINS_B_SPRITE, NULL);
     bot_data->bot_texture[GOBLINS_D] = sfTexture_createFromFile(
         GOBLINS_D_SPRITE, NULL);
-    bot_data->bot_texture[KINGHT] = sfTexture_createFromFile(
+    bot_data->bot_texture[KNIGHT] = sfTexture_createFromFile(
         KNIGHT_SPRITE, NULL);
     bot_data->bot_texture[ARCHER] = sfTexture_createFromFile(
         ARCHER_SPRITE, NULL);

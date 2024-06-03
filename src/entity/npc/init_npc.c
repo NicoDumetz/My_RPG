@@ -11,6 +11,8 @@ void destroy_npc(npc_t *npc)
 {
     destroy_entity(npc->entity);
     sfRectangleShape_destroy(npc->hitbox);
+    for (int i = 0; i <= ATTACK_R; i++)
+        sfRectangleShape_destroy(npc->attbox[i]);
     free(npc);
 }
 
@@ -22,6 +24,16 @@ sfRectangleShape *init_hitbox_rect(void)
     sfRectangleShape_setFillColor(hitbox, sfTransparent);
     sfRectangleShape_setOutlineThickness(hitbox, 2);
     return hitbox;
+}
+
+sfRectangleShape *init_attbox_rect(void)
+{
+    sfRectangleShape *attbox = sfRectangleShape_create();
+
+    sfRectangleShape_setOutlineColor(attbox, sfBlue);
+    sfRectangleShape_setFillColor(attbox, sfTransparent);
+    sfRectangleShape_setOutlineThickness(attbox, 2);
+    return attbox;
 }
 
 npc_t *init_npc(sfTexture *asset)
@@ -36,6 +48,10 @@ npc_t *init_npc(sfTexture *asset)
     npc->prev = NULL;
     npc->hitbox = init_hitbox_rect();
     npc->hitbox_dim = (sfFloatRect){0, 0, 0, 0};
+    for (int i = 0; i <= ATTACK_R; i++) {
+        npc->attbox[i] = init_attbox_rect();
+        npc->attbox_dim[i] = (sfFloatRect){0, 0, 0, 0};
+    }
     for (int i = ATTACK_F; i <= STAND; i++)
         npc->action[i] = (sfVector2i){0, 0};
     return npc;
