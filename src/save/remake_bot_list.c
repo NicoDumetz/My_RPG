@@ -26,7 +26,7 @@ void remake_bot_list(save_data_t *save, rpg_t *rpg)
     clean_boss(rpg);
     for (int i = 0; i <= MINE; i++) {
         rpg->biome[i]->nbr_bot = 0;
-        for (int j = 0; save->save_bot[i][j].pv != 0 && j < 30; j++) {
+        for (int j = 0; j < 30 && save->save_bot[i][j].pv != 0; j++) {
             npc = create_bot(save->save_bot[i][j].id_bot,
                 rpg->biome[i]->bot_data,
                 (sfVector2f){save->save_bot[i][j].pos_x,
