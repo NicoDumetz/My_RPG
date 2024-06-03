@@ -7,6 +7,7 @@
 
 #include "rpg.h"
 #include <SFML/Graphics/Texture.h>
+#include <SFML/Graphics/Types.h>
 
 void set_all_texture_next(sfTexture **text_tab)
 {
@@ -148,6 +149,15 @@ static void set_all_texture_next_six(sfTexture **text_tab)
     text_tab[RES_SELECTION_E] = sfTexture_createFromFile(RES_SELECTION, NULL);
 }
 
+static void set_all_texture_next_seven(sfTexture **text_tab)
+{
+    text_tab[BACK_PARAM_E] = sfTexture_createFromFile(BACK_PARAM, NULL);
+    text_tab[RIBBONS_PARAM_E] = sfTexture_createFromFile(RIBBONS_PARAM, NULL);
+    text_tab[RIBBONS_PARAM_PRESSED_E] = sfTexture_createFromFile(
+    RIBBONS_PARAM_PRESSED, NULL);
+    text_tab[PAGE_PARAM_E] = sfTexture_createFromFile(PAGE_PARAM, NULL);
+}
+
 void set_all_texture(sfTexture **text_tab)
 {
     text_tab[VILLAGE_SPRITE_TEXT] = sfTexture_createFromFile(
@@ -160,6 +170,7 @@ void set_all_texture(sfTexture **text_tab)
         CASTLE_COLISION, NULL);
     text_tab[KNIGHT_HOUSE_TEXT] = sfTexture_createFromFile(
         KNIGHT_H_SPRITE, NULL);
+    set_all_texture_next_seven(text_tab);
     set_all_texture_next_six(text_tab);
     set_all_texture_next_five(text_tab);
     set_all_texture_next_four(text_tab);
