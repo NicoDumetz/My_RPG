@@ -23,6 +23,7 @@
     #include <stdio.h>
     #include <errno.h>
     #include <dirent.h>
+    #include "quest.h"
     #include "button.h"
     #include "level.h"
     #include "save.h"

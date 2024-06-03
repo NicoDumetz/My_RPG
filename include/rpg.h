@@ -68,6 +68,7 @@ typedef struct rpg_s {
     biome_t *biome[5];
     save_scene_t *save_scene;
     mouse_data_t mouse_data;
+    quest_t quest_tab[3];
     int scene;
     sfClock *clock;
     sfEvent event;
@@ -136,6 +137,7 @@ void create_save(rpg_t *rpg);
 void create_file_list(rpg_t *rpg);
 void load_page(rpg_t *rpg);
 void remake_bot_list(save_data_t *save, rpg_t *rpg);
+void appli_save_quest(rpg_t *rpg, save_data_t *save);
 
 /**RPG**/
 void rpg(rpg_t *rpg);
@@ -160,4 +162,8 @@ void manage_up(rpg_t *rpg);
 void biome_loop(rpg_t *rpg, biome_t *biome);
 void entity_loop(
     entity_t *entity_list, rpg_t *rpg);
+
+/**QUEST_GIVER**/
+void manage_quest_giver(
+    quest_t *quest_tab, quest_giver_t *quest_g, rpg_t *rpg);
 #endif

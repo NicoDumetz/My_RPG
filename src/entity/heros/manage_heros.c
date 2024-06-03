@@ -37,10 +37,21 @@ void check_level_up(heros_t *heros)
     }
 }
 
+void manage_interact(heros_t *heros, sfRenderWindow *window)
+{
+    sfVector2f pos = {heros->npc->entity->pos.x, heros->npc->entity->pos.y};
+
+    sfText_setPosition(heros->interact, pos);
+    sfRenderWindow_drawText(window, heros->interact, NULL);
+}
+
 void manage_heros(heros_t *heros, rpg_t *rpg)
 {
     manage_movements(rpg);
     manage_heros_attack(heros, rpg->key_state);
+    if (heros->can_interact)
+        manage_interact(heros, rpg->window);
     recovery_stamina(heros, rpg->time);
     check_level_up(heros);
+    heros->can_interact = false;
 }

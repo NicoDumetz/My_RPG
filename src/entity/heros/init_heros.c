@@ -26,6 +26,7 @@ void destroy_heros(heros_t *heros)
         destroy_inventory(&(heros->inventory));
     for (int i = 0; i <= STAMINA_BAR; i++)
         destroy_info_bar(heros->bar_tab[i]);
+    sfText_destroy(heros->interact);
     destroy_npc(heros->npc);
     free(heros);
 }
@@ -66,6 +67,17 @@ effect_t **create_effect_tab_heros(
     return (effect_tab);
 }
 
+static void init_heros_next_two(
+    heros_t *heros, sfTexture **, sfFont **font_tab)
+{
+    heros->can_interact = false;
+    heros->interact = sfText_create();
+    sfText_setString(heros->interact, "Press \"Key E\"");
+    sfText_setFont(heros->interact, font_tab[PIXEL]);
+    sfText_setOutlineColor(heros->interact, sfBlack);
+    sfText_setOutlineThickness(heros->interact, 2);
+}
+
 static heros_t *init_heros_next(
     heros_t *heros, sfTexture **text_tab, sfFont **font_tab)
 {
@@ -87,6 +99,7 @@ static heros_t *init_heros_next(
     heros->pv_max = level_tab[0].pv_max;
     heros->stamina_max = level_tab[0].stamina_max;
     heros->stami_per_sec = level_tab[0].stami_per_sec;
+    init_heros_next_two(heros, text_tab, font_tab);
     return (heros);
 }
 

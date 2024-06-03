@@ -28,6 +28,8 @@ void destroy_biome(biome_t *biome)
             destroy_portal(biome->portal[i]);
         free(biome->portal);
     }
+    if (biome->quest_giver)
+        destroy_quest_giver(biome->quest_giver);
     if (biome->back)
         destroy_background(biome->back);
     if (biome->deco_data)
@@ -37,10 +39,10 @@ void destroy_biome(biome_t *biome)
     free(biome);
 }
 
-biome_t *create_biome(int biome_type, sfTexture **text_tab)
+biome_t *create_biome(int biome_type, sfTexture **text_tab, sfFont **font_tab)
 {
     biome_t *biome = NULL;
-    biome_t *(*biome_gen[5])(sfTexture **text_tab) = {
+    biome_t *(*biome_gen[5])(sfTexture **text_tab, sfFont **font_tab) = {
         set_plain,
         set_castle,
         set_camp,
@@ -48,7 +50,7 @@ biome_t *create_biome(int biome_type, sfTexture **text_tab)
         set_mine
     };
 
-    biome = biome_gen[biome_type](text_tab);
+    biome = biome_gen[biome_type](text_tab, font_tab);
     biome->text_tab = text_tab;
     biome->nbr_bot = 0;
     biome->obj_list = NULL;

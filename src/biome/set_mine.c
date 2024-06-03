@@ -16,7 +16,7 @@ portal_t **create_portal_mine(void)
     return portal;
 }
 
-biome_t *set_mine(sfTexture **text_tab)
+biome_t *set_mine(sfTexture **text_tab, sfFont **)
 {
     biome_t *mine = malloc(sizeof(biome_t));
     int bot_type[6] = {KNIGHT, ARCHER, GOBLINS_D, GOBLINS_B, -1, -1};
@@ -25,6 +25,7 @@ biome_t *set_mine(sfTexture **text_tab)
         text_tab[MINE_B_TEXT], text_tab[MINE_COLISION_TEXT]);
     mine->bot_data = init_bot_data(text_tab);
     mine->portal = create_portal_mine();
+    mine->quest_giver = NULL;
     mine->last_pos = (sfVector2f){1994, 0};
     for (int i = 0; i < 6; i++)
         mine->bot_type[i] = bot_type[i];

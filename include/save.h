@@ -38,6 +38,10 @@ typedef struct save_data_s {
     int heros_stami;
     int heros_pv;
     int id_biome;
+    int act_quest;
+    int dial_quest;
+    bool is_interact;
+    int quest_state[3];
     save_bot_t save_bot[5][30];
     int object_id_inv[20];
     int object_id_equip[6];

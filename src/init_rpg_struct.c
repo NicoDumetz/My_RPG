@@ -25,6 +25,7 @@ void destroy_rpg(rpg_t *rpg)
 {
     if (rpg) {
         sfRenderWindow_destroy(rpg->window);
+        destroy_quest(rpg->quest_tab);
         destroy_heros(rpg->heros);
         sfClock_destroy(rpg->clock);
         if (rpg->save_list)
@@ -43,6 +44,7 @@ void destroy_rpg(rpg_t *rpg)
 rpg_t *init_rpg_next(rpg_t *rpg)
 {
     rpg->ticks = false;
+    init_quest(rpg->quest_tab, rpg->font_tab);
     rpg->save_scene = init_load_page(rpg->text_tab);
     memset(&(rpg->mouse_data), 0, sizeof(mouse_data_t));
     rpg->save_list = NULL;
@@ -67,7 +69,7 @@ rpg_t *create_rpg_struct(void)
     for (int i = 0; i < 256; i++)
         rpg->key_state[i] = false;
     for (int i = 0; i <= MINE; i++)
-        rpg->biome[i] = create_biome(i, rpg->text_tab);
+        rpg->biome[i] = create_biome(i, rpg->text_tab, rpg->font_tab);
     rpg->heros->npc->entity->pos = rpg->biome[PLAIN]->last_pos;
     sfSprite_setPosition(
     rpg->heros->npc->entity->sprite, rpg->biome[PLAIN]->last_pos);

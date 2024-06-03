@@ -16,7 +16,7 @@ portal_t **create_portal_castle(void)
     return portal;
 }
 
-biome_t *set_castle(sfTexture **text_tab)
+biome_t *set_castle(sfTexture **text_tab, sfFont **)
 {
     biome_t *castle = malloc(sizeof(biome_t));
     int bot_type[6] = {KNIGHT, ARCHER, -1, -1, -1, -1};
@@ -24,6 +24,7 @@ biome_t *set_castle(sfTexture **text_tab)
     castle->back = add_background(
         text_tab[CASTLE_SPRITE_TEXT], text_tab[CASTLE_COLISION_TEXT]);
     castle->bot_data = init_bot_data(text_tab);
+    castle->quest_giver = NULL;
     castle->deco_data = NULL;
     castle->portal = create_portal_castle();
     castle->last_pos = (sfVector2f){1333, 2776};

@@ -26,6 +26,7 @@ typedef enum direction_e {
 
 typedef enum special_npc_e {
     NON_SPEC = 0,
+    QUEST_GIVER,
     HEROS
 }special_npc_t;
 
@@ -109,8 +110,21 @@ typedef struct bot_data_s {
     sfTexture *bot_texture[6];
 } bot_data_t;
 
+typedef struct quest_giver_s {
+    npc_t *npc;
+    float interact_zone;
+    const char **dial_tab;
+    bool is_interact;
+    sfText *dial;
+    int act_dial;
+    sfText *signal;
+    int act_quest;
+} quest_giver_t;
+
 typedef struct heros_s {
     sfTexture *texture_base;
+    sfText *interact;
+    bool can_interact;
     int level_act;
     float stamina;
     float stamina_max;
@@ -134,6 +148,12 @@ void destroy_npc(npc_t *npc);
 heros_t *init_heros(sfTexture **texture, sfFont **font_tab);
 void destroy_heros(heros_t *heros);
 void manage_heros_bar(heros_t *heros, sfRenderWindow *window);
+
+/**QUEST_GIVER**/
+quest_giver_t *init_quest_giver(
+    sfTexture **text_tab, back_t *back, sfFont **font_tab);
+void destroy_quest_giver(quest_giver_t *quest_giver);
+void next_quest(quest_giver_t *quest_g, quest_t *quest_tab);
 
 /**OFFSET**/
 void anim_entity(entity_t *entity, sfVector2i offset, bool ticks);
@@ -160,7 +180,7 @@ void manage_bot(entity_t *entity, heros_t *heros, rpg_t *rpg);
 void manage_random_moov(npc_t *npc_act, rpg_t *rpg);
 void manage_chase(npc_t *npc_act, rpg_t *rpg);
 void check_if_heros_attack_me(npc_t *to_check, heros_t *heros);
-void check_chase_heros(npc_t *to_check, heros_t *heros);
+bool check_chase_heros(npc_t *to_check, heros_t *heros);
 void manage_animation_bot(entity_t *entity, bool ticks);
 
 /**DECO**/

@@ -93,6 +93,12 @@ SRC = main.c\
 	src/save/exit_button_released.c\
 	src/save/save_button_released.c\
 	src/save/remake_bot_list.c\
+	src/quest/init_quest.c\
+	src/quest/quest_displayer.c\
+	src/entity/quest_giver/init_quest_giver.c\
+	src/entity/quest_giver/manage_quest_giver.c\
+	src/entity/quest_giver/next_quest.c\
+	src/save/appli_save_quest.c\
 
 OBJ = $(SRC:.c=.o)
 

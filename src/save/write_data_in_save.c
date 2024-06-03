@@ -23,6 +23,17 @@ void write_bot_data(save_data_t *new_save, rpg_t *rpg, int i)
     }
 }
 
+void write_quest_data(save_data_t *new_save, rpg_t *rpg)
+{
+    new_save->act_quest = rpg->biome[PLAIN]->quest_giver->act_quest;
+    new_save->dial_quest = rpg->biome[PLAIN]->quest_giver->act_dial;
+    new_save->is_interact = rpg->biome[PLAIN]->quest_giver->is_interact;
+    for (int i = 0; i <= KILL_CASTLE; i++) {
+        new_save->quest_state[i] =
+        rpg->quest_tab[i].state;
+    }
+}
+
 void write_data_in_save(save_data_t *new_save, rpg_t *rpg)
 {
     int j = 0;
@@ -40,5 +51,6 @@ void write_data_in_save(save_data_t *new_save, rpg_t *rpg)
     new_save->level_heros = rpg->heros->level_act;
     new_save->x_heros = rpg->heros->npc->entity->pos.x;
     new_save->y_heros = rpg->heros->npc->entity->pos.y;
+    write_quest_data(new_save, rpg);
     new_save->end_save = 42;
 }

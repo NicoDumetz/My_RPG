@@ -93,6 +93,9 @@ void sort_entity_in_view(
     biome_t *biome, sfRenderWindow *window, heros_t *heros, rpg_t *rpg)
 {
     put_entity_in_view_list(heros->npc->entity, biome, window);
+    if (biome->quest_giver)
+        put_entity_in_view_list(
+            biome->quest_giver->npc->entity, biome, window);
     for (front_obj_t *curr = biome->obj_list; curr;) {
         curr = obj_loop_sort(curr, biome, rpg);
     }

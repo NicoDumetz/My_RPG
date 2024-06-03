@@ -23,6 +23,7 @@ void appli_save(rpg_t *rpg, save_data_t *save)
         level_tab[save->level_heros].stamina_max;
     rpg->heros->bar_tab[XP_BAR]->max =
         level_tab[save->level_heros].xp_to_reach;
+    appli_save_quest(rpg, save);
     remake_bot_list(save, rpg);
 }
 

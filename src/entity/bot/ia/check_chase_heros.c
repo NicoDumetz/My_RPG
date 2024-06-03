@@ -24,7 +24,7 @@ float calculate_distance(sfVector2f point1, sfVector2f point2)
     return sqrt(dx * dx + dy * dy);
 }
 
-void check_chase_heros(npc_t *to_check, heros_t *heros)
+bool check_chase_heros(npc_t *to_check, heros_t *heros)
 {
     sfFloatRect rect_hitbox_npc =
         sfRectangleShape_getGlobalBounds(to_check->hitbox);
@@ -34,5 +34,6 @@ void check_chase_heros(npc_t *to_check, heros_t *heros)
     sfVector2f mid_heros = get_center_of_rect(rect_hitbox_hero);
 
     if (calculate_distance(mid_npc, mid_heros) <= to_check->view)
-        to_check->in_chase = true;
+        return true;
+    return false;
 }
