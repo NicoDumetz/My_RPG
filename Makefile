@@ -123,7 +123,6 @@ SRC = main.c\
 	src/skill/init_run.c\
 	src/skill/init_skill.c\
 	src/skill/manage_skill.c\
-	src/biome/set_bot_donjon.c\
 	src/game_over/game_over.c\
 	src/game_over/fade_switch.c\
 

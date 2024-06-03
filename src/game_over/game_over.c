@@ -15,7 +15,7 @@ void init_game_over(rpg_t *rpg)
     new->rect = sfRectangleShape_create();
     sfRectangleShape_setFillColor(new->rect, sfBlack);
     new->text = sfText_create();
-    sfText_setString(new->text, "Game Over");
+    sfText_setString(new->text, "You died");
     sfText_setFont(new->text, rpg->font_tab[PIXEL]);
     sfText_setCharacterSize(new->text, 100);
     sfText_setFillColor(new->text, sfRed);
