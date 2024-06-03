@@ -49,6 +49,9 @@ typedef enum texture_type_e {
     LIFE_B_TEXT,
     ENERGY_B_TEXT,
     XP_B_TEXT,
+    CAMP_BOSS_TEXT,
+    MINE_BOSS_TEXT,
+    CASTLE_BOSS_TEXT,
     MINE_TEXT
 } texture_type_t;
 
@@ -76,7 +79,7 @@ typedef struct rpg_s {
     bool key_state[256];
     int second;
     float time;
-    sfTexture *text_tab[35];
+    sfTexture *text_tab[38];
     sfFont *font_tab[1];
     sfRenderWindow *window;
 } rpg_t;
@@ -166,4 +169,6 @@ void entity_loop(
 /**QUEST_GIVER**/
 void manage_quest_giver(
     quest_t *quest_tab, quest_giver_t *quest_g, rpg_t *rpg);
+void check_open_portal(rpg_t *rpg);
+void check_end_quest(rpg_t *rpg);
 #endif

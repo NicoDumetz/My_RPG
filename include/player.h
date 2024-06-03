@@ -97,6 +97,9 @@ typedef struct npc_s {
     struct npc_s *next;
     struct npc_s *prev;
     sfVector2i action[9];
+    float stamina;
+    float max_stamina;
+    int damage;
     special_npc_t special;
 } npc_t;
 
@@ -182,10 +185,8 @@ void manage_chase(npc_t *npc_act, rpg_t *rpg, heros_t *heros);
 void check_if_heros_attack_me(npc_t *to_check, heros_t *heros);
 bool check_chase_heros(npc_t *to_check, heros_t *heros);
 void manage_animation_bot(entity_t *entity, bool ticks);
-void attack_left(npc_t *npc_act, heros_t *heros, int *chase);
-void attack_right(npc_t *npc_act, heros_t *heros, int *chase);
-void attack_back(npc_t *npc_act, heros_t *heros, int *chase);
-void attack_front(npc_t *npc_act, heros_t *heros, int *chase);
+void add_to_list_bot(npc_t *new_bot, npc_t **list);
+void manage_attack_bot(npc_t *npc_act, heros_t *heros, int *chase, int *stand);
 
 /**DECO**/
 deco_data_t *init_deco_data(void);

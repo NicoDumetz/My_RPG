@@ -8,58 +8,34 @@
 #include "rpg.h"
 #include "player.h"
 
-void attack_left(npc_t *npc_act, heros_t *heros, int *chase)
+
+static void lunch_attack(npc_t *npc_act, int i)
 {
-    if (npc_act->is_attack == false)
-        npc_act->entity->rect_sprite.left = 0;
-    npc_act->act_action = ATTACK_L;
-    if (npc_act->cur_attack == true &&
-        col_hitbox(npc_act->attbox[2], heros->npc->hitbox) && *chase != 1) {
-        heros->npc->pv -= 0.05;
-        heros->npc->entity->effect_tab[BLOOD_HEROS]->active = true;
-    }
+    action_t anim[] = {ATTACK_F, ATTACK_B, ATTACK_L, ATTACK_R};
+
+    npc_act->entity->rect_sprite.left = 0;
+    npc_act->act_action = anim[i];
     npc_act->is_attack = true;
-    *chase = 1;
+    npc_act->stamina -= npc_act->max_stamina;
 }
 
-void attack_right(npc_t *npc_act, heros_t *heros, int *chase)
+void manage_attack_bot(npc_t *npc_act, heros_t *heros, int *chase, int *stand)
 {
-    if (npc_act->is_attack == false)
-        npc_act->entity->rect_sprite.left = 0;
-    npc_act->act_action = ATTACK_R;
-    if (npc_act->cur_attack == true &&
-        col_hitbox(npc_act->attbox[3], heros->npc->hitbox) && *chase != 1) {
-        heros->npc->pv -= 0.05;
-        heros->npc->entity->effect_tab[BLOOD_HEROS]->active = true;
-    }
-    npc_act->is_attack = true;
-    *chase = 1;
-}
+    bool touch = 0;
 
-void attack_back(npc_t *npc_act, heros_t *heros, int *chase)
-{
-    if (npc_act->is_attack == false)
-        npc_act->entity->rect_sprite.left = 0;
-    npc_act->act_action = ATTACK_B;
-    if (npc_act->cur_attack == true &&
-        col_hitbox(npc_act->attbox[1], heros->npc->hitbox) && *chase != 1) {
-        heros->npc->pv -= 0.05;
-        heros->npc->entity->effect_tab[BLOOD_HEROS]->active = true;
+    for (int i = 0; i <= 3; i++) {
+        touch = col_hitbox(npc_act->attbox[i], heros->npc->hitbox);
+        *chase = touch ? 1 : *chase;
+        if (npc_act->is_attack == false && touch &&
+            npc_act->stamina >= npc_act->max_stamina)
+            lunch_attack(npc_act, i);
+        if (npc_act->cur_attack == true && touch) {
+            heros->npc->pv -= npc_act->damage;
+            npc_act->cur_attack = false;
+            heros->npc->entity->effect_tab[BLOOD_HEROS]->active = true;
+            break;
+        }
+        if (touch && npc_act->is_attack == false)
+            *stand = 1;
     }
-    npc_act->is_attack = true;
-    *chase = 1;
-}
-
-void attack_front(npc_t *npc_act, heros_t *heros, int *chase)
-{
-    if (npc_act->is_attack == false)
-        npc_act->entity->rect_sprite.left = 0;
-    npc_act->act_action = ATTACK_F;
-    if (npc_act->cur_attack == true &&
-        col_hitbox(npc_act->attbox[0], heros->npc->hitbox) && *chase != 1) {
-        heros->npc->pv -= 0.05;
-        heros->npc->entity->effect_tab[BLOOD_HEROS]->active = true;
-    }
-    npc_act->is_attack = true;
-    *chase = 1;
 }

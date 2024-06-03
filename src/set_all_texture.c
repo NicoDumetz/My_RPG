@@ -58,6 +58,12 @@ void set_all_texture_next_three(sfTexture **text_tab)
 {
     text_tab[XP_B_TEXT] = sfTexture_createFromFile(
         XP_BAR_PATH, NULL);
+    text_tab[MINE_BOSS_TEXT] = sfTexture_createFromFile(
+        MINE_BOSS_PATH, NULL);
+    text_tab[CAMP_BOSS_TEXT] = sfTexture_createFromFile(
+        CAMP_BOSS_PATH, NULL);
+    text_tab[CASTLE_BOSS_TEXT] = sfTexture_createFromFile(
+        CASTLE_BOSS_PATH, NULL);
 }
 
 void set_all_texture(sfTexture **text_tab)

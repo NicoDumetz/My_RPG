@@ -22,7 +22,7 @@ void set_action_tab_goblins(npc_t *goblins)
 
 void set_attbox_dim_goblins(npc_t *npc)
 {
-    npc->attbox_dim[ATTACK_F] = (sfFloatRect){10, 15, 40, 70};
+    npc->attbox_dim[ATTACK_F] = (sfFloatRect){20, 15, 40, 70};
     npc->attbox_dim[ATTACK_B] = (sfFloatRect){20, 50, 40, 65};
     npc->attbox_dim[ATTACK_L] = (sfFloatRect){10, 25, 40, 55};
     npc->attbox_dim[ATTACK_R] = (sfFloatRect){30, 25, 40, 55};
@@ -41,8 +41,11 @@ npc_t *set_goblins(sfTexture *texture)
     set_action_tab_goblins(goblins);
     set_attbox_dim_goblins(goblins);
     goblins->entity->colbox_dim = colbox;
-    goblins->xp = 35;
+    goblins->xp = 2000;
     goblins->hitbox_dim = hitbox;
     goblins->view = 500;
+    goblins->stamina = 25;
+    goblins->max_stamina = 25;
+    goblins->damage = 15;
     return (goblins);
 }
