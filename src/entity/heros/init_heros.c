@@ -82,7 +82,7 @@ static void init_heros_next_two(
     sfText_setOutlineColor(heros->interact, sfBlack);
     sfText_setOutlineThickness(heros->interact, 2);
     heros->skill = init_skill();
-    heros->multi_speed = 1;
+    heros->multi_speed = 4;
     heros->restore = false;
     heros->skill_point = 0;
 }

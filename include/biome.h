@@ -19,6 +19,7 @@ typedef struct portal_s {
 
 typedef struct biome_s {
     back_t *back;
+    sfVector2f *pos_bot;
     npc_t *boss;
     bot_data_t *bot_data;
     deco_data_t *deco_data;
@@ -54,6 +55,7 @@ biome_t *set_mine(sfTexture **text_tab, sfFont **font_tab);
 
 /**BOT**/
 void bot_generator(biome_t *biome, int *who);
+void set_bot_donjon(biome_t *biome, sfVector2f *pos_list);
 
 /**PORTAL**/
 portal_t *create_portal(sfVector2f pos, int scene);

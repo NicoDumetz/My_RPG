@@ -30,7 +30,7 @@ void manage_heros_bar(heros_t *heros, sfRenderWindow *window)
     sfVector2f center = sfView_getCenter(view);
     sfVector2f size_view = sfView_getSize(view);
     sfVector2f pos = {(center.x - size_view.x / 2) + ((size_view.x / 100) * 3),
-        center.y - size_view.y / 2 + ((size_view.x / 100) * 1)};
+        center.y - size_view.y / 2 + ((size_view.y / 100) * 4)};
     float delta = 0;
 
     heros->bar_tab[LIFE_BAR]->act = heros->npc->pv;
