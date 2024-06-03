@@ -11,6 +11,7 @@
 
 typedef struct menu_s {
     int pos;
+    int save;
     sfSprite *background;
     button_t *play;
     button_t *new;
@@ -18,17 +19,6 @@ typedef struct menu_s {
     button_t *param;
     button_t *quit;
 } menu_t;
-
-typedef struct ingame_menu_s {
-    int from;
-    int pos;
-    sfSprite *background;
-    button_t *resume;
-    button_t *save;
-    button_t *load_save;
-    button_t *param;
-    button_t *quit;
-} ingame_menu_t;
 
 menu_t *create_menu_struct(rpg_t *rpg);
 void destroy_menu(menu_t *menu);

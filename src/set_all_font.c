@@ -10,4 +10,5 @@
 void set_all_font(sfFont **font_tab)
 {
     font_tab[PIXEL] = sfFont_createFromFile(PIXEL_F_PATH);
+    font_tab[VINQUE_E] = sfFont_createFromFile(VINQUE);
 }

@@ -133,7 +133,6 @@ typedef struct rpg_s {
     save_t *save_list;
     biome_t *biome[5];
     menu_t *start_menu;
-    ingame_menu_t *ingame_menu;
     param_t *params;
     tuto_t *tuto;
     save_scene_t *save_scene;

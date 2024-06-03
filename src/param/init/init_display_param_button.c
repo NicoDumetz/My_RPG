@@ -68,16 +68,6 @@ int set_display_param(param_t *param, sfTexture **text_tab)
         free(param);
         return 84;
     }
-    text_tab[BUTTON_FULL_E] = sfTexture_createFromFile(BUTTON_FULL, NULL);
-    text_tab[BUTTON_FULL_PRESSED_E] = sfTexture_createFromFile
-        (BUTTON_FULL_PRESSED, NULL);
-    text_tab[BUTTON_WINDOW_E] = sfTexture_createFromFile(BUTTON_WINDOW, NULL);
-    text_tab[BUTTON_WINDOW_PRESSED_E] = sfTexture_createFromFile
-        (BUTTON_WINDOW_PRESSED, NULL);
-    text_tab[R1920x1080_E] = sfTexture_createFromFile(BUTTON_1920x1080, NULL);
-    text_tab[R1280x720_E] = sfTexture_createFromFile(BUTTON_1280x720, NULL);
-    text_tab[R850x480_E] = sfTexture_createFromFile(BUTTON_850x480, NULL);
-    text_tab[RES_SELECTION_E] = sfTexture_createFromFile(RES_SELECTION, NULL);
     set_button_display_param(param, text_tab);
     return 0;
 }
