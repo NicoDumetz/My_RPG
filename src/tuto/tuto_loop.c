@@ -19,6 +19,15 @@ bool manage_test_tuto(rpg_t *rpg, biome_t *)
     return true;
 }
 
+static void tuto_next(rpg_t *rpg)
+{
+    manage_particules(rpg);
+    if (rpg->heros->npc->pv <= 0 && rpg->end->active == OFF)
+        init_switch(rpg);
+    if (rpg->end->active == TUTO_FADE)
+        manage_switch_fade(rpg->end, rpg);
+}
+
 void tuto_loop(rpg_t *rpg)
 {
     heros_t *heros = rpg->heros;
@@ -36,10 +45,6 @@ void tuto_loop(rpg_t *rpg)
         biome->quest_giver, rpg);
     manage_quest_tuto(rpg->tuto, rpg);
     quest_displayer(rpg->tuto->quest_tab, rpg->window);
-    manage_particules(rpg);
-    if (rpg->heros->npc->pv <= 0 && rpg->end->active == OFF)
-        init_switch(rpg);
-    if (rpg->end->active == TUTO_FADE)
-        manage_switch_fade(rpg->end, rpg);
+    tuto_next(rpg);
     return;
 }

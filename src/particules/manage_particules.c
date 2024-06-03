@@ -11,7 +11,6 @@
 void init_particules(rpg_t *rpg)
 {
     rpg->part = malloc(sizeof(all_part_t));
-
     rpg->part->vertex = sfVertexArray_create();
     sfVertexArray_setPrimitiveType(rpg->part->vertex, sfQuads);
     rpg->part->clock = sfClock_create();
@@ -41,10 +40,13 @@ static void add_particule_to_array(rpg_t *rpg, int i)
     float size = 2.5f;
     sfVector2f pos = rpg->part->particules[i].pos;
     sfColor color = sfColor_fromRGBA(255, rand() % 256, 0, 255);
-    sfVertex top_left = {{pos.x - size / 2, pos.y - size / 2}, color, {0, 0}};
+    sfVertex top_left = {{pos.x - size / 2, pos.y - size / 2}
+    , color, {0, 0}};
     sfVertex top_right = {{pos.x + size / 2, pos.y - size / 2}, color, {0, 0}};
-    sfVertex bottom_right = {{pos.x + size / 2, pos.y + size / 2}, color, {0, 0}};
-    sfVertex bottom_left = {{pos.x - size / 2, pos.y + size / 2}, color, {0, 0}};
+    sfVertex bottom_right = {{pos.x + size / 2, pos.y + size / 2}
+    , color, {0, 0}};
+    sfVertex bottom_left = {{pos.x - size / 2, pos.y + size / 2}
+    , color, {0, 0}};
 
     sfVertexArray_append(rpg->part->vertex, top_left);
     sfVertexArray_append(rpg->part->vertex, top_right);
@@ -78,7 +80,8 @@ static void set_particules(all_part_t *part, int i, sfVector2f size_rect,
 void launch_particules(rpg_t *rpg)
 {
     all_part_t *part = rpg->part;
-    sfVector2f pos_rect = sfRectangleShape_getPosition(rpg->heros->npc->hitbox);
+    sfVector2f pos_rect = sfRectangleShape_getPosition
+    (rpg->heros->npc->hitbox);
     sfVector2f size_rect = sfRectangleShape_getSize(rpg->heros->npc->hitbox);
 
     part->active = 1;
