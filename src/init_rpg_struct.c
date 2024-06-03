@@ -32,6 +32,7 @@ static void destroy_rpg_next(rpg_t *rpg)
     free_game_over(rpg->end);
     destroy_menu_ingame(rpg->ingame_menu);
     destroy_particules(rpg);
+    destroy_all_song(rpg->song);
 }
 
 void destroy_rpg(rpg_t *rpg)
@@ -76,6 +77,7 @@ rpg_t *init_rpg_next(rpg_t *rpg)
     rpg->time = 0;
     init_game_over(rpg);
     init_particules(rpg);
+    init_song(rpg);
     return (rpg);
 }
 

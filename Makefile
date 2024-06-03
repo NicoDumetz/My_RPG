@@ -149,6 +149,7 @@ SRC = main.c\
 	src/particules/manage_particules.c\
 	src/object/set_all_texture_obj.c\
 	src/tuto/quest/inventory_quest.c\
+	src/song/init_song.c\
 
 OBJ = $(SRC:.c=.o)
 
