@@ -13,14 +13,10 @@ void destroy_npc(npc_t *npc)
     if (npc->pv_bar)
         destroy_info_bar(npc->pv_bar);
     sfRectangleShape_destroy(npc->hitbox);
-    npc->hitbox = NULL;
-    for (int i = 0; i <= ATTACK_R; i++) {
+    for (int i = 0; i <= ATTACK_R; i++)
         sfRectangleShape_destroy(npc->attbox[i]);
-        npc->attbox[i] = NULL;
-    }
     destroy_projectile(npc->projectile);
     free(npc);
-    npc = NULL;
 }
 
 sfRectangleShape *init_hitbox_rect(void)

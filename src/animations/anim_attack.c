@@ -14,7 +14,7 @@ static bool is_attack_condition_met(npc_t *npc, float offset_x)
 
     if (sprite_center_x == sprite_left && npc->type != ARCHERY)
         return true;
-    if (sprite_left == 384 && npc->type == DYNA)
+    if ((sprite_left == 384 || sprite_left == 1728) && npc->type == DYNA)
         return true;
     return false;
 }

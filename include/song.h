@@ -8,7 +8,8 @@
 #ifndef SONG_H
     #define SONG_H
     #include "lib.h"
-    #define GUTS "music/guts.wav"
+    #define GUTS_SONG "music/guts.wav"
+    #define SWORD_SONG "music/sword.wav"
 
 typedef struct play_song_s {
     sfMusic *music;
@@ -23,4 +24,5 @@ typedef struct song_management_s {
 
 void init_song(rpg_t *rpg);
 void destroy_all_song(song_management_t *song_management);
+int launch_sword_song(rpg_t *rpg);
 #endif
