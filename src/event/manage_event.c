@@ -40,8 +40,6 @@ void close_window(sfRenderWindow *window, sfEvent *event)
 {
     if (event->type == sfEvtClosed)
         sfRenderWindow_close(window);
-    if (event->type == sfEvtKeyPressed && event->key.code == sfKeyEscape)
-        sfRenderWindow_close(window);
 }
 
 void update_key_state(rpg_t *rpg, sfEvent *event)

@@ -16,7 +16,7 @@ static void moov_up(rpg_t *rpg)
     float window_height = sfRenderWindow_getSize(rpg->window).y;
     sfVector2f viewCenter = sfView_getCenter(view);
     float top = viewCenter.y - window_height / 2;
-    float movement = rpg->heros->speed * rpg->time;
+    float movement = rpg->heros->speed * rpg->time * rpg->heros->multi_speed;
 
     if (pos.y - movement < 0 ||
         static_collisions_up(rpg->heros->npc->entity->colbox, wich_img(rpg)))

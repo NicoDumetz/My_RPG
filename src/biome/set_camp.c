@@ -7,6 +7,22 @@
 
 #include "rpg.h"
 
+npc_t *set_camp_boss(sfTexture **text_tab, biome_t *biome)
+{
+    npc_t *camp_boss = set_goblins(text_tab[CAMP_BOSS_TEXT]);
+
+    camp_boss->entity->effect_tab = set_effect_bot(
+        text_tab, camp_boss->entity->sprite);
+    camp_boss->entity->pos = (sfVector2f){1000, 1500};
+    camp_boss->pv_bar =
+        create_info_bar(sfRed, (sfVector2f){100, 7}, camp_boss->pv, NULL);
+    camp_boss->pv_bar->act = camp_boss->pv;
+    sfSprite_setPosition(camp_boss->entity->sprite, (sfVector2f){1000, 1500});
+    add_to_list_bot(camp_boss, &(biome->bot_data->bot_list[GOBLINS_T]));
+    manage_animation_bot(camp_boss->entity, true);
+    return (camp_boss);
+}
+
 portal_t **create_portal_camp(void)
 {
     portal_t **portal = malloc(sizeof(portal_t *) * 2);
@@ -31,5 +47,6 @@ biome_t *set_camp(sfTexture **text_tab, sfFont **)
     for (int i = 0; i < 6; i++)
         camp->bot_type[i] = bot_type[i];
     camp->deco_data = NULL;
+    camp->boss = set_camp_boss(text_tab, camp);
     return (camp);
 }
