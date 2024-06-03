@@ -38,7 +38,6 @@ typedef struct fps_s {
 } fps_t;
 
 typedef struct param_s {
-    int from;
     sfVideoMode view;
     sfSprite *background;
     button_t *quit;

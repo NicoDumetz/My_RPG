@@ -22,12 +22,9 @@ void recovery_stamina(heros_t *heros, float time)
     }
 }
 
-void appli_level_up(heros_t *heros, int act, rpg_t *rpg)
+void appli_level_up(heros_t *heros, int act)
 {
-    back_obj_t *back = NULL;
-
     heros->level_act += 1;
-    heros->multi_speed = 1;
     heros->stamina_max = level_tab[act].stamina_max;
     heros->stamina = level_tab[act].stamina_max;
     heros->pv_max = level_tab[act].pv_max;
@@ -39,23 +36,18 @@ void appli_level_up(heros_t *heros, int act, rpg_t *rpg)
     heros->npc->attack = level_tab[act].attack;
     heros->npc->entity->effect_tab[LEVEL_UP_HEROS]->active = true;
     heros->skill_point += 1;
-    for (int i = 0; i < 4; i++) {
-        back = (back_obj_t *)rpg->inventory.equipment[i]->child;
-        if (back)
-            appli_multi_equip(heros, back);
-    }
 }
 
-void check_level_up(heros_t *heros, rpg_t *rpg)
+void check_level_up(heros_t *heros)
 {
     int act = heros->level_act;
 
     if (heros->npc->xp >= level_tab[act].xp_to_reach && act < 10) {
         act++;
-        appli_level_up(heros, act, rpg);
+        appli_level_up(heros, act);
         if (heros->npc->xp > level_tab[act - 1].xp_to_reach) {
             heros->npc->xp = heros->npc->xp - level_tab[act - 1].xp_to_reach;
-            check_level_up(heros, rpg);
+            check_level_up(heros);
         }
     }
 }
@@ -78,7 +70,7 @@ void manage_heros(heros_t *heros, rpg_t *rpg)
     if (heros->can_interact)
         manage_interact(heros, rpg->window);
     recovery_stamina(heros, rpg->time);
-    check_level_up(heros, rpg);
+    check_level_up(heros);
     if ((heros->level_act) == 10)
         heros->npc->xp = 0;
     heros->can_interact = false;

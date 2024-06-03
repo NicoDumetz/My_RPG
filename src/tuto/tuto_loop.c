@@ -9,7 +9,7 @@
 
 bool manage_test_tuto(rpg_t *rpg, biome_t *)
 {
-    if (rpg->key_state[sfKeyC] && rpg->end->active == OFF) {
+    if (rpg->key_state[sfKeyC]) {
         set_view(rpg, rpg->save_scene->back, rpg->save_scene->back);
         rpg->save_scene->from = rpg->scene;
         clean_entity_list(rpg->tuto->biome);
@@ -17,15 +17,6 @@ bool manage_test_tuto(rpg_t *rpg, biome_t *)
         return false;
     }
     return true;
-}
-
-static void tuto_next(rpg_t *rpg)
-{
-    manage_particules(rpg);
-    if (rpg->heros->npc->pv <= 0 && rpg->end->active == OFF)
-        init_switch(rpg);
-    if (rpg->end->active == TUTO_FADE)
-        manage_switch_fade(rpg->end, rpg);
 }
 
 void tuto_loop(rpg_t *rpg)
@@ -45,6 +36,9 @@ void tuto_loop(rpg_t *rpg)
         biome->quest_giver, rpg);
     manage_quest_tuto(rpg->tuto, rpg);
     quest_displayer(rpg->tuto->quest_tab, rpg->window);
-    tuto_next(rpg);
+    if (rpg->heros->npc->pv <= 0 && rpg->end->active == OFF)
+        init_switch(rpg);
+    if (rpg->end->active == TUTO_FADE)
+        manage_switch_fade(rpg->end, rpg);
     return;
 }
