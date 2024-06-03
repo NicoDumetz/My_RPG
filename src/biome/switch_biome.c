@@ -22,11 +22,10 @@ void clean_entity_list(biome_t *biome)
         biome->entity_in_view_tail = NULL;
 }
 
-void set_view(rpg_t *rpg, heros_t *heros)
+void set_view(rpg_t *rpg, sfSprite* sprite, sfSprite *limit)
 {
     const sfView *view = sfRenderWindow_getView(rpg->window);
-    sfFloatRect bounds = sfSprite_getGlobalBounds(wich_back(rpg));
-    sfSprite* sprite = heros->npc->entity->sprite;
+    sfFloatRect bounds = sfSprite_getGlobalBounds(limit);
     sfFloatRect bounds_sprite = sfSprite_getGlobalBounds(sprite);
     sfVector2f pos;
     sfVector2f check;
@@ -53,5 +52,5 @@ void switch_biome(biome_t *from, portal_t *portal, rpg_t *rpg, heros_t *heros)
     heros->npc->entity->pos = rpg->biome[portal->scene]->last_pos;
     sfSprite_setPosition(heros->npc->entity->sprite,
     rpg->biome[portal->scene]->last_pos);
-    set_view(rpg, heros);
+    set_view(rpg, heros->npc->entity->sprite, wich_back(rpg));
 }
