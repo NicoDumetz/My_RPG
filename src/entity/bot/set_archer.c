@@ -22,8 +22,8 @@ void set_action_tab_archer(npc_t *archer)
 
 void set_attbox_dim_archer(npc_t *npc)
 {
-    npc->attbox_dim[ATTACK_F] = (sfFloatRect){100,100,100,100};
-    npc->attbox_dim[ATTACK_B] = (sfFloatRect){100,100,100,100};
+    npc->attbox_dim[ATTACK_F] = (sfFloatRect){100, 100, 100, 100};
+    npc->attbox_dim[ATTACK_B] = (sfFloatRect){100, 100, 100, 100};
     npc->attbox_dim[ATTACK_L] = (sfFloatRect){0, 0, 50, 0};
     npc->attbox_dim[ATTACK_R] = (sfFloatRect){50, 0, 50, 0};
 }
