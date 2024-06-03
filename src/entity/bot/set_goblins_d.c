@@ -46,7 +46,7 @@ npc_t *set_goblins_d(sfTexture *texture)
     goblins_d->view = 500;
     goblins_d->stamina = 50;
     goblins_d->max_stamina = 50;
-    goblins_d->damage = 50;
+    goblins_d->damage = 25;
     goblins_d->type = DYNA;
     return (goblins_d);
 }

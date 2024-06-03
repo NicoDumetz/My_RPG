@@ -87,7 +87,7 @@ static bool check_pixel_angle(sfVector2f top_mid, sfVector2u img_size,
 
     if (x < img_size.x && y < img_size.y) {
         color = sfImage_getPixel(collision_image, x, y);
-        if (color.r == 0 && color.g == 0 && color.b == 0 && color.a > 200)
+        if (color.r == 0 && color.g == 0 && color.b == 0 && color.a == 255)
             return true;
     }
     return false;

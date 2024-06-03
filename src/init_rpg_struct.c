@@ -30,6 +30,8 @@ static void destroy_rpg_next(rpg_t *rpg)
     destroy_param_struct(rpg->params);
     destroy_inventory(&rpg->inventory);
     free_game_over(rpg->end);
+    destroy_menu_ingame(rpg->ingame_menu);
+    destroy_particules(rpg);
 }
 
 void destroy_rpg(rpg_t *rpg)
@@ -46,8 +48,9 @@ void destroy_rpg(rpg_t *rpg)
             destroy_biome(rpg->biome[i]);
         for (int i = 0; i <= MINE_TEXT; i++)
             sfTexture_destroy(rpg->text_tab[i]);
-        for (int i = 0; i <= PIXEL; i++)
+        for (int i = 0; i < FONT_COUNT; i++) {
             sfFont_destroy(rpg->font_tab[i]);
+        }
         destroy_rpg_next(rpg);
         free(rpg);
     }
@@ -72,6 +75,7 @@ rpg_t *init_rpg_next(rpg_t *rpg)
     rpg->second = 0;
     rpg->time = 0;
     init_game_over(rpg);
+    init_particules(rpg);
     return (rpg);
 }
 
@@ -103,6 +107,7 @@ rpg_t *create_rpg_struct(void)
         return NULL;
     rpg->start_menu = create_menu_struct(rpg);
     rpg->params = init_param_struct(rpg->text_tab, rpg->font_tab);
+    rpg->ingame_menu = create_menu_ingame_struct(rpg);
     rpg->clock = sfClock_create();
     rpg->scene = MENU;
     rpg->second = 0;

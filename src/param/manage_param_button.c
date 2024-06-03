@@ -11,5 +11,5 @@ void quit_params(void *data, button_t *)
 {
     rpg_t *rpg = (rpg_t *) data;
 
-    rpg->scene = MENU;
+    rpg->scene = rpg->params->from;
 }

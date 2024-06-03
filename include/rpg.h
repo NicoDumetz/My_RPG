@@ -70,6 +70,11 @@ typedef enum texture_type_e {
     B_SAVE_E,
     B_SAVE_PRESSED_E,
     B_SAVE_HOVER_E,
+    B_SAVE_BLOCK_E,
+    B_NSAVE_E,
+    B_NSAVE_PRESSED_E,
+    B_NSAVE_HOVER_E,
+    B_NSAVE_BLOCK_E,
     NEW_E,
     NEW_PRESSED_E,
     NEW_HOVER_E,
@@ -109,8 +114,27 @@ typedef enum texture_type_e {
     ARROW_TEXT,
     DYNA_TEXT,
     SHIELD_TEXT,
-    HEARTH_POTION_TEXT,
-    HELMET_TEXT,
+    PV_LVL_3_TEXT,
+    HELMET_LVL_3_TEXT,
+    PV_LVL_1_TEXT,
+    HELMET_LVL_1_TEXT,
+    PV_LVL_2_TEXT,
+    HELMET_LVL_2_TEXT,
+    BREASTPLATE_LVL_1_TEXT,
+    BREASTPLATE_LVL_2_TEXT,
+    BREASTPLATE_LVL_3_TEXT,
+    GLOVES_LVL_2_TEXT,
+    GLOVES_LVL_3_TEXT,
+    GREAVES_LVL_2_TEXT,
+    GREAVES_LVL_3_TEXT,
+    SHOES_LVL_1_TEXT,
+    SHOES_LVL_2_TEXT,
+    SHOES_LVL_3_TEXT,
+    STEAK_TEXT,
+    MUSHROOMS_TEXT,
+    STAMI_LVL_1_TEXT,
+    STAMI_LVL_2_TEXT,
+    XP_LVL_1_TEXT,
     FIRE_TEXT,
     MINE_TEXT
 } texture_type_t;
@@ -124,6 +148,7 @@ typedef enum scene_e {
     TUTO,
     SAVE,
     MENU,
+    INGAME_MENU,
     PARAMS,
     MAIN
 }scene_t;
@@ -133,6 +158,7 @@ typedef struct rpg_s {
     save_t *save_list;
     biome_t *biome[5];
     menu_t *start_menu;
+    ingame_menu_t *ingame_menu;
     param_t *params;
     tuto_t *tuto;
     save_scene_t *save_scene;
@@ -149,6 +175,7 @@ typedef struct rpg_s {
     sfFont *font_tab[FONT_COUNT];
     inventory_t inventory;
     game_over_t *end;
+    all_part_t *part;
     sfRenderWindow *window;
 } rpg_t;
 

@@ -24,7 +24,7 @@ static void create_menu_button(sfTexture **text_tab, menu_t *menu)
         NEW_HOVER_E, NEW_E, -1});
     init_action_button(&new_button, NULL, NULL, menu->new);
     menu->saves = create_button(text_tab, (int[5]){B_SAVE_E,
-        B_SAVE_PRESSED_E, B_SAVE_HOVER_E, B_SAVE_E, -1});
+        B_SAVE_PRESSED_E, B_SAVE_HOVER_E, B_SAVE_E, B_SAVE_BLOCK_E});
     init_action_button(&saves_button, NULL, NULL, menu->saves);
     menu->param = create_button(text_tab, (int[5]){PARAM_E, PARAM_PRESSED_E,
         PARAM_HOVER_E, PARAM_E, -1});
@@ -56,6 +56,7 @@ menu_t *create_menu_struct(rpg_t *rpg)
         return (NULL);
     menu->pos = MENU_1;
     menu->background = sfSprite_create();
+    sfSprite_setPosition(menu->background, (sfVector2f){0, 0});
     set_button(rpg->text_tab, menu);
     return menu;
 }
