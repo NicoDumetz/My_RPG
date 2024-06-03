@@ -6,7 +6,6 @@
 */
 
 #include "rpg.h"
-#include <SFML/Window/Keyboard.h>
 
 void appli_multi_equip(heros_t *heros, back_obj_t *back)
 {
@@ -43,7 +42,7 @@ void appli_item_stat(back_obj_t *back, heros_t *heros)
 
 static void drop_item(button_t *button, rpg_t *rpg)
 {
-    biome_t *biome = rpg->biome[rpg->scene];
+    biome_t *biome = (rpg->scene == TUTO) ? rpg->tuto->biome : rpg->biome[rpg->scene];
     sfVector2f pos = rpg->heros->npc->entity->pos;
     back_obj_t *obj = button->child;
 
@@ -97,8 +96,10 @@ void unequip_equipment(void *data, button_t *button)
 
     if (obj == NULL)
         return;
-    if (rpg->key_state[sfKeyLControl])
+    if (rpg->key_state[sfKeyLControl]) {
+        unappli_multi_equip(rpg->heros, button->child);
         return drop_item(button, rpg);
+    }
     unequip_item(button, rpg);
 }
 
