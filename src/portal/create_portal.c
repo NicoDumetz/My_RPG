@@ -29,7 +29,7 @@ portal_t *create_portal(sfVector2f pos, int scene)
 {
     portal_t *portal = malloc(sizeof(portal_t));
 
-    portal->is_open = true;
+    portal->is_open = false;
     portal->scene = scene;
     portal->pos = pos;
     portal->zone = create_portal_zone(pos);

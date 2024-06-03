@@ -16,6 +16,9 @@ void remake_bot_list(save_data_t *save, rpg_t *rpg)
             free_bot_list(rpg->biome[i]->bot_data->bot_list[j]);
             rpg->biome[i]->bot_data->bot_list[j] = NULL;
         }
+    rpg->biome[CAMP]->boss = NULL;
+    rpg->biome[MINE]->boss = NULL;
+    rpg->biome[CASTLE]->boss = NULL;
     for (int i = 0; i <= MINE; i++)
         for (int j = 0; save->save_bot[i][j].pv != 0 && j < 30; j++) {
             npc = create_bot(save->save_bot[i][j].id_bot,
