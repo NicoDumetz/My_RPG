@@ -56,6 +56,16 @@ void init_clock(rpg_t *rpg)
     rpg->second = (int)accu;
 }
 
+static void clear_window(rpg_t *rpg)
+{
+    sfColor blue = sfColor_fromRGB(71, 171, 169);
+
+    if (rpg->scene != PLAIN)
+        sfRenderWindow_clear(rpg->window, sfBlack);
+    else
+        sfRenderWindow_clear(rpg->window, blue);
+}
+
 void rpg(rpg_t *rpg)
 {
     sfRenderWindow_setFramerateLimit(rpg->window, 60);
@@ -68,7 +78,7 @@ void rpg(rpg_t *rpg)
         set_all_volume(rpg, rpg->params->sound->value_sound);
         rpg->mouse_data.pos = recalculate_mouse_position(
             rpg->window, sfRenderWindow_getView(rpg->window));
-        sfRenderWindow_clear(rpg->window, sfBlack);
+        clear_window(rpg);
         which_scene(rpg);
         sfRenderWindow_display(rpg->window);
     }
