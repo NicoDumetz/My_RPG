@@ -10,12 +10,15 @@
 static void display_menu_back(rpg_t *rpg)
 {
     sfColor color_blur = sfColor_fromRGBA(0, 0, 0, 128);
-    sfVector2f scale = {2.5, 2.5};
+    sfVector2u size = sfTexture_getSize(rpg->ingame_menu->last_frame);
+    sfVector2f scale;
 
-    sfSprite_setScale(rpg->ingame_menu->background, scale);
     sfRectangleShape_setFillColor(rpg->ingame_menu->blur, color_blur);
     sfSprite_setTexture(rpg->ingame_menu->background,
         rpg->ingame_menu->last_frame, sfTrue);
+    scale.x = 1920.0f / (float) size.x;
+    scale.y = 1080.0f / (float) size.y;
+    sfSprite_setScale(rpg->ingame_menu->background, scale);
     sfRenderWindow_drawSprite(rpg->window, rpg->ingame_menu->background,
         NULL);
     sfRenderWindow_drawRectangleShape(rpg->window, rpg->ingame_menu->blur,
