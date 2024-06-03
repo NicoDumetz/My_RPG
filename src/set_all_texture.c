@@ -85,6 +85,67 @@ static void set_all_texture_next_four(sfTexture **text_tab)
     sfTexture_createFromFile(HEARTH_POTION_PATH, NULL);
     text_tab[HELMET_TEXT] = sfTexture_createFromFile(HELMET_PATH, NULL);
     text_tab[BACK_INVENTORY_HERO] = sfTexture_createFromFile(BACK_HERO, NULL);
+    text_tab[PLAY_E] = sfTexture_createFromFile(PLAY, NULL);
+    text_tab[PLAY_PRESSED_E] = sfTexture_createFromFile(PLAY_PRESSED, NULL);
+    text_tab[PLAY_HOVER_E] = sfTexture_createFromFile(PLAY_HOVER, NULL);
+    text_tab[B_SAVE_E] = sfTexture_createFromFile(B_SAVE, NULL);
+    text_tab[B_SAVE_PRESSED_E] = sfTexture_createFromFile(B_SAVE_PRESSED,
+        NULL);
+    text_tab[B_SAVE_HOVER_E] = sfTexture_createFromFile(B_SAVE_HOVER, NULL);
+    text_tab[NEW_E] = sfTexture_createFromFile(NEW, NULL);
+    text_tab[NEW_PRESSED_E] = sfTexture_createFromFile(NEW_PRESSED, NULL);
+    text_tab[NEW_HOVER_E] = sfTexture_createFromFile(NEW_HOVER, NULL);
+    text_tab[PARAM_E] = sfTexture_createFromFile(PARAM, NULL);
+    text_tab[PARAM_PRESSED_E] = sfTexture_createFromFile(PARAM_PRESSED, NULL);
+    text_tab[PARAM_HOVER_E] = sfTexture_createFromFile(PARAM_HOVER, NULL);
+    text_tab[QUIT_E] = sfTexture_createFromFile(QUIT, NULL);
+    text_tab[QUIT_PRESSED_E] = sfTexture_createFromFile(QUIT_PRESSED, NULL);
+    text_tab[QUIT_HOVER_E] = sfTexture_createFromFile(QUIT_HOVER, NULL);
+}
+
+static void set_all_texture_next_five(sfTexture **text_tab)
+{
+    text_tab[MENU_1] = sfTexture_createFromFile("menu_asset/menu1.png", NULL);
+    text_tab[MENU_2] = sfTexture_createFromFile("menu_asset/menu2.png", NULL);
+    text_tab[MENU_3] = sfTexture_createFromFile("menu_asset/menu3.png", NULL);
+    text_tab[MENU_4] = sfTexture_createFromFile("menu_asset/menu4.png", NULL);
+    text_tab[MENU_5] = sfTexture_createFromFile("menu_asset/menu5.png", NULL);
+    text_tab[MENU_6] = sfTexture_createFromFile("menu_asset/menu6.png", NULL);
+    text_tab[MENU_7] = sfTexture_createFromFile("menu_asset/menu7.png", NULL);
+    text_tab[MENU_8] = sfTexture_createFromFile("menu_asset/menu8.png", NULL);
+    text_tab[MENU_9] = sfTexture_createFromFile("menu_asset/menu3.png", NULL);
+    text_tab[MENU_10] = sfTexture_createFromFile("menu_asset/menu4.png", NULL);
+    text_tab[MENU_11] = sfTexture_createFromFile("menu_asset/menu5.png", NULL);
+    text_tab[MENU_12] = sfTexture_createFromFile("menu_asset/menu6.png", NULL);
+    text_tab[BAG_TEXT] = sfTexture_createFromFile(BAG_PATH, NULL);
+    text_tab[BLOOD_TEXT] = sfTexture_createFromFile(BLOOD_PATH, NULL);
+    text_tab[COIN_TEXT] = sfTexture_createFromFile(COIN_PATH, NULL);
+    text_tab[TREE_SPRITE_TEXT] = sfTexture_createFromFile(TREE_SPRITE, NULL);
+    text_tab[MINE_TEXT] = sfTexture_createFromFile(MINE_S, NULL);
+    text_tab[LEVEL_UP_TEXT] = sfTexture_createFromFile(LEVEL_UP_PATH, NULL);
+}
+
+static void set_all_texture_next_six(sfTexture **text_tab)
+{
+    text_tab[BUTTON_SOUND_E] = sfTexture_createFromFile(BUTTON_SOUND, NULL);
+    text_tab[BUTTON_SOUND_PRESSED_E] = sfTexture_createFromFile
+        (BUTTON_SOUND_PRESSED, NULL);
+    text_tab[BUTTON_PLUS_E] = sfTexture_createFromFile(BUTTON_PLUS, NULL);
+    text_tab[BUTTON_PLUS_PRESSED_E] = sfTexture_createFromFile
+        (BUTTON_PLUS_PRESSED, NULL);
+    text_tab[BUTTON_MINUS_E] = sfTexture_createFromFile(BUTTON_MINUS, NULL);
+    text_tab[BUTTON_MINUS_PRESSED_E] = sfTexture_createFromFile
+        (BUTTON_MINUS_PRESSED, NULL);
+    text_tab[BUTTON_FULL_E] = sfTexture_createFromFile(BUTTON_FULL, NULL);
+    text_tab[BUTTON_FULL_PRESSED_E] = sfTexture_createFromFile
+            (BUTTON_FULL_PRESSED, NULL);
+    text_tab[BUTTON_WINDOW_E] = sfTexture_createFromFile(BUTTON_WINDOW, NULL);
+    text_tab[BUTTON_WINDOW_PRESSED_E] = sfTexture_createFromFile
+            (BUTTON_WINDOW_PRESSED, NULL);
+    text_tab[R1920x1080_E] = sfTexture_createFromFile(BUTTON_1920x1080, NULL);
+    text_tab[R1280x720_E] = sfTexture_createFromFile(BUTTON_1280x720, NULL);
+    text_tab[R850x480_E] = sfTexture_createFromFile(BUTTON_850x480, NULL);
+    text_tab[RES_SELECTION_E] = sfTexture_createFromFile(RES_SELECTION, NULL);
 }
 
 void set_all_texture(sfTexture **text_tab)
@@ -99,12 +160,8 @@ void set_all_texture(sfTexture **text_tab)
         CASTLE_COLISION, NULL);
     text_tab[KNIGHT_HOUSE_TEXT] = sfTexture_createFromFile(
         KNIGHT_H_SPRITE, NULL);
-    text_tab[TREE_SPRITE_TEXT] = sfTexture_createFromFile(TREE_SPRITE, NULL);
-    text_tab[MINE_TEXT] = sfTexture_createFromFile(MINE_S, NULL);
-    text_tab[LEVEL_UP_TEXT] = sfTexture_createFromFile(LEVEL_UP_PATH, NULL);
-    text_tab[BAG_TEXT] = sfTexture_createFromFile(BAG_PATH, NULL);
-    text_tab[BLOOD_TEXT] = sfTexture_createFromFile(BLOOD_PATH, NULL);
-    text_tab[COIN_TEXT] = sfTexture_createFromFile(COIN_PATH, NULL);
+    set_all_texture_next_six(text_tab);
+    set_all_texture_next_five(text_tab);
     set_all_texture_next_four(text_tab);
     set_all_texture_next_three(text_tab);
     set_all_texture_next_two(text_tab);

@@ -78,10 +78,6 @@ rpg_t *init_rpg_next(rpg_t *rpg)
 static bool init_ressources(sfFont **font_tab, sfTexture **texture_tab,
     rpg_t *rpg)
 {
-    for (int i = 0; i <= MINE_TEXT; i++)
-        texture_tab[i] = NULL;
-    for (int i = 0; i < FONT_COUNT; i++)
-        font_tab[i] = NULL;
     set_all_font(font_tab);
     set_all_texture(texture_tab);
     if (!check_asset(texture_tab, font_tab))
@@ -111,8 +107,6 @@ rpg_t *create_rpg_struct(void)
     rpg->scene = MENU;
     rpg->second = 0;
     rpg->time = 0;
-    rpg->clock = sfClock_create();
-    rpg->scene = TUTO;
     rpg->window = sfRenderWindow_create(mode, "my_rpg", sfClose, NULL);
     sfRenderWindow_setPosition(rpg->window, (sfVector2i){0, 0});
     rpg->heros = init_heros(rpg->text_tab, rpg->font_tab);
