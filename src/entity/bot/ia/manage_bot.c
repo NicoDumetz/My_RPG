@@ -7,12 +7,13 @@
 
 #include "rpg.h"
 
-void manage_bot(entity_t *entity, heros_t *heros)
+void manage_bot(entity_t *entity, heros_t *heros, rpg_t *rpg)
 {
     npc_t *npc_act = (npc_t *)(entity->parent);
     npc_t *npc_to_check = NULL;
 
     check_dynamic_col(npc_act, heros->npc);
+    manage_random_moov(npc_act, heros, rpg);
     if (npc_act->in_chase == false)
         check_chase_heros(npc_act, heros);
     check_if_heros_attack_me(npc_act, heros);

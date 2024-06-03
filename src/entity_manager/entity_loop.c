@@ -57,7 +57,7 @@ void which_entity(entity_t *curr, rpg_t *rpg)
     obj = curr->type == OBJ ? curr->parent : NULL;
     if (npc) {
         if (npc->special == NON_SPEC)
-            manage_bot(curr, rpg->heros);
+            manage_bot(curr, rpg->heros, rpg);
         manage_animation_bot(curr, rpg->ticks);
     }
     if (obj) {
